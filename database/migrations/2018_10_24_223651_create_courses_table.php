@@ -18,6 +18,7 @@ class CreateCoursesTable extends Migration
             $table->integer('venue_id')->unsigned();
             $table->integer('tutor_id')->unsigned()->nullable();
             $table->dateTime('date');
+            $table->boolean('inhouse')->nullable()->default(false);
             $table->integer('capacity')->unsigned()->nullable()->default(20);
             $table->integer('course_type_id')->unsigned()->nullable();
             $table->timestamps();

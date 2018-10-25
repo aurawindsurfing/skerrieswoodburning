@@ -16,6 +16,8 @@ class CreateVenuesTable extends Migration
         Schema::create('venues', function (Blueprint $table) {
             $table->increments('id');
             $table->text('name');
+            $table->text('address');
+            $table->text('geo');
             $table->timestamps();
         });
     }

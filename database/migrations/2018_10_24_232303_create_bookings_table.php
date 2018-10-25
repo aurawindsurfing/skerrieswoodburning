@@ -24,6 +24,7 @@ class CreateBookingsTable extends Migration
             $table->text('invoice')->nullable()->default(null);
             $table->boolean('confirmetion_sent')->nullable()->default(false);
             $table->boolean('confirmed')->nullable()->default(false);
+            $table->boolean('noshow')->nullable()->default(false);
             $table->integer('user_id')->unsigned()->nullable()->default(null);
             $table->integer('payment_id')->unsigned()->nullable()->default(null);
             $table->text('actually_paid')->nullable()->default(null);

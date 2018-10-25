@@ -16,8 +16,10 @@ class CreateCompaniesTable extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->increments('id');
             $table->text('name');
+            $table->text('address');
             $table->text('phone')->nullable()->default(null);
             $table->text('email')->nullable()->default(null);
+            $table->boolean('corporate_client')->nullable()->default(false);
             $table->integer('payment_method_id')->unsigned()->nullable()->default(null);
             $table->timestamps();
         });
