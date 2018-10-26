@@ -19,6 +19,7 @@ class CreateContactPeopleTable extends Migration
             $table->text('phone')->nullable()->default(null);
             $table->text('email')->nullable()->default(null);
             $table->integer('company_id')->unsigned()->nullable()->default(null);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

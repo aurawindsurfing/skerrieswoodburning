@@ -18,6 +18,7 @@ class CreateVenuesTable extends Migration
             $table->text('name');
             $table->text('address');
             $table->text('geo');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

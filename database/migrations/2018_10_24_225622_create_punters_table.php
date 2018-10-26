@@ -21,6 +21,7 @@ class CreatePuntersTable extends Migration
             $table->text('email')->nullable()->default(null);
             $table->text('pps')->nullable()->default(null);
             $table->integer('company_id')->unsigned()->nullable()->default(null);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

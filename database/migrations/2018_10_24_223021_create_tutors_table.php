@@ -18,6 +18,7 @@ class CreateTutorsTable extends Migration
             $table->text('name');
             $table->text('phone')->default(null);
             $table->text('email')->default(null);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

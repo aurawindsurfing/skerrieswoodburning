@@ -21,6 +21,7 @@ class CreateCompaniesTable extends Migration
             $table->text('email')->nullable()->default(null);
             $table->boolean('corporate_client')->nullable()->default(false);
             $table->integer('payment_method_id')->unsigned()->nullable()->default(null);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

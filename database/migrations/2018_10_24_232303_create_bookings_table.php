@@ -20,15 +20,17 @@ class CreateBookingsTable extends Migration
             $table->integer('course_id')->unsigned();
             $table->integer('company_id')->unsigned()->nullable()->default(null);
             $table->integer('contact_person_id')->unsigned()->nullable()->default(null);
-            $table->text('PO')->nullable()->default(null);
+            $table->text('po')->nullable()->default(null);
             $table->text('invoice')->nullable()->default(null);
-            $table->boolean('confirmetion_sent')->nullable()->default(false);
-            $table->boolean('confirmed')->nullable()->default(false);
-            $table->boolean('noshow')->nullable()->default(false);
+            $table->dateTime('confirmation_sent')->nullable()->default(null);
+            $table->dateTime('reminder_sent')->nullable()->default(null);
+            $table->boolean('confirmed')->default(false);
+            $table->boolean('no_show')->default(false);
             $table->integer('user_id')->unsigned()->nullable()->default(null);
             $table->integer('payment_id')->unsigned()->nullable()->default(null);
             $table->text('actually_paid')->nullable()->default(null);
             $table->text('comments')->nullable()->default(null);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
