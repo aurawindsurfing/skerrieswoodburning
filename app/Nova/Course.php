@@ -5,24 +5,30 @@ namespace App\Nova;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Gravatar;
+use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\HasOne;
+use Laravel\Nova\Fields\BelongsTo;
 
-class Tutor extends Resource
+class Course extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\Tutor';
+    public static $model = 'App\Course';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'id';
+
+    public function title()
+    {
+        return $this->courseType->name;
+    }
 
     /**
      * The columns that should be searched.
@@ -30,8 +36,7 @@ class Tutor extends Resource
      * @var array
      */
     public static $search = [
-        // 'name',
-        // 'email'
+        'id',
     ];
 
     /**
@@ -44,22 +49,9 @@ class Tutor extends Resource
     {
         return [
             ID::make()->sortable(),
-
-            Gravatar::make(),
-
-            Text::make('Name')
-                ->sortable()
-                ->rules('required', 'max:255'),
-
-            Text::make('Email')
-                ->sortable()
-                ->rules('required', 'email', 'max:254')
-                ->creationRules('unique:users,email')
-                ->updateRules('unique:users,email,{{resourceId}}'),
-
-            Text::make('Phone')
-                ->sortable()
-                ->rules('required', 'max:254')
+            BelongsTo::make('CourseType'),
+            DateTime::make('Date'),
+            BelongsTo::make('Venue'),
         ];
     }
 

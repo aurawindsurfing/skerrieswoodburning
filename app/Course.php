@@ -14,20 +14,24 @@ class Course extends Model
     protected $guarded = [];
 
     protected static $logUnguarded = true;
+
+    protected $dates = [
+        'date',
+    ];
     
     public function venue()
     {
-        return $this->hasOne('App\Venue');
+        return $this->belongsTo('App\Venue');
     }
 
     public function tutor()
     {
-        return $this->hasOne('App\Tutor');
+        return $this->belongsTo('App\Tutor');
     }
 
     public function courseType()
     {
-        return $this->hasOne('App\CourseType');
+        return $this->belongsTo('App\CourseType');
     }
 
     public function bookings()

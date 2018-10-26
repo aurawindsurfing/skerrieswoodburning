@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
 
         factory(App\Tutor::class, 20)->create();
 
-        factory(App\Punter::class, 500)->create();
+        factory(App\Client::class, 500)->create();
 
         factory(App\PaymentMethod::class, 3)->create();
 

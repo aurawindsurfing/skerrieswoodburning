@@ -5,24 +5,25 @@ namespace App\Nova;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Gravatar;
+use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\HasOne;
+use Laravel\Nova\Fields\BelongsTo;
 
-class Tutor extends Resource
+class Booking extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\Tutor';
+    public static $model = 'App\Booking';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -30,8 +31,7 @@ class Tutor extends Resource
      * @var array
      */
     public static $search = [
-        // 'name',
-        // 'email'
+        'id',
     ];
 
     /**
@@ -44,22 +44,36 @@ class Tutor extends Resource
     {
         return [
             ID::make()->sortable(),
+            DateTime::make('Date'),
+            BelongsTo::make('Client'),
+            BelongsTo::make('Course')
 
-            Gravatar::make(),
+            
 
-            Text::make('Name')
-                ->sortable()
-                ->rules('required', 'max:255'),
 
-            Text::make('Email')
-                ->sortable()
-                ->rules('required', 'email', 'max:254')
-                ->creationRules('unique:users,email')
-                ->updateRules('unique:users,email,{{resourceId}}'),
 
-            Text::make('Phone')
-                ->sortable()
-                ->rules('required', 'max:254')
+
+
+
+
+            // $table->dateTime('date');
+            // $table->integer('client_id')->unsigned();
+            // $table->integer('course_id')->unsigned();
+            // $table->integer('company_id')->unsigned()->nullable()->default(null);
+            // $table->integer('contact_person_id')->unsigned()->nullable()->default(null);
+            // $table->text('po')->nullable()->default(null);
+            // $table->text('invoice')->nullable()->default(null);
+            // $table->dateTime('confirmation_sent')->nullable()->default(null);
+            // $table->dateTime('reminder_sent')->nullable()->default(null);
+            // $table->boolean('confirmed')->default(false);
+            // $table->boolean('no_show')->default(false);
+            // $table->integer('user_id')->unsigned()->nullable()->default(null);
+            // $table->integer('payment_id')->unsigned()->nullable()->default(null);
+            // $table->text('actually_paid')->nullable()->default(null);
+            // $table->text('comments')->nullable()->default(null);
+
+
+
         ];
     }
 

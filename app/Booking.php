@@ -15,14 +15,18 @@ class Booking extends Model
 
     protected static $logUnguarded = true;
 
-    public function punter()
+    protected $dates = [
+        'date',
+      ];
+
+    public function client()
     {
-        return $this->hasOne('App\Punter');
+        return $this->belongsTo('App\Client');
     }
 
     public function course()
     {
-        return $this->hasOne('App\Course');
+        return $this->belongsTo('App\Course');
     }
 
     public function payments()
@@ -32,7 +36,7 @@ class Booking extends Model
 
     public function user()
     {
-        return $this->hasOne('App\User');
+        return $this->belongsTo('App\User');
     }
 
     public function company()

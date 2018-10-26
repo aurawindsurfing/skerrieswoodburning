@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Punter;
+use App\Client;
 use Illuminate\Http\Request;
 
-class PunterController extends Controller
+class ClientController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class PunterController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Punter  $punter
+     * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function show(Punter $punter)
+    public function show(Client $client)
     {
         //
     }
@@ -52,10 +52,10 @@ class PunterController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Punter  $punter
+     * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function edit(Punter $punter)
+    public function edit(Client $client)
     {
         //
     }
@@ -64,10 +64,10 @@ class PunterController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Punter  $punter
+     * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Punter $punter)
+    public function update(Request $request, Client $client)
     {
         //
     }
@@ -75,10 +75,10 @@ class PunterController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Punter  $punter
+     * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Punter $punter)
+    public function destroy(Client $client)
     {
         //
     }

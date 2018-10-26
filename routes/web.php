@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/test', function () {
+    
+    $e = App\Booking::find(1);
+    
+    dd($e->client->name);
+});

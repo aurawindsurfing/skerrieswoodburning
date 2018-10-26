@@ -10,7 +10,7 @@ $factory->define(App\Booking::class, function (Faker $faker) {
 
     return [
         'date' => $bookingDate,
-        'punter_id' => App\Punter::all(['id'])->random(),
+        'client_id' => App\Client::all(['id'])->random(),
         'course_id' => $course->id,
         'company_id' => $company,
         'contact_person_id' => factory('App\ContactPerson')->create()->id,

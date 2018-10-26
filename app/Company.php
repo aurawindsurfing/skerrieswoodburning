@@ -20,9 +20,9 @@ class Company extends Model
         return $this->belongsTo('App\Booking');
     }
 
-    public function punters()
+    public function clients()
     {
-        return $this->belongsTo('App\Punter');
+        return $this->belongsTo('App\Client');
     }
 
 

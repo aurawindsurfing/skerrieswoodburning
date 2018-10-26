@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePuntersTable extends Migration
+class CreateClientsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePuntersTable extends Migration
      */
     public function up()
     {
-        Schema::create('punters', function (Blueprint $table) {
+        Schema::create('clients', function (Blueprint $table) {
             $table->increments('id');
             $table->text('name');
             $table->text('surname')->nullable()->default(null);
@@ -33,6 +33,6 @@ class CreatePuntersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('punters');
+        Schema::dropIfExists('clients');
     }
 }
