@@ -25,6 +25,15 @@ class Client extends Model
         return $this->hasOne('App\Company');
     }
 
+    public function payment()
+    {
+        return $this->hasManyThrough('App\Payment', 'App\Booking');
+    }
+
+    public function booking()
+    {
+        return $this->hasMany('App\Booking');
+    }
 
 
 }

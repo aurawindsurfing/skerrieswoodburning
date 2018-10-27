@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\HasMany;
 
 class Client extends Resource
 {
@@ -54,12 +55,12 @@ class Client extends Resource
             Gravatar::make(),
 
             Text::make('Name')
-            ->sortable()
-            ->rules('max:255'),
+                ->sortable()
+                ->rules('max:255'),
 
             Text::make('Surname')
-            ->sortable()
-            ->rules('max:255'),
+                ->sortable()
+                ->rules('max:255'),
 
             Text::make('Email')
                 ->sortable()
@@ -69,7 +70,9 @@ class Client extends Resource
 
             Text::make('Phone')
                 ->sortable()
-                ->rules('required', 'max:254')
+                ->rules('required', 'max:254'),
+
+            HasMany::make('Booking')->sortable(),
             
         ];
     }

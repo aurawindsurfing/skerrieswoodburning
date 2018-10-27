@@ -5,6 +5,8 @@ namespace App\Nova;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\HasMany;
 
 class Company extends Resource
 {
@@ -41,6 +43,27 @@ class Company extends Resource
     {
         return [
             ID::make()->sortable(),
+
+            Text::make('Name')
+                ->sortable()
+                ->rules('required', 'max:255'),
+
+            Text::make('Phone')
+                ->sortable()
+                ->rules('required', 'max:254'),
+
+            Text::make('Email')
+                ->sortable()
+                ->rules('required', 'email', 'max:254')
+                ->creationRules('unique:users,email')
+                ->updateRules('unique:users,email,{{resourceId}}'),
+
+            Text::make('Address')
+                ->sortable()
+                ->rules('required', 'max:255'),
+
+            HasMany::make('ContactPerson')->sortable(),
+
         ];
     }
 

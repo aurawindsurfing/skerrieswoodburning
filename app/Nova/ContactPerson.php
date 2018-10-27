@@ -32,6 +32,13 @@ class ContactPerson extends Resource
     ];
 
     /**
+     * $displayInNavigation
+     *
+     * @var boolean
+     */
+    public static $displayInNavigation = false;
+
+    /**
      * label
      *
      * @return void
