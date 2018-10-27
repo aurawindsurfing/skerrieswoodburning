@@ -54,11 +54,11 @@
                     @yield('content')
 
                     <p class="mt-8 text-center text-xs text-80">
-                        <a href="http://nova.laravel.com" class="text-primary dim no-underline">Laravel Nova</a>
+                        <a href="https://citltd.ie" class="text-primary dim no-underline">CIT Ltd</a>
                         <span class="px-1">&middot;</span>
-                        &copy; {{ date('Y') }} Laravel LLC - By Taylor Otwell, David Hemphill, and Steve Schoger.
+                        &copy; {{ date('Y') }} Gazeta Ireland Ltd - By Thomas Lotocki.
                         <span class="px-1">&middot;</span>
-                        v{{ Laravel\Nova\Nova::version() }}
+                        {{-- v{{ Laravel\Nova\Nova::version() }} --}}
                     </p>
                 </div>
             </div>
