@@ -29,7 +29,7 @@ class Course extends Resource
 
     public function title()
     {
-        return $this->courseType->name;
+        return $this->course_type->name;
     }
 
     /**
