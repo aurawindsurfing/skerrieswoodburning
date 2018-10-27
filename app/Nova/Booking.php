@@ -9,6 +9,8 @@ use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Boolean;
 
 class Booking extends Resource
 {
@@ -44,13 +46,32 @@ class Booking extends Resource
     public function fields(Request $request)
     {
         return [
+            
+            DateTime::make('Date')->sortable(),
+
             BelongsTo::make('Client')->sortable(),
 
-            DateTime::make('Date')->sortable(),
-            
             BelongsTo::make('Course')->sortable(),
 
-            HasMany::make('Payments')->sortable()
+            HasMany::make('Payments')->sortable(),
+
+            BelongsTo::make('Company')->sortable(),
+
+            HasOne::make('Contact')->sortable(),
+
+            Text::make('PO')
+                ->sortable()
+                ->rules('required', 'max:255'),
+
+            Text::make('Invoice')
+                ->sortable()
+                ->rules('required', 'max:255'),
+
+            Boolean::make('Confirmation Sent'),
+
+            Boolean::make('Confirmed'),
+
+            Boolean::make('No Show'),
 
             
 
@@ -60,16 +81,18 @@ class Booking extends Resource
 
 
 
-            // $table->dateTime('date');
-            // $table->integer('client_id')->unsigned();
-            // $table->integer('course_id')->unsigned();
-            // $table->integer('company_id')->unsigned()->nullable()->default(null);
-            // $table->integer('contact_person_id')->unsigned()->nullable()->default(null);
-            // $table->text('po')->nullable()->default(null);
-            // $table->text('invoice')->nullable()->default(null);
-            // $table->dateTime('confirmation_sent')->nullable()->default(null);
-            // $table->dateTime('reminder_sent')->nullable()->default(null);
-            // $table->boolean('confirmed')->default(false);
+
+
+            // BelongsTo::make('Client')->sortable(),
+
+            
+            
+            // BelongsTo::make('Course')->sortable(),
+
+            // HasMany::make('Payments')->sortable()
+
+    
+          
             // $table->boolean('no_show')->default(false);
             // $table->integer('user_id')->unsigned()->nullable()->default(null);
             // $table->integer('payment_id')->unsigned()->nullable()->default(null);

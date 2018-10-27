@@ -5,15 +5,18 @@ namespace App\Nova;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Gravatar;
+use Laravel\Nova\Fields\HasMany;
 
-class ContactPerson extends Resource
+class Contact extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\ContactPerson';
+    public static $model = 'App\Contact';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -28,7 +31,8 @@ class ContactPerson extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'name',
+        'phone'
     ];
 
     /**
@@ -43,7 +47,7 @@ class ContactPerson extends Resource
      *
      * @return void
      */
-    public static function label() { return 'Contact People'; }
+    public static function label() { return 'Contacts'; }
 
     /**
      * Get the fields displayed by the resource.
@@ -55,6 +59,23 @@ class ContactPerson extends Resource
     {
         return [
             ID::make()->sortable(),
+
+            Gravatar::make(),
+
+            Text::make('Name')
+                ->sortable()
+                ->rules('required', 'max:255'),
+
+            Text::make('Phone')
+                ->sortable()
+                ->rules('required', 'max:255'),
+
+            Text::make('Email')
+                ->sortable()
+                ->rules('required', 'email', 'max:254'),
+
+            HasMany::make('Booking')->sortable(),
+
         ];
     }
 

@@ -5,9 +5,11 @@ namespace App\Nova;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Text;
+use Vyuldashev\NovaMoneyField\Money;
 
 class Course extends Resource
 {
@@ -49,9 +51,11 @@ class Course extends Resource
     {
         return [
             ID::make()->sortable(),
-            BelongsTo::make('CourseType'),
-            DateTime::make('Date'),
+            BelongsTo::make('Course Type', 'course_type'),
+            Money::make('Price','EUR'),
+            Date::make('Date'),
             BelongsTo::make('Venue'),
+
         ];
     }
 

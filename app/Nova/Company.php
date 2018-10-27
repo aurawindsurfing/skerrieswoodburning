@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\BelongsTo;
 
 class Company extends Resource
 {
@@ -22,7 +23,7 @@ class Company extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'name';
 
     /**
      * The columns that should be searched.
@@ -31,6 +32,10 @@ class Company extends Resource
      */
     public static $search = [
         'id',
+        'name',
+        'email',
+        'phone',
+        'address'
     ];
 
     /**
@@ -62,7 +67,7 @@ class Company extends Resource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            HasMany::make('ContactPerson')->sortable(),
+            HasMany::make('Contacts')->sortable(),
 
         ];
     }

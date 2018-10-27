@@ -19,7 +19,7 @@ class CreateBookingsTable extends Migration
             $table->integer('client_id')->unsigned();
             $table->integer('course_id')->unsigned();
             $table->integer('company_id')->unsigned()->nullable()->default(null);
-            $table->integer('contact_person_id')->unsigned()->nullable()->default(null);
+            $table->integer('contact_id')->unsigned()->nullable()->default(null);
             $table->text('po')->nullable()->default(null);
             $table->text('invoice')->nullable()->default(null);
             $table->dateTime('confirmation_sent')->nullable()->default(null);

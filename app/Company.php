@@ -25,10 +25,9 @@ class Company extends Model
         return $this->belongsTo('App\Client');
     }
 
-    public function contactPerson()
+    public function contacts()
     {
-        return $this->hasMany('App\ContactPerson');
+        return $this->hasMany('App\Contact');
     }
-
 
 }

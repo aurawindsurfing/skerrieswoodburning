@@ -29,6 +29,11 @@ class Booking extends Model
         return $this->belongsTo('App\Course');
     }
 
+    // public function courseType()
+    // {
+    //     return $this->belongsTo('App\Course')->course_type_id;
+    // }
+
     public function payments()
     {
         return $this->hasMany('App\Payment', 'id', 'payment_id');
@@ -41,12 +46,12 @@ class Booking extends Model
 
     public function company()
     {
-        return $this->hasOne('App\Company');
+        return $this->belongsTo('App\Company');
     }
 
-    public function contactPerson()
+    public function contact()
     {
-        return $this->hasOne('App\ContactPerson', 'id', 'contact_person_id');
+        return $this->hasOne('App\Contact', 'id', 'contact_id');
     }
 
     

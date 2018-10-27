@@ -5,6 +5,10 @@ namespace App\Nova;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\Markdown;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
 
 class CourseType extends Resource
 {
@@ -55,6 +59,48 @@ class CourseType extends Resource
     {
         return [
             ID::make()->sortable(),
+
+            Text::make('Name')
+                ->sortable()
+                ->rules('required', 'max:255'),
+
+            Text::make('Title')
+                ->sortable()
+                ->hideFromIndex(),
+
+            Textarea::make('Objectives')
+                ->rows(5)
+                ->hideFromIndex(),
+
+            Textarea::make('Who should attend', 'who_should_attend')
+                ->rows(5)
+                ->hideFromIndex(),
+
+            Textarea::make('Delegates')
+                ->rows(5)
+                ->hideFromIndex(),
+
+            Markdown::make('Outline')
+                ->hideFromIndex(),
+
+            Textarea::make('Duration')
+                ->rows(5)
+                ->hideFromIndex(),
+
+            Textarea::make('Certification')
+                ->rows(5)
+                ->hideFromIndex(),
+
+            Textarea::make('What to bring', 'what_to_bring')
+                ->rows(5)
+                ->hideFromIndex(),
+
+            Textarea::make('Plan of the day', 'plan_of_the_day')
+                ->rows(5)
+                ->hideFromIndex(),
+
+            Number::make('Valid for years', 'valid_for_years')
+
         ];
     }
 

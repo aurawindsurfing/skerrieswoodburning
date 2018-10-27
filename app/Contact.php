@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class ContactPerson extends Model
+class Contact extends Model
 {
     use SoftDeletes;
     use LogsActivity;
@@ -18,5 +18,10 @@ class ContactPerson extends Model
     public function company()
     {
         return $this->hasOne('App\Company');
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany('App\Booking');
     }
 }

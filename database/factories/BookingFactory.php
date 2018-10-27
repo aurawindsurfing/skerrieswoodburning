@@ -13,7 +13,7 @@ $factory->define(App\Booking::class, function (Faker $faker) {
         'client_id' => App\Client::all(['id'])->random(),
         'course_id' => $course->id,
         'company_id' => $company,
-        'contact_person_id' => factory('App\ContactPerson')->create()->id,
+        'contact_id' => factory('App\Contact')->create()->id,
         'po' => $faker->optional()->randomNumber,
         'invoice' => $faker->optional()->randomNumber,
         'confirmation_sent' => $bookingDate->modify('+10 minutes'),
