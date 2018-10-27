@@ -34,6 +34,13 @@ class Venue extends Resource
     ];
 
     /**
+     * $group
+     *
+     * @var string
+     */
+    public static $group = "Resources";
+
+    /**
      * Get the fields displayed by the resource.
      *
      * @param  \Illuminate\Http\Request  $request

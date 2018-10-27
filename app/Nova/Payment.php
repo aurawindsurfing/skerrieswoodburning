@@ -42,6 +42,13 @@ class Payment extends Resource
     public static $displayInNavigation = false;
 
     /**
+     * $group
+     *
+     * @var string
+     */
+    public static $group = "Customers";
+
+    /**
      * Get the fields displayed by the resource.
      *
      * @param  \Illuminate\Http\Request  $request

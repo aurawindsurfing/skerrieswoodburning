@@ -36,6 +36,13 @@ class Contact extends Resource
     ];
 
     /**
+     * $group
+     *
+     * @var string
+     */
+    public static $group = "Customers";
+
+    /**
      * $displayInNavigation
      *
      * @var boolean

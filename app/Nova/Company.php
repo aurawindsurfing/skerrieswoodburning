@@ -39,6 +39,13 @@ class Company extends Resource
     ];
 
     /**
+     * $group
+     *
+     * @var string
+     */
+    public static $group = "Customers";
+
+    /**
      * Get the fields displayed by the resource.
      *
      * @param  \Illuminate\Http\Request  $request
