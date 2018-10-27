@@ -60,11 +60,11 @@ class Booking extends Resource
             HasOne::make('Contact')->sortable(),
 
             Text::make('PO')
-                ->sortable()
+                ->hideFromIndex()
                 ->rules('required', 'max:255'),
 
             Text::make('Invoice')
-                ->sortable()
+                ->hideFromIndex()
                 ->rules('required', 'max:255'),
 
             Boolean::make('Confirmation Sent'),
@@ -73,7 +73,19 @@ class Booking extends Resource
 
             Boolean::make('No Show'),
 
-            
+            BelongsTo::make('User')
+                ->hideFromIndex(),
+
+            Text::make('Actually Paid')
+                ->hideFromIndex()
+                ->rules('required', 'max:255'),
+
+            Text::make('Comments')
+                ->hideFromIndex()
+                ->rules('required', 'max:255'),
+
+
+
 
 
 
@@ -93,9 +105,7 @@ class Booking extends Resource
 
     
           
-            // $table->boolean('no_show')->default(false);
-            // $table->integer('user_id')->unsigned()->nullable()->default(null);
-            // $table->integer('payment_id')->unsigned()->nullable()->default(null);
+
             // $table->text('actually_paid')->nullable()->default(null);
             // $table->text('comments')->nullable()->default(null);
 
