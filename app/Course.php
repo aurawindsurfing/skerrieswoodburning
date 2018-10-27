@@ -29,7 +29,7 @@ class Course extends Model
         return $this->belongsTo('App\Tutor');
     }
 
-    public function courseType()
+    public function course_type()
     {
         return $this->belongsTo('App\CourseType');
     }

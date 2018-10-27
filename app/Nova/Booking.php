@@ -91,33 +91,6 @@ class Booking extends Resource
                 ->hideFromIndex()
                 ->rules('required', 'max:255'),
 
-
-
-
-
-
-
-
-
-
-
-
-            // BelongsTo::make('Client')->sortable(),
-
-            
-            
-            // BelongsTo::make('Course')->sortable(),
-
-            // HasMany::make('Payments')->sortable()
-
-    
-          
-
-            // $table->text('actually_paid')->nullable()->default(null);
-            // $table->text('comments')->nullable()->default(null);
-
-
-
         ];
     }
 
@@ -129,7 +102,9 @@ class Booking extends Resource
      */
     public function cards(Request $request)
     {
-        return [];
+        return [
+            new Metrics\NewBookings
+        ];
     }
 
     /**

@@ -92,7 +92,9 @@ class Client extends Resource
      */
     public function cards(Request $request)
     {
-        return [];
+        return [
+            new Metrics\NewClients
+        ];
     }
 
     /**
