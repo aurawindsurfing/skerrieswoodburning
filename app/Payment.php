@@ -22,7 +22,7 @@ class Payment extends Model
 
     public function paymentMethod()
     {
-        return $this->hasOne('App\PaymentMethod');
+        return $this->belongsTo('App\PaymentMethod');
     }
 
     

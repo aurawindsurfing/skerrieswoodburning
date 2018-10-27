@@ -5,6 +5,7 @@ namespace App\Nova;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\Text;
 
 class PaymentMethod extends Resource
 {
@@ -20,7 +21,7 @@ class PaymentMethod extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'name';
 
     /**
      * The columns that should be searched.
@@ -28,7 +29,6 @@ class PaymentMethod extends Resource
      * @var array
      */
     public static $search = [
-        'id',
     ];
 
     /**
@@ -41,6 +41,10 @@ class PaymentMethod extends Resource
     {
         return [
             ID::make()->sortable(),
+
+            Text::make('Name')
+                ->sortable()
+                ->rules('required', 'max:255')
         ];
     }
 

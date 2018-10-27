@@ -17,7 +17,9 @@ class CreateVenuesTable extends Migration
             $table->increments('id');
             $table->text('name');
             $table->text('address');
+            $table->text('phone');
             $table->text('geo');
+            $table->text('directions');
             $table->softDeletes();
             $table->timestamps();
         });

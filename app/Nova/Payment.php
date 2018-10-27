@@ -5,6 +5,9 @@ namespace App\Nova;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Vyuldashev\NovaMoneyField\Money;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\HasOne;
 
 class Payment extends Resource
 {
@@ -28,7 +31,7 @@ class Payment extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        
     ];
 
     /**
@@ -41,6 +44,22 @@ class Payment extends Resource
     {
         return [
             ID::make()->sortable(),
+            Money::make('Rate', 'EUR'),
+            BelongsTo::make('PaymentMethod')->hideFromIndex(),
+            HasOne::make('Booking'),
+
+
+
+
+
+
+            // $table->increments('id');
+            // $table->integer('rate')->unsigned();
+            // $table->integer('payment_method_id')->unsigned();
+            // $table->text('status');
+
+
+
         ];
     }
 

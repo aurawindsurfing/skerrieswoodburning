@@ -5,6 +5,8 @@ namespace App\Nova;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
 
 class Venue extends Resource
 {
@@ -28,7 +30,7 @@ class Venue extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'name',
     ];
 
     /**
@@ -40,7 +42,23 @@ class Venue extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
+            // ID::make()->sortable(),
+
+            Text::make('Name')
+                ->sortable()
+                ->rules('required', 'max:255'),
+
+            Text::make('Address')
+                ->sortable()
+                ->rules('required', 'max:255'),
+
+            Text::make('Phone')
+                ->hideFromIndex()
+                ->rules('max:254'),
+
+            Textarea::make('Directions')
+                ->rows(15)
+                ->hideFromIndex()
         ];
     }
 

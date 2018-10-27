@@ -17,7 +17,7 @@ class Booking extends Model
 
     protected $dates = [
         'date',
-      ];
+    ];
 
     public function client()
     {
@@ -31,7 +31,7 @@ class Booking extends Model
 
     public function payments()
     {
-        return $this->hasMany('App\Payment');
+        return $this->hasMany('App\Payment', 'id', 'payment_id');
     }
 
     public function user()

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\HasOne;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\BelongsTo;
 
 class Booking extends Resource
@@ -43,10 +44,13 @@ class Booking extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
-            DateTime::make('Date'),
-            BelongsTo::make('Client'),
-            BelongsTo::make('Course')
+            BelongsTo::make('Client')->sortable(),
+
+            DateTime::make('Date')->sortable(),
+            
+            BelongsTo::make('Course')->sortable(),
+
+            HasMany::make('Payments')->sortable()
 
             
 
