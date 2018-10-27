@@ -44,6 +44,11 @@ class Booking extends Model
         return $this->hasOne('App\Company');
     }
 
+    public function contactPerson()
+    {
+        return $this->hasOne('App\ContactPerson', 'id', 'contact_person_id');
+    }
+
     
 
 }

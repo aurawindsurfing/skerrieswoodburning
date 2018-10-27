@@ -32,6 +32,20 @@ class CourseType extends Resource
     ];
 
     /**
+     * $group
+     *
+     * @var string
+     */
+    public static $group = "Settings";
+
+    /**
+     * label
+     *
+     * @return void
+     */
+    public static function label() { return 'Course Types'; }
+
+    /**
      * Get the fields displayed by the resource.
      *
      * @param  \Illuminate\Http\Request  $request

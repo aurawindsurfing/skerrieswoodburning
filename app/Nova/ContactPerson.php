@@ -32,6 +32,13 @@ class ContactPerson extends Resource
     ];
 
     /**
+     * label
+     *
+     * @return void
+     */
+    public static function label() { return 'Contact People'; }
+
+    /**
      * Get the fields displayed by the resource.
      *
      * @param  \Illuminate\Http\Request  $request

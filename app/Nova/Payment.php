@@ -8,6 +8,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use Vyuldashev\NovaMoneyField\Money;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\HasOne;
+use Laravel\Nova\Fields\Text;
 
 class Payment extends Resource
 {
@@ -31,8 +32,14 @@ class Payment extends Resource
      * @var array
      */
     public static $search = [
-        
     ];
+
+    /**
+     * $displayInNavigation
+     *
+     * @var boolean
+     */
+    public static $displayInNavigation = false;
 
     /**
      * Get the fields displayed by the resource.
@@ -46,20 +53,6 @@ class Payment extends Resource
             ID::make()->sortable(),
             Money::make('Rate', 'EUR'),
             BelongsTo::make('PaymentMethod')->hideFromIndex(),
-            HasOne::make('Booking'),
-
-
-
-
-
-
-            // $table->increments('id');
-            // $table->integer('rate')->unsigned();
-            // $table->integer('payment_method_id')->unsigned();
-            // $table->text('status');
-
-
-
         ];
     }
 

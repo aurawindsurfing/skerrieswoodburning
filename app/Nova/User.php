@@ -33,6 +33,10 @@ class User extends Resource
         'id', 'name', 'email',
     ];
 
+    // public static function label() { return 'Settings'; }
+
+    public static $group = "Settings";
+
     /**
      * Get the fields displayed by the resource.
      *

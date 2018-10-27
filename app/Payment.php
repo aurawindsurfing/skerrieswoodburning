@@ -14,11 +14,6 @@ class Payment extends Model
     protected $guarded = [];
 
     protected static $logUnguarded = true;
-    
-    public function booking()
-    {
-        return $this->belongsTo('App\Booking');
-    }
 
     public function paymentMethod()
     {

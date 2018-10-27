@@ -32,6 +32,20 @@ class PaymentMethod extends Resource
     ];
 
     /**
+     * $group
+     *
+     * @var string
+     */
+    public static $group = "Settings";
+
+    /**
+     * label
+     *
+     * @return void
+     */
+    public static function label() { return 'Payment Methods'; }
+
+    /**
      * Get the fields displayed by the resource.
      *
      * @param  \Illuminate\Http\Request  $request
