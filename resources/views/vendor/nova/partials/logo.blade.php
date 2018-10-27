@@ -9,5 +9,5 @@
 </svg> --}}
 
 <div class="flex items-center">
-<img src="{{url('images/cit_logo.png')}}" width="100" height="24" alt="CIT Ltd logo">
+<img src="{{url('images/cit_logo.png')}}" width="80" height="20" alt="CIT Ltd logo">
 </div>

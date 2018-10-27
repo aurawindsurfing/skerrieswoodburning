@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\NovaApplicationServiceProvider;
 use App\Nova\Metrics\NewClients;
 use App\Nova\Metrics\NewBookings;
+use App\Nova\Booking;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -61,6 +62,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         return [
             new NewClients,
             new NewBookings,
+            // new Booking
+
         ];
     }
 
