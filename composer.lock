@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c3d806763f3801e568edf051f1365b15",
+    "content-hash": "ac99a4f1d4d0ebc6b37fd450b4c2f3e4",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -3046,6 +3046,42 @@
             "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",
             "homepage": "https://github.com/tijsverkoyen/CssToInlineStyles",
             "time": "2017-11-27T11:13:29+00:00"
+        },
+        {
+            "name": "titasgailius/search-relations",
+            "version": "v1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TitasGailius/nova-search-relations.git",
+                "reference": "add69b7d7bf8b849fafb5f3599daf1a2a033a046"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TitasGailius/nova-search-relations/zipball/add69b7d7bf8b849fafb5f3599daf1a2a033a046",
+                "reference": "add69b7d7bf8b849fafb5f3599daf1a2a033a046",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Titasgailius\\SearchRelations\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova tool.",
+            "keywords": [
+                "laravel",
+                "nova",
+                "relations",
+                "search"
+            ],
+            "time": "2018-09-02T07:55:27+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

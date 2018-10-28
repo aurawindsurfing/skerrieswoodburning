@@ -29,11 +29,6 @@ class Booking extends Model
         return $this->belongsTo('App\Course');
     }
 
-    // public function courseType()
-    // {
-    //     return $this->belongsTo('App\Course')->course_type_id;
-    // }
-
     public function payments()
     {
         return $this->hasMany('App\Payment', 'id', 'payment_id');

@@ -81,7 +81,7 @@ class Contact extends Resource
                 ->sortable()
                 ->rules('required', 'email', 'max:254'),
 
-            HasMany::make('Booking')->sortable(),
+            HasMany::make('Bookings')->sortable(),
 
         ];
     }

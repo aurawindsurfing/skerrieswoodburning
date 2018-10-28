@@ -11,6 +11,7 @@ use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\Select;
 
 class Booking extends Resource
 {
@@ -63,22 +64,17 @@ class Booking extends Resource
     public function fields(Request $request)
     {
         return [
-            
+            ID::make()->sortable(),
+
             DateTime::make('Date')->hideWhenCreating()->sortable(),
 
-            BelongsTo::make('Client')->sortable(),
+            BelongsTo::make('Client')->sortable()->searchable(),
 
-            BelongsTo::make('Course')
-                // ->withMeta([
-                    // 'value' => 'dupa',
-                    // 'value' => $this->name_and_date, 
-                    // 'belongsToId' => $this->user_id ?? auth()->user()->id
-                // ])
-                ->sortable(),
+            BelongsTo::make('Course')->sortable()->searchable(),
 
             HasMany::make('Payments')->sortable(),
 
-            BelongsTo::make('Company')->sortable(),
+            BelongsTo::make('Company')->sortable()->searchable(),
 
             HasOne::make('Contact', 'contact')->sortable(),
 
@@ -93,10 +89,10 @@ class Booking extends Resource
             Boolean::make('No Show'),
 
             BelongsTo::make('User')
-                // ->withMeta([
-                //     'value' => $this->user_id ?? auth()->user()->id, 
-                //     'belongsToId' => $this->user_id ?? auth()->user()->id
-                // ])
+                ->withMeta([
+                    'value' => $this->user_id ?? auth()->user()->id, 
+                    'belongsToId' => $this->user_id ?? auth()->user()->id
+                ])
                 ->hideFromIndex(),
 
             Text::make('Actually Paid')->hideFromIndex(),

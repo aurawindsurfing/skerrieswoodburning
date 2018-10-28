@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\HasOne;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Text;
 use Vyuldashev\NovaMoneyField\Money;
@@ -39,7 +40,8 @@ class Course extends Resource
     public function title()
     {
         // return $this->course_type->name .' - '. $this->date;
-        return $this->date->format('d-m-Y') .' - '. $this->course_type->name;
+        // return $this->date->format('Y-M-d') .' - '. $this->course_type->name;
+        return $this->course_type->name;
     }
 
     /**
@@ -49,25 +51,17 @@ class Course extends Resource
      */
     public static $search = [
         'id',
-        'date'
+        'date',
     ];
 
-    
-    // /**
-    //  * applyOrderings
-    //  *
-    //  * @param mixed $query
-    //  * @param array $orderings
-    //  * @return void
-    //  */
-    // protected static function applyOrderings($query, array $orderings)
-    // {
-    //     foreach ($orderings as $column => $direction) {
-    //         $query->orderBy($column, $direction);
-    //     }
-
-    //     return $query;
-    // }
+    /**
+     * The relationship columns that should be searched.
+     *
+     * @var array
+     */
+    public static $searchRelations = [
+        'course_type' => ['name'],
+    ];
 
     /**
      * $group
@@ -96,11 +90,11 @@ class Course extends Resource
     {
         return [
             ID::make()->sortable(),
-            BelongsTo::make('Course Type', 'course_type'),
-            Money::make('Price','EUR'),
-            DateTime::make('Date'),
-            BelongsTo::make('Venue'),
-
+            BelongsTo::make('Course Type', 'course_type')->sortable(),
+            Money::make('Price','EUR')->sortable(),
+            DateTime::make('Date')->sortable(),
+            BelongsTo::make('Venue')->sortable(),
+            HasMany::make('Bookings')->sortable(),
         ];
     }
 
@@ -123,7 +117,9 @@ class Course extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+            new Filters\CourseDates,
+        ];
     }
 
     /**

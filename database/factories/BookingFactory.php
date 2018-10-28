@@ -23,6 +23,7 @@ $factory->define(App\Booking::class, function (Faker $faker) {
         'user_id' => $faker->optional()->randomElement(App\User::all(['id'])),
         'payment_id' => factory('App\Payment')->create()->id,
         'actually_paid' => $faker->optional()->text,
-        'comments' => $faker->optional()->text
+        'comments' => $faker->optional()->text,
+        'created_at' => $bookingDate,
     ];
 });
