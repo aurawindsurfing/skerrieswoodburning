@@ -66,9 +66,15 @@ class Booking extends Resource
         return [
             ID::make()->sortable(),
 
-            DateTime::make('Date')->hideWhenCreating()->sortable(),
+            DateTime::make('Date')->sortable()
+                ->withMeta([
+                    'value' => date('Y-m-d H:m:s'), 
+                ])
+                // ->hideWhenCreating()
+                ,
 
-            BelongsTo::make('Client')->sortable()->searchable(),
+            BelongsTo::make('Client')->sortable()
+                ->searchable(),
 
             BelongsTo::make('Course')->sortable()->searchable(),
 
@@ -80,22 +86,23 @@ class Booking extends Resource
 
             Text::make('PO')->hideFromIndex(),
 
-            Text::make('Invoice')->hideFromIndex(),
+            Text::make('Invoice')->hideFromIndex()->hideWhenCreating(),
 
-            Boolean::make('Confirmation Sent'),
+            DateTime::make('Confirmation Sent')->hideWhenCreating(),
 
-            Boolean::make('Confirmed'),
+            Boolean::make('Confirmed')->hideWhenCreating(),
 
-            Boolean::make('No Show'),
+            Boolean::make('No Show')->hideWhenCreating(),
 
             BelongsTo::make('User')
                 ->withMeta([
                     'value' => $this->user_id ?? auth()->user()->id, 
                     'belongsToId' => $this->user_id ?? auth()->user()->id
                 ])
-                ->hideFromIndex(),
+                ->hideFromIndex()
+                ->hideWhenCreating(),
 
-            Text::make('Actually Paid')->hideFromIndex(),
+            Text::make('Actually Paid')->hideFromIndex()->hideWhenCreating(),
 
             Text::make('Comments')->hideFromIndex(),
 
