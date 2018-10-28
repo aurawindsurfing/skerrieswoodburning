@@ -51,7 +51,7 @@ class Booking extends Model
 
     public function contact()
     {
-        return $this->hasOne('App\Contact', 'contact_id', 'id');
+        return $this->belongsTo('App\Contact');
     }
 
     

@@ -3,9 +3,9 @@
 namespace App\Nova\Metrics;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Metrics\Value;
+use Laravel\Nova\Metrics\Trend;
 
-class NewBookings extends Value
+class NewBookings extends Trend
 {
     /**
      * Calculate the value of the metric.
@@ -15,7 +15,7 @@ class NewBookings extends Value
      */
     public function calculate(Request $request)
     {
-        return $this->count($request, \App\Booking::class);
+        return $this->countByDays($request, \App\Booking::class);
     }
 
     /**
@@ -28,10 +28,7 @@ class NewBookings extends Value
         return [
             30 => '30 Days',
             60 => '60 Days',
-            365 => '365 Days',
-            'MTD' => 'Month To Date',
-            'QTD' => 'Quarter To Date',
-            'YTD' => 'Year To Date',
+            90 => '90 Days',
         ];
     }
 
@@ -52,6 +49,6 @@ class NewBookings extends Value
      */
     public function uriKey()
     {
-        return 'new-booking';
+        return 'new-bookings';
     }
 }

@@ -25,11 +25,21 @@ class Course extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    // public static $title = 'id';
+
+    /**
+     * Default ordering for index query.
+     *
+     * @var array
+     */
+    public static $indexDefaultOrder = [
+        'date' => 'desc'
+    ];
 
     public function title()
     {
-        return $this->course_type->name;
+        // return $this->course_type->name .' - '. $this->date;
+        return $this->date->format('d-m-Y') .' - '. $this->course_type->name;
     }
 
     /**
@@ -39,7 +49,25 @@ class Course extends Resource
      */
     public static $search = [
         'id',
+        'date'
     ];
+
+    
+    // /**
+    //  * applyOrderings
+    //  *
+    //  * @param mixed $query
+    //  * @param array $orderings
+    //  * @return void
+    //  */
+    // protected static function applyOrderings($query, array $orderings)
+    // {
+    //     foreach ($orderings as $column => $direction) {
+    //         $query->orderBy($column, $direction);
+    //     }
+
+    //     return $query;
+    // }
 
     /**
      * $group
@@ -47,6 +75,16 @@ class Course extends Resource
      * @var string
      */
     public static $group = "Resources";
+
+    /**
+     * softDeletes
+     *
+     * @return void
+     */
+    public static function softDeletes()
+    {
+        return false;
+    }
 
     /**
      * Get the fields displayed by the resource.

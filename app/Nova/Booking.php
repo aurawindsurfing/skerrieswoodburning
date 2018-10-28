@@ -45,6 +45,16 @@ class Booking extends Resource
     public static $group = "Customers";
 
     /**
+     * softDeletes
+     *
+     * @return void
+     */
+    public static function softDeletes()
+    {
+        return false;
+    }
+
+    /**
      * Get the fields displayed by the resource.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -54,25 +64,27 @@ class Booking extends Resource
     {
         return [
             
-            DateTime::make('Date')->sortable(),
+            DateTime::make('Date')->hideWhenCreating()->sortable(),
 
             BelongsTo::make('Client')->sortable(),
 
-            BelongsTo::make('Course')->sortable(),
+            BelongsTo::make('Course')
+                // ->withMeta([
+                    // 'value' => 'dupa',
+                    // 'value' => $this->name_and_date, 
+                    // 'belongsToId' => $this->user_id ?? auth()->user()->id
+                // ])
+                ->sortable(),
 
             HasMany::make('Payments')->sortable(),
 
             BelongsTo::make('Company')->sortable(),
 
-            HasOne::make('Contact')->sortable(),
+            HasOne::make('Contact', 'contact')->sortable(),
 
-            Text::make('PO')
-                ->hideFromIndex()
-                ->rules('required', 'max:255'),
+            Text::make('PO')->hideFromIndex(),
 
-            Text::make('Invoice')
-                ->hideFromIndex()
-                ->rules('required', 'max:255'),
+            Text::make('Invoice')->hideFromIndex(),
 
             Boolean::make('Confirmation Sent'),
 
@@ -81,15 +93,15 @@ class Booking extends Resource
             Boolean::make('No Show'),
 
             BelongsTo::make('User')
+                // ->withMeta([
+                //     'value' => $this->user_id ?? auth()->user()->id, 
+                //     'belongsToId' => $this->user_id ?? auth()->user()->id
+                // ])
                 ->hideFromIndex(),
 
-            Text::make('Actually Paid')
-                ->hideFromIndex()
-                ->rules('required', 'max:255'),
+            Text::make('Actually Paid')->hideFromIndex(),
 
-            Text::make('Comments')
-                ->hideFromIndex()
-                ->rules('required', 'max:255'),
+            Text::make('Comments')->hideFromIndex(),
 
         ];
     }

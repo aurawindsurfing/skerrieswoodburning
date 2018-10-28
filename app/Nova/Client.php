@@ -37,6 +37,7 @@ class Client extends Resource
      */
     public static $search = [
         'name',
+        'surname',
         'email',
         'phone'
     ];
@@ -47,6 +48,16 @@ class Client extends Resource
      * @var string
      */
     public static $group = "Customers";
+
+    /**
+     * softDeletes
+     *
+     * @return void
+     */
+    public static function softDeletes()
+    {
+        return false;
+    }
 
     /**
      * Get the fields displayed by the resource.
