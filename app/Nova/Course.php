@@ -37,11 +37,14 @@ class Course extends Resource
         'date' => 'desc'
     ];
 
+    /**
+     * title
+     *
+     * @return void
+     */
     public function title()
     {
-        // return $this->course_type->name .' - '. $this->date;
-        return $this->date->format('Y-m-d') .' - '. $this->course_type->name;
-        // return $this->course_type->name;
+        return $this->date->format('Y-m-d') .' - '. $this->course_type->name .' - '. $this->venue->name;
     }
 
     /**

@@ -81,7 +81,10 @@ class Booking extends Resource
 
             BelongsTo::make('Course')
                 ->sortable()
-                ->searchable(),
+                ->searchable()
+                ->displayUsing(function ($course) {
+                    return $course->course_type->name;
+                }),
 
             HasMany::make('Payments')
                 ->sortable(),
