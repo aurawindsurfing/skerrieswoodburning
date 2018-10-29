@@ -68,13 +68,12 @@ class Booking extends Resource
             ID::make()
                 ->sortable(),
 
-            Date::make('Date')
+            DateTime::make('Date')
                 ->sortable()
                 ->withMeta([ 
                     'value' => date('Y-m-d H:m:s'),
                 ])
-                // ->hideWhenCreating()
-                ,
+                ->hideWhenCreating(),
 
             BelongsTo::make('Client')
                 ->sortable()
@@ -91,8 +90,9 @@ class Booking extends Resource
                 ->sortable()
                 ->searchable(),
 
-            HasOne::make('Contact', 'contact')
-                ->sortable(),
+            BelongsTo::make('Contact', 'contact')
+                ->sortable()
+                ->hideWhenCreating(),
 
             Text::make('PO')
                 ->hideWhenCreating()
@@ -116,8 +116,9 @@ class Booking extends Resource
                     'value' => $this->user_id ?? auth()->user()->id, 
                     'belongsToId' => $this->user_id ?? auth()->user()->id
                 ])
-                ->hideFromIndex()
-                ->hideWhenCreating(),
+                ->onlyOnForms(),
+
+            BelongsTo::make('User')->onlyOnDetail(),
 
             Text::make('Actually Paid')
                 ->hideFromIndex()
@@ -125,6 +126,13 @@ class Booking extends Resource
 
             Text::make('Comments')
                 ->hideWhenCreating()
+                ->hideFromIndex(),
+
+            DateTime::make('Date')
+                ->sortable()
+                ->withMeta([ 
+                    'value' => date('Y-m-d H:m:s'),
+                ])
                 ->hideFromIndex(),
 
         ];

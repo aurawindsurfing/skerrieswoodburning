@@ -5,7 +5,7 @@ use Faker\Generator as Faker;
 $factory->define(App\Course::class, function (Faker $faker) {
     return [
         'venue_id' => App\Venue::all(['id'])->random(),
-        'tutor_id' => App\Venue::all(['id'])->random(),
+        'tutor_id' => App\Tutor::all(['id'])->random(),
         'date' => $faker->dateTimeBetween($startDate = '-2 years', $endDate = '+3 months', $timezone = 'Europe/Dublin'),
         'price' => $faker->randomElement([85, 95, 105, 115, 120]),
         'inhouse' => $faker->boolean,

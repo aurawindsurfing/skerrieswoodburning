@@ -56,6 +56,16 @@ class Contact extends Resource
      */
     public static function label() { return 'Contacts'; }
 
+     /**
+     * softDeletes
+     *
+     * @return void
+     */
+    public static function softDeletes()
+    {
+        return false;
+    }
+
     /**
      * Get the fields displayed by the resource.
      *

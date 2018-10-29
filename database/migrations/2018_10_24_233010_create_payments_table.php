@@ -18,7 +18,7 @@ class CreatePaymentsTable extends Migration
             $table->integer('rate')->unsigned();
             // $table->integer('booking_id')->unsigned();
             $table->integer('payment_method_id')->unsigned();
-            $table->integer('status_id')->unsigned();
+            $table->integer('status_id')->unsigned()->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

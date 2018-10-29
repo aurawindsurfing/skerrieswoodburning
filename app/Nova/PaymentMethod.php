@@ -46,6 +46,16 @@ class PaymentMethod extends Resource
     public static function label() { return 'Payment Methods'; }
 
     /**
+     * softDeletes
+     *
+     * @return void
+     */
+    public static function softDeletes()
+    {
+        return false;
+    }
+
+    /**
      * Get the fields displayed by the resource.
      *
      * @param  \Illuminate\Http\Request  $request

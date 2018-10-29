@@ -22,7 +22,12 @@ class Payment extends Model
 
     public function status()
     {
-        return $this->belongsTo('App\Status');
+        return $this->hasOne('App\Status');
+    }
+
+    public function booking()
+    {
+        return $this->belongsTo('App\Booking');
     }
 
 
