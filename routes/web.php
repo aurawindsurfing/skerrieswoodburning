@@ -15,7 +15,7 @@
 //     return view('welcome');
 // });
 
-Route::redirect('/', '/nova', 301);
+Route::redirect('/', '/office', 301);
 
 Route::get('/test', function () {
     
