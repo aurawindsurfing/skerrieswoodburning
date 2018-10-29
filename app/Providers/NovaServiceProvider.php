@@ -62,6 +62,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         return [
             new NewClients,
             new NewBookings,
+            // new \Itainathaniel\NovaNexmo\NovaNexmoCard(),
             // new Booking
 
         ];
@@ -75,7 +76,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function tools()
     {
         return [
-            
+            // new \Itainathaniel\NovaNexmo\NovaNexmoTool(),
         ];
     }
 

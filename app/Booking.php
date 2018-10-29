@@ -16,7 +16,11 @@ class Booking extends Model
     protected static $logUnguarded = true;
 
     protected $dates = [
-        'date',
+        'date'
+    ];
+
+    protected $casts = [
+        'confirmation_sent' => 'boolean'
     ];
 
     public function client()

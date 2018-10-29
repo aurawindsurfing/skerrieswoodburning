@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
+use Silvanite\NovaFieldCloudinary\Fields\CloudinaryImage;
 
 class Venue extends Resource
 {
@@ -62,6 +63,8 @@ class Venue extends Resource
             Text::make('Phone')
                 ->hideFromIndex()
                 ->rules('max:254'),
+
+            CloudinaryImage::make('Photo'),
 
             Textarea::make('Directions')
                 ->rows(15)

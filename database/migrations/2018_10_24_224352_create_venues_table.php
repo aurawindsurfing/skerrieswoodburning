@@ -16,10 +16,11 @@ class CreateVenuesTable extends Migration
         Schema::create('venues', function (Blueprint $table) {
             $table->increments('id');
             $table->text('name');
-            $table->text('address');
-            $table->text('phone');
-            $table->text('geo');
-            $table->text('directions');
+            $table->text('address')->nullable()->default(null);
+            $table->text('phone')->nullable()->default(null);
+            $table->text('photo')->nullable()->default(null);
+            $table->text('geo')->nullable()->default(null);
+            $table->text('directions')->nullable()->default(null);
             $table->softDeletes();
             $table->timestamps();
         });

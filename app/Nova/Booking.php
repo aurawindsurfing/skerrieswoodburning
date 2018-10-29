@@ -6,6 +6,7 @@ use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\BelongsTo;
@@ -67,7 +68,7 @@ class Booking extends Resource
             ID::make()
                 ->sortable(),
 
-            DateTime::make('Date')
+            Date::make('Date')
                 ->sortable()
                 ->withMeta([ 
                     'value' => date('Y-m-d H:m:s'),
@@ -101,7 +102,7 @@ class Booking extends Resource
                 ->hideFromIndex()
                 ->hideWhenCreating(),
 
-            DateTime::make('Confirmation Sent')
+            Boolean::make('Confirmation Sent')
                 ->hideWhenCreating(),
 
             Boolean::make('Confirmed')
