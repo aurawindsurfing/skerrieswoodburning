@@ -30,7 +30,10 @@ class Booking extends Model
 
         static::saving(function ($booking) {
             $booking->date = now();
-            $booking->user_id = Auth::user()->id;
+            if (Auth::check()){
+                $booking->user_id = Auth::user()->id;
+            }
+            
             
         });
     }
