@@ -6,11 +6,13 @@ use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Text;
 use Vyuldashev\NovaMoneyField\Money;
+use Laravel\Nova\Fields\Number;
 
 class Course extends Resource
 {
@@ -93,10 +95,17 @@ class Course extends Resource
     {
         return [
             ID::make()->sortable(),
-            BelongsTo::make('Course Type', 'course_type')->sortable(),
+            BelongsTo::make('Course Type', 'course_type')->sortable()->searchable(),
             Money::make('Price','EUR')->sortable(),
-            DateTime::make('Date')->sortable(),
-            BelongsTo::make('Venue')->sortable(),
+            DateTime::make('Date')->sortable()->hideFromIndex(),
+            Date::make('Date')->sortable()->hideWhenCreating()->hideWhenUpdating(),
+            BelongsTo::make('Venue')->sortable()->searchable(),
+            Text::make('Places left', function () {
+                return $this->course_type->capacity - $this->bookings->count();
+            }),
+            // Number::make('price')->displayUsing(function ($course) {
+            //     return $course->course_type->name;
+            // }),
             HasMany::make('Bookings')->sortable(),
         ];
     }

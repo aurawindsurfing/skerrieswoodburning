@@ -32,7 +32,7 @@ class CourseType extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'name',
     ];
 
     /**
@@ -48,6 +48,16 @@ class CourseType extends Resource
      * @return void
      */
     public static function label() { return 'Course Types'; }
+
+     /**
+     * softDeletes
+     *
+     * @return void
+     */
+    public static function softDeletes()
+    {
+        return false;
+    }
 
     /**
      * Get the fields displayed by the resource.
@@ -99,7 +109,9 @@ class CourseType extends Resource
                 ->rows(5)
                 ->hideFromIndex(),
 
-            Number::make('Valid for years', 'valid_for_years')
+            Number::make('Valid for years', 'valid_for_years'),
+
+            Number::make('Capacity')
 
         ];
     }

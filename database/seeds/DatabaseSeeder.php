@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
 
         factory(App\Tutor::class, 20)->create();
 
-        factory(App\Client::class, 1000)->create();
+        factory(App\Client::class, 100)->create();
 
         factory(App\PaymentMethod::class, 3)->create();
 
@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
 
         factory(App\Contact::class, 100)->create();
 
-        factory(App\Booking::class, 1000)->create();
+        factory(App\Booking::class, 200)->create();
 
     }
 }

@@ -35,6 +35,9 @@ class Venue extends Resource
      */
     public static $search = [
         'name',
+        'address_line_1',
+        'postal_code',
+        'city'
     ];
 
     /**
@@ -43,6 +46,16 @@ class Venue extends Resource
      * @var string
      */
     public static $group = "Resources";
+
+     /**
+     * softDeletes
+     *
+     * @return void
+     */
+    public static function softDeletes()
+    {
+        return false;
+    }
 
     /**
      * Get the fields displayed by the resource.
