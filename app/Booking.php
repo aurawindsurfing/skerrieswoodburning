@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Illuminate\Support\Facades\Auth;
 
 class Booking extends Model
 {
@@ -22,6 +23,17 @@ class Booking extends Model
     protected $casts = [
         'confirmation_sent' => 'boolean'
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($booking) {
+            $booking->date = now();
+            $booking->user_id = Auth::user()->id;
+            
+        });
+    }
 
     public function client()
     {

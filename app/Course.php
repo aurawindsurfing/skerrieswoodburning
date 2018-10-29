@@ -38,5 +38,10 @@ class Course extends Model
     {
         return $this->hasMany('App\Booking');
     }
+
+    public function upcoming()
+    {
+        return $this->date >= now() ? true : false;
+    }
     
 }

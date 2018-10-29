@@ -2,9 +2,9 @@
 
 namespace App\Nova;
 
-use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\HasOne;
@@ -95,6 +95,7 @@ class Booking extends Resource
 
             BelongsTo::make('Contact', 'contact')
                 ->sortable()
+                ->searchable()
                 ->hideWhenCreating(),
 
             Text::make('PO')
@@ -119,7 +120,8 @@ class Booking extends Resource
                     'value' => $this->user_id ?? auth()->user()->id, 
                     'belongsToId' => $this->user_id ?? auth()->user()->id
                 ])
-                ->onlyOnForms(),
+                ->onlyOnForms()
+                ->hideWhenCreating(),
 
             BelongsTo::make('User')->onlyOnDetail(),
 
@@ -136,7 +138,8 @@ class Booking extends Resource
                 ->withMeta([ 
                     'value' => date('Y-m-d H:m:s'),
                 ])
-                ->hideFromIndex(),
+                ->hideFromIndex()
+                ->hideWhenCreating(),
 
         ];
     }

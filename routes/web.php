@@ -19,7 +19,7 @@ Route::redirect('/', '/nova', 301);
 
 Route::get('/test', function () {
     
-    $e = App\Booking::find(1);
+    $e = App\Course::where('date', '>=', now())->get();
     
-    dd($e->client->name);
+    dd($e);
 });
