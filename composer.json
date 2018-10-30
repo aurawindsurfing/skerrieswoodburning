@@ -9,6 +9,7 @@
         "fideloper/proxy": "^4.0",
         "gregoriohc/laravel-nova-theme-responsive": "^0.6.1",
         "grimzy/laravel-mysql-spatial": "^2.1",
+        "inspheric/nova-indicator-field": "^1.2",
         "itainathaniel/nova-nexmo": "^1.0",
         "laravel/framework": "5.7.*",
         "laravel/nova": "*",

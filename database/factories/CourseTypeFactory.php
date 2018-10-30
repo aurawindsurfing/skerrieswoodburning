@@ -15,5 +15,6 @@ $factory->define(App\CourseType::class, function (Faker $faker) {
         'what_to_bring' => $faker->sentence($nbWords = 4),
         'plan_of_the_day' => $faker->paragraphs($nb = 3, $asText = true),
         'valid_for_years' => $faker->randomElement([4,3,5]),
+        'capacity' => $faker->randomElement([5,10,15,20]),
     ];
 });

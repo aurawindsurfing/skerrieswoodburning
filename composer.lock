@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "405940954a29469c07273a1e12930a97",
+    "content-hash": "f375e8e38c61679275bf9fbe86b7295c",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -948,6 +948,50 @@
                 "url"
             ],
             "time": "2017-03-20T17:10:46+00:00"
+        },
+        {
+            "name": "inspheric/nova-indicator-field",
+            "version": "v1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/inspheric/nova-indicator-field.git",
+                "reference": "782d44438a5c14837c8b8abb8472dda8455962eb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/inspheric/nova-indicator-field/zipball/782d44438a5c14837c8b8abb8472dda8455962eb",
+                "reference": "782d44438a5c14837c8b8abb8472dda8455962eb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Inspheric\\Fields\\IndicatorFieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Inspheric\\Fields\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova indicator field.",
+            "keywords": [
+                "field",
+                "indicator",
+                "laravel",
+                "nova",
+                "status"
+            ],
+            "time": "2018-09-02T21:28:51+00:00"
         },
         {
             "name": "itainathaniel/nova-nexmo",

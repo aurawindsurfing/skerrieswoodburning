@@ -19,5 +19,4 @@ class CourseType extends Model
     {
         return $this->hasMany('App\Course');
     }
-
 }

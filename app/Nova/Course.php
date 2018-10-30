@@ -10,6 +10,10 @@ use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\BelongsTo;
+
+use Laravel\Nova\Fields\Boolean;
+use Inspheric\Fields\Indicator;
+
 use Laravel\Nova\Fields\Text;
 use Vyuldashev\NovaMoneyField\Money;
 use Laravel\Nova\Fields\Number;
@@ -86,6 +90,17 @@ class Course extends Resource
     }
 
     /**
+     * placesLeft
+     *
+     * @return void
+     */
+    public function placesLeft()
+    {
+        return $this->capacity - $this->bookings->count();
+        
+    }
+
+    /**
      * Get the fields displayed by the resource.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -95,17 +110,32 @@ class Course extends Resource
     {
         return [
             ID::make()->sortable(),
-            BelongsTo::make('Course Type', 'course_type')->sortable()->searchable(),
+            BelongsTo::make('Course Type', 'course_type')->sortable(),
             Money::make('Price','EUR')->sortable(),
             DateTime::make('Date')->sortable()->hideFromIndex(),
             Date::make('Date')->sortable()->hideWhenCreating()->hideWhenUpdating(),
             BelongsTo::make('Venue')->sortable()->searchable(),
-            Text::make('Places left', function () {
-                return $this->course_type->capacity - $this->bookings->count();
-            }),
-            // Number::make('price')->displayUsing(function ($course) {
-            //     return $course->course_type->name;
-            // }),
+
+            Indicator::make('Status', function () {
+
+                if ($this->placesLeft() > 0){
+                    return 'available';
+                } elseif ($this->placesLeft() == 0) {
+                    return 'full';
+                } elseif ($this->placesLeft() < 0) {
+                    return 'overbooked';
+                }
+
+            })->labels([
+                'available' => $this->placesLeft() . ' Available',
+                'full' => 'Full',
+                'overbooked' => $this->placesLeft() . ' Overbooked',
+            ])->colors([
+                'available' => 'green',
+                'full' => 'purple',
+                'overbooked' => 'red',
+            ]),
+
             HasMany::make('Bookings')->sortable(),
         ];
     }

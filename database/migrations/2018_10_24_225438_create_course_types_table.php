@@ -26,7 +26,7 @@ class CreateCourseTypesTable extends Migration
             $table->text('what_to_bring')->nullable()->default(null);
             $table->text('plan_of_the_day')->nullable()->default(null);
             $table->integer('valid_for_years')->unsigned()->nullable()->default(4);
-            $table->integer('capacity')->unsigned()->nullable()->default(null);
+            $table->integer('capacity')->unsigned()->default(20);
             $table->softDeletes();
             $table->timestamps();
         });
