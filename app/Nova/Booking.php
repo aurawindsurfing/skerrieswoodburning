@@ -14,6 +14,9 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Select;
 
+// use Laravel\Nova\Actions\ExportPDF;
+// use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
+
 class Booking extends Resource
 {
     /**
@@ -192,6 +195,18 @@ class Booking extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+
+            (new Actions\ExportToPdf)
+                ->withHeadings()
+                ->withWriterType(\Maatwebsite\Excel\Excel::MPDF)
+                ->except('course', 'no_show')
+                ->withFilename('bookings- ' . time() . '.pdf'),
+
+            (new Actions\ExportToExcel)
+                ->withHeadings()
+                ->withWriterType(\Maatwebsite\Excel\Excel::XLS)
+                ->withFilename('bookings-' . time() . '.xls'),
+        ];
     }
 }

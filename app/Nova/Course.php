@@ -40,7 +40,7 @@ class Course extends Resource
      * @var array
      */
     public static $indexDefaultOrder = [
-        'date' => 'desc'
+        'date' => 'asc'
     ];
 
     /**
@@ -113,7 +113,7 @@ class Course extends Resource
             BelongsTo::make('Course Type', 'course_type')->sortable(),
             Money::make('Price','EUR')->sortable(),
             DateTime::make('Date')->sortable()->hideFromIndex(),
-            Date::make('Date')->sortable()->hideWhenCreating()->hideWhenUpdating(),
+            Date::make('Date')->sortable()->onlyOnIndex(),
             BelongsTo::make('Venue')->sortable()->searchable(),
 
             Indicator::make('Status', function () {
