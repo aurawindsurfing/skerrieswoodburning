@@ -82,9 +82,6 @@ class Booking extends Resource
                 return empty($this->client->phone) ? '---' : $this->client->phone;
             })
                 ->sortable()
-                // ->hideWhenCreating()
-                // ->hideWhenUpdating()
-                // ->hideFromIndex()
                 ->rules('required', 'max:254'),
 
             BelongsTo::make('Course')
