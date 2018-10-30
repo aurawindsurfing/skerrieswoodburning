@@ -3,9 +3,9 @@
 namespace App\Nova\Metrics;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Metrics\Trend;
+use Laravel\Nova\Metrics\Value;
 
-class NewClients extends Trend
+class NewClients extends Value
 {
     /**
      * Calculate the value of the metric.
@@ -15,7 +15,7 @@ class NewClients extends Trend
      */
     public function calculate(Request $request)
     {
-        return $this->countByDays($request, \App\Client::class);
+        return $this->count($request, \App\Client::class);
     }
 
     /**
@@ -28,7 +28,10 @@ class NewClients extends Trend
         return [
             30 => '30 Days',
             60 => '60 Days',
-            90 => '90 Days',
+            365 => '365 Days',
+            'MTD' => 'Month To Date',
+            'QTD' => 'Quarter To Date',
+            'YTD' => 'Year To Date',
         ];
     }
 
