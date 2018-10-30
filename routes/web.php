@@ -17,6 +17,8 @@
 
 Route::redirect('/', '/office', 301);
 
+Route::redirect('/nova', '/office', 301);
+
 Route::get('/test', function () {
     
     // $e = App\Course::where('date', '>=', now())->get();
