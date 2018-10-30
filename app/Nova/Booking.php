@@ -65,19 +65,27 @@ class Booking extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()
-                ->sortable(),
+            // ID::make()->sortable(),
 
-            DateTime::make('Date')
-                ->sortable()
-                ->withMeta([ 
-                    'value' => date('Y-m-d H:m:s'),
-                ])
-                ->hideWhenCreating(),
+            // DateTime::make('Date')
+            //     ->sortable()
+            //     ->withMeta([ 
+            //         'value' => date('Y-m-d H:m:s'),
+            //     ])
+            //     ->hideWhenCreating(),
 
             BelongsTo::make('Client')
                 ->sortable()
                 ->searchable(),
+
+            Text::make('Phone', function () {
+                return empty($this->client->phone) ? '---' : $this->client->phone;
+            })
+                ->sortable()
+                // ->hideWhenCreating()
+                // ->hideWhenUpdating()
+                // ->hideFromIndex()
+                ->rules('required', 'max:254'),
 
             BelongsTo::make('Course')
                 ->sortable()

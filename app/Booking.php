@@ -43,6 +43,11 @@ class Booking extends Model
         return $this->belongsTo('App\Client');
     }
 
+    public function client_phone()
+    {
+        return $this->belongsTo('App\Client');
+    }
+
     public function course()
     {
         return $this->belongsTo('App\Course');
