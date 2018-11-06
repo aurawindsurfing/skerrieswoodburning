@@ -40,7 +40,7 @@ class Course extends Resource
      * @var array
      */
     public static $indexDefaultOrder = [
-        'date' => 'asc'
+        'date' => 'desc'
     ];
 
     /**
