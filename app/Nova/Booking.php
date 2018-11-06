@@ -197,12 +197,6 @@ class Booking extends Resource
     {
         return [
 
-            (new Actions\ExportToPdf)
-                ->withHeadings()
-                ->withWriterType(\Maatwebsite\Excel\Excel::MPDF)
-                ->except('course', 'no_show')
-                ->withFilename('bookings- ' . time() . '.pdf'),
-
             (new Actions\ExportToExcel)
                 ->withHeadings()
                 ->withWriterType(\Maatwebsite\Excel\Excel::XLS)
