@@ -58,7 +58,7 @@ return [
    | You can change it on each invoice individually.
    */
 
-  'logo' => env('APP_URL') . 'public/images/cit_logo.png',
+  'logo' => env('APP_URL') . '/images/cit_logo.png',
 
   /*
   |--------------------------------------------------------------------------
@@ -84,10 +84,19 @@ return [
       'name'        => 'Contruction Industry Training Ltd',
       'id'          => '8220493A',
       'phone'       => '01 809 7266',
-      'location'    => 'CIT Unit 10, Block 8, Blanchardstown Corporate Park',
-      'zip'         => 'D15 EKC2',
+      'location'    => 'Unit 10, Block 8, Blanchardstown Corporate Park',
+      'zip'         => 'D15EKC2',
       'city'        => 'Dublin',
       'country'     => 'Ireland',
+  ],
+
+  'bank_details' => [
+    'bd1'      => 'Bank of Ireland',
+    'bd2'      => 'Acc name: Construction Industry Training Ltd',
+    'bd3'      => 'Account number: 78384868',
+    'bd4'      => 'Sort Code: 90-04-20',
+    'bd5'      => 'IBAN: IE92BOFI90042078384868',
+    'bd6'      => 'BIC/SWIFT: BOFIIE2D'
   ],
 
   /*
@@ -101,14 +110,6 @@ return [
 
   'footnote' => '
     Terms and Conditions:
-    Company VAT/Registration - 8220493A
-    CIT Bank Details
-    Bank of Ireland
-    Acc name: Construction Industry Training Ltd
-    Account number: 78384868
-    Sort Code: 90-04-20
-    IBAN: IE92BOFI90042078384868
-    BIC/SWIFT: BOFIIE2D
   ',
 
 ];
