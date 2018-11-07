@@ -3,19 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Invoice;
+use Carbon\Carbon;
+use App\Booking;
 
 class TestController extends Controller
 {
     public function test()
     {
-        $invoice = new Invoice();
+    
+        $b = Booking::find(73);
 
-        $invoice->prefix('N-');
-        $invoice->date(Carbon::now());
-        $invoice->status('new');
+        // dd($b->isMissingInvoice());
 
-        $invoice->save();
+        dump('what the fuck');
 
     }
 }

@@ -61,11 +61,6 @@ class Booking extends Model
         return $this->belongsTo('App\Contact');
     }
 
-    public function isMissingInvoice()
-    {
-        return $this->invoice_id ? false : true;
-    }
-
     public function invoiceDescription()
     {
         return $this->name . ' ' . $this->surname .' - '. $this->course->course_type->name . ' - '. $this->course->date->format('Y-m-d');

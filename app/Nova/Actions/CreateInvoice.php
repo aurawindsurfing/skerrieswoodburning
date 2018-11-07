@@ -24,65 +24,82 @@ class CreateInvoice extends Action
      */
     public function handle(ActionFields $fields, Collection $models)
     {
+
         // clear boookings that already have a corresponding invoice
+
+        $bookings = collect([]);
 
         foreach ($models as $model) {
 
-            if ($model->isMissingInvoice()){
-                $models->forget($model->id);
+            if (is_null($model->invoice_id)){
+                $bookings->push($model);
             }
         
         }
 
-        if ($models->isEmpty()) {
-            return Action::danger('All bookings have corresponding invoices!');
-        }
+        if ($bookings->isNotEmpty()) {
 
-        // generate invoice number
+            // create invoice record in database
 
-        // $lastInvoiceID = \App\Invoice::orderBy('number', 'DESC')->pluck('number')->first();
-        // $newInvoiceID = $lastInvoiceID ? 1 : $lastInvoiceID + 1;
-
-        // create invoice record in database
-
-        $invoice = \App\Invoice::create([
-            'prefix' => 'N-',
-            'date' => Carbon::now(),
-            'status' => 'new'
-        ]);
-
-        foreach ($models as $model) {
-
-            $model->save([
-                'invoice_id' => $invoice->id
+            $invoice = \App\Invoice::create([
+                'prefix' => 'N-',
+                'date' => Carbon::now(),
+                'status' => 'new'
             ]);
-        
-        }
-
-        // print invoice
-
-        $printInvoice = \ConsoleTVs\Invoices\Classes\Invoice::make()->number($invoice->prefix . $invoice->id);
 
 
-        foreach ($models as $model) {
-            $printInvoice->addItem(
-                $model->invoiceDescription(), 
-                $model->rate, 1,
-                $model->rate);
-        }
+            foreach ($bookings as $booking) {
+
+                $booking->update([
+                    'invoice_id' => $invoice->id
+                ]);
+            
+            }
+
+            // generate invoice number
+
+            // $lastInvoiceID = \App\Invoice::orderBy('number', 'DESC')->pluck('number')->first();
+            // $newInvoiceID = $lastInvoiceID ? 1 : $lastInvoiceID + 1;
+
+
+
+            // print invoice
+    
+            $printInvoice = \ConsoleTVs\Invoices\Classes\Invoice::make()->number($invoice->prefix . $invoice->id);
+    
+    
+            foreach ($models as $model) {
+                $printInvoice->addItem(
+                    $model->invoiceDescription(), 
+                    $model->rate, 1,
+                    $model->rate);
+            }
+            
+            $printInvoice->customer([
+                            'name' => 'Tomasz Lotocki',
+                            'id' => '4678434P',
+                            'phone' => '+353862194744',
+                            'location' => '11 The Tides',
+                            'zip' => 'Skerries',
+                            'city' => 'Skerries',
+                            'country' => 'Ireland', 
+                        ]);
+            
+            
+            $printInvoice->save('public/tmp/invoices/' . $invoice->prefix . $invoice->id . '.pdf');
+
+            // Action::message('Invoice created!');
+
+            return Action::download(
+                public_path('/tmp/invoices/') . $invoice->prefix . $invoice->id . '.pdf', 
+                $invoice->prefix . $invoice->id . '.pdf'
+            );
         
-        $printInvoice->customer([
-                        'name' => 'Tomasz Lotocki',
-                        'id' => '4678434P',
-                        'phone' => '+353862194744',
-                        'location' => '11 The Tides',
-                        'zip' => 'Skerries',
-                        'city' => 'Skerries',
-                        'country' => 'Ireland', 
-                    ]);
-        
-        
-        $printInvoice->save('public/tmp/invoices/' . $invoice->prefix . $invoice->id . '.pdf');
+        } else {
+
+            return Action::danger('Looks like all bookings have corresponding invoices!');
+            
+        } 
 
     }
 
