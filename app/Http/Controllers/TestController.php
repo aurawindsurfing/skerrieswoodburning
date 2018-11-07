@@ -15,7 +15,7 @@ class TestController extends Controller
 
         // dd($b->isMissingInvoice());
 
-        dump('what the fuck');
+        // dump('what the fuck');
 
     }
 }

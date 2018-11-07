@@ -53,6 +53,10 @@ class CreateInvoice extends Action
                 $booking->update([
                     'invoice_id' => $invoice->id
                 ]);
+
+                $invoice->update([
+                    'total' => $invoice->total + $booking->rate
+                ]);
             
             }
 
@@ -91,7 +95,7 @@ class CreateInvoice extends Action
             // Action::message('Invoice created!');
 
             return Action::download(
-                public_path('/tmp/invoices/') . $invoice->prefix . $invoice->id . '.pdf', 
+                env('APP_URL') . ('/tmp/invoices/') . $invoice->prefix . $invoice->id . '.pdf', 
                 $invoice->prefix . $invoice->id . '.pdf'
             );
         

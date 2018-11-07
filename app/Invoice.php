@@ -15,6 +15,10 @@ class Invoice extends Model
 
     protected static $logUnguarded = true;
 
+    protected $dates = [
+        'date'
+    ];
+
     public function booking()
     {
         return $this->belongsTo('App\Booking');
