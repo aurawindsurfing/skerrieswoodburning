@@ -5,7 +5,7 @@ namespace App\Nova\Metrics;
 use Illuminate\Http\Request;
 use Laravel\Nova\Metrics\Value;
 
-class NewClients extends Value
+class NewCandidates extends Value
 {
     /**
      * Calculate the value of the metric.
@@ -15,7 +15,7 @@ class NewClients extends Value
      */
     public function calculate(Request $request)
     {
-        return $this->count($request, \App\Client::class);
+        return $this->count($request, \App\Candidate::class);
     }
 
     /**
@@ -52,6 +52,6 @@ class NewClients extends Value
      */
     public function uriKey()
     {
-        return 'new-clients';
+        return 'new-candidates';
     }
 }

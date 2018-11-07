@@ -77,12 +77,12 @@ class Booking extends Resource
             //     ])
             //     ->hideWhenCreating(),
 
-            BelongsTo::make('Client')
+            BelongsTo::make('Candidate')
                 ->sortable()
                 ->searchable(),
 
             Text::make('Phone', function () {
-                return empty($this->client->phone) ? '---' : $this->client->phone;
+                return empty($this->candidate->phone) ? '---' : $this->candidate->phone;
             })
                 ->sortable()
                 ->rules('required', 'max:254'),

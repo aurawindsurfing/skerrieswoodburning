@@ -127,14 +127,14 @@
                             <td><b>Subtotal</b></td>
                             <td>{{ $invoice->subTotalPriceFormatted() }} {{ $invoice->formatCurrency()->symbol }}</td>
                         </tr>
-                        <tr>
+                        {{-- <tr>
                             <td>
                                 <b>
                                     Taxes {{ $invoice->tax_type == 'percentage' ? '(' . $invoice->tax . '%)' : '' }}
                                 </b>
                             </td>
                             <td>{{ $invoice->taxPriceFormatted() }} {{ $invoice->formatCurrency()->symbol }}</td>
-                        </tr>
+                        </tr> --}}
                         <tr>
                             <td><b>TOTAL</b></td>
                             <td><b>{{ $invoice->totalPriceFormatted() }} {{ $invoice->formatCurrency()->symbol }}</b></td>

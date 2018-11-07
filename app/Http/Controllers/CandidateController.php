@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Status;
+use App\Candidate;
 use Illuminate\Http\Request;
 
-class StatusController extends Controller
+class CandidateController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class StatusController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Status  $status
+     * @param  \App\Candidate  $candidate
      * @return \Illuminate\Http\Response
      */
-    public function show(Status $status)
+    public function show(Candidate $candidate)
     {
         //
     }
@@ -52,10 +52,10 @@ class StatusController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Status  $status
+     * @param  \App\Candidate  $candidate
      * @return \Illuminate\Http\Response
      */
-    public function edit(Status $status)
+    public function edit(Candidate $candidate)
     {
         //
     }
@@ -64,10 +64,10 @@ class StatusController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Status  $status
+     * @param  \App\Candidate  $candidate
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Status $status)
+    public function update(Request $request, Candidate $candidate)
     {
         //
     }
@@ -75,10 +75,10 @@ class StatusController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Status  $status
+     * @param  \App\Candidate  $candidate
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Status $status)
+    public function destroy(Candidate $candidate)
     {
         //
     }

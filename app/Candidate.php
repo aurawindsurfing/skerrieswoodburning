@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class Client extends Model
+class Candidate extends Model
 {
     use SoftDeletes;
     use LogsActivity;

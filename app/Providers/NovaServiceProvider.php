@@ -6,7 +6,7 @@ use Laravel\Nova\Nova;
 use Laravel\Nova\Cards\Help;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\NovaApplicationServiceProvider;
-use App\Nova\Metrics\NewClients;
+use App\Nova\Metrics\NewCandidates;
 use App\Nova\Metrics\NewBookings;
 use App\Nova\Booking;
 
@@ -60,7 +60,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function cards()
     {
         return [
-            new NewClients,
+            new NewCandidates,
             new NewBookings,
             // new \Itainathaniel\NovaNexmo\NovaNexmoCard(),
             // new Booking

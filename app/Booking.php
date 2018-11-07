@@ -30,22 +30,20 @@ class Booking extends Model
 
         static::saving(function ($booking) {
             $booking->date = now();
-            if (Auth::check()){
-                $booking->user_id = Auth::user()->id;
-            }
-            
-            
+                if (Auth::check()){
+                    $booking->user_id = Auth::user()->id;
+                }   
         });
     }
 
-    public function client()
+    public function candidate()
     {
-        return $this->belongsTo('App\Client');
+        return $this->belongsTo('App\Candidate');
     }
 
-    public function client_phone()
+    public function candidate_phone()
     {
-        return $this->belongsTo('App\Client');
+        return $this->belongsTo('App\Candidate');
     }
 
     public function course()
@@ -53,9 +51,9 @@ class Booking extends Model
         return $this->belongsTo('App\Course');
     }
 
-    public function payments()
+    public function invoice()
     {
-        return $this->hasMany('App\Payment', 'id', 'payment_id');
+        return $this->hasOne('App\Invoice');
     }
 
     public function user()
@@ -72,7 +70,5 @@ class Booking extends Model
     {
         return $this->belongsTo('App\Contact');
     }
-
-    
 
 }
