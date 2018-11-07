@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Candidate;
+use App\InvoiceItem;
 use Illuminate\Http\Request;
 
-class CandidateController extends Controller
+class InvoiceItemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class CandidateController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Candidate  $candidate
+     * @param  \App\InvoiceItem  $invoiceItem
      * @return \Illuminate\Http\Response
      */
-    public function show(Candidate $candidate)
+    public function show(InvoiceItem $invoiceItem)
     {
         //
     }
@@ -52,10 +52,10 @@ class CandidateController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Candidate  $candidate
+     * @param  \App\InvoiceItem  $invoiceItem
      * @return \Illuminate\Http\Response
      */
-    public function edit(Candidate $candidate)
+    public function edit(InvoiceItem $invoiceItem)
     {
         //
     }
@@ -64,10 +64,10 @@ class CandidateController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Candidate  $candidate
+     * @param  \App\InvoiceItem  $invoiceItem
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Candidate $candidate)
+    public function update(Request $request, InvoiceItem $invoiceItem)
     {
         //
     }
@@ -75,10 +75,10 @@ class CandidateController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Candidate  $candidate
+     * @param  \App\InvoiceItem  $invoiceItem
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Candidate $candidate)
+    public function destroy(InvoiceItem $invoiceItem)
     {
         //
     }

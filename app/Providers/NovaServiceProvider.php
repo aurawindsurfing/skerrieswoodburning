@@ -60,7 +60,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function cards()
     {
         return [
-            new NewCandidates,
+            // new NewCandidates,
             new NewBookings,
             // new \Itainathaniel\NovaNexmo\NovaNexmoCard(),
             // new Booking

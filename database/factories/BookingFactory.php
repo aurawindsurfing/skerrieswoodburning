@@ -10,20 +10,30 @@ $factory->define(App\Booking::class, function (Faker $faker) {
 
     return [
         'date' => $bookingDate,
-        'candidate_id' => App\Candidate::all(['id'])->random(),
         'course_id' => $course->id,
+        'name' => $faker->firstName,
+        'surname' => $faker->lastName,
+        'phone' => $faker->e164PhoneNumber,
+        'email' => $faker->unique()->safeEmail,
+        'pps' => $faker->randomNumber($nbDigits = 7, $strict = true) . $faker->randomElement(['Q','W','E','R','T','Y']),
         'company_id' => $company,
         'contact_id' => factory('App\Contact')->create()->id,
         'po' => $faker->optional()->randomNumber,
-        'invoice' => $faker->optional()->randomNumber,
         'confirmation_sent' => $bookingDate->modify('+10 minutes'),
         'reminder_sent' => date('Y-m-j H:m:s', strtotime($course->date.' -3 days')),
         'confirmed' => $faker->boolean,
         'no_show' => $faker->boolean,
         'user_id' => $faker->optional()->randomElement(App\User::all(['id'])),
-        'payment_id' => factory('App\Payment')->create()->id,
-        'actually_paid' => $faker->optional()->text,
+        // 'actually_paid' => $faker->optional()->text,
         'comments' => $faker->optional()->text,
         'created_at' => $bookingDate,
     ];
 });
+
+
+
+            // $table->text('name');
+            // $table->text('surname')->nullable()->default(null);
+            // $table->text('phone')->nullable()->default(null);
+            // $table->text('email')->nullable()->default(null);
+            // $table->text('pps')->nullable()->default(null);

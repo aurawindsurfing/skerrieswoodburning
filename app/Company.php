@@ -20,11 +20,6 @@ class Company extends Model
         return $this->belongsTo('App\Booking');
     }
 
-    public function candidates()
-    {
-        return $this->belongsTo('App\Candidate');
-    }
-
     public function contacts()
     {
         return $this->hasMany('App\Contact');

@@ -31,6 +31,13 @@ class Invoice extends Resource
         'id',
     ];
 
+     /**
+     * $group
+     *
+     * @var string
+     */
+    public static $group = "Customers";
+
     /**
      * Get the fields displayed by the resource.
      *

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class Invoice extends Model
+class InvoiceItem extends Model
 {
     use SoftDeletes;
     use LogsActivity;
@@ -15,13 +15,8 @@ class Invoice extends Model
 
     protected static $logUnguarded = true;
 
-    public function booking()
+    public function invoice()
     {
-        return $this->belongsTo('App\Booking');
-    }
-
-    public function items()
-    {
-        return $this->hasMany('App\InvoiceItem');
+        return $this->belongsTo('App\Invoice');
     }
 }

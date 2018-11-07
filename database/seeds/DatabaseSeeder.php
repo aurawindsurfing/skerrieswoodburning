@@ -31,19 +31,17 @@ class DatabaseSeeder extends Seeder
 
         factory(App\Tutor::class, 20)->create();
 
-        factory(App\Candidate::class, 1000)->create();
-
         factory(App\PaymentMethod::class, 3)->create();
 
         factory(App\CourseType::class, 7)->create();
 
-        factory(App\Course::class, 1000)->create();
+        factory(App\Course::class, 100)->create();
 
         // factory(App\Company::class, 100)->create();
 
         factory(App\Contact::class, 100)->create();
 
-        factory(App\Booking::class, 4000)->create();
+        factory(App\Booking::class, 100)->create();
 
     }
 }

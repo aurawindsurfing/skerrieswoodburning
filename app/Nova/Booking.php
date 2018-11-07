@@ -68,24 +68,30 @@ class Booking extends Resource
     public function fields(Request $request)
     {
         return [
-            // ID::make()->sortable(),
 
-            // DateTime::make('Date')
-            //     ->sortable()
-            //     ->withMeta([ 
-            //         'value' => date('Y-m-d H:m:s'),
-            //     ])
-            //     ->hideWhenCreating(),
-
-            BelongsTo::make('Candidate')
+            BelongsTo::make('Course')
                 ->sortable()
-                ->searchable(),
+                ->searchable()
+                ->onlyOnForms()
+                ->displayUsing(function ($course) {
+                    return $course->course_type->name;
+                }),
 
-            Text::make('Phone', function () {
-                return empty($this->candidate->phone) ? '---' : $this->candidate->phone;
-            })
-                ->sortable()
-                ->rules('required', 'max:254'),
+            Text::make('Name')
+                ->sortable(),
+
+            Text::make('Surname')
+                ->sortable(),
+
+            Text::make('Phone')
+                ->sortable(),
+
+            Text::make('Email')
+                ->sortable(),
+
+            Text::make('PPS')
+                ->hideFromIndex()
+                ->sortable(),
 
             BelongsTo::make('Course')
                 ->sortable()
@@ -94,11 +100,9 @@ class Booking extends Resource
                     return $course->course_type->name;
                 }),
 
-            HasMany::make('Payments')
-                ->sortable(),
-
             BelongsTo::make('Company')
                 ->sortable()
+                ->exceptOnForms()
                 ->searchable(),
 
             BelongsTo::make('Contact', 'contact')
@@ -114,14 +118,14 @@ class Booking extends Resource
                 ->hideFromIndex()
                 ->hideWhenCreating(),
 
-            Boolean::make('Confirmation Sent')
-                ->hideWhenCreating(),
+            // Boolean::make('Confirmation Sent')
+            //     ->hideWhenCreating(),
 
-            Boolean::make('Confirmed')
-                ->hideWhenCreating(),
+            // Boolean::make('Confirmed')
+            //     ->hideWhenCreating(),
 
-            Boolean::make('No Show')
-                ->hideWhenCreating(),
+            // Boolean::make('No Show')
+            //     ->hideWhenCreating(),
 
             BelongsTo::make('User')
                 ->withMeta([
@@ -133,9 +137,6 @@ class Booking extends Resource
 
             BelongsTo::make('User')->onlyOnDetail(),
 
-            Text::make('Actually Paid')
-                ->hideFromIndex()
-                ->hideWhenCreating(),
 
             Text::make('Comments')
                 ->hideWhenCreating()
