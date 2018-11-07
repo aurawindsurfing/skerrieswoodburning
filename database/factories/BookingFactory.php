@@ -16,6 +16,7 @@ $factory->define(App\Booking::class, function (Faker $faker) {
         'phone' => $faker->e164PhoneNumber,
         'email' => $faker->unique()->safeEmail,
         'pps' => $faker->randomNumber($nbDigits = 7, $strict = true) . $faker->randomElement(['Q','W','E','R','T','Y']),
+        'rate' => $faker->randomElement([85,95,100,115]),
         'company_id' => $company,
         'contact_id' => factory('App\Contact')->create()->id,
         'po' => $faker->optional()->randomNumber,
@@ -24,16 +25,7 @@ $factory->define(App\Booking::class, function (Faker $faker) {
         'confirmed' => $faker->boolean,
         'no_show' => $faker->boolean,
         'user_id' => $faker->optional()->randomElement(App\User::all(['id'])),
-        // 'actually_paid' => $faker->optional()->text,
         'comments' => $faker->optional()->text,
         'created_at' => $bookingDate,
     ];
 });
-
-
-
-            // $table->text('name');
-            // $table->text('surname')->nullable()->default(null);
-            // $table->text('phone')->nullable()->default(null);
-            // $table->text('email')->nullable()->default(null);
-            // $table->text('pps')->nullable()->default(null);

@@ -36,7 +36,6 @@ class Booking extends Model
         });
     }
 
-
     public function course()
     {
         return $this->belongsTo('App\Course');
@@ -44,7 +43,7 @@ class Booking extends Model
 
     public function invoice()
     {
-        return $this->hasOne('App\Invoice');
+        return $this->belongsTo('App\Invoice');
     }
 
     public function user()
@@ -60,6 +59,16 @@ class Booking extends Model
     public function contact()
     {
         return $this->belongsTo('App\Contact');
+    }
+
+    public function isMissingInvoice()
+    {
+        return $this->invoice_id ? false : true;
+    }
+
+    public function invoiceDescription()
+    {
+        return $this->name . ' ' . $this->surname .' - '. $this->course->course_type->name . ' - '. $this->course->date->format('Y-m-d');
     }
 
 }

@@ -13,6 +13,7 @@ use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Select;
+use Vyuldashev\NovaMoneyField\Money;
 
 // use Laravel\Nova\Actions\ExportPDF;
 // use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
@@ -26,12 +27,31 @@ class Booking extends Resource
      */
     public static $model = 'App\Booking';
 
+    // /**
+    //  * The single value that should be used to represent the resource when being displayed.
+    //  *
+    //  * @var string
+    //  */
+    // public static $title = 'surname';
+
     /**
-     * The single value that should be used to represent the resource when being displayed.
+     * Default ordering for index query.
      *
-     * @var string
+     * @var array
      */
-    public static $title = 'id';
+    public static $indexDefaultOrder = [
+        'date' => 'desc'
+    ];
+
+    /**
+     * title
+     *
+     * @return void
+     */
+    public function title()
+    {
+        return $this->name . ' ' . $this->surname .' - '. $this->course->course_type->name . ' - '. $this->course->date->format('Y-m-d');
+    }
 
     /**
      * The columns that should be searched.
@@ -40,6 +60,9 @@ class Booking extends Resource
      */
     public static $search = [
         'id',
+        'name',
+        'surname',
+        'date'
     ];
 
     /**
@@ -92,6 +115,8 @@ class Booking extends Resource
             Text::make('PPS')
                 ->hideFromIndex()
                 ->sortable(),
+
+            Money::make('Rate', 'EUR'),
 
             BelongsTo::make('Course')
                 ->sortable()
@@ -202,6 +227,8 @@ class Booking extends Resource
                 ->withHeadings()
                 ->withWriterType(\Maatwebsite\Excel\Excel::XLS)
                 ->withFilename('bookings-' . time() . '.xls'),
+
+            (new Actions\CreateInvoice)
         ];
     }
 }

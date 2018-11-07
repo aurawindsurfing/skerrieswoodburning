@@ -22,6 +22,7 @@ class CreateBookingsTable extends Migration
             $table->text('phone')->nullable()->default(null);
             $table->text('email')->nullable()->default(null);
             $table->text('pps')->nullable()->default(null);
+            $table->integer('rate')->unsigned();
             
             $table->integer('course_id')->unsigned();
             $table->integer('company_id')->unsigned()->nullable()->default(null);
@@ -34,7 +35,7 @@ class CreateBookingsTable extends Migration
             $table->boolean('no_show')->default(false);
             $table->integer('user_id')->unsigned()->nullable()->default(null);
             $table->integer('payment_id')->unsigned()->nullable()->default(null);
-            $table->text('actually_paid')->nullable()->default(null);
+            // $table->text('actually_paid')->nullable()->default(null);
             $table->text('comments')->nullable()->default(null);
             $table->softDeletes();
             $table->timestamps();

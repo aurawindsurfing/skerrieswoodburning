@@ -20,8 +20,4 @@ class Invoice extends Model
         return $this->belongsTo('App\Booking');
     }
 
-    public function items()
-    {
-        return $this->hasMany('App\InvoiceItem');
-    }
 }

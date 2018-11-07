@@ -39,7 +39,7 @@ class Tutor extends Resource
      *
      * @var string
      */
-    public static $group = "Resources";
+    public static $group = "Settings";
 
     /**
      * Get the fields displayed by the resource.

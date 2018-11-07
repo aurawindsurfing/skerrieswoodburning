@@ -5,6 +5,11 @@ namespace App\Nova;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Text;
+use Money\Number;
+use Vyuldashev\NovaMoneyField\Money;
 
 class Invoice extends Resource
 {
@@ -47,7 +52,23 @@ class Invoice extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
+            
+            BelongsTo::make('Booking')
+                ->sortable()
+                ->searchable()
+                ->onlyOnForms()
+                ->displayUsing(function ($booking) {
+                    return $booking->name . $booking->surname;
+                }),
+
+            Text::make('Number'),
+
+            Date::make('Date'),
+
+            Money::make('Total', 'EUR'),
+
+            Text::make('Status')
+
         ];
     }
 
