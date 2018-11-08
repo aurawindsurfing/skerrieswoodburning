@@ -40,7 +40,7 @@ class Course extends Resource
      * @var array
      */
     public static $indexDefaultOrder = [
-        'date' => 'desc'
+        'date' => 'asc'
     ];
 
     /**
@@ -78,6 +78,13 @@ class Course extends Resource
      * @var string
      */
     public static $group = "Resources";
+
+    /**
+     * label
+     *
+     * @return void
+     */
+    public static function label() { return 'All Courses'; }
 
     /**
      * softDeletes
@@ -172,7 +179,9 @@ class Course extends Resource
      */
     public function lenses(Request $request)
     {
-        return [];
+        return [
+            // new Lenses\UpcomingOnly,
+        ];
     }
 
     /**

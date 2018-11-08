@@ -9,6 +9,7 @@ use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
+use Vyuldashev\NovaMoneyField\Money;
 
 class CourseType extends Resource
 {
@@ -77,6 +78,9 @@ class CourseType extends Resource
             Text::make('Title')
                 ->sortable()
                 ->hideFromIndex(),
+
+            Money::make('Default Rate', 'EUR')
+                ->rules('required', 'max:255'),
 
             Textarea::make('Objectives')
                 ->rows(5)

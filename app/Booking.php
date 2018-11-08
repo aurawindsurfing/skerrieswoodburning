@@ -66,4 +66,9 @@ class Booking extends Model
         return $this->name . ' ' . $this->surname .' - '. $this->course->course_type->name . ' - '. $this->course->date->format('Y-m-d');
     }
 
+    // public function default_rate()
+    // {
+    //     return $this->course->course_type->default_rate;
+    // }
+
 }

@@ -61,7 +61,10 @@ class Invoice extends Resource
                     return $booking->name . $booking->surname;
                 }),
 
-            Text::make('Number'),
+            // Text::make('Number')
+            //     ->displayUsing(function ($booking) {
+            //         return $booking->name . $booking->surname;
+            //     }),
 
             Date::make('Date'),
 

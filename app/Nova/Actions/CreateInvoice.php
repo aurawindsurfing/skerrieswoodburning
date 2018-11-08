@@ -10,6 +10,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Carbon\Carbon;
+use Laravel\Nova\Fields\BelongsTo;
 
 class CreateInvoice extends Action
 {
@@ -65,9 +66,7 @@ class CreateInvoice extends Action
             // $lastInvoiceID = \App\Invoice::orderBy('number', 'DESC')->pluck('number')->first();
             // $newInvoiceID = $lastInvoiceID ? 1 : $lastInvoiceID + 1;
 
-
-
-            // print invoice
+            // download invoice
     
             $printInvoice = \ConsoleTVs\Invoices\Classes\Invoice::make()->number($invoice->prefix . $invoice->id);
     
@@ -78,16 +77,31 @@ class CreateInvoice extends Action
                     $model->rate, 1,
                     $model->rate);
             }
+
+            $customer = $model->first();
+            $company = $customer->company;
             
-            $printInvoice->customer([
-                            'name' => 'Tomasz Lotocki',
-                            'id' => '4678434P',
-                            'phone' => '+353862194744',
-                            'location' => '11 The Tides',
-                            'zip' => 'Skerries',
-                            'city' => 'Skerries',
-                            'country' => 'Ireland', 
-                        ]);
+            if ($company) {
+                $printInvoice->customer([
+                    'name'      => $company->name ?: '',
+                    'id'        => $company->name ?: '',
+                    'phone'     => $company->phone ?: '',
+                    'location'  => $company->address ?: '',
+                    'zip'       => '',
+                    'city'      => '',
+                    'country'   => '', 
+                ]);
+            } else {
+                $printInvoice->customer([
+                    'name'      => $customer->name ?: '',
+                    'id'        => $customer->pps ?: '',
+                    'phone'     => $customer->phone ?: '',
+                    'location'  => '',
+                    'zip'       => '',
+                    'city'      => '',
+                    'country'   => '', 
+                ]);
+            }
             
             
             $printInvoice->save('public/tmp/invoices/' . $invoice->prefix . $invoice->id . '.pdf');
@@ -114,6 +128,8 @@ class CreateInvoice extends Action
      */
     public function fields()
     {
-        return [];
+        return [
+            
+        ];
     }
 }

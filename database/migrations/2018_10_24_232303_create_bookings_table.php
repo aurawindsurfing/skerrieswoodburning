@@ -34,7 +34,7 @@ class CreateBookingsTable extends Migration
             $table->boolean('confirmed')->default(false);
             $table->boolean('no_show')->default(false);
             $table->integer('user_id')->unsigned()->nullable()->default(null);
-            $table->integer('payment_id')->unsigned()->nullable()->default(null);
+            // $table->integer('payment_id')->unsigned()->nullable()->default(null);
             // $table->text('actually_paid')->nullable()->default(null);
             $table->text('comments')->nullable()->default(null);
             $table->softDeletes();

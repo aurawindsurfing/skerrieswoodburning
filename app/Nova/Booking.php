@@ -90,6 +90,7 @@ class Booking extends Resource
      */
     public function fields(Request $request)
     {
+
         return [
 
             BelongsTo::make('Course')
@@ -121,6 +122,7 @@ class Booking extends Resource
             BelongsTo::make('Course')
                 ->sortable()
                 ->searchable()
+                ->exceptOnForms()
                 ->displayUsing(function ($course) {
                     return $course->course_type->name;
                 }),

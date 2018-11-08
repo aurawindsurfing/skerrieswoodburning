@@ -11,11 +11,9 @@ class TestController extends Controller
     public function test()
     {
     
-        $b = Booking::find(73);
+        $b = Booking::find(85);
 
-        // dd($b->isMissingInvoice());
-
-        // dump('what the fuck');
+        dump($b->course->course_type->default_rate);
 
     }
 }
