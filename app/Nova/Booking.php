@@ -62,7 +62,11 @@ class Booking extends Resource
         'id',
         'name',
         'surname',
-        'date'
+        'email',
+        'date',
+        // 'course',
+        // 'company',
+        // 'contact'
     ];
 
     /**
@@ -125,7 +129,7 @@ class Booking extends Resource
             ]),
 
             BelongsTo::make('Course')
-                ->sortable()
+                // ->sortable()
                 ->searchable()
                 ->exceptOnForms()
                 ->displayUsing(function ($course) {
@@ -133,10 +137,11 @@ class Booking extends Resource
                 }),
 
             BelongsTo::make('Company')
+                // ->sortable()
                 ->searchable(),
 
             BelongsTo::make('Contact', 'contact')
-                ->sortable()
+                // ->sortable()
                 ->searchable(),
 
             Text::make('PO')

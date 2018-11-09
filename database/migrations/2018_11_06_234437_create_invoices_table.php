@@ -17,6 +17,7 @@ class CreateInvoicesTable extends Migration
             $table->increments('id');
             $table->text('prefix');
             // $table->bigInteger('number');
+            $table->integer('company_id')->unsigned()->nullable()->default(null);
             $table->date('date');
             $table->double('total', 5, 2)->nullable();
             $table->text('status');

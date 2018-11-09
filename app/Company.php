@@ -17,12 +17,17 @@ class Company extends Model
 
     public function bookings()
     {
-        return $this->belongsTo('App\Booking');
+        return $this->hasMany('App\Booking');
     }
 
     public function contacts()
     {
         return $this->hasMany('App\Contact');
+    }
+
+    public function invoices()
+    {
+        return $this->hasMany('App\Invoice');
     }
 
 }
