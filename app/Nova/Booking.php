@@ -119,7 +119,10 @@ class Booking extends Resource
                 ->hideFromIndex()
                 ->sortable(),
 
-            Money::make('Rate', 'EUR'),
+            Money::make('Rate', 'EUR')
+            ->withMeta([
+                'value' => 115, 
+            ]),
 
             BelongsTo::make('Course')
                 ->sortable()
@@ -130,17 +133,13 @@ class Booking extends Resource
                 }),
 
             BelongsTo::make('Company')
-                ->sortable()
-                ->exceptOnForms()
                 ->searchable(),
 
             BelongsTo::make('Contact', 'contact')
                 ->sortable()
-                ->searchable()
-                ->hideWhenCreating(),
+                ->searchable(),
 
             Text::make('PO')
-                ->hideWhenCreating()
                 ->hideFromIndex(),
 
             Text::make('Invoice')
