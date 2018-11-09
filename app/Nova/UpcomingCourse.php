@@ -8,6 +8,10 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 class UpcomingCourse extends Course
 {
+
+    public static $group_index = 100;
+
+
     /**
      * Build an "index" query for the given resource.
      *
@@ -33,4 +37,5 @@ class UpcomingCourse extends Course
      * @return void
      */
     public static function label() { return 'Upcoming Courses'; }
+
 }

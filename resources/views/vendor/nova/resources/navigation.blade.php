@@ -1,31 +1,19 @@
 @if (count(Nova::availableResources(request())))
-    {{-- <h3 class="flex items-center font-normal text-white mb-6 text-base no-underline">
-        <svg class="sidebar-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-            <path fill="var(--sidebar-icon)" d="M3 1h4c1.1045695 0 2 .8954305 2 2v4c0 1.1045695-.8954305 2-2 2H3c-1.1045695 0-2-.8954305-2-2V3c0-1.1045695.8954305-2 2-2zm0 2v4h4V3H3zm10-2h4c1.1045695 0 2 .8954305 2 2v4c0 1.1045695-.8954305 2-2 2h-4c-1.1045695 0-2-.8954305-2-2V3c0-1.1045695.8954305-2 2-2zm0 2v4h4V3h-4zM3 11h4c1.1045695 0 2 .8954305 2 2v4c0 1.1045695-.8954305 2-2 2H3c-1.1045695 0-2-.8954305-2-2v-4c0-1.1045695.8954305-2 2-2zm0 2v4h4v-4H3zm10-2h4c1.1045695 0 2 .8954305 2 2v4c0 1.1045695-.8954305 2-2 2h-4c-1.1045695 0-2-.8954305-2-2v-4c0-1.1045695.8954305-2 2-2zm0 2v4h4v-4h-4z"
-            />
-        </svg>
-        <span class="sidebar-label">{{ __('Resources') }}</span>
-    </h3> --}}
+    
 
-
-    {{-- <h4 class="ml-8 mb-4 text-xs text-white-50% uppercase tracking-wide">CUSTOMERS</h4>
-
-    <ul class="list-reset mb-8">
-        <li class="leading-tight mb-4 ml-8 text-sm">
-            <router-link :to="{
-                name: 'index',
-                params: {
-                    resourceName: 'courses?courses_page=1&courses_filter=W3siY2xhc3MiOiJBcHBcXE5vdmFcXEZpbHRlcnNcXENvdXJzZURhdGVzIiwidmFsdWUiOiIyMDE4LTExLTA4IDA1OjExOjAxIn1d'
-                }
-            }" class="text-white text-justify no-underline dim">
-                Test
-            </router-link>
-        </li>
-    </ul> --}}
+    <?php
+        $resources_ordered = collect(Nova::availableResources(request()))
+            ->sortBy(function ($resource) {
+                return $resource::$group_index;
+            })
+            ->groupBy(function ($resource) {
+                return $resource::$group;
+            });
+    ?>
 
 
 
-    @foreach(Nova::groupedResources(request()) as $group => $resources)
+    {{-- @foreach(Nova::groupedResources(request()) as $group => $resources)
         @if (count($resources) > 0)
             @if (count(Nova::groups(request())) > 1)
                 <h4 class="ml-8 mb-4 text-xs text-white-50% uppercase tracking-wide">{{ $group }}</h4>
@@ -50,6 +38,33 @@
                 @endforeach
             </ul>
         @endif
+    @endforeach --}}
+
+
+    @foreach ($resources_ordered as $group => $resources)
+        <h3 class="flex items-center font-normal text-white mb-6 text-base no-underline">
+            {{ ucwords($group) }}
+        </h3>
+        <ul class="list-reset mb-8">
+            @foreach ($resources as $resource)
+                @if (! $resource::$displayInNavigation)
+                    @continue
+                @endif
+
+                <li class="leading-wide mb-4 text-sm">
+                    <router-link :to="{
+                    name: 'index',
+                    params: {
+                        resourceName: '{{ $resource::uriKey() }}'
+                    }
+                }" class="text-white ml-8 no-underline dim">
+                        {{ $resource::label() }}
+                    </router-link>
+                </li>
+            @endforeach
+        </ul>
     @endforeach
+
+
 @endif
 

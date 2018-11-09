@@ -72,6 +72,8 @@ class Booking extends Resource
      */
     public static $group = "Customers";
 
+    public static $group_index = 200;
+
     /**
      * softDeletes
      *

@@ -42,6 +42,8 @@ class Contact extends Resource
      */
     public static $group = "Customers";
 
+    public static $group_index = 4;
+
     /**
      * $displayInNavigation
      *

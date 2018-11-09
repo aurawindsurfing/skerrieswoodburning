@@ -43,6 +43,8 @@ class CourseType extends Resource
      */
     public static $group = "Settings";
 
+    public static $group_index = 300;
+
     /**
      * label
      *

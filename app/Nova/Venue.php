@@ -47,6 +47,8 @@ class Venue extends Resource
      */
     public static $group = "Resources";
 
+    public static $group_index = 120;
+
      /**
      * softDeletes
      *

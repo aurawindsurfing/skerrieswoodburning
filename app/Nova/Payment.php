@@ -48,6 +48,8 @@ class Payment extends Resource
      */
     public static $group = "Customers";
 
+    public static $group_index = 5;
+
     /**
      * softDeletes
      *

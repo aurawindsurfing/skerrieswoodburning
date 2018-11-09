@@ -41,6 +41,8 @@ class Tutor extends Resource
      */
     public static $group = "Settings";
 
+    public static $group_index = 310;
+
     /**
      * Get the fields displayed by the resource.
      *

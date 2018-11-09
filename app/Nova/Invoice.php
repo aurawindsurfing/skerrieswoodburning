@@ -43,6 +43,8 @@ class Invoice extends Resource
      */
     public static $group = "Customers";
 
+    public static $group_index = 220;
+
     /**
      * Get the fields displayed by the resource.
      *

@@ -20,6 +20,8 @@ abstract class Resource extends NovaResource
         'id' => 'desc'
     ];
 
+    public static $group_index = 1;
+
     /**
      * Build an "index" query for the given resource.
      *

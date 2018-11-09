@@ -38,6 +38,8 @@ class PaymentMethod extends Resource
      */
     public static $group = "Settings";
 
+    public static $group_index = 320;
+
     /**
      * label
      *

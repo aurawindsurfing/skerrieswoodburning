@@ -79,12 +79,14 @@ class Course extends Resource
      */
     public static $group = "Resources";
 
+    public static $group_index = 110;
+
     /**
      * label
      *
      * @return void
      */
-    public static function label() { return 'All Courses'; }
+    // public static function label() { return 'All Courses'; }
 
     /**
      * softDeletes

@@ -45,6 +45,8 @@ class Company extends Resource
      */
     public static $group = "Customers";
 
+    public static $group_index = 210;
+
     /**
      * softDeletes
      *
