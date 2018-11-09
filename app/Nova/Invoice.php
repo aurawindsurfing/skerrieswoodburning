@@ -34,6 +34,7 @@ class Invoice extends Resource
      */
     public static $search = [
         'id',
+        'total'
     ];
 
      /**
@@ -41,9 +42,9 @@ class Invoice extends Resource
      *
      * @var string
      */
-    public static $group = "Customers";
+    public static $group = "Accounting";
 
-    public static $group_index = 220;
+    public static $group_index = 300;
 
     /**
      * Get the fields displayed by the resource.

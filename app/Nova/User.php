@@ -38,7 +38,7 @@ class User extends Resource
 
     public static $group = "Settings";
 
-    public static $group_index = 330;
+    public static $group_index = 430;
 
     /**
      * softDeletes
