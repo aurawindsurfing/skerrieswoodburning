@@ -12,6 +12,7 @@ use Money\Number;
 use Vyuldashev\NovaMoneyField\Money;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\HasMany;
+use Inspheric\Fields\Indicator;
 
 class Invoice extends Resource
 {
@@ -75,7 +76,20 @@ class Invoice extends Resource
                 'paid' => 'Paid',
                 'unpaid' => 'Unpaid',
                 'cancelled' => 'Cancelled',
-            ])->displayUsingLabels(),
+            ])
+                ->displayUsingLabels()
+                ->onlyOnForms(),
+
+            Indicator::make('Status')
+             ->labels([
+                'paid' => 'Paid',
+                'unpaid' => 'Unpaid',
+                'cancelled' => 'Cancelled',
+            ])->colors([
+                'paid' => 'green',
+                'unpaid' => 'red',
+                'cancelled' => 'purple',
+            ])->exceptOnForms(),
 
             BelongsTo::make('Company')
                 ->searchable(),

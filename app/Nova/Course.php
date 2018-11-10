@@ -119,10 +119,18 @@ class Course extends Resource
     {
         return [
             ID::make()->sortable(),
+
             BelongsTo::make('Course Type', 'course_type')->sortable(),
-            Money::make('Price','EUR')->sortable(),
-            DateTime::make('Date')->sortable()->hideFromIndex(),
+            
+            Money::make('Price','EUR')
+                ->withMeta([
+                    'value' => 115, 
+                ])->sortable(),
+            
+                DateTime::make('Date')->sortable()->hideFromIndex(),
+            
             Date::make('Date')->sortable()->onlyOnIndex(),
+            
             BelongsTo::make('Venue')->sortable()->searchable(),
 
             Indicator::make('Status', function () {
