@@ -17,7 +17,7 @@ class Tutor extends Model
     
     public function courses()
     {
-        return $this->belongsToMany('App\Course');
+        return $this->hasMany('App\Course');
     }
 
     public function courseTypes()

@@ -125,13 +125,17 @@ class Course extends Resource
             Money::make('Price','EUR')
                 ->withMeta([
                     'value' => 115, 
-                ])->sortable(),
+                ])
+                ->hideFromIndex()
+                ->sortable(),
             
                 DateTime::make('Date')->sortable()->hideFromIndex(),
             
             Date::make('Date')->sortable()->onlyOnIndex(),
             
             BelongsTo::make('Venue')->sortable()->searchable(),
+
+            BelongsTo::make('Tutor')->sortable()->searchable(),
 
             Indicator::make('Status', function () {
 

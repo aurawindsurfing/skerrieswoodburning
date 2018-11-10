@@ -8,6 +8,8 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\HasOne;
+use Laravel\Nova\Fields\BelongsTo;
 
 class Contact extends Resource
 {
@@ -111,6 +113,8 @@ class Contact extends Resource
             Text::make('Email')
                 ->sortable()
                 ->rules('required', 'email', 'max:254'),
+
+            BelongsTo::make('Company')->sortable(),
 
             HasMany::make('Bookings')->sortable(),
 

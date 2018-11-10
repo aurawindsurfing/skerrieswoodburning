@@ -142,6 +142,7 @@ class Booking extends Resource
 
             BelongsTo::make('Contact', 'contact')
                 // ->sortable()
+                ->hideFromIndex()
                 ->searchable(),
 
             Text::make('PO')

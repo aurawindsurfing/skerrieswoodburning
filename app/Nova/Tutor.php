@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Gravatar;
+use Laravel\Nova\Fields\HasMany;
 
 class Tutor extends Resource
 {
@@ -68,7 +69,9 @@ class Tutor extends Resource
 
             Text::make('Phone')
                 ->sortable()
-                ->rules('required', 'max:254')
+                ->rules('required', 'max:254'),
+
+            HasMany::make('Courses')
         ];
     }
 

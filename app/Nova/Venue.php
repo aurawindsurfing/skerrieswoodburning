@@ -11,6 +11,8 @@ use Laravel\Nova\Fields\Country;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\Markdown;
 use Silvanite\NovaFieldCloudinary\Fields\CloudinaryImage;
+use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\BelongsTo;
 
 class Venue extends Resource
 {
@@ -68,11 +70,19 @@ class Venue extends Resource
     public function fields(Request $request)
     {
         return [
-            Text::make('Name')->sortable()->rules('required', 'max:255'),
+            Text::make('Name')
+            ->sortable()
+            ->rules('required', 'max:255'),
+            
             $this->addressFields(),
+            
             Text::make('Phone')->rules('max:254')->hideFromIndex(),
+            
             Markdown::make('Directions')->hideFromIndex(),
+            
             CloudinaryImage::make('Photo'),
+
+            HasMany::make('Courses'),
             
         ];
     }
