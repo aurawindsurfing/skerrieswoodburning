@@ -40,7 +40,7 @@ class Payment extends Resource
      *
      * @var boolean
      */
-    public static $displayInNavigation = true;
+    public static $displayInNavigation = false;
 
     /**
      * $group

@@ -77,9 +77,12 @@ class Invoice extends Resource
                 'cancelled' => 'Cancelled',
             ])->displayUsingLabels(),
 
-            BelongsTo::make('Company'),
+            BelongsTo::make('Company')
+                ->searchable(),
 
-            HasMany::make('Payment')
+            HasMany::make('Payment'),
+
+            HasMany::make('Booking')
 
         ];
     }

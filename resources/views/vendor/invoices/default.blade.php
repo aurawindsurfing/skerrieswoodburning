@@ -39,7 +39,7 @@
                 <h5>Business Details:</h5>
                 <div class="panel panel-default">
                     <h6>
-                        <div class="panel-body">
+                        <div class="panel-body" style="padding-top: 0px;">
                         {!! $invoice->business_details->count() == 0 ? '<i>No business details</i><br />' : '' !!}
                         {{ $invoice->business_details->get('name') }}<br />
                         CRO: {{ $invoice->business_details->get('id') }}<br />
@@ -51,17 +51,14 @@
                 </h6>
                 </div>
             </div>
-            <div style="
-            margin-left: 300pt;
-            width:250pt;
-            ">
-                <h5>Customer Details:</h5>
+            <div style="margin-left: 300pt; width:250pt;">
+                <h5 style="padding-top: 0px;">Customer Details:</h5>
                 <h6>
                     <div class="panel panel-default">
                         <div class="panel-body">
                             {!! $invoice->customer_details->count() == 0 ? '<i>No customer details</i><br />' : '' !!}
                             {{ $invoice->customer_details->get('name') }}<br />
-                            CRO: {{ $invoice->customer_details->get('cro') }}<br />
+                            {{ $invoice->customer_details->get('cro') ? 'CRO: ' . $invoice->customer_details->get('cro'). '<br />' : '' }}
                             {{ $invoice->customer_details->get('phone') }}<br />
                             {{ $invoice->customer_details->get('location') }}<br />
                             {{ $invoice->customer_details->get('zip') }} {{ $invoice->customer_details->get('city') }}
@@ -72,7 +69,7 @@
                 
             </div>
         </div>
-        <h5 style="margin-top: 40px;">
+        <h5 style="margin-top: 25px;">
             Items:
         </h5>
         <table class="table table-bordered">
@@ -106,7 +103,7 @@
                     <h5>CIT Bank Details</h5>
                     <h6>
                         <div class="panel panel-default">
-                                <div class="panel-body">
+                                <div class="panel-body" style="padding-top: 0px;">
                                         {!! $invoice->bank_details->count() == 0 ? '<i>No bank details</i><br />' : '' !!}
                                         {{ $invoice->bank_details->get('db1') }}<br />
                                         {{ $invoice->bank_details->get('bd2') }}<br />
@@ -119,14 +116,14 @@
                     </h6>
                 </div>
             @endif
-            <div style="margin-left: 300pt;">
-                <h5>Total:</h5>
+            <div style="margin-left: 300pt; padding-top: 30pt; margin-bottom: 40pt;">
+                {{-- <h5>Total:</h5> --}}
                 <table class="table table-bordered">
                     <tbody>
-                        <tr>
+                        {{-- <tr>
                             <td><b>Subtotal</b></td>
                             <td>{{ $invoice->subTotalPriceFormatted() }} {{ $invoice->formatCurrency()->symbol }}</td>
-                        </tr>
+                        </tr> --}}
                         {{-- <tr>
                             <td>
                                 <b>

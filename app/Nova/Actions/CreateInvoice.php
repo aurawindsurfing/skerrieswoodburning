@@ -40,7 +40,7 @@ class CreateInvoice extends Action
 
         if ($bookings->isNotEmpty()) {
 
-            $customer = $model->first();
+            $customer = $model;
             $company = $customer->company;
 
             // create invoice record in database
@@ -48,7 +48,7 @@ class CreateInvoice extends Action
             $invoice = \App\Invoice::create([
                 'prefix' => 'N-',
                 'date' => Carbon::now(),
-                'company_id' => $company ? $company->id : null,
+                // 'company_id' => 12,
                 'status' => 'unpaid'
             ]);
 

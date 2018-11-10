@@ -147,9 +147,11 @@ class Booking extends Resource
             Text::make('PO')
                 ->hideFromIndex(),
 
-            Text::make('Invoice')
-                ->hideFromIndex()
-                ->hideWhenCreating(),
+            HasOne::make('Invoice'),
+
+            // Text::make('Invoice')
+            //     ->hideFromIndex()
+            //     ->hideWhenCreating(),
 
             // Boolean::make('Confirmation Sent')
             //     ->hideWhenCreating(),
