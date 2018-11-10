@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Select;
+use Inspheric\Fields\Indicator;
 
 class Payment extends Resource
 {
@@ -77,7 +78,17 @@ class Payment extends Resource
             Select::make('Status')->options([
                 'completed' => 'Completed',
                 'cancelled' => 'Cancelled',
-            ])->displayUsingLabels(),
+            ])->displayUsingLabels()
+              ->onlyOnForms(),
+
+            Indicator::make('Status')
+             ->labels([
+                    'completed' => 'Completed',
+                    'cancelled' => 'Cancelled',
+            ])->colors([
+                'completed' => 'green',
+                'cancelled' => 'grey',
+            ])->exceptOnForms(),
 
             HasOne::make('Receipt')
 
