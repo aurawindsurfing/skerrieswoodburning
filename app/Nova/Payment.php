@@ -79,6 +79,8 @@ class Payment extends Resource
                 'cancelled' => 'Cancelled',
             ])->displayUsingLabels(),
 
+            HasOne::make('Receipt')
+
         ];
     }
 

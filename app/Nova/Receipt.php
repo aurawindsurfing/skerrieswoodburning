@@ -64,6 +64,8 @@ class Receipt extends Resource
 
             BelongsTo::make('Payment')
 
+            
+
         ];
     }
 

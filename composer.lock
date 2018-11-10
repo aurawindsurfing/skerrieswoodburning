@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1c487d97587c124450a434591dfca3ac",
+    "content-hash": "3a8848b500a0b0056238467db6779188",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -1067,6 +1067,50 @@
                 "url"
             ],
             "time": "2017-03-20T17:10:46+00:00"
+        },
+        {
+            "name": "inspheric/nova-email-field",
+            "version": "v1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/inspheric/nova-email-field.git",
+                "reference": "7251779223f14eecab9b764b88db51717b2b1043"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/inspheric/nova-email-field/zipball/7251779223f14eecab9b764b88db51717b2b1043",
+                "reference": "7251779223f14eecab9b764b88db51717b2b1043",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Inspheric\\Fields\\EmailFieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Inspheric\\Fields\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova email field.",
+            "keywords": [
+                "email",
+                "field",
+                "laravel",
+                "mailto",
+                "nova"
+            ],
+            "time": "2018-10-14T14:04:09+00:00"
         },
         {
             "name": "inspheric/nova-indicator-field",

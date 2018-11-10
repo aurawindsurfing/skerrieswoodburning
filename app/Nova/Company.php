@@ -8,6 +8,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\BelongsTo;
+use Inspheric\Fields\Email;
 
 class Company extends Resource
 {
@@ -76,11 +77,13 @@ class Company extends Resource
                 ->sortable()
                 ->rules('required', 'max:254'),
 
-            Text::make('Email')
+            Email::make('Email')
                 ->sortable()
                 ->rules('required', 'email', 'max:254')
                 ->creationRules('unique:users,email')
-                ->updateRules('unique:users,email,{{resourceId}}'),
+                ->updateRules('unique:users,email,{{resourceId}}')
+                ->clickable()
+                ->clickableOnIndex(),
 
             Text::make('Address')
                 ->sortable()
