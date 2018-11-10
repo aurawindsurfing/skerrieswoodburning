@@ -16,7 +16,9 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('amount')->unsigned();
-            $table->integer('invoice_id')->unsigned();
+            $table->integer('booking_id')->unsigned()->nullable()->default(null);
+            $table->integer('invoice_id')->unsigned()->nullable()->default(null);
+            $table->integer('receipt_id')->unsigned()->nullable()->default(null);
             $table->text('payment_method');
             $table->text('status');
             $table->softDeletes();

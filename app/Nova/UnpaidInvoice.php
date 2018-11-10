@@ -15,7 +15,7 @@ use Laravel\Nova\Fields\Select;
 class UnpaidInvoice extends Invoice
 {
     
-    public static $group_index = 310;
+    public static $group_index = 350;
 
      /**
      * Build an "index" query for the given resource.

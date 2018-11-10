@@ -36,20 +36,13 @@ class Payment extends Resource
     ];
 
     /**
-     * $displayInNavigation
-     *
-     * @var boolean
-     */
-    public static $displayInNavigation = false;
-
-    /**
      * $group
      *
      * @var string
      */
-    public static $group = "Customers";
+    public static $group = "Accounting";
 
-    public static $group_index = 5;
+    public static $group_index = 300;
 
     /**
      * softDeletes

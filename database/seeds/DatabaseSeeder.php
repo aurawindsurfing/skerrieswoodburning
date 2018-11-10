@@ -43,5 +43,7 @@ class DatabaseSeeder extends Seeder
 
         factory(App\Payment::class, 300)->create();
 
+        factory(App\Receipt::class, 200)->create();
+
     }
 }

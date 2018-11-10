@@ -5,33 +5,23 @@ namespace App\Nova;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\Text;
-use Money\Number;
-use Vyuldashev\NovaMoneyField\Money;
-use Laravel\Nova\Fields\Select;
-use Laravel\Nova\Fields\HasMany;
-use Inspheric\Fields\Indicator;
 
-class Invoice extends Resource
+class Receipt extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\Invoice';
+    public static $model = 'App\Receipt';
 
     /**
-     * title
+     * The single value that should be used to represent the resource when being displayed.
      *
-     * @return void
+     * @var string
      */
-    public function title()
-    {
-        return $this->number();
-    }
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -39,18 +29,26 @@ class Invoice extends Resource
      * @var array
      */
     public static $search = [
-        'id',
-        'total'
     ];
 
-     /**
+    /**
      * $group
      *
      * @var string
      */
     public static $group = "Accounting";
 
-    public static $group_index = 330;
+    public static $group_index = 320;
+
+    /**
+     * softDeletes
+     *
+     * @return void
+     */
+    public static function softDeletes()
+    {
+        return false;
+    }
 
     /**
      * Get the fields displayed by the resource.
@@ -62,41 +60,9 @@ class Invoice extends Resource
     {
         return [
 
-            Text::make('ID')
-                ->displayUsing(function ($course) {
-                    return $this->number();
-                })
-                ->sortable(),
-            
-            Date::make('Date'),
+            ID::make('id'),
 
-            Money::make('Total', 'EUR'),
-
-            Select::make('Status')->options([
-                'paid' => 'Paid',
-                'unpaid' => 'Unpaid',
-                'cancelled' => 'Cancelled',
-            ])
-                ->displayUsingLabels()
-                ->onlyOnForms(),
-
-            Indicator::make('Status')
-             ->labels([
-                'paid' => 'Paid',
-                'unpaid' => 'Unpaid',
-                'cancelled' => 'Cancelled',
-            ])->colors([
-                'paid' => 'green',
-                'unpaid' => 'red',
-                'cancelled' => 'grey',
-            ])->exceptOnForms(),
-
-            BelongsTo::make('Company')
-                ->searchable(),
-
-            HasMany::make('Payment'),
-
-            HasMany::make('Booking')
+            BelongsTo::make('Payment')
 
         ];
     }
