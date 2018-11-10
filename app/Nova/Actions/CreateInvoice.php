@@ -48,7 +48,7 @@ class CreateInvoice extends Action
             $invoice = \App\Invoice::create([
                 'prefix' => 'N-',
                 'date' => Carbon::now(),
-                // 'company_id' => 12,
+                'company_id' => $company ? $company->id : '',
                 'status' => 'unpaid'
             ]);
 
