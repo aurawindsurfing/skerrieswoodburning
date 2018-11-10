@@ -25,9 +25,19 @@ class Company extends Model
         return $this->hasMany('App\Contact');
     }
 
+    public function accounts_payable()
+    {
+        return $this->hasMany('App\Contact');
+    }
+
     public function invoices()
     {
         return $this->hasMany('App\Invoice');
+    }
+
+    public function unpaid_invoices()
+    {
+        return $this->hasMany('App\Invoice')->where('status', 'unpaid');
     }
 
 }

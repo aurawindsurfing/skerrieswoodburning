@@ -93,7 +93,12 @@ class Company extends Resource
 
             HasMany::make('Bookings')->sortable(),
 
+            HasMany::make('Accounts Payable')->sortable(),
+
+            HasMany::make('Unpaid Invoices')->sortable(),
+
             HasMany::make('Invoices')->sortable(),
+
 
         ];
     }

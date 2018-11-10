@@ -9,7 +9,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\HasMany;
 
-class Contact extends Resource
+class AccountsPayable extends Resource
 {
     /**
      * The model the resource corresponds to.
@@ -28,7 +28,7 @@ class Contact extends Resource
     public static function indexQuery(NovaRequest $request, $query)
     {
 
-        $query->where('accounts_payable', false);
+        $query->where('accounts_payable', true);
 
         if (empty($request->get('orderBy'))) {
             $query->getQuery()->orders = [];
@@ -75,7 +75,7 @@ class Contact extends Resource
      *
      * @return void
      */
-    public static function label() { return 'Contacts'; }
+    public static function label() { return 'Accounts Payable'; }
 
      /**
      * softDeletes

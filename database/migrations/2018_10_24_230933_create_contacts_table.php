@@ -18,6 +18,7 @@ class CreateContactsTable extends Migration
             $table->text('name');
             $table->text('phone')->nullable()->default(null);
             $table->text('email')->nullable()->default(null);
+            $table->boolean('accounts_payable')->nullable()->default(false);
             $table->integer('company_id')->unsigned()->nullable()->default(null);
             $table->softDeletes();
             $table->timestamps();
