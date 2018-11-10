@@ -49,7 +49,7 @@ class CreateInvoice extends Action
                 'prefix' => 'N-',
                 'date' => Carbon::now(),
                 'company_id' => $company ? $company->id : null,
-                'status' => 'new'
+                'status' => 'unpaid'
             ]);
 
 

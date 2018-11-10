@@ -9,6 +9,6 @@ $factory->define(App\Company::class, function (Faker $faker) {
         'phone' => $faker->e164PhoneNumber,
         'email' => $faker->safeEmail,
         'corporate_client' => $faker->boolean,
-        'payment_method_id' => App\PaymentMethod::all(['id'])->random()
+        'payment_method' => $faker->randomElement(['CC','EFT','Cash','Cheque']),
     ];
 });

@@ -9,6 +9,7 @@ use Vyuldashev\NovaMoneyField\Money;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Select;
 
 class Payment extends Resource
 {
@@ -39,7 +40,7 @@ class Payment extends Resource
      *
      * @var boolean
      */
-    public static $displayInNavigation = false;
+    public static $displayInNavigation = true;
 
     /**
      * $group
@@ -69,9 +70,22 @@ class Payment extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
-            Money::make('Rate', 'EUR'),
-            BelongsTo::make('PaymentMethod')->hideFromIndex(),
+
+            Money::make('Amount', 'EUR'),
+
+            Select::make('Payment Method')->options([
+                'cc' => 'CC',
+                'eft' => 'EFT',
+                'cash' => 'Cash',
+                'cheque' => 'Cheque',
+            ])->displayUsingLabels(),
+
+
+            Select::make('Status')->options([
+                'completed' => 'Completed',
+                'cancelled' => 'Cancelled',
+            ])->displayUsingLabels(),
+
         ];
     }
 

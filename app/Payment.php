@@ -15,11 +15,6 @@ class Payment extends Model
 
     protected static $logUnguarded = true;
 
-    public function paymentMethod()
-    {
-        return $this->belongsTo('App\PaymentMethod');
-    }
-
     public function invoice()
     {
         return $this->belongsTo('App\Invoice');

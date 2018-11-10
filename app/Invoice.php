@@ -19,9 +19,34 @@ class Invoice extends Model
         'date'
     ];
 
-    public function booking()
+    public function isUnpaid()
     {
-        return $this->belongsTo('App\Booking');
+        return $this->status == unpaid ? true : false;
+    }
+
+    public function isPaid()
+    {
+        return $this->status == paid ? true : false;
+    }
+
+    public function isCancelled()
+    {
+        return $this->status == cancelled ? true : false;
+    }
+
+    public function company()
+    {
+        return $this->belongsTo('App\Company');
+    }
+
+    public function number()
+    {
+        return $this->prefix . $this->id;
+    }
+
+    public function payment()
+    {
+        return $this->hasMany('App\Payment');
     }
 
 }

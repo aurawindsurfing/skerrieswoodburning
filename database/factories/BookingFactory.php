@@ -19,6 +19,7 @@ $factory->define(App\Booking::class, function (Faker $faker) {
         'rate' => $faker->randomElement([85,95,100,115]),
         'company_id' => $company,
         'contact_id' => factory('App\Contact')->create()->id,
+        // 'invoice_id' => factory('App\Invoice')->create()->id,
         'po' => $faker->optional()->randomNumber,
         'confirmation_sent' => $bookingDate->modify('+10 minutes'),
         'reminder_sent' => date('Y-m-j H:m:s', strtotime($course->date.' -3 days')),

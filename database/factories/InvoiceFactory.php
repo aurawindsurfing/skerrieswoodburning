@@ -3,13 +3,15 @@
 use Faker\Generator as Faker;
 
 $factory->define(App\Invoice::class, function (Faker $faker) {
-    return [
 
+    $booking = App\Booking::all()->random();
+    $company = App\Company::all(['id'])->random();
+
+    return [
+        'prefix' => 'N-',
+        'date' => $booking->date,
+        'company_id' => $company,
+        'total' => $booking->rate,
+        'status' => $faker->randomElement(['paid','unpaid','cancelled']), 
     ];
 });
-
-
-// $table->date('date');
-// $table->bigInteger('booking_id');
-// $table->double('total', 5, 2);
-// $table->text('status');

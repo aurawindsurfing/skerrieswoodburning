@@ -10,6 +10,8 @@ use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Text;
 use Money\Number;
 use Vyuldashev\NovaMoneyField\Money;
+use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\HasMany;
 
 class Invoice extends Resource
 {
@@ -21,11 +23,14 @@ class Invoice extends Resource
     public static $model = 'App\Invoice';
 
     /**
-     * The single value that should be used to represent the resource when being displayed.
+     * title
      *
-     * @var string
+     * @return void
      */
-    public static $title = 'id';
+    public function title()
+    {
+        return $this->number();
+    }
 
     /**
      * The columns that should be searched.
@@ -55,25 +60,26 @@ class Invoice extends Resource
     public function fields(Request $request)
     {
         return [
+
+            Text::make('ID')
+                ->displayUsing(function ($course) {
+                    return $this->number();
+                })
+                ->sortable(),
             
-            BelongsTo::make('Booking')
-                ->sortable()
-                ->searchable()
-                ->onlyOnForms()
-                ->displayUsing(function ($booking) {
-                    return $booking->name . $booking->surname;
-                }),
-
-            // Text::make('Number')
-            //     ->displayUsing(function ($booking) {
-            //         return $booking->name . $booking->surname;
-            //     }),
-
             Date::make('Date'),
 
             Money::make('Total', 'EUR'),
 
-            Text::make('Status')
+            Select::make('Status')->options([
+                'paid' => 'Paid',
+                'unpaid' => 'Unpaid',
+                'cancelled' => 'Cancelled',
+            ])->displayUsingLabels(),
+
+            BelongsTo::make('Company'),
+
+            HasMany::make('Payment')
 
         ];
     }
