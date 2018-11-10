@@ -149,18 +149,7 @@ class Booking extends Resource
 
             HasOne::make('Invoice'),
 
-            // Text::make('Invoice')
-            //     ->hideFromIndex()
-            //     ->hideWhenCreating(),
-
-            // Boolean::make('Confirmation Sent')
-            //     ->hideWhenCreating(),
-
-            // Boolean::make('Confirmed')
-            //     ->hideWhenCreating(),
-
-            // Boolean::make('No Show')
-            //     ->hideWhenCreating(),
+            HasMany::make('Payments'),
 
             BelongsTo::make('User')
                 ->withMeta([

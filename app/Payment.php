@@ -20,6 +20,11 @@ class Payment extends Model
         return $this->belongsTo('App\Invoice');
     }
 
+    public function booking()
+    {
+        return $this->belongsTo('App\Booking');
+    }
+
     public function receipt()
     {
         return $this->hasOne('App\Receipt');

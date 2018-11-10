@@ -32,6 +32,13 @@ class Receipt extends Resource
     ];
 
     /**
+     * $displayInNavigation
+     *
+     * @var boolean
+     */
+    public static $displayInNavigation = false;
+
+    /**
      * $group
      *
      * @var string

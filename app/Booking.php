@@ -46,6 +46,11 @@ class Booking extends Model
         return $this->belongsTo('App\Invoice');
     }
 
+    public function payments()
+    {
+        return $this->hasMany('App\Payment');
+    }
+
     public function user()
     {
         return $this->belongsTo('App\User');

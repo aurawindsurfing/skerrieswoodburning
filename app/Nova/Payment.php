@@ -90,7 +90,9 @@ class Payment extends Resource
                 'cancelled' => 'grey',
             ])->exceptOnForms(),
 
-            HasOne::make('Receipt')
+            BelongsTo::make('Booking'),
+
+            BelongsTo::make('Receipt')
 
         ];
     }
