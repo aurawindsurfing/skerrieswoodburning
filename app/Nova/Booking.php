@@ -140,6 +140,9 @@ class Booking extends Resource
                 // ->sortable()
                 ->searchable(),
 
+            Boolean::make('Confirmation Sent')
+                ->hideWhenCreating(),
+
             BelongsTo::make('Contact', 'contact')
                 // ->sortable()
                 ->hideFromIndex()

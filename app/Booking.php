@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Notifications\Notifiable;
 
 class Booking extends Model
 {
     use SoftDeletes;
     use LogsActivity;
+    use Notifiable;
 
     protected $guarded = [];
 
@@ -71,9 +73,15 @@ class Booking extends Model
         return $this->name . ' ' . $this->surname .' - '. $this->course->course_type->name . ' - '. $this->course->date->format('Y-m-d');
     }
 
-    // public function default_rate()
-    // {
-    //     return $this->course->course_type->default_rate;
-    // }
+    /**
+     * Route notifications for the Nexmo channel.
+     *
+     * @param  \Illuminate\Notifications\Notification  $notification
+     * @return string
+     */
+    public function routeNotificationForNexmo($notification)
+    {
+        return $this->phone;
+    }
 
 }
