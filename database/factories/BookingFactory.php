@@ -18,7 +18,7 @@ $factory->define(App\Booking::class, function (Faker $faker) {
         'pps' => $faker->randomNumber($nbDigits = 7, $strict = true) . $faker->randomElement(['Q','W','E','R','T','Y']),
         'rate' => $faker->randomElement([85,95,100,115]),
         'company_id' => $company,
-        'contact_id' => factory('App\Contact')->create()->id,
+        'contact_id' => $company->contacts->first(),
         // 'invoice_id' => factory('App\Invoice')->create()->id,
         'po' => $faker->optional()->randomNumber,
         'confirmation_sent' => $bookingDate->modify('+10 minutes'),

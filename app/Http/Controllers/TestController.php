@@ -13,22 +13,42 @@ class TestController extends Controller
 {
     public function test()
     {
-        // $bookings = Booking::query()
-        //     ->where('confirmation_sent', null)
-        //     ->where('updated_at', '<', Carbon::now()->subSeconds(120)->toDateTimeString())
-        //     ->get();
-
-        // foreach ($bookings as $booking) {
-        //     $booking->update(['confirmation_sent' => now()]);
-        //     $booking->notify(new BookingConfirmationSms());
-        // }
+        
+        $uninvoiced_bookings = Booking::take(5)->get();
 
 
-        $invoice = \App\Invoice::find(1);
+        if ($uninvoiced_bookings->isNotEmpty()) {
 
-        return new \App\Mail\NewInvoice($invoice);
+            $invoiceController = new \App\Http\Controllers\InvoiceController();
+            $count = 0;
+
+            // grouping bookings by company and separating individual booking
+           $company_bookings = $uninvoiced_bookings->groupBy('company_id');
+           $individual_bookings = $company_bookings->pull('');
 
 
+           if (!is_null($company_bookings) && $company_bookings->isNotEmpty()) {
+            
+                foreach($company_bookings as $company_booking){
 
+                    $invoice = $invoiceController->create($company_booking);
+                    $invoiceController->makePDF($invoice);
+                    $count++;
+
+                }
+
+           }
+
+           if (!is_null($individual_bookings) && $individual_bookings->isNotEmpty()) {
+
+                foreach($individual_bookings as $individual_booking){
+
+                    $invoice = $invoiceController->create($individual_booking);
+                    $invoiceController->makePDF($invoice);
+                    $count++;
+
+                }
+           }
+        }
     }
 }

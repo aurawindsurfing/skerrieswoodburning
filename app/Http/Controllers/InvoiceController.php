@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Invoice;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Support\Collection;
+
 
 class InvoiceController extends Controller
 {
@@ -17,15 +20,42 @@ class InvoiceController extends Controller
         //
     }
 
+
     /**
-     * Show the form for creating a new resource.
+     * create
      *
-     * @return \Illuminate\Http\Response
+     * @param Collection $bookings
+     * @return void
      */
-    public function create()
+    public function create(Collection $bookings)
     {
-        //
+
+        $invoice = Invoice::create([
+                'prefix' => 'N-',
+                'date' => Carbon::now(),
+                'company_id' => $bookings->first()->company_id ?: null,
+                'status' => 'unpaid',
+                'user_id' => $this->user_id ?? auth()->user()->id,
+            ]);
+
+
+        foreach ($bookings as $booking) {
+
+            $booking->update([
+                'invoice_id' => $invoice->id
+            ]);
+
+            $invoice->update([
+                'total' => $invoice->total + $booking->rate
+            ]);
+        
+        }
+
+        return $invoice;
+        
     }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -81,5 +111,42 @@ class InvoiceController extends Controller
     public function destroy(Invoice $invoice)
     {
         //
+    }
+
+    public function makePDF(Invoice $invoice)
+    {
+        $invoicePDF = \ConsoleTVs\Invoices\Classes\Invoice::make()
+                    ->number($invoice->number());
+
+        foreach ($invoice->bookings as $booking) {
+            $invoicePDF->addItem(
+                $booking->invoiceDescription(), 
+                $booking->rate, 1,
+                $booking->rate);
+        }
+
+        if ($invoice->company) {
+            $invoicePDF->customer([
+                'name' => $invoice->company->name ? : '',
+                'tax' => $invoice->company->tax ? : '',
+                'phone' => $invoice->company->phone ? : '',
+                'location' => $invoice->company->address ? : '',
+                'zip' => '',
+                'city' => '',
+                'country' => '',
+            ]);
+        } else {
+            $invoicePDF->customer([
+                'name' => $invoice->booking->name ? : '',
+                'tax' => $invoice->booking->pps ? : '',
+                'phone' => $invoice->booking->phone ? : '',
+                'location' => '',
+                'zip' => '',
+                'city' => '',
+                'country' => '',
+            ]);
+        }
+
+        $invoicePDF->save('public/tmp/invoices/' . $invoice->number() . '.pdf');
     }
 }

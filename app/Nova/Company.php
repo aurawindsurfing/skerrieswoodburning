@@ -89,6 +89,9 @@ class Company extends Resource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
+            Text::make('Tax')
+                ->onlyOnForms(),
+
             HasMany::make('Contacts')->sortable(),
 
             HasMany::make('Bookings')->sortable(),

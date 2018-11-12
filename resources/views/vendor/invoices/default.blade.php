@@ -42,7 +42,7 @@
                         <div class="panel-body" style="padding-top: 0px;">
                         {!! $invoice->business_details->count() == 0 ? '<i>No business details</i><br />' : '' !!}
                         {{ $invoice->business_details->get('name') }}<br />
-                        CRO: {{ $invoice->business_details->get('id') }}<br />
+                        tax: {{ $invoice->business_details->get('id') }}<br />
                         {{ $invoice->business_details->get('phone') }}<br />
                         {{ $invoice->business_details->get('location') }}<br />
                         {{ $invoice->business_details->get('zip') }} {{ $invoice->business_details->get('city') }}
@@ -58,7 +58,7 @@
                         <div class="panel-body">
                             {!! $invoice->customer_details->count() == 0 ? '<i>No customer details</i><br />' : '' !!}
                             {{ $invoice->customer_details->get('name') }}<br />
-                            {{ $invoice->customer_details->get('cro') ? 'CRO: ' . $invoice->customer_details->get('cro'). '<br />' : '' }}
+                            {{ $invoice->customer_details->get('tax') ? 'tax: ' . $invoice->customer_details->get('tax') : '' }}<br />
                             {{ $invoice->customer_details->get('phone') }}<br />
                             {{ $invoice->customer_details->get('location') }}<br />
                             {{ $invoice->customer_details->get('zip') }} {{ $invoice->customer_details->get('city') }}

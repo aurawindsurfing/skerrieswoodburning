@@ -13,7 +13,7 @@ use Carbon\Carbon;
 use Laravel\Nova\Fields\BelongsTo;
 use App\Company;
 
-class CreateInvoice extends Action
+class CreateInvoiceAndSendByEmail extends Action implements ShouldQueue
 {
     use InteractsWithQueue, Queueable, SerializesModels;
 
@@ -53,7 +53,8 @@ class CreateInvoice extends Action
             
                 foreach($company_bookings as $company_booking){
 
-                    $invoiceController->create($company_booking);
+                    $invoice = $invoiceController->create($company_booking);
+                    $invoiceController->makePDF($invoice);
                     $count++;
 
                 }
@@ -66,12 +67,20 @@ class CreateInvoice extends Action
 
                 foreach($individual_bookings as $individual_booking){
 
-                    $invoiceController->create($individual_booking);
+                    $invoice = $invoiceController->create($individual_booking);
+                    $invoiceController->makePDF($invoice);
                     $count++;
 
                 }
 
            }
+
+
+           // get email list
+           // attach to email
+           //send email
+
+
 
             return Action::message($count . ' invoices created!');
         

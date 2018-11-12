@@ -44,6 +44,13 @@ class Booking extends Resource
     ];
 
     /**
+     * The number of resources to show per page via relationships.
+     *
+     * @var int
+     */
+    public static $perPageViaRelationship = 10;
+
+    /**
      * title
      *
      * @return void
@@ -231,7 +238,9 @@ class Booking extends Resource
                 ->withWriterType(\Maatwebsite\Excel\Excel::XLS)
                 ->withFilename('bookings-' . time() . '.xls'),
 
-            (new Actions\CreateInvoice)
+            (new Actions\CreateInvoice),
+
+            (new Actions\CreateInvoiceAndSendByEmail)
         ];
     }
 }

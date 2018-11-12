@@ -7,12 +7,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Nova\Actions\Actionable;
 
 class Booking extends Model
 {
-    use SoftDeletes;
-    use LogsActivity;
-    use Notifiable;
+    use SoftDeletes, LogsActivity, Notifiable, Actionable;
 
     protected $guarded = [];
 

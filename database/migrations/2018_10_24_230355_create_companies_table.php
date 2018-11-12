@@ -17,6 +17,7 @@ class CreateCompaniesTable extends Migration
             $table->increments('id');
             $table->text('name');
             $table->text('address');
+            $table->text('tax')->nullable()->default(null);
             $table->text('phone')->nullable()->default(null);
             $table->text('email')->nullable()->default(null);
             $table->boolean('corporate_client')->nullable()->default(false);

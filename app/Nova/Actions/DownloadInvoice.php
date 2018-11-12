@@ -44,7 +44,7 @@ class DownloadInvoice extends Action
                 if ($existingInvoice->company) {
                     $invoicePDF->customer([
                         'name' => $existingInvoice->company->name ? : '',
-                        'id' => $existingInvoice->company->name ? : '',
+                        'tax' => $existingInvoice->company->tax ? : '',
                         'phone' => $existingInvoice->company->phone ? : '',
                         'location' => $existingInvoice->company->address ? : '',
                         'zip' => '',
@@ -54,7 +54,7 @@ class DownloadInvoice extends Action
                 } else {
                     $invoicePDF->customer([
                         'name' => $existingInvoice->booking->name ? : '',
-                        'id' => $existingInvoice->booking->pps ? : '',
+                        'tax' => $existingInvoice->booking->pps ? : '',
                         'phone' => $existingInvoice->booking->phone ? : '',
                         'location' => '',
                         'zip' => '',
@@ -66,9 +66,7 @@ class DownloadInvoice extends Action
 
                 $invoicePDF->save('public/tmp/invoices/' . $existingInvoice->number() . '.pdf');
 
-                return 
-                
-                Action::download(
+                return Action::download(
                     env('APP_URL') . ('/tmp/invoices/') . $existingInvoice->number() . '.pdf',
                     $existingInvoice->number() . '.pdf'
                 );
