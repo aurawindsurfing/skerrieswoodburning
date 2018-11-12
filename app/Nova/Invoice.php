@@ -94,6 +94,16 @@ class Invoice extends Resource
             BelongsTo::make('Company')
                 ->searchable(),
 
+            BelongsTo::make('User')
+            ->withMeta([
+                'value' => $this->user_id ?? auth()->user()->id, 
+                'belongsToId' => $this->user_id ?? auth()->user()->id
+            ])
+            ->onlyOnForms()
+            ->hideWhenCreating(),
+
+            BelongsTo::make('User')->onlyOnDetail(),
+
             HasMany::make('Payment'),
 
             HasMany::make('Booking')

@@ -6,12 +6,14 @@ $factory->define(App\Invoice::class, function (Faker $faker) {
 
     $booking = App\Booking::all()->random();
     $company = App\Company::all(['id'])->random();
+    $user = App\User::all(['id'])->random();
 
     return [
         'prefix' => 'N-',
         'date' => $booking->date,
         'company_id' => $company,
         'total' => $booking->rate,
-        'status' => $faker->randomElement(['paid','unpaid','cancelled']), 
+        'status' => $faker->randomElement(['paid','unpaid','cancelled']),
+        'user_id' => $user, 
     ];
 });

@@ -13,16 +13,22 @@ class TestController extends Controller
 {
     public function test()
     {
-        // $user->where('email', 'tom@gazeta.ie')->get();
+        // $bookings = Booking::query()
+        //     ->where('confirmation_sent', null)
+        //     ->where('updated_at', '<', Carbon::now()->subSeconds(120)->toDateTimeString())
+        //     ->get();
 
-        // $bookings = Booking::whereConfirmationSent(true)->get();
-        $bookings = Booking::where('confirmation_sent', null)->get();
+        // foreach ($bookings as $booking) {
+        //     $booking->update(['confirmation_sent' => now()]);
+        //     $booking->notify(new BookingConfirmationSms());
+        // }
 
-        // $booking->notify(new BookingConfirmationSms($booking));
 
-        // $bookings = Booking::where('confirmation_sent', false)->get();
+        $invoice = \App\Invoice::find(1);
 
-        dd($bookings);
+        return new \App\Mail\NewInvoice($invoice);
+
+
 
     }
 }

@@ -28,5 +28,6 @@ $factory->define(App\Booking::class, function (Faker $faker) {
         'user_id' => $faker->optional()->randomElement(App\User::all(['id'])),
         'comments' => $faker->optional()->text,
         'created_at' => $bookingDate,
+        'updated_at' => $bookingDate,
     ];
 });

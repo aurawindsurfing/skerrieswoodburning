@@ -19,24 +19,29 @@ class Invoice extends Model
         'date'
     ];
 
-    public function isUnpaid()
-    {
-        return $this->status == unpaid ? true : false;
-    }
+    // public function isUnpaid()
+    // {
+    //     return $this->status == unpaid ? true : false;
+    // }
 
-    public function isPaid()
-    {
-        return $this->status == paid ? true : false;
-    }
+    // public function isPaid()
+    // {
+    //     return $this->status == paid ? true : false;
+    // }
 
-    public function isCancelled()
-    {
-        return $this->status == cancelled ? true : false;
-    }
+    // public function isCancelled()
+    // {
+    //     return $this->status == cancelled ? true : false;
+    // }
 
     public function company()
     {
         return $this->belongsTo('App\Company');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 
     public function number()

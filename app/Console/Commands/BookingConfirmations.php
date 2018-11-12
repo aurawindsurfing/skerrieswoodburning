@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Booking;
 use App\Notifications\BookingConfirmationSms;
+use Carbon\Carbon;
 
 class BookingConfirmations extends Command
 {
@@ -39,7 +40,10 @@ class BookingConfirmations extends Command
      */
     public function handle()
     {
-        $bookings = Booking::where('confirmation_sent', null)->get();
+        $bookings = Booking::query()
+            ->where('confirmation_sent', null)
+            ->where('updated_at', '<', Carbon::now()->subMinutes(2)->toDateTimeString())
+            ->get();
 
         foreach ($bookings as $booking) {
             $booking->update(['confirmation_sent' => now()]);

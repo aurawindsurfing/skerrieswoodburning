@@ -20,6 +20,7 @@ class CreateInvoicesTable extends Migration
             $table->date('date');
             $table->double('total', 5, 2)->nullable();
             $table->text('status');
+            $table->integer('user_id')->unsigned();
             $table->softDeletes();
             $table->timestamps();
         });
