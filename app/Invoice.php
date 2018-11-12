@@ -54,7 +54,7 @@ class Invoice extends Model
         return $this->hasMany('App\Payment');
     }
 
-    public function booking()
+    public function bookings()
     {
         return $this->hasMany('App\Booking');
     }

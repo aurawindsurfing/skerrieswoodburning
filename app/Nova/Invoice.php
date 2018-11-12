@@ -81,7 +81,7 @@ class Invoice extends Resource
                 ->onlyOnForms(),
 
             Indicator::make('Status')
-             ->labels([
+                ->labels([
                 'paid' => 'Paid',
                 'unpaid' => 'Unpaid',
                 'cancelled' => 'Cancelled',
@@ -106,7 +106,7 @@ class Invoice extends Resource
 
             HasMany::make('Payment'),
 
-            HasMany::make('Booking')
+            HasMany::make('Bookings')
 
         ];
     }
@@ -152,6 +152,8 @@ class Invoice extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+            (new Actions\DownloadInvoice)
+        ];
     }
 }
