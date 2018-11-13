@@ -11,18 +11,17 @@
         
     @include('emails.partials.header')
 
-
-
     <div class="container ml-6 mt-12 max-w-sm">
 
-        
+        Please find attached your recent invoice.
 
+        <br>
+        <br>
 
     </div>
 
-
     @component('emails.partials.footer')
-        {{-- <div class="font-bold">{{$invoice->user->name}}</div>  --}} Alec Test Name
+        <div class="font-bold">{{$invoice->user->name}}</div> 
     @endcomponent
     
 </body>

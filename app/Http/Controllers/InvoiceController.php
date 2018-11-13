@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Invoice;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use Illuminate\Support\Collection;
 
 
 class InvoiceController extends Controller
@@ -27,13 +26,13 @@ class InvoiceController extends Controller
      * @param Collection $bookings
      * @return void
      */
-    public function create(Collection $bookings)
+    public function create($bookings)
     {
 
         $invoice = Invoice::create([
                 'prefix' => 'N-',
                 'date' => Carbon::now(),
-                'company_id' => $bookings->first()->company_id ?: null,
+                'company_id' => is_null($bookings->first()->company_id) ? null : $bookings->first()->company_id,
                 'status' => 'unpaid',
                 'user_id' => $this->user_id ?? auth()->user()->id,
             ]);
@@ -135,17 +134,7 @@ class InvoiceController extends Controller
                 'city' => '',
                 'country' => '',
             ]);
-        } else {
-            $invoicePDF->customer([
-                'name' => $invoice->booking->name ? : '',
-                'tax' => $invoice->booking->pps ? : '',
-                'phone' => $invoice->booking->phone ? : '',
-                'location' => '',
-                'zip' => '',
-                'city' => '',
-                'country' => '',
-            ]);
-        }
+        } 
 
         $invoicePDF->save('public/tmp/invoices/' . $invoice->number() . '.pdf');
     }

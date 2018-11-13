@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Http\Controllers\InvoiceController;
 
 class NewInvoice extends Mailable
 {
@@ -16,16 +17,16 @@ class NewInvoice extends Mailable
      *
      * @var Order
      */
-    public $test;
+    public $invoice;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($invoice)
     {
-        $this->test = 'TEST';
+        $this->invoice = $invoice;
     }
 
     /**
@@ -35,6 +36,14 @@ class NewInvoice extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.newinvoice');
+
+        $invoicePDF = new InvoiceController();
+        $invoicePDF->makePDF($this->invoice);
+
+        return $this->from('alec@citltd.ie')
+                    ->subject('New Invoice CIT')
+                    ->attach(env('APP_URL') . ('/tmp/invoices/') . $this->invoice->number() . '.pdf')
+                    ->view('emails.newinvoice');
+
     }
 }

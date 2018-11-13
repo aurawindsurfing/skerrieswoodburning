@@ -60,20 +60,12 @@ class CreateInvoice extends Action
 
            }
 
-           $individual_bookings = collect($individual_bookings);
-
-           if (!is_null($individual_bookings) && $individual_bookings->isNotEmpty()) {
-
-                foreach($individual_bookings as $individual_booking){
-
-                    $invoiceController->create($individual_booking);
-                    $count++;
-
-                }
-
-           }
-
-            return Action::message($count . ' invoices created!');
+            if(is_null($individual_bookings)){
+                return Action::message('Created ' . $count . ' invoices.');
+            } else {
+                $individual_bookings = $individual_bookings->count();
+                return Action::message('Created ' . $count . ' invoices. Skipped ' . $individual_bookings . ' bookings without company.');
+            }
         
         } else {
 
