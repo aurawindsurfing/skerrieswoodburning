@@ -104,7 +104,7 @@ class Invoice extends Resource
 
             BelongsTo::make('User')->onlyOnDetail(),
 
-            HasMany::make('Payment'),
+            HasMany::make('Payments'),
 
             HasMany::make('Bookings')
 

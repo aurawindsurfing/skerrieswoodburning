@@ -49,7 +49,7 @@ class Invoice extends Model
         return $this->prefix . $this->id;
     }
 
-    public function payment()
+    public function payments()
     {
         return $this->hasMany('App\Payment');
     }

@@ -92,8 +92,6 @@ class Payment extends Resource
 
             BelongsTo::make('Booking'),
 
-            BelongsTo::make('Receipt')
-
         ];
     }
 

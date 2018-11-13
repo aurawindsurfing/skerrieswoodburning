@@ -18,7 +18,6 @@ class CreatePaymentsTable extends Migration
             $table->integer('amount')->unsigned();
             $table->integer('booking_id')->unsigned()->nullable()->default(null);
             $table->integer('invoice_id')->unsigned()->nullable()->default(null);
-            $table->integer('receipt_id')->unsigned()->nullable()->default(null);
             $table->text('payment_method');
             $table->text('status');
             $table->softDeletes();
