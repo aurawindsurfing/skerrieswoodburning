@@ -8,6 +8,9 @@ $factory->define(App\Booking::class, function (Faker $faker) {
     $bookingDate = $faker->dateTimeBetween($startDate = $course->date .' -4 weeks', $endDate = $course->date .' -1 days', $timezone = 'Europe/Dublin');
     $company = App\Company::all(['id'])->random();
 
+    $fake_or_false_company = $faker->randomElement([$company, null]);
+
+
     return [
         'date' => $bookingDate,
         'course_id' => $course->id,
@@ -17,8 +20,8 @@ $factory->define(App\Booking::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'pps' => $faker->randomNumber($nbDigits = 7, $strict = true) . $faker->randomElement(['Q','W','E','R','T','Y']),
         'rate' => $faker->randomElement([85,95,100,115]),
-        'company_id' => $company,
-        'contact_id' => $company->contacts->first(),
+        'company_id' => $fake_or_false_company,
+        'contact_id' => $fake_or_false_company ? $fake_or_false_company->contacts->first() : null,
         // 'invoice_id' => factory('App\Invoice')->create()->id,
         'po' => $faker->optional()->randomNumber,
         'confirmation_sent' => $bookingDate->modify('+10 minutes'),

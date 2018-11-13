@@ -131,9 +131,13 @@ class Booking extends Resource
                 ->sortable(),
 
             Money::make('Rate', 'EUR')
-            ->withMeta([
-                'value' => 115, 
-            ]),
+                ->exceptOnForms(),
+
+            Money::make('Rate', 'EUR')
+                ->onlyOnForms()
+                ->withMeta([
+                    'value' => 115, 
+                ]),
 
             BelongsTo::make('Course')
                 // ->sortable()

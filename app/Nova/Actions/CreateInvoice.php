@@ -27,16 +27,12 @@ class CreateInvoice extends Action
     public function handle(ActionFields $fields, Collection $models)
     {
 
-        // clear boookings that already have a corresponding invoice
-
         $uninvoiced_bookings = collect([]);
 
         foreach ($models as $booking) {
-
             if (is_null($booking->invoice_id)){
                 $uninvoiced_bookings->push($booking);
             }
-        
         }
 
         if ($uninvoiced_bookings->isNotEmpty()) {
@@ -44,29 +40,29 @@ class CreateInvoice extends Action
             $invoiceController = new \App\Http\Controllers\InvoiceController();
             $count = 0;
 
-            // grouping bookings by company and separating individual booking
-           $company_bookings = $uninvoiced_bookings->groupBy('company_id');
-           $individual_bookings = $company_bookings->pull('');
+            $bookings = $uninvoiced_bookings->groupBy('company_id');
+            $bookings_without_company = $bookings->pull('');
 
+            //corporate booking
 
-           if (!is_null($company_bookings) && $company_bookings->isNotEmpty()) {
-            
-                foreach($company_bookings as $company_booking){
-
-                    $invoiceController->create($company_booking);
+            if (!is_null($bookings) && $bookings->isNotEmpty()) {
+                foreach($bookings as $company_bookings){
+                    $invoice = $invoiceController->createMultipleBookingsInvoice($company_bookings);
                     $count++;
-
                 }
-
            }
 
-            if(is_null($individual_bookings)){
-                return Action::message('Created ' . $count . ' invoices.');
-            } else {
-                $individual_bookings = $individual_bookings->count();
-                return Action::message('Created ' . $count . ' invoices. Skipped ' . $individual_bookings . ' bookings without company.');
+           // individual bookings
+
+           if (!is_null($bookings_without_company) && $bookings_without_company->isNotEmpty()) {
+            foreach($bookings_without_company as $booking){
+                $invoice = $invoiceController->createSingleBookingInvoice($booking);
+                $count++;
             }
-        
+       }
+       
+            return Action::message('Created ' . $count . ' invoices.');
+                   
         } else {
 
             return Action::danger('Looks like all bookings have corresponding invoices!');

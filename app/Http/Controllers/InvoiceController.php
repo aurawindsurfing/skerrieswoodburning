@@ -23,37 +23,15 @@ class InvoiceController extends Controller
     /**
      * create
      *
-     * @param Collection $bookings
+     * @param Request $request
      * @return void
      */
-    public function create($bookings)
+    public function create(Request $request)
     {
 
-        $invoice = Invoice::create([
-                'prefix' => 'N-',
-                'date' => Carbon::now(),
-                'company_id' => is_null($bookings->first()->company_id) ? null : $bookings->first()->company_id,
-                'status' => 'unpaid',
-                'user_id' => $this->user_id ?? auth()->user()->id,
-            ]);
-
-
-        foreach ($bookings as $booking) {
-
-            $booking->update([
-                'invoice_id' => $invoice->id
-            ]);
-
-            $invoice->update([
-                'total' => $invoice->total + $booking->rate
-            ]);
-        
-        }
-
-        return $invoice;
+        //
         
     }
-
 
 
     /**
@@ -112,6 +90,12 @@ class InvoiceController extends Controller
         //
     }
 
+    /**
+     * makePDF
+     *
+     * @param Invoice $invoice
+     * @return void
+     */
     public function makePDF(Invoice $invoice)
     {
         $invoicePDF = \ConsoleTVs\Invoices\Classes\Invoice::make()
@@ -138,4 +122,60 @@ class InvoiceController extends Controller
 
         $invoicePDF->save('public/tmp/invoices/' . $invoice->number() . '.pdf');
     }
+
+    /**
+     * createMultipleBookingsInvoice
+     *
+     * @param mixed $bookings
+     * @return void
+     */
+    public function createMultipleBookingsInvoice($bookings)
+    {
+        
+        $invoice = Invoice::create([
+                'prefix' => 'N-',
+                'date' => Carbon::now(),
+                'company_id' => isset($bookings->first()->company_id) ?: null,
+                'status' => 'unpaid',
+                'user_id' => $this->user_id ?? auth()->user()->id,
+            ]);
+
+        $invoice->fresh();
+
+        foreach ($bookings as $booking) {
+            $booking->update(['invoice_id' => $invoice->id]);
+            $invoice->update(['total' => $invoice->total + $booking->rate]);
+        }
+    
+        return $invoice;
+        
+    }
+
+
+    /**
+     * createSingleBookingInvoice
+     *
+     * @param mixed $booking
+     * @return void
+     */
+    public function createSingleBookingInvoice($booking)
+    {
+
+        $invoice = Invoice::create([
+                'prefix' => 'N-',
+                'date' => Carbon::now(),
+                'company_id' => null,
+                'status' => 'unpaid',
+                'user_id' => $this->user_id ?? auth()->user()->id,
+            ]);
+
+        $invoice->fresh();
+
+        $booking->update(['invoice_id' => $invoice->id]);
+        $invoice->update(['total' => $invoice->total + $booking->rate]);
+    
+        return $invoice;
+        
+    }
+
 }

@@ -20,7 +20,6 @@ class CreateCompaniesTable extends Migration
             $table->text('tax')->nullable()->default(null);
             $table->text('phone')->nullable()->default(null);
             $table->text('email')->nullable()->default(null);
-            $table->boolean('corporate_client')->nullable()->default(false);
             $table->text('payment_method');
             $table->softDeletes();
             $table->timestamps();

@@ -16,15 +16,31 @@ class TestController extends Controller
     public function test()
     {
         
-        $invoice = Invoice::find(106);
+        // $invoice = Invoice::find(106);
+
+        // $inv = new InvoiceController();
+        // $inv->makePDF($invoice);
+
+        // Mail::to('tomcentrumpl@gmail.com')
+        //     ->cc('tom@gazeta.ie')
+        //     ->cc('alec@citltd.ie')
+        //     ->send(new \App\Mail\NewInvoice($invoice));
+
+        $b = Booking::find(4);
+
+        // dd($b);
 
         $inv = new InvoiceController();
-        $inv->makePDF($invoice);
+        // $inv->createMissingCompany($b);
+        
+        // dd($b);
 
-        Mail::to('tomcentrumpl@gmail.com')
-            ->cc('tom@gazeta.ie')
-            ->cc('alec@citltd.ie')
-            ->send(new \App\Mail\NewInvoice($invoice));
+        $inv->createSingleBookingInvoice($b);
+
+        // dd($inv);
+
+
+
         
     }
 }

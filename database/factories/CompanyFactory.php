@@ -9,7 +9,6 @@ $factory->define(App\Company::class, function (Faker $faker) {
         'phone' => $faker->e164PhoneNumber,
         'email' => $faker->safeEmail,
         'tax' => $faker->randomNumber($nbDigits = 7, $strict = true) . $faker->randomElement(['Q','W','E','R','T','Y']),
-        'corporate_client' => $faker->boolean,
         'payment_method' => $faker->randomElement(['CC','EFT','Cash','Cheque']),
     ];
 });
