@@ -14,6 +14,7 @@ use Laravel\Nova\Fields\BelongsTo;
 use App\Company;
 use Illuminate\Support\Facades\Mail;
 
+// class CreateInvoiceAndSendByEmail extends Action implements ShouldQueue
 class CreateInvoiceAndSendByEmail extends Action
 {
     use InteractsWithQueue, Queueable, SerializesModels;
@@ -33,7 +34,10 @@ class CreateInvoiceAndSendByEmail extends Action
         foreach ($models as $booking) {
             if (is_null($booking->invoice_id)){
                 $uninvoiced_bookings->push($booking);
-            }
+            } 
+            // else {
+            //     $this->markAsFinished($booking);
+            // }
         }
 
         if ($uninvoiced_bookings->isNotEmpty()) {
@@ -56,6 +60,10 @@ class CreateInvoiceAndSendByEmail extends Action
                         ->send(new \App\Mail\NewInvoice($invoice));
                     
                     $count++;
+
+                    // foreach ($company_bookings as $booking) {
+                    //     $this->markAsFinished($booking);
+                    // }
                 }
            }
 
@@ -73,6 +81,8 @@ class CreateInvoiceAndSendByEmail extends Action
                     ->send(new \App\Mail\NewInvoice($invoice));
 
                 $count++;
+
+                // $this->markAsFinished($booking);
             }
        }
        

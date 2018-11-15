@@ -45,7 +45,7 @@
                         tax: {{ $invoice->business_details->get('id') }}<br />
                         {{ $invoice->business_details->get('phone') }}<br />
                         {{ $invoice->business_details->get('location') }}<br />
-                        {{ $invoice->business_details->get('zip') }} {{ $invoice->business_details->get('city') }}
+                        {{ $invoice->business_details->get('zip') }} {{ $invoice->business_details->get('city') }}<br />
                         {{ $invoice->business_details->get('country') }}<br />
                     </div>
                 </h6>
@@ -61,7 +61,7 @@
                             {{ $invoice->customer_details->get('tax') ? 'tax: ' . $invoice->customer_details->get('tax') : '' }}<br />
                             {{ $invoice->customer_details->get('phone') }}<br />
                             {{ $invoice->customer_details->get('location') }}<br />
-                            {{ $invoice->customer_details->get('zip') }} {{ $invoice->customer_details->get('city') }}
+                            {{ $invoice->customer_details->get('zip') }} {{ $invoice->customer_details->get('city') }}<br />
                             {{ $invoice->customer_details->get('country') }}<br />
                         </div>
                     </div>

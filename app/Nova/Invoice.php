@@ -75,7 +75,6 @@ class Invoice extends Resource
             Select::make('Status')->options([
                 'paid' => 'Paid',
                 'unpaid' => 'Unpaid',
-                'cancelled' => 'Cancelled',
             ])
                 ->displayUsingLabels()
                 ->onlyOnForms(),
@@ -84,11 +83,9 @@ class Invoice extends Resource
                 ->labels([
                 'paid' => 'Paid',
                 'unpaid' => 'Unpaid',
-                'cancelled' => 'Cancelled',
             ])->colors([
                 'paid' => 'green',
                 'unpaid' => 'red',
-                'cancelled' => 'grey',
             ])->exceptOnForms(),
 
             BelongsTo::make('Company')

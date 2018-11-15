@@ -33,7 +33,7 @@ class ExportToExcel extends DownloadExcel implements ShouldAutoSize, WithColumnF
     public function columnFormats(): array
     {
         return [
-            'B' => "###############"
+            'C' => "###############"
         ];
     }
 }

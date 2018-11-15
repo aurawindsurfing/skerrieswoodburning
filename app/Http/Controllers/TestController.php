@@ -16,31 +16,9 @@ class TestController extends Controller
     public function test()
     {
         
-        // $invoice = Invoice::find(106);
+        $c = \App\Course::whereDate('date',Carbon::now()->addDay()->toDateString())->get();
 
-        // $inv = new InvoiceController();
-        // $inv->makePDF($invoice);
+        dd($c);
 
-        // Mail::to('tomcentrumpl@gmail.com')
-        //     ->cc('tom@gazeta.ie')
-        //     ->cc('alec@citltd.ie')
-        //     ->send(new \App\Mail\NewInvoice($invoice));
-
-        $b = Booking::find(4);
-
-        // dd($b);
-
-        $inv = new InvoiceController();
-        // $inv->createMissingCompany($b);
-        
-        // dd($b);
-
-        $inv->createSingleBookingInvoice($b);
-
-        // dd($inv);
-
-
-
-        
+        }
     }
-}

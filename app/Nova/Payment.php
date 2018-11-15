@@ -90,7 +90,8 @@ class Payment extends Resource
                 'cancelled' => 'grey',
             ])->exceptOnForms(),
 
-            BelongsTo::make('Booking'),
+            BelongsTo::make('Booking')
+                ->searchable(),
 
         ];
     }

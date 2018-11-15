@@ -147,6 +147,13 @@ class Booking extends Resource
                     return $course->course_type->name;
                 }),
 
+            BelongsTo::make('Invoice')
+                // ->searchable()
+                // ->sortable()
+                ->onlyOnIndex(),
+
+            HasOne::make('Invoice'),
+
             BelongsTo::make('Company')
                 // ->sortable()
                 ->searchable(),
@@ -162,7 +169,7 @@ class Booking extends Resource
             Text::make('PO')
                 ->hideFromIndex(),
 
-            HasOne::make('Invoice'),
+            
 
             HasMany::make('Payments'),
 
@@ -244,7 +251,8 @@ class Booking extends Resource
 
             (new Actions\CreateInvoice),
 
-            (new Actions\CreateInvoiceAndSendByEmail)
+            (new Actions\CreateInvoiceAndSendByEmail),
+
         ];
     }
 }

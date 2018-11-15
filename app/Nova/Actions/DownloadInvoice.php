@@ -11,6 +11,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Carbon\Carbon;
 use Laravel\Nova\Fields\BelongsTo;
+use App\Http\Controllers\InvoiceController;
 
 class DownloadInvoice extends Action
 {
@@ -30,41 +31,8 @@ class DownloadInvoice extends Action
 
             if ($existingInvoice->bookings) {
 
-                $invoicePDF = \ConsoleTVs\Invoices\Classes\Invoice::make()
-                    ->number($existingInvoice->number());
-
-
-                foreach ($existingInvoice->bookings as $booking) {
-                    $invoicePDF->addItem(
-                        $booking->invoiceDescription(), 
-                        $booking->rate, 1,
-                        $booking->rate);
-                }
-
-                if ($existingInvoice->company) {
-                    $invoicePDF->customer([
-                        'name' => $existingInvoice->company->name ? : '',
-                        'tax' => $existingInvoice->company->tax ? : '',
-                        'phone' => $existingInvoice->company->phone ? : '',
-                        'location' => $existingInvoice->company->address ? : '',
-                        'zip' => '',
-                        'city' => '',
-                        'country' => '',
-                    ]);
-                } else {
-                    $invoicePDF->customer([
-                        'name' => $existingInvoice->booking->name ? : '',
-                        'tax' => $existingInvoice->booking->pps ? : '',
-                        'phone' => $existingInvoice->booking->phone ? : '',
-                        'location' => '',
-                        'zip' => '',
-                        'city' => '',
-                        'country' => '',
-                    ]);
-                }
-
-
-                $invoicePDF->save('public/tmp/invoices/' . $existingInvoice->number() . '.pdf');
+                $invoicePDF = new InvoiceController();
+                $invoicePDF->makePDF($existingInvoice);
 
                 return Action::download(
                     env('APP_URL') . ('/tmp/invoices/') . $existingInvoice->number() . '.pdf',

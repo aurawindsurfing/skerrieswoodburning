@@ -108,17 +108,17 @@ class InvoiceController extends Controller
                 $booking->rate);
         }
 
-        if ($invoice->company) {
-            $invoicePDF->customer([
-                'name' => $invoice->company->name ? : '',
-                'tax' => $invoice->company->tax ? : '',
-                'phone' => $invoice->company->phone ? : '',
-                'location' => $invoice->company->address ? : '',
-                'zip' => '',
-                'city' => '',
-                'country' => '',
-            ]);
-        } 
+        $invoicePDF->customer([
+            'name' => isset($invoice->company->name) ? $invoice->company->name : $invoice->bookings->first()->name .' '. $invoice->bookings->first()->surname,
+            'tax' => isset($invoice->company->tax) ? $invoice->company->tax : $invoice->bookings->first()->pps,
+            'phone' => isset($invoice->company->phone) ? $invoice->company->phone : $invoice->bookings->first()->phone,
+            'location' => isset($invoice->company->address) ? $invoice->company->address : '',
+            'zip' => '',
+            'city' => '',
+            'country' => '',
+        ]);
+
+        $invoicePDF->footnote('Terms and Conditions: Payment due 30 days from receipt of invoice');
 
         $invoicePDF->save('public/tmp/invoices/' . $invoice->number() . '.pdf');
     }
