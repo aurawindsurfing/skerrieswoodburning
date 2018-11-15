@@ -11,6 +11,7 @@ use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
+use Maatwebsite\Excel\Events\BeforeSheet;
 use Maatwebsite\Excel\Sheet;
 use App\Invoice;
 
@@ -112,11 +113,19 @@ class AttendeeExport implements FromQuery, WithHeadings, ShouldAutoSize, WithCol
     public function registerEvents(): array
     {
         return [
+            BeforeSheet::class  => function(BeforeSheet $event) {
+                
+                $event->sheet->append(['Date', $this->course->date->format('Y-m-d')]);
+                $event->sheet->append(['Course', $this->course->name]);
+                $event->sheet->append(['Tutor', $this->course->tutor->name]);
+                $event->sheet->append(['Venue', $this->course->venue->name]);
+                $event->sheet->getDelegate()->getStyle('A1:F4')->getFont()->setSize(24);
+                $event->sheet->append([' ']);
+                $event->sheet->append([' ']);
+            },
             AfterSheet::class    => function(AfterSheet $event) {
 
-                $headerRange = 'A1:W1';
-
-                $cellRange = ('A1:' . $event->sheet->getDelegate()->getHighestColumn() . $event->sheet->getDelegate()->getHighestRow());
+                $cellRange = ('A7:' . $event->sheet->getDelegate()->getHighestColumn() . $event->sheet->getDelegate()->getHighestRow());
 
                 $event->sheet->getDelegate()->getPageSetup()->setFitToWidth(true);
                 $event->sheet->getDelegate()->getStyle($cellRange)->getFont()->setSize(14);
@@ -130,7 +139,6 @@ class AttendeeExport implements FromQuery, WithHeadings, ShouldAutoSize, WithCol
                             ],
                         ]
                     ]);
-
             },
         ];
     }
