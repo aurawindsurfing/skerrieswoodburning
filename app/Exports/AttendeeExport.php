@@ -113,19 +113,12 @@ class AttendeeExport implements FromQuery, WithHeadings, ShouldAutoSize, WithCol
     {
         return [
             AfterSheet::class    => function(AfterSheet $event) {
-                
-                // $styleArray = [
-                //     'borders' => [
-                //         'allborders' => [
-                //             'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK,
-                //             'color' => ['argb' => '000000000'],
-                //         ],
-                //     ],
-                // ];
 
-                $cellRange = 'A1:I20';
+                $headerRange = 'A1:W1';
+
+                $cellRange = ('A1:' . $event->sheet->getDelegate()->getHighestColumn() . $event->sheet->getDelegate()->getHighestRow());
+
                 $event->sheet->getDelegate()->getPageSetup()->setFitToWidth(true);
- 
                 $event->sheet->getDelegate()->getStyle($cellRange)->getFont()->setSize(14);
                 $event->sheet->getDelegate()->getPageSetup()->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
                 $event->sheet->getStyle($cellRange)->applyFromArray(
@@ -152,3 +145,17 @@ class AttendeeExport implements FromQuery, WithHeadings, ShouldAutoSize, WithCol
 // $sheet->setFitToHeight(false);
 // $sheet->setFitToWidth(true);
 // $sheet->setPageMargin(0.25);
+
+// $sheet->setWidth([
+//     'A'     =>  25,
+//     'B'     =>  11,
+//     'C'     =>  11,
+//     'D'     =>  11,
+//     'E'     =>  11,
+//     'F'     =>  11,
+//     'G'     =>  11,
+//     'H'     =>  11,
+//     'I'     =>  40
+// ]);
+
+// $sheet->getStyle('I:I')->getAlignment()->setWrapText(true);
