@@ -98,8 +98,7 @@ class InvoiceController extends Controller
      */
     public function makePDF(Invoice $invoice)
     {
-        $invoicePDF = \ConsoleTVs\Invoices\Classes\Invoice::make()
-                    ->number($invoice->number());
+        $invoicePDF = \ConsoleTVs\Invoices\Classes\Invoice::make()->number($invoice->number());
 
         foreach ($invoice->bookings as $booking) {
             $invoicePDF->addItem(
@@ -117,8 +116,6 @@ class InvoiceController extends Controller
             'city' => '',
             'country' => '',
         ]);
-
-        $invoicePDF->footnote('Terms and Conditions: Payment due 30 days from receipt of invoice');
 
         $invoicePDF->save('public/tmp/invoices/' . $invoice->number() . '.pdf');
     }
