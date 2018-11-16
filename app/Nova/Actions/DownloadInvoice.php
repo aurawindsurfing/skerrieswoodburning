@@ -35,7 +35,7 @@ class DownloadInvoice extends Action
                 $invoicePDF->makePDF($existingInvoice);
 
                 return Action::download(
-                    env('APP_URL') . ('/tmp/invoices/') . $existingInvoice->number() . '.pdf',
+                    config('app.url') . ('/tmp/invoices/') . $existingInvoice->number() . '.pdf',
                     $existingInvoice->number() . '.pdf'
                 );
 

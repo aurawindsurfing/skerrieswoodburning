@@ -15,10 +15,6 @@ class TestController extends Controller
 {
     public function test()
     {
-        
-        $c = \App\Course::whereDate('date',Carbon::now()->addDay()->toDateString())->get();
-
-        dd($c);
-
-        }
+        dd(\Illuminate\Support\Facades\Storage::get('public/tmp/invoices/N-100.pdf'));
     }
+}
