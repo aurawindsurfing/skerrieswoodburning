@@ -16,8 +16,10 @@ use Maatwebsite\Excel\Sheet;
 use App\Invoice;
 
 
-class AttendeeExport implements FromQuery, WithHeadings, ShouldAutoSize, WithColumnFormatting, WithMapping, WithEvents
+class AttendeeExport implements FromQuery, WithHeadings, WithColumnFormatting, WithMapping, WithEvents
 {
+
+    private $count = 1;
 
     /**
      * __construct
@@ -28,6 +30,7 @@ class AttendeeExport implements FromQuery, WithHeadings, ShouldAutoSize, WithCol
     public function __construct(\App\Course $course)
     {
         $this->course = $course;
+
     }
 
 
@@ -62,12 +65,15 @@ class AttendeeExport implements FromQuery, WithHeadings, ShouldAutoSize, WithCol
     
     public function map($booking): array
     {
+        
+
         return [
+            $this->count++,
             isset($booking->name) ? $booking->name : '',
             isset($booking->surname) ? $booking->surname : '',
             $booking->confirmed ? 'YES' : '',
             isset($booking->phone) ? $booking->phone : '',
-            isset($booking->email) ? $booking->email : '',
+            // isset($booking->email) ? $booking->email : '',
             isset($booking->rate) ? $booking->rate : '',
             isset($booking->invoice->number) ? $booking->invoice->number : '',
             isset($booking->company->name) ? $booking->company->name : '',
@@ -83,15 +89,17 @@ class AttendeeExport implements FromQuery, WithHeadings, ShouldAutoSize, WithCol
     public function headings(): array
     {
         return [
+            '',
             'Name',
             'Surname',
-            'Confirmed',
+            '',
             'Phone',
-            'Email',
+            // 'Email',
             'Rate',
             'Invoice',
             'Company',
             'Contact',
+            'Notes'
             
         ];
     }
@@ -102,7 +110,7 @@ class AttendeeExport implements FromQuery, WithHeadings, ShouldAutoSize, WithCol
     public function columnFormats(): array
     {
         return [
-            'D' => "### #######"
+            'E' => "### #######"
         ];
     }
 
@@ -115,30 +123,63 @@ class AttendeeExport implements FromQuery, WithHeadings, ShouldAutoSize, WithCol
         return [
             BeforeSheet::class  => function(BeforeSheet $event) {
                 
-                $event->sheet->append(['Date', $this->course->date->format('Y-m-d')]);
-                $event->sheet->append(['Course', $this->course->name]);
-                $event->sheet->append(['Tutor', $this->course->tutor->name]);
-                $event->sheet->append(['Venue', $this->course->venue->name]);
-                $event->sheet->getDelegate()->getStyle('A1:F4')->getFont()->setSize(24);
+                $event->sheet->append([' ', 'Date:', $this->course->date->format('Y-m-d')]);
+                $event->sheet->append([' ', 'Course:', $this->course->course_type->name]);
+                $event->sheet->append([' ', 'Tutor:', $this->course->tutor->name]);
+                $event->sheet->append([' ', 'Venue:', $this->course->venue->name]);
+                $event->sheet->getStyle('A1:F4')->getFont()->setSize(14);
                 $event->sheet->append([' ']);
                 $event->sheet->append([' ']);
             },
             AfterSheet::class    => function(AfterSheet $event) {
 
-                $cellRange = ('A7:' . $event->sheet->getDelegate()->getHighestColumn() . $event->sheet->getDelegate()->getHighestRow());
+                $event->sheet->getPageSetup()->setPaperSize(10);
+                $event->sheet->getPageSetup()->setOrientation('landscape');
+                $event->sheet->getDelegate()->getColumnDimension('A')->setWidth(5); //id
+                $event->sheet->getDelegate()->getColumnDimension('B')->setWidth(15); //name
+                $event->sheet->getDelegate()->getColumnDimension('C')->setWidth(15); //surname
+                $event->sheet->getDelegate()->getColumnDimension('D')->setWidth(4); //confirm
+                $event->sheet->getDelegate()->getColumnDimension('E')->setWidth(12); //phone
+                $event->sheet->getDelegate()->getColumnDimension('F')->setWidth(6); //rate
+                $event->sheet->getDelegate()->getColumnDimension('G')->setWidth(7); //invoice
+                $event->sheet->getDelegate()->getColumnDimension('H')->setWidth(25); //company
+                $event->sheet->getDelegate()->getColumnDimension('I')->setWidth(16); //contact
+                $event->sheet->getDelegate()->getColumnDimension('J')->setWidth(16); //notes
 
-                $event->sheet->getDelegate()->getPageSetup()->setFitToWidth(true);
-                $event->sheet->getDelegate()->getStyle($cellRange)->getFont()->setSize(18);
-                $event->sheet->getDelegate()->getPageSetup()->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
-                $event->sheet->getStyle($cellRange)->applyFromArray(
+
+
+                $tableHeaders = ('B7:J7');
+                $event->sheet->getStyle($tableHeaders)->getFont()->setSize(14);
+                $event->sheet->getStyle($tableHeaders)->getAlignment()->setHorizontal('right');
+                $event->sheet->getStyle($tableHeaders)->applyFromArray(
                     [
                         'borders' => [
                             'allBorders' => [
-                                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                                'borderStyle' => 'thin',
                                 'color' => ['argb' => '00000000'],
                             ],
                         ]
                     ]);
+
+                $tableCells = ('B8:' . $event->sheet->getHighestColumn() . $event->sheet->getHighestRow());
+                $event->sheet->getDelegate()->getPageSetup()->setFitToWidth(true);
+                $event->sheet->getStyle($tableCells)->getFont()->setSize(12);
+                $event->sheet->getStyle($tableCells)->getAlignment()->setHorizontal('right');
+                $event->sheet->getStyle($tableCells)->applyFromArray(
+                    [
+                        'borders' => [
+                            'allBorders' => [
+                                'borderStyle' => 'thin',
+                                'color' => ['argb' => '00000000'],
+                            ],
+                        ]
+                    ]);
+
+                for ($row = 7; $row <= $event->sheet->getHighestRow(); ++$row) {
+                    $event->sheet->getRowDimension($row)->setRowHeight(25);
+                }
+
+                
             },
         ];
     }

@@ -52,10 +52,10 @@ class EmailAttendeeList extends Command
                     'filepath' => $filepath
                 ];
                 Excel::store(new \App\Exports\AttendeeExport($course), '/public' . $filepath);
-                Mail::to('tomcentrumpl@gmail.com')
-                        // ->cc('tom@gazeta.ie')
-                        // ->cc('alec@citltd.ie')
-                        ->send(new \App\Mail\CourseAttendeeList($data));
+                // Mail::to('tomcentrumpl@gmail.com')
+                //         // ->cc('tom@gazeta.ie')
+                //         // ->cc('alec@citltd.ie')
+                //         ->send(new \App\Mail\CourseAttendeeList($data));
             }
         }
     }

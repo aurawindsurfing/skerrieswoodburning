@@ -13,8 +13,12 @@
 
     <div class="container ml-6 mt-12 max-w-sm">
 
-        Please find attached attendee list.
-
+        Please find attached attendee list for: <br>
+        <br>
+        Date: {{$data['course']->date->format('Y-m-d')}} <br>
+        Course: {{$data['course']->course_type->name}} <br>
+        Tutor: {{$data['course']->tutor->name}} <br>
+        Venue: {{$data['course']->venue->name}} <br>
         <br>
         <br>
 
