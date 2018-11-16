@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
 
         factory(App\CourseType::class, 7)->create();
 
-        factory(App\Course::class, 100)->create();
+        factory(App\Course::class, 20)->create();
 
         factory(App\Contact::class, 100)->create();
 

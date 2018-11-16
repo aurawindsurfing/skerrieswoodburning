@@ -41,8 +41,8 @@ class NewInvoice extends Mailable
         $invoicePDF->makePDF($this->invoice);
 
         return $this->from('alec@citltd.ie')
-                    ->subject('New Invoice CIT')
-                    ->attach(env('APP_URL') . ('/tmp/invoices/') . $this->invoice->number() . '.pdf')
+                    ->subject('New invoice number: ' . $this->invoice->number() . ' from CIT')
+                    ->attach(config('app.url') . ('/tmp/invoices/') . $this->invoice->number() . '.pdf')
                     ->view('emails.newinvoice');
 
     }

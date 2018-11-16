@@ -128,7 +128,7 @@ class AttendeeExport implements FromQuery, WithHeadings, ShouldAutoSize, WithCol
                 $cellRange = ('A7:' . $event->sheet->getDelegate()->getHighestColumn() . $event->sheet->getDelegate()->getHighestRow());
 
                 $event->sheet->getDelegate()->getPageSetup()->setFitToWidth(true);
-                $event->sheet->getDelegate()->getStyle($cellRange)->getFont()->setSize(14);
+                $event->sheet->getDelegate()->getStyle($cellRange)->getFont()->setSize(18);
                 $event->sheet->getDelegate()->getPageSetup()->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
                 $event->sheet->getStyle($cellRange)->applyFromArray(
                     [
