@@ -2,15 +2,16 @@
 
 namespace App\Nova\Actions;
 
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Laravel\Nova\Actions\Action;
 use Illuminate\Support\Collection;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ActionFields;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Carbon\Carbon;
-use Laravel\Nova\Fields\BelongsTo;
 use App\Http\Controllers\InvoiceController;
 
 class DownloadInvoice extends Action
@@ -35,7 +36,7 @@ class DownloadInvoice extends Action
                 $invoicePDF->makePDF($existingInvoice);
 
                 return Action::download(
-                    config('app.url') . '/public/tmp/invoices/' . $existingInvoice->number() . '.pdf',
+                    url(Storage::url('tmp/invoices/' . $existingInvoice->number() . '.pdf')),
                     $existingInvoice->number() . '.pdf'
                 );
 

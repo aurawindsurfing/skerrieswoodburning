@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Invoice;
-use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 
 class InvoiceController extends Controller
@@ -117,7 +118,7 @@ class InvoiceController extends Controller
             'country' => '',
         ]);
 
-        $invoicePDF->save('public/tmp/invoices/' . $invoice->number() . '.pdf');
+        $invoicePDF->save(url(Storage::url('tmp/invoices/' . $invoice->number() . '.pdf')));
     }
 
     /**

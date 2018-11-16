@@ -9,12 +9,13 @@ use Nexmo\Laravel\Facade\Nexmo;
 use App\Notifications\BookingConfirmationSms;
 use App\Invoice;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 
 class TestController extends Controller
 {
     public function test()
     {
-        dd(\Illuminate\Support\Facades\Storage::get('public/tmp/invoices/N-100.pdf'));
+        dd(url(Storage::url('tmp/invoices/N-100.pdf')));
     }
 }

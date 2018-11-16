@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class EmailAttendeeList extends Command
 {
@@ -46,12 +47,16 @@ class EmailAttendeeList extends Command
 
         if (isset($courses)) {
             foreach ($courses as $course ) {
-                $filepath = '/tmp/lists/' . str_replace(' ', '_', $course->course_type->name) . '_' . $course->date->format('Y-m-d'). '_' . str_replace(' ', '_', $course->venue->name) . '_attendees.xlsx';
+                $filepath = 'tmp/lists/' . 
+                                    str_replace(' ', '_', $course->course_type->name) . '_' . 
+                                    $course->date->format('Y-m-d'). '_' . 
+                                    str_replace(' ', '_', $course->venue->name) . 
+                                    '_attendees.xlsx';
                 $data = [
                     'course' => $course, 
                     'filepath' => $filepath
                 ];
-                Excel::store(new \App\Exports\AttendeeExport($course), '/public' . $filepath);
+                Excel::store(new \App\Exports\AttendeeExport($course), 'public/' . $filepath);
                 Mail::to('tomcentrumpl@gmail.com')
                         // ->cc('tom@gazeta.ie')
                         ->cc('alec@citltd.ie')

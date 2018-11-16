@@ -5,8 +5,10 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Http\Controllers\InvoiceController;
+
 
 class NewInvoice extends Mailable
 {
@@ -42,7 +44,7 @@ class NewInvoice extends Mailable
 
         return $this->from('alec@citltd.ie')
                     ->subject('New invoice number: ' . $this->invoice->number() . ' from CIT')
-                    ->attach(config('app.url') . ('/tmp/invoices/') . $this->invoice->number() . '.pdf')
+                    ->attach(url(Storage::url('tmp/invoices/' . $this->invoice->number() . '.pdf')))
                     ->view('emails.newinvoice');
 
     }
