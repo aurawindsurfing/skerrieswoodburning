@@ -98,24 +98,23 @@
             </tbody>
         </table>
         <div style="clear:both; position:relative;">
-            @if($invoice->bank_details)
+            {{-- @if($invoice->bank_details) --}}
                 <div style="position:absolute; left:0pt; width:250pt;">
                     <h5>CIT Bank Details</h5>
                     <h6>
                         <div class="panel panel-default">
                                 <div class="panel-body" style="padding-top: 0px;">
-                                        {!! $invoice->bank_details->count() == 0 ? '<i>No bank details</i><br />' : '' !!}
-                                        {{ $invoice->bank_details->get('db1') }}<br />
-                                        {{ $invoice->bank_details->get('bd2') }}<br />
-                                        {{ $invoice->bank_details->get('bd3') }}<br />
-                                        {{ $invoice->bank_details->get('bd4') }}<br />
-                                        {{ $invoice->bank_details->get('bd5') }}<br />
-                                        {{ $invoice->bank_details->get('bd6') }}<br />
+                                        Bank of Ireland <br>
+                                        Acc name: Construction Industry Training Ltd <br>
+                                        Account number: 78384868 <br>
+                                        Sort Code: 90-04-20 <br>
+                                        IBAN: IE92BOFI90042078384868 <br>
+                                        BIC/SWIFT: BOFIIE2D <br>
                                 </div>
                         </div>
                     </h6>
                 </div>
-            @endif
+            {{-- @endif --}}
             <div style="margin-left: 300pt; padding-top: 30pt; margin-bottom: 40pt;">
                 {{-- <h5>Total:</h5> --}}
                 <table class="table table-bordered">

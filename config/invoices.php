@@ -90,14 +90,6 @@ return [
       'country'     => 'Ireland',
   ],
 
-  'bank_details' => [
-    'bd1'      => 'Bank of Ireland',
-    'bd2'      => 'Acc name: Construction Industry Training Ltd',
-    'bd3'      => 'Account number: 78384868',
-    'bd4'      => 'Sort Code: 90-04-20',
-    'bd5'      => 'IBAN: IE92BOFI90042078384868',
-    'bd6'      => 'BIC/SWIFT: BOFIIE2D'
-  ],
 
   /*
   |--------------------------------------------------------------------------
