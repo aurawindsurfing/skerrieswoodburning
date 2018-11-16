@@ -253,6 +253,8 @@ class Booking extends Resource
 
             (new Actions\CreateInvoiceAndSendByEmail),
 
+            (new Actions\CreateInvoiceSendByEmailMarkAsPaid),
+
         ];
     }
 }

@@ -74,6 +74,20 @@ class Booking extends Model
         return $this->name . ' ' . $this->surname .' - '. $this->course->course_type->name . ' - '. $this->course->date->format('Y-m-d');
     }
 
+    public function createPayment($invoice_id)
+    {
+
+        $payment = \App\Payment::create([
+            'amount' => $this->rate,
+            'booking_id' => $this->id,
+            'invoice_id' => $invoice_id,
+            'payment_method' => 'cash',
+            'status' => 'completed'
+        ]);
+
+        return;
+    }
+
     /**
      * Route notifications for the Nexmo channel.
      *
