@@ -27,8 +27,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->command('notify:attendeelist')->timezone('Europe/Dublin')->twiceDaily(6, 14);
     }
 
     /**

@@ -96,7 +96,7 @@ class AttendeeExport implements FromQuery, WithHeadings, WithColumnFormatting, W
             'Phone',
             // 'Email',
             'Rate',
-            'Invoice',
+            'Inv',
             'Company',
             'Contact',
             'Notes'
