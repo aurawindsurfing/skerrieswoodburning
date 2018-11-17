@@ -16,6 +16,8 @@ class TestController extends Controller
 {
     public function test()
     {
-        dd(url(Storage::url('tmp/invoices/N-100.pdf')));
+        // dd(url(Storage::url('tmp/invoices/101.pdf')));
+
+        
     }
 }

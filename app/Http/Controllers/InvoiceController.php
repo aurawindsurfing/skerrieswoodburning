@@ -118,7 +118,7 @@ class InvoiceController extends Controller
             'country' => '',
         ]);
 
-        $invoicePDF->save(url(Storage::url('tmp/invoices/' . $invoice->number() . '.pdf')));
+        $invoicePDF->save('public/tmp/invoices/' . $invoice->number() . '.pdf');
     }
 
     /**
