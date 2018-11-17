@@ -84,7 +84,7 @@ class CreateInvoiceSendByEmailMarkAsPaid extends Action
             }
        }
        
-            return Action::message('Created ' . $count . ' invoices. Emailing them now.');
+            return Action::message('Created ' . $count . ' invoices. Marked them as paid. Emailing them now.');
                    
         } else {
 
