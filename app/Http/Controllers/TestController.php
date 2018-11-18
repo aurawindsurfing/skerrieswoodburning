@@ -16,8 +16,13 @@ class TestController extends Controller
 {
     public function test()
     {
-        // dd(url(Storage::url('tmp/invoices/101.pdf')));
 
-        
+        $data = [];
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadView('letters.course_confirmation', $data);
+        return $pdf->stream();
+
+        // return view('letters.course_confirmation');
+
     }
 }

@@ -82,4 +82,13 @@ class CourseController extends Controller
     {
         //
     }
+
+    public function makeConfirmationPDF()
+    {
+        // $confirmationPDF = 
+
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML('<h1>Test</h1>');
+        return $pdf->download('invoice.pdf');
+    }
 }
