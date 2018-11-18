@@ -23,6 +23,11 @@ class TestController extends Controller
         $pdf->save('storage/tmp/confirmations/confirmation_letter_'. $id .'.pdf');
 
         // return view('letters.course_confirmation');
+        
+        
+        // $e = public_path(Storage::url('test.php'));
+
+        // dd($e);
 
     }
 }

@@ -33,10 +33,15 @@ class DownloadCourseConfirmation extends Action
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadView('letters.course_confirmation', $data);
         $id = uniqid();
-        $pdf->save(public_path('/storage/tmp/confirmations/confirmation_letter_'. $id .'.pdf'));
+        if (\App::environment('local')) {
+            $pdf->save('storage/tmp/confirmations/confirmation_letter_'. $id .'.pdf');
+        } else {
+            $pdf->save('public/storage/tmp/confirmations/confirmation_letter_'. $id .'.pdf');
+        }
+        
 
         return Action::download(
-            '/tmp/confirmations/confirmation_letter_'. $id .'.pdf',
+            url(Storage::url('/tmp/confirmations/confirmation_letter_'. $id .'.pdf')),
             'confirmation_letter_id_' . $id . '.pdf'
         );
 
