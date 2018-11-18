@@ -20,7 +20,7 @@ class TestController extends Controller
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadView('letters.course_confirmation', $data);
         $id = uniqid();
-        $pdf->save(public_path((Storage::url('tmp/confirmations/confirmation_letter_'. $id .'.pdf'))));
+        $pdf->save('storage/tmp/confirmations/confirmation_letter_'. $id .'.pdf');
 
         // return view('letters.course_confirmation');
 
