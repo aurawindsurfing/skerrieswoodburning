@@ -5,11 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Booking;
-use Nexmo\Laravel\Facade\Nexmo;
-use App\Notifications\BookingConfirmationSms;
-use App\Invoice;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+
 
 
 class TestController extends Controller
@@ -22,7 +19,8 @@ class TestController extends Controller
 
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadView('letters.course_confirmation', $data);
-        return $pdf->stream();
+        $id = uniqid();
+        $pdf->save(public_path((Storage::url('tmp/confirmations/confirmation_letter_'. $id .'.pdf'))));
 
         // return view('letters.course_confirmation');
 
