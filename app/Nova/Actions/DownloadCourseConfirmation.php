@@ -36,7 +36,7 @@ class DownloadCourseConfirmation extends Action
         if (\App::environment('local')) {
             $pdf->save('storage/tmp/confirmations/confirmation_letter_'. $id .'.pdf');
         } else {
-            $pdf->save('public/storage/tmp/confirmations/confirmation_letter_'. $id .'.pdf');
+            $pdf->save('storage/tmp/confirmations/confirmation_letter_'. $id .'.pdf');
         }
         
 
