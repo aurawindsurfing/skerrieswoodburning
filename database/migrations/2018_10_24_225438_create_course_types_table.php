@@ -17,6 +17,7 @@ class CreateCourseTypesTable extends Migration
             $table->increments('id');
             $table->text('name');
             $table->text('title')->nullable()->default(null);
+            $table->text('tutor_title')->nullable()->default(null);
             $table->integer('default_rate')->unsigned()->default(100);
             $table->text('objectives')->nullable()->default(null);
             $table->text('who_should_attend')->nullable()->default(null);

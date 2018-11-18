@@ -16,8 +16,10 @@ class TestController extends Controller
 {
     public function test()
     {
+        $data = [
+            'bookings' => Booking::take(10)->get(),
+        ];
 
-        $data = [];
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadView('letters.course_confirmation', $data);
         return $pdf->stream();

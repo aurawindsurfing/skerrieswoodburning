@@ -19,4 +19,9 @@ class Venue extends Model
     {
         return $this->hasMany('App\Course');
     }
+
+    public function fullAddress()
+    {
+        return $this->address_line_1 .' '. $this->city .' '. $this->postal_code;
+    }
 }

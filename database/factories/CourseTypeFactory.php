@@ -6,6 +6,7 @@ $factory->define(App\CourseType::class, function (Faker $faker) {
     return [
         'name' => $faker->unique()->randomElement(['Safepass', 'Confined Spaces', 'Manual Handling', 'CSCS Teleporter', 'CSCS Digger', 'Power Pallet Truck', 'Spill Kit']),
         'title' => 'SOLAS',
+        'tutor_title' => 'SOLAS Accredited Tutor',
         'default_rate' => $faker->randomElement([85,95,100,115,130]),
         'objectives' => $faker->sentence($nbWords = 16),
         'who_should_attend' => $faker->sentence($nbWords = 8),

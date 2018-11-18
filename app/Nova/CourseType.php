@@ -81,6 +81,10 @@ class CourseType extends Resource
                 ->sortable()
                 ->hideFromIndex(),
 
+            Text::make('Tutor title')
+                ->sortable()
+                ->hideFromIndex(),
+
             Money::make('Default Rate', 'EUR')
                 ->rules('required', 'max:255'),
 
