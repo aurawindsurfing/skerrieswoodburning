@@ -36,7 +36,7 @@ class DownloadCourseConfirmation extends Action
         $pdf->save('storage/tmp/confirmations/confirmation_letter_'. $id .'.pdf');
         
         return Action::download(
-            url(Storage::url('/tmp/confirmations/confirmation_letter_'. $id .'.pdf')),
+            url(Storage::url('tmp/confirmations/confirmation_letter_'. $id .'.pdf')),
             'confirmation_letter_id_' . $id . '.pdf'
         );
 
