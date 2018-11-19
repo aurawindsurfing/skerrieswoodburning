@@ -35,7 +35,9 @@ class Booking extends Model
             
             if (Auth::check()){
                 $booking->user_id = Auth::user()->id;
-            }   
+            }
+            
+            session(['booking' => $booking]);
         });
     }
 

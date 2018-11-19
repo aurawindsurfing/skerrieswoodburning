@@ -110,6 +110,10 @@ class Booking extends Resource
                 ->sortable()
                 ->searchable()
                 ->onlyOnForms()
+                ->withMeta([
+                    // 'value' => session('booking.course_id'),
+                    'belongsToId' => session('booking.course_id') 
+                ])
                 ->displayUsing(function ($course) {
                     return $course->course_type->name;
                 }),
@@ -156,6 +160,10 @@ class Booking extends Resource
 
             BelongsTo::make('Company')
                 // ->sortable()
+                ->withMeta([
+                    // 'value' => session('booking.company_id'),
+                    'belongsToId' => session('booking.company_id')
+                ])
                 ->searchable(),
 
             Boolean::make('Confirmation Sent')
@@ -164,9 +172,16 @@ class Booking extends Resource
             BelongsTo::make('Contact', 'contact')
                 // ->sortable()
                 ->hideFromIndex()
+                ->withMeta([
+                    // 'value' => session('booking.contact_id'),
+                    'belongsToId' => session('booking.contact_id')
+                ])
                 ->searchable(),
 
             Text::make('PO')
+                ->withMeta([
+                    'value' => session('booking.po')
+                ])
                 ->hideFromIndex(),
 
             

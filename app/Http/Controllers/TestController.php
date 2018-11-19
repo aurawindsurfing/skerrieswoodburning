@@ -14,27 +14,9 @@ class TestController extends Controller
 {
     public function test()
     {
-        // $data = [
-        //     'bookings' => Booking::take(10)->get(),
-        // ];
+       $e = session('booking');
 
-        // $pdf = \App::make('dompdf.wrapper');
-        // $pdf->loadView('letters.course_confirmation', $data);
-        // $id = uniqid();
-        // $pdf->save('storage/tmp/confirmations/confirmation_letter_'. $id .'.pdf');
-
-        // return view('letters.course_confirmation');
-        
-        
-        // $e = public_path(Storage::url('test.php'));
-
-        // dd($e);
-
-        $b = Course::find(11);
-
-        $b = $b->bookings()->get();
-
-        dd($b); 
+       dd($e);
 
     }
 }
