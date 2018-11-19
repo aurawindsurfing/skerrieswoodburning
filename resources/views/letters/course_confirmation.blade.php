@@ -90,7 +90,7 @@
                 </tbody>
             </table>
             <div style="margin-top: 20px;">
-                Please Note:  This document will serve as evidence of having completed the Safe Pass course on the above date until the candidate receives their Safe Pass card. 
+                Please Note:  This document will serve as evidence of having completed the {{$booking->course->course_type->name}} course on the above date until the candidate receives their Safe Pass card. 
                 If further verification is needed, please contact C.I.T. Ltd. on the number above.</div>
             <div style="margin-top: 80px;"></div>
             
