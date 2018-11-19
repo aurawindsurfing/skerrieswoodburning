@@ -64,8 +64,8 @@ class Tutor extends Resource
             Text::make('Email')
                 ->sortable()
                 ->rules('required', 'email', 'max:254')
-                ->creationRules('unique:users,email')
-                ->updateRules('unique:users,email,{{resourceId}}'),
+                ->creationRules('unique:tutors,email')
+                ->updateRules('unique:tutors,email,{{resourceId}}'),
 
             Text::make('Phone')
                 ->sortable()
