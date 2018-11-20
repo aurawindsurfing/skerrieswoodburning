@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f40227c4ce57fa2c5ab8009fc2d507ef",
+    "content-hash": "94c13e7b57cf9d34a27804d9c0a8e30d",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -642,47 +642,6 @@
                 "validator"
             ],
             "time": "2018-09-25T20:47:26+00:00"
-        },
-        {
-            "name": "epartment/nova-dependency-container",
-            "version": "1.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/epartment/nova-dependency-container.git",
-                "reference": "c23f45b1a735b946672e1708daefada635874b60"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/epartment/nova-dependency-container/zipball/c23f45b1a735b946672e1708daefada635874b60",
-                "reference": "c23f45b1a735b946672e1708daefada635874b60",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Epartment\\NovaDependencyContainer\\FieldServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Epartment\\NovaDependencyContainer\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "A Laravel Nova field container allowing to depend on other fields values",
-            "keywords": [
-                "laravel",
-                "nova"
-            ],
-            "time": "2018-10-02T10:25:09+00:00"
         },
         {
             "name": "erusev/parsedown",
@@ -2771,6 +2730,47 @@
                 "serialize"
             ],
             "time": "2018-10-02T13:36:53+00:00"
+        },
+        {
+            "name": "orlyapps/nova-belongsto-depend",
+            "version": "0.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/orlyapps/nova-belongsto-depend.git",
+                "reference": "f9c13ebb63ee0634835039d60819a79f56bc66d2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/orlyapps/nova-belongsto-depend/zipball/f9c13ebb63ee0634835039d60819a79f56bc66d2",
+                "reference": "f9c13ebb63ee0634835039d60819a79f56bc66d2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Orlyapps\\NovaBelongsToDepend\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Orlyapps\\NovaBelongsToDepend\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2018-10-09T05:45:44+00:00"
         },
         {
             "name": "paragonie/random_compat",

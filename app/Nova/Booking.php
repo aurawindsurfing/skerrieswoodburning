@@ -14,13 +14,10 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Select;
 use Vyuldashev\NovaMoneyField\Money;
-use Epartment\NovaDependencyContainer\HasDependencies;
-use Epartment\NovaDependencyContainer\NovaDependencyContainer;
+use Orlyapps\NovaBelongsToDepend\NovaBelongsToDepend;
 
 class Booking extends Resource
 {
-
-    use HasDependencies;
 
     /**
      * The model the resource corresponds to.
@@ -106,23 +103,6 @@ class Booking extends Resource
     public function fields(Request $request)
     {
 
-        // $companies = \App\Company::all();
-        // $additionalFields = [];
-
-        // foreach ($companies as $company ) {
-        //     array_push($additionalFields, 
-        //         NovaDependencyContainer::make([
-        //             BelongsTo::make('Contact', 'contact')
-        //                         ->hideFromIndex()
-        //                         ->withMeta([
-        //                             'belongsToId' => $company->id
-        //                         ]),
-        //         ])->dependsOn('company_id', $company->id)
-        //     );
-        // }
-
-        // dump($additionalFields);
-
         return [
 
             BelongsTo::make('Course')
@@ -143,6 +123,7 @@ class Booking extends Resource
             Text::make('Phone')->sortable(),
             Text::make('Email')->sortable(),
             Boolean::make('PPS')->hideFromIndex(),
+            
             Money::make('Rate', 'EUR')->exceptOnForms(),
             Money::make('Rate', 'EUR')->onlyOnForms()
                 ->withMeta([
@@ -161,23 +142,26 @@ class Booking extends Resource
 
             HasOne::make('Invoice'),
 
-            BelongsTo::make('Company')
-                ->withMeta([
-                    // 'value' => 90,
-                    'belongsToId' => session('booking.company_id')
-                ])
-                ->searchable(),
+            // BelongsTo::make('Company')
+            //     ->withMeta([
+            //         'belongsToId' => session('booking.company_id')
+            //     ])
+            //     ->searchable(),
 
-            BelongsTo::make('Contact', 'contact')
-                ->hideFromIndex()
-                ->withMeta([
-                    // 'value' => session('booking.contact_id'),
-                    'belongsToId' => session('booking.contact_id')
-                ])->searchable(),
+            // BelongsTo::make('Contact', 'contact')
+            //     ->hideFromIndex()
+            //     ->withMeta([
+            //         'belongsToId' => session('booking.contact_id')
+            //     ])->searchable(),
 
-            // NovaDependencyContainer::make([
-            //     Text::make('First Name', 'first_name')
-            // ])->dependsOn('company', 90),
+            NovaBelongsToDepend::make('Company')
+                ->options(\App\Company::all()),
+
+            NovaBelongsToDepend::make('Contact')
+                ->optionsResolve(function ($company) {
+                    return $company->contacts()->get();
+                })
+                ->dependsOn('Company'),
 
             Boolean::make('Confirmation Sent')->hideWhenCreating(),
 
