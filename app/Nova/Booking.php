@@ -14,12 +14,14 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Select;
 use Vyuldashev\NovaMoneyField\Money;
-
-// use Laravel\Nova\Actions\ExportPDF;
-// use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
+use Epartment\NovaDependencyContainer\HasDependencies;
+use Epartment\NovaDependencyContainer\NovaDependencyContainer;
 
 class Booking extends Resource
 {
+
+    use HasDependencies;
+
     /**
      * The model the resource corresponds to.
      *
@@ -104,6 +106,23 @@ class Booking extends Resource
     public function fields(Request $request)
     {
 
+        // $companies = \App\Company::all();
+        // $additionalFields = [];
+
+        // foreach ($companies as $company ) {
+        //     array_push($additionalFields, 
+        //         NovaDependencyContainer::make([
+        //             BelongsTo::make('Contact', 'contact')
+        //                         ->hideFromIndex()
+        //                         ->withMeta([
+        //                             'belongsToId' => $company->id
+        //                         ]),
+        //         ])->dependsOn('company_id', $company->id)
+        //     );
+        // }
+
+        // dump($additionalFields);
+
         return [
 
             BelongsTo::make('Course')
@@ -116,35 +135,21 @@ class Booking extends Resource
                 ])
                 ->displayUsing(function ($course) {
                     return $course->course_type->name;
-                }),
+                })
+                ->rules('required'),
 
-            Text::make('Name')
-                ->sortable(),
-
-            Text::make('Surname')
-                ->sortable(),
-
-            Text::make('Phone')
-                ->sortable(),
-
-            Text::make('Email')
-                ->sortable(),
-
-            Text::make('PPS')
-                ->hideFromIndex()
-                ->sortable(),
-
-            Money::make('Rate', 'EUR')
-                ->exceptOnForms(),
-
-            Money::make('Rate', 'EUR')
-                ->onlyOnForms()
+            Text::make('Name')->sortable(),
+            Text::make('Surname')->sortable(),
+            Text::make('Phone')->sortable(),
+            Text::make('Email')->sortable(),
+            Boolean::make('PPS')->hideFromIndex(),
+            Money::make('Rate', 'EUR')->exceptOnForms(),
+            Money::make('Rate', 'EUR')->onlyOnForms()
                 ->withMeta([
                     'value' => 115, 
                 ]),
 
             BelongsTo::make('Course')
-                // ->sortable()
                 ->searchable()
                 ->exceptOnForms()
                 ->displayUsing(function ($course) {
@@ -152,39 +157,35 @@ class Booking extends Resource
                 }),
 
             BelongsTo::make('Invoice')
-                // ->searchable()
-                // ->sortable()
                 ->onlyOnIndex(),
 
             HasOne::make('Invoice'),
 
             BelongsTo::make('Company')
-                // ->sortable()
                 ->withMeta([
-                    // 'value' => session('booking.company_id'),
+                    // 'value' => 90,
                     'belongsToId' => session('booking.company_id')
                 ])
                 ->searchable(),
 
-            Boolean::make('Confirmation Sent')
-                ->hideWhenCreating(),
-
             BelongsTo::make('Contact', 'contact')
-                // ->sortable()
                 ->hideFromIndex()
                 ->withMeta([
                     // 'value' => session('booking.contact_id'),
                     'belongsToId' => session('booking.contact_id')
-                ])
-                ->searchable(),
+                ])->searchable(),
+
+            // NovaDependencyContainer::make([
+            //     Text::make('First Name', 'first_name')
+            // ])->dependsOn('company', 90),
+
+            Boolean::make('Confirmation Sent')->hideWhenCreating(),
 
             Text::make('PO')
                 ->withMeta([
                     'value' => session('booking.po')
                 ])
                 ->hideFromIndex(),
-
-            
 
             HasMany::make('Payments'),
 
@@ -199,12 +200,10 @@ class Booking extends Resource
             BelongsTo::make('User')->onlyOnDetail(),
 
 
-            Text::make('Comments')
-                ->hideWhenCreating()
-                ->hideFromIndex(),
+            Text::make('Comments')->hideWhenCreating()->hideFromIndex(),
 
             DateTime::make('Date')
-                ->sortable()
+            ->sortable()
                 ->withMeta([ 
                     'value' => date('Y-m-d H:m:s'),
                 ])

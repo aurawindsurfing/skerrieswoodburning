@@ -17,11 +17,11 @@ class CreateBookingsTable extends Migration
             $table->increments('id');
             $table->dateTime('date');
             
-            $table->text('name');
+            $table->text('name')->nullable()->default(null);;
             $table->text('surname')->nullable()->default(null);
             $table->text('phone')->nullable()->default(null);
             $table->text('email')->nullable()->default(null);
-            $table->text('pps')->nullable()->default(null);
+            $table->boolean('pps')->default(false);
             $table->integer('rate')->unsigned();
             
             $table->integer('course_id')->unsigned();

@@ -36,6 +36,16 @@ class Tutor extends Resource
     ];
 
     /**
+     * softDeletes
+     *
+     * @return void
+     */
+    public static function softDeletes()
+    {
+        return false;
+    }
+
+    /**
      * $group
      *
      * @var string

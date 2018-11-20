@@ -18,7 +18,7 @@ $factory->define(App\Booking::class, function (Faker $faker) {
         'surname' => $faker->lastName,
         'phone' => $faker->randomElement(['086','087','089']) . $faker->randomNumber($nbDigits = 7, $strict = true),
         'email' => $faker->unique()->safeEmail,
-        'pps' => $faker->randomNumber($nbDigits = 7, $strict = true) . $faker->randomElement(['Q','W','E','R','T','Y']),
+        'pps' => $faker->boolean,
         'rate' => $faker->randomElement([85,95,100,115]),
         'company_id' => $fake_or_false_company,
         'contact_id' => $fake_or_false_company ? $fake_or_false_company->contacts->first() : null,

@@ -17,7 +17,8 @@ class CreateCoursesTable extends Migration
             $table->increments('id');
             $table->integer('venue_id')->unsigned();
             $table->integer('tutor_id')->unsigned()->nullable();
-            $table->dateTime('date');
+            $table->date('date');
+            $table->time('time');
             $table->integer('price')->unsigned();
             $table->boolean('inhouse')->nullable()->default(false);
             $table->integer('capacity')->unsigned()->nullable()->default(20);

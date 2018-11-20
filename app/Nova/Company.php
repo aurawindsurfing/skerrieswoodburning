@@ -4,14 +4,15 @@ namespace App\Nova;
 
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Http\Requests\NovaRequest;
+use Inspheric\Fields\Email;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\BelongsTo;
-use Inspheric\Fields\Email;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Company extends Resource
 {
+
     /**
      * The model the resource corresponds to.
      *

@@ -73,7 +73,7 @@ class Booking extends Model
 
     public function invoiceDescription()
     {
-        return $this->name . ' ' . $this->surname .' - '. $this->course->course_type->name . ' - '. $this->course->date->format('Y-m-d');
+        return $this->name . ' ' . $this->surname .' - '. $this->course->course_type->name . ' - '. $this->course->date->format('Y-m-d') . (isset($this->po) ? ' PO: ' . $this->po : '');
     }
 
     public function createPayment($invoice_id)

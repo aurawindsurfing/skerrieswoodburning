@@ -17,6 +17,7 @@ use Inspheric\Fields\Indicator;
 use Laravel\Nova\Fields\Text;
 use Vyuldashev\NovaMoneyField\Money;
 use Laravel\Nova\Fields\Number;
+use Laraning\NovaTimeField\TimeField;
 
 class Course extends Resource
 {
@@ -118,24 +119,37 @@ class Course extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
+            Text::make('Uuid', function () {
+                return $this->uuid();
+            }),
 
-            BelongsTo::make('Course Type', 'course_type')->sortable(),
+            BelongsTo::make('Course Type', 'course_type')->sortable()->rules('required'),
             
             Money::make('Price','EUR')
                 ->withMeta([
                     'value' => 115, 
                 ])
                 ->hideFromIndex()
-                ->sortable(),
-            
-                DateTime::make('Date')->sortable()->hideFromIndex(),
-            
-            Date::make('Date')->sortable()->onlyOnIndex(),
-            
-            BelongsTo::make('Venue')->sortable()->searchable(),
+                ->sortable()
+                ->rules('required'),
 
-            BelongsTo::make('Tutor')->sortable()->searchable(),
+            Date::make('Date')->sortable()->rules('required'),
+
+            TimeField::make('Time')
+                // ->withMeta([
+                //     'value' => $this->course_type->start_time,
+                //     // 'belongsToId' => session('booking.course_id') 
+                // ])
+                // ->displayUsing(function ($course) {
+                //     return $course->course_type->name;
+                // })
+                ->rules('required'),
+            
+            BelongsTo::make('Venue')->sortable()->searchable()->rules('required'),
+
+            BelongsTo::make('Tutor')->sortable()->searchable()->rules('required'),
+
+            Boolean::make('Inhouse'),
 
             Indicator::make('Status', function () {
 

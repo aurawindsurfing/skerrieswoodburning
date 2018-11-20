@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0597d43a8a775a1dad23803afc4a8f88",
+    "content-hash": "f40227c4ce57fa2c5ab8009fc2d507ef",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -642,6 +642,47 @@
                 "validator"
             ],
             "time": "2018-09-25T20:47:26+00:00"
+        },
+        {
+            "name": "epartment/nova-dependency-container",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/epartment/nova-dependency-container.git",
+                "reference": "c23f45b1a735b946672e1708daefada635874b60"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/epartment/nova-dependency-container/zipball/c23f45b1a735b946672e1708daefada635874b60",
+                "reference": "c23f45b1a735b946672e1708daefada635874b60",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Epartment\\NovaDependencyContainer\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Epartment\\NovaDependencyContainer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field container allowing to depend on other fields values",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2018-10-02T10:25:09+00:00"
         },
         {
             "name": "erusev/parsedown",
@@ -1402,6 +1443,47 @@
                 "geospatial"
             ],
             "time": "2015-09-27T15:35:21+00:00"
+        },
+        {
+            "name": "laraning/nova-time-field",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laraning/nova-time-field.git",
+                "reference": "05ccc64c12fed5995f21f762abf32bace95325ed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laraning/nova-time-field/zipball/05ccc64c12fed5995f21f762abf32bace95325ed",
+                "reference": "05ccc64c12fed5995f21f762abf32bace95325ed",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Laraning\\NovaTimeField\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laraning\\NovaTimeField\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2018-09-26T23:49:02+00:00"
         },
         {
             "name": "laravel/framework",

@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Vyuldashev\NovaMoneyField\Money;
+use Laraning\NovaTimeField\TimeField;
 
 class CourseType extends Resource
 {
@@ -114,6 +115,8 @@ class CourseType extends Resource
             Textarea::make('What to bring', 'what_to_bring')
                 ->rows(5)
                 ->hideFromIndex(),
+
+            TimeField::make('Start Time'),
 
             Textarea::make('Plan of the day', 'plan_of_the_day')
                 ->rows(5)

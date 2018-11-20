@@ -110,7 +110,7 @@ class InvoiceController extends Controller
 
         $invoicePDF->customer([
             'name' => isset($invoice->company->name) ? $invoice->company->name : $invoice->bookings->first()->name .' '. $invoice->bookings->first()->surname,
-            'tax' => isset($invoice->company->tax) ? $invoice->company->tax : $invoice->bookings->first()->pps,
+            'tax' => isset($invoice->company->tax) ? $invoice->company->tax : '',
             'phone' => isset($invoice->company->phone) ? $invoice->company->phone : $invoice->bookings->first()->phone,
             'location' => isset($invoice->company->address) ? $invoice->company->address : '',
             'zip' => '',
