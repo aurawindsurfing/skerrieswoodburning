@@ -18,6 +18,7 @@ use Laravel\Nova\Fields\Text;
 use Vyuldashev\NovaMoneyField\Money;
 use Laravel\Nova\Fields\Number;
 use Laraning\NovaTimeField\TimeField;
+use Orlyapps\NovaBelongsToDepend\NovaBelongsToDepend;
 
 class Course extends Resource
 {
@@ -136,10 +137,10 @@ class Course extends Resource
             Date::make('Date')->sortable()->rules('required'),
 
             TimeField::make('Time')
-                // ->withMeta([
-                //     'value' => $this->course_type->start_time,
+                ->withMeta([
+                    'value' => '08:00',
                 //     // 'belongsToId' => session('booking.course_id') 
-                // ])
+                ])
                 // ->displayUsing(function ($course) {
                 //     return $course->course_type->name;
                 // })
