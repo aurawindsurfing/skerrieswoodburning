@@ -120,8 +120,8 @@ class Course extends Resource
     {
         return [
             Text::make('Uuid', function () {
-                return $this->uuid();
-            }),
+                return isset($this->date) ? $this->uuid() : '';
+            })->exceptOnForms(),
 
             BelongsTo::make('Course Type', 'course_type')->sortable()->rules('required'),
             
