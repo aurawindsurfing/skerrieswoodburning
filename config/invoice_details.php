@@ -69,7 +69,7 @@ return [
   | You can change it on each invoice individually.
   */
 
- 'logo_height' => 60,
+ 'logo_width' => 130,
 
   /*
   |--------------------------------------------------------------------------
@@ -89,6 +89,14 @@ return [
       'city'        => 'Dublin',
       'country'     => 'Ireland',
   ],
+
+  'bank_details' => [
+    'name'        => 'Construction Industry Training Ltd',
+    'number'      => '78384868',
+    'sort'        => '90-04-20',
+    'iban'        => 'IE92BOFI90042078384868',
+    'swift'       => 'BOFIIE2D',
+],
 
 
   /*

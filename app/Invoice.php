@@ -58,5 +58,10 @@ class Invoice extends Model
     {
         return $this->hasMany('App\Booking');
     }
+    
+    public function total()
+    {
+        return number_format((float)$this->total, 2, '.', '');
+    }
 
 }

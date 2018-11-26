@@ -8,6 +8,7 @@ use App\Booking;
 use Illuminate\Support\Facades\Storage;
 use App\Course;
 use Illuminate\Support\Facades\Mail;
+use App\Invoice;
 
 
 
@@ -15,17 +16,24 @@ class TestController extends Controller
 {
     public function test()
     {
-       $e = session('booking');
 
-       dd($e);
+        $invoices = Invoice::where('id', '>', 105)->get();
+
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadView('invoices.invoice', compact('invoices'));
+        $id = 'xxx';
+        return $pdf->stream('storage/tmp/invoices/N-'. $id .'.pdf');
+
+        // return view('invoices.invoice', compact('invoice'));
 
     }
 
 
     public function test2()
     {
+        $invoice = Invoice::find(106);
         
-        Mail::to('admin@foo.bar')->send(new \App\Mail\SomeMailClass($data));
+        return view('vendor.invoices.default', compact('invoice'));
 
     }
 }

@@ -23,8 +23,8 @@
             <div style="margin-left:300pt;">
                 <h5>
                         <b>Date: </b> {{ $invoice->date->formatLocalized('%A %d %B %Y') }}<br />
-                        @if ($invoice->number())
-                            <b>Invoice #: </b> {{ $invoice->number() }}
+                        @if ($invoice->number)
+                            <b>Invoice #: </b> {{ $invoice->number }}
                         @endif
                         <br />
                 </h5>
@@ -40,13 +40,13 @@
                 <div class="panel panel-default">
                     <h6>
                         <div class="panel-body" style="padding-top: 0px;">
-                        {{-- {!! $invoice->business_details->count() == 0 ? '<i>No business details</i><br />' : '' !!} --}}
-                        name</br>{{-- {{ $invoice->business_details->get('name') }}<br /> --}}
-                        name</br>{{-- tax: {{ $invoice->business_details->get('id') }}<br /> --}}
-                        name</br>{{-- {{ $invoice->business_details->get('phone') }}<br /> --}}
-                        name</br>{{-- {{ $invoice->business_details->get('location') }}<br /> --}}
-                        name</br>{{-- {{ $invoice->business_details->get('zip') }} {{ $invoice->business_details->get('city') }}<br /> --}}
-                        name</br>{{-- {{ $invoice->business_details->get('country') }}<br /> --}}
+                        {!! $invoice->business_details->count() == 0 ? '<i>No business details</i><br />' : '' !!}
+                        {{ $invoice->business_details->get('name') }}<br />
+                        tax: {{ $invoice->business_details->get('id') }}<br />
+                        {{ $invoice->business_details->get('phone') }}<br />
+                        {{ $invoice->business_details->get('location') }}<br />
+                        {{ $invoice->business_details->get('zip') }} {{ $invoice->business_details->get('city') }}<br />
+                        {{ $invoice->business_details->get('country') }}<br />
                     </div>
                 </h6>
                 </div>
@@ -56,13 +56,13 @@
                 <h6>
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            {{-- {!! $invoice->customer_details->count() == 0 ? '<i>No customer details</i><br />' : '' !!} --}}
-                            name customer </br>{{-- {{ $invoice->customer_details->get('name') }}<br /> --}}
-                            name customer </br>{{-- {{ $invoice->customer_details->get('tax') ? 'tax: ' . $invoice->customer_details->get('tax') : '' }}<br /> --}}
-                            name customer </br>{{-- {{ $invoice->customer_details->get('phone') }}<br /> --}}
-                            name customer </br>{{-- {{ $invoice->customer_details->get('location') }}<br /> --}}
-                            name customer </br>{{-- {{ $invoice->customer_details->get('zip') }} {{ $invoice->customer_details->get('city') }}<br /> --}}
-                            name customer </br>{{-- {{ $invoice->customer_details->get('country') }}<br /> --}}
+                            {!! $invoice->customer_details->count() == 0 ? '<i>No customer details</i><br />' : '' !!}
+                            {{ $invoice->customer_details->get('name') }}<br />
+                            {{ $invoice->customer_details->get('tax') ? 'tax: ' . $invoice->customer_details->get('tax') : '' }}<br />
+                            {{ $invoice->customer_details->get('phone') }}<br />
+                            {{ $invoice->customer_details->get('location') }}<br />
+                            {{ $invoice->customer_details->get('zip') }} {{ $invoice->customer_details->get('city') }}<br />
+                            {{ $invoice->customer_details->get('country') }}<br />
                         </div>
                     </div>
                 </h6>
@@ -84,17 +84,17 @@
                 </tr>
             </thead>
             <tbody>
-                {{-- @foreach ($invoice->items as $item) --}}
+                @foreach ($invoice->items as $item)
                     <tr>
-                        <td>item</td>{{-- <td>{{ $loop->iteration }}</td> --}}
+                        <td>{{ $loop->iteration }}</td>
                         {{-- <td>{{ $item->get('id') }}</td> --}}
-                        <td>item</td>{{-- <td>{{ $item->get('name') }}</td> --}}
-                        <td>item</td>{{-- <td>{{ $item->get('price') }} {{ $invoice->formatCurrency()->symbol }}</td> --}}
-                        <td>item</td>{{-- <td>{{ $item->get('ammount') }}</td> --}}
-                        <td>item</td>{{-- <td>{{ $item->get('totalPrice') }} {{ $invoice->formatCurrency()->symbol }}</td> --}}
+                        <td>{{ $item->get('name') }}</td>
+                        <td>{{ $item->get('price') }} {{ $invoice->formatCurrency()->symbol }}</td>
+                        <td>{{ $item->get('ammount') }}</td>
+                        <td>{{ $item->get('totalPrice') }} {{ $invoice->formatCurrency()->symbol }}</td>
                         
                     </tr>
-                {{-- @endforeach --}}
+                @endforeach
             </tbody>
         </table>
         <div style="clear:both; position:relative;">
@@ -133,19 +133,19 @@
                         </tr> --}}
                         <tr>
                             <td><b>TOTAL</b></td>
-                            <td><b>234</b></td>{{-- <td><b>{{ $invoice->totalPriceFormatted() }} {{ $invoice->formatCurrency()->symbol }}</b></td> --}}
+                            <td><b>{{ $invoice->totalPriceFormatted() }} {{ $invoice->formatCurrency()->symbol }}</b></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        {{-- @if ($invoice->footnote) --}}
+        @if ($invoice->footnote)
             <br /><br />
             <h6>
                 <div class="well">
-                        some text{{-- {{ $invoice->footnote }} --}}
+                        {{ $invoice->footnote }}
                 </div>
             </h6>
-        {{-- @endif --}}
+        @endif
     </body>
 </html>

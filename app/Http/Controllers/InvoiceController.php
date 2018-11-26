@@ -121,6 +121,16 @@ class InvoiceController extends Controller
         $invoicePDF->save('public/tmp/invoices/' . $invoice->number() . '.pdf');
     }
 
+
+    public function makeMultipleInvoicePDF(Collection $invoices)
+    {
+        // $pdf = \App::make('dompdf.wrapper');
+        // $pdf->loadView('invoices.invoice', $data);
+        // $id = uniqid();
+        // $pdf->view('storage/tmp/invoices/N-'. $id .'.pdf');
+        
+    }
+
     /**
      * createMultipleBookingsInvoice
      *

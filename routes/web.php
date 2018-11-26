@@ -52,3 +52,5 @@ Route::redirect('/nova', '/office', 301);
 // });
 
 Route::get('test', 'TestController@test');
+
+Route::get('test2', 'TestController@test2');
