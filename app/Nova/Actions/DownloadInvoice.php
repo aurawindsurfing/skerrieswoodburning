@@ -2,17 +2,13 @@
 
 namespace App\Nova\Actions;
 
-use Carbon\Carbon;
-use Illuminate\Bus\Queueable;
-use Laravel\Nova\Actions\Action;
-use Illuminate\Support\Collection;
-use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\ActionFields;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Http\Controllers\InvoiceController;
+use Illuminate\Bus\Queueable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Collection;
+use Laravel\Nova\Actions\Action;
+use Laravel\Nova\Fields\ActionFields;
 
 class DownloadInvoice extends Action
 {
@@ -28,25 +24,20 @@ class DownloadInvoice extends Action
     public function handle(ActionFields $fields, Collection $models)
     {
 
-        foreach ($models as $existingInvoice) {
+        foreach ($models as $model) {
 
-            if ($existingInvoice->bookings) {
+            if ($model->bookings->isEmpty()) {
 
-                $invoicePDF = new InvoiceController();
-                $invoicePDF->makePDF($existingInvoice);
-
-                return Action::download(
-                    url(Storage::url('tmp/invoices/' . $existingInvoice->number() . '.pdf')),
-                    $existingInvoice->number() . '.pdf'
-                );
-
-            } else {
-
-                return Action::danger('Something went wrong when trying to download the invoice!');
+                return Action::danger('One of invoices has no bookings!');
 
             }
-
         }
+
+        $invoicePDF = new InvoiceController();
+
+        $path = $invoicePDF->makePDF($models);
+
+        return Action::download(url($path), uniqid() . '.pdf');
 
     }
 
@@ -55,10 +46,9 @@ class DownloadInvoice extends Action
      *
      * @return array
      */
+
     public function fields()
     {
-        return [
-            
-        ];
+        return [];
     }
-    }
+}

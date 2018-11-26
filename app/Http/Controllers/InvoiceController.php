@@ -91,44 +91,23 @@ class InvoiceController extends Controller
         //
     }
 
+    
     /**
      * makePDF
      *
-     * @param Invoice $invoice
+     * @param mixed $invoices
      * @return void
      */
-    public function makePDF(Invoice $invoice)
+    public function makePDF($invoices)
     {
-        $invoicePDF = \ConsoleTVs\Invoices\Classes\Invoice::make()->number($invoice->number());
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadView('invoices.invoice', compact('invoices'));
+        $id = uniqid();
+        $path = 'storage/tmp/invoices/'. $id .'.pdf';
+        $pdf->save($path);
 
-        foreach ($invoice->bookings as $booking) {
-            $invoicePDF->addItem(
-                $booking->invoiceDescription(), 
-                $booking->rate, 1,
-                $booking->rate);
-        }
+        return $path;
 
-        $invoicePDF->customer([
-            'name' => isset($invoice->company->name) ? $invoice->company->name : $invoice->bookings->first()->name .' '. $invoice->bookings->first()->surname,
-            'tax' => isset($invoice->company->tax) ? $invoice->company->tax : '',
-            'phone' => isset($invoice->company->phone) ? $invoice->company->phone : $invoice->bookings->first()->phone,
-            'location' => isset($invoice->company->address) ? $invoice->company->address : '',
-            'zip' => '',
-            'city' => '',
-            'country' => '',
-        ]);
-
-        $invoicePDF->save('public/tmp/invoices/' . $invoice->number() . '.pdf');
-    }
-
-
-    public function makeMultipleInvoicePDF(Collection $invoices)
-    {
-        // $pdf = \App::make('dompdf.wrapper');
-        // $pdf->loadView('invoices.invoice', $data);
-        // $id = uniqid();
-        // $pdf->view('storage/tmp/invoices/N-'. $id .'.pdf');
-        
     }
 
     /**

@@ -19,10 +19,16 @@ class TestController extends Controller
 
         $invoices = Invoice::where('id', '>', 105)->get();
 
-        $pdf = \App::make('dompdf.wrapper');
-        $pdf->loadView('invoices.invoice', compact('invoices'));
-        $id = 'xxx';
-        return $pdf->stream('storage/tmp/invoices/N-'. $id .'.pdf');
+        $i = new InvoiceController();
+
+        $path = $i->makePDF(collect($invoices));
+
+        dd($path);
+
+        // $pdf = \App::make('dompdf.wrapper');
+        // $pdf->loadView('invoices.invoice', compact('invoices'));
+        // $id = 'xxx';
+        // return $pdf->stream('storage/tmp/invoices/N-'. $id .'.pdf');
 
         // return view('invoices.invoice', compact('invoice'));
 
