@@ -18,34 +18,16 @@ class TestController extends Controller
     public function test()
     {
 
-        $invoices = Invoice::where('id', '>', 98)->get();
-
-        foreach ($invoices as $invoice ) {
-
-            $inv = collect([]);
-            $inv = $inv->push($invoice);
-
-            $invoicePDF = new InvoiceController();
-            $path = $invoicePDF->makePDF($inv);
-
-            $data = [
-                'invoice_number' => $invoice->number(),
-                'user_name' => $invoice->user->name,
-                'path' => $path
-            ];
-
-            Mail::to('tomcentrumpl@gmail.com')
-                ->queue(new \App\Mail\NewInvoice($data));
-        }
         
+        $invoices = Invoice::where('id', '>', 99)->get();
 
 
-        // $pdf = \App::make('dompdf.wrapper');
-        // $pdf->loadView('invoices.invoice', compact('invoices'));
-        // $id = 'xxx';
-        // return $pdf->stream('storage/tmp/invoices/N-'. $id .'.pdf');
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadView('invoices.invoice', compact('invoices'));
+        $id = 'xxx';
+        return $pdf->stream('storage/tmp/invoices/N-'. $id .'.pdf');
 
-        // return view('invoices.invoice', compact('invoice'));
+        // return view('invoices.invoice', compact('invoices'));
 
     }
 
