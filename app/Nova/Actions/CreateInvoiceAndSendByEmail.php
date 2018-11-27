@@ -27,6 +27,7 @@ class CreateInvoiceAndSendByEmail extends Action
     {
 
         $uninvoiced_bookings = collect([]);
+        $count = 0;
 
         foreach ($models as $booking) {
             if (is_null($booking->invoice_id)) {
@@ -37,7 +38,6 @@ class CreateInvoiceAndSendByEmail extends Action
         if ($uninvoiced_bookings->isNotEmpty()) {
 
             $invoiceController = new \App\Http\Controllers\InvoiceController();
-            $count = 0;
 
             $bookings = $uninvoiced_bookings->groupBy('company_id');
             $bookings_without_company = $bookings->pull('');
