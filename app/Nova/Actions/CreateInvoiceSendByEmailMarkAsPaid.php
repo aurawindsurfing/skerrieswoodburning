@@ -90,7 +90,7 @@ class CreateInvoiceSendByEmailMarkAsPaid extends Action
             ];
 
             Mail::to('tomcentrumpl@gmail.com')
-            // ->cc('alec@citltd.ie')
+                ->cc('alec@citltd.ie')
                 ->queue(new \App\Mail\NewInvoice($data));
             $i++;
         }

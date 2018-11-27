@@ -87,7 +87,7 @@ class CreateInvoiceAndSendByEmail extends Action
             ];
 
             Mail::to('tomcentrumpl@gmail.com')
-            // ->cc('alec@citltd.ie')
+                ->cc('alec@citltd.ie')
                 ->queue(new NewInvoice($data));
             $i++;
         }
