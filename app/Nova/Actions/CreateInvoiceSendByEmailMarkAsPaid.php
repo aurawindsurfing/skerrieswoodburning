@@ -3,16 +3,12 @@
 namespace App\Nova\Actions;
 
 use Illuminate\Bus\Queueable;
-use Laravel\Nova\Actions\Action;
-use Illuminate\Support\Collection;
-use Laravel\Nova\Fields\ActionFields;
-use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Carbon\Carbon;
-use Laravel\Nova\Fields\BelongsTo;
-use App\Company;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Mail;
+use Laravel\Nova\Actions\Action;
+use Laravel\Nova\Fields\ActionFields;
 
 // class CreateInvoiceSendByEmailMarkAsPaid extends Action implements ShouldQueue
 class CreateInvoiceSendByEmailMarkAsPaid extends Action
@@ -30,17 +26,17 @@ class CreateInvoiceSendByEmailMarkAsPaid extends Action
     {
 
         $uninvoiced_bookings = collect([]);
+        $count = 0;
 
         foreach ($models as $booking) {
-            if (is_null($booking->invoice_id)){
+            if (is_null($booking->invoice_id)) {
                 $uninvoiced_bookings->push($booking);
-            } 
+            }
         }
 
         if ($uninvoiced_bookings->isNotEmpty()) {
 
             $invoiceController = new \App\Http\Controllers\InvoiceController();
-            $count = 0;
 
             $bookings = $uninvoiced_bookings->groupBy('company_id');
             $bookings_without_company = $bookings->pull('');
@@ -48,49 +44,58 @@ class CreateInvoiceSendByEmailMarkAsPaid extends Action
             //corporate booking
 
             if (!is_null($bookings) && $bookings->isNotEmpty()) {
-                foreach($bookings as $company_bookings){
+                foreach ($bookings as $company_bookings) {
                     $invoice = $invoiceController->createMultipleBookingsInvoice($company_bookings);
-                    
-                    Mail::to('tomcentrumpl@gmail.com')
-                        // ->cc('tom@gazeta.ie')
-                        ->cc('alec@citltd.ie')
-                        ->send(new \App\Mail\NewInvoice($invoice));
-                    
                     foreach ($company_bookings as $booking) {
                         $booking->createPayment($invoice->id);
                     }
-                    
                     $count++;
 
                 }
-           }
-
-           // individual bookings
-
-           if (!is_null($bookings_without_company) && $bookings_without_company->isNotEmpty()) {
-
-            foreach($bookings_without_company as $booking){
-
-                $invoice = $invoiceController->createSingleBookingInvoice($booking);
-                
-                Mail::to('tomcentrumpl@gmail.com')
-                    // ->cc('tom@gazeta.ie')
-                    ->cc('alec@citltd.ie')
-                    ->send(new \App\Mail\NewInvoice($invoice));
-
-                    $booking->createPayment($invoice->id);
-
-                $count++;
             }
-       }
-       
-            return Action::message('Created ' . $count . ' invoices. Marked them as paid. Emailing them now.');
-                   
-        } else {
 
-            return Action::danger('Looks like all bookings have corresponding invoices!');
-            
-        } 
+            // individual bookings
+
+            if (!is_null($bookings_without_company) && $bookings_without_company->isNotEmpty()) {
+                foreach ($bookings_without_company as $booking) {
+                    $invoice = $invoiceController->createSingleBookingInvoice($booking);
+                    $booking->createPayment($invoice->id);
+                    $count++;
+                }
+            }
+
+        }
+
+        $invoices = collect([]);
+
+        foreach ($models as $booking) {
+            $invoice = $booking->invoice;
+            $invoices = $invoices->push($invoice);
+        }
+
+        $invoices = $invoices->unique();
+        $i = 0;
+
+        foreach ($invoices as $invoice) {
+
+            $inv = collect([$invoice]);
+
+            $invoicePDF = new \App\Http\Controllers\InvoiceController();
+            $path = $invoicePDF->makePDF($inv);
+
+            $data = [
+                'invoice_number' => $invoice->number(),
+                'user_name' => $invoice->user->name,
+                'path' => $path,
+            ];
+
+            Mail::to('tomcentrumpl@gmail.com')
+            // ->cc('alec@citltd.ie')
+                ->queue(new \App\Mail\NewInvoice($data));
+            $i++;
+        }
+
+        return Action::message('Created and marked as paid ' . $count . ' invoices. Emailing ' . $i . ' invoices now.');
 
     }
 
@@ -102,7 +107,7 @@ class CreateInvoiceSendByEmailMarkAsPaid extends Action
     public function fields()
     {
         return [
-            
+
         ];
     }
 
