@@ -2,33 +2,31 @@
 
 namespace App\Mail;
 
+use App\Http\Controllers\InvoiceController;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use App\Http\Controllers\InvoiceController;
-
 
 class NewInvoice extends Mailable
 {
     use Queueable, SerializesModels;
 
+    
     /**
-     * The order instance.
+     * $data
      *
-     * @var Order
+     * @var Array
      */
-    public $invoice;
+    public $data;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($invoice)
+    public function __construct($data)
     {
-        $this->invoice = $invoice;
+        $this->data = $data;
     }
 
     /**
@@ -38,14 +36,9 @@ class NewInvoice extends Mailable
      */
     public function build()
     {
-
-        $invoicePDF = new InvoiceController();
-        $invoicePDF->makePDF($this->invoice);
-
         return $this->from('alec@citltd.ie')
-                    ->subject('New invoice number: ' . $this->invoice->number() . ' from CIT')
-                    ->attach(url(Storage::url('tmp/invoices/' . $this->invoice->number() . '.pdf')))
-                    ->view('emails.newinvoice');
-
+            ->subject('New invoice number: ' . $this->data['invoice_number'] . ' from CIT')
+            ->attach(url($this->data['path']))
+            ->view('emails.newinvoice');
     }
 }

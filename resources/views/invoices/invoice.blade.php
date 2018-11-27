@@ -144,7 +144,7 @@
                         <tbody>
                             <tr>
                                 <td><b>TOTAL</b></td>
-                                <td><b>{{ $invoice->total() }} &euro;</b></td>
+                                <td><b>{{ $invoice->totalForInvoice() }} &euro;</b></td>
                             </tr>
                         </tbody>
                     </table>

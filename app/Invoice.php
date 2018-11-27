@@ -19,19 +19,9 @@ class Invoice extends Model
         'date'
     ];
 
-    // public function isUnpaid()
-    // {
-    //     return $this->status == unpaid ? true : false;
-    // }
-
     // public function isPaid()
     // {
     //     return $this->status == paid ? true : false;
-    // }
-
-    // public function isCancelled()
-    // {
-    //     return $this->status == cancelled ? true : false;
     // }
 
     public function company()
@@ -59,7 +49,7 @@ class Invoice extends Model
         return $this->hasMany('App\Booking');
     }
     
-    public function total()
+    public function totalForInvoice()
     {
         return number_format((float)$this->total, 2, '.', '');
     }

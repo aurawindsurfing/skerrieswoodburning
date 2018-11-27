@@ -142,26 +142,26 @@ class Booking extends Resource
 
             HasOne::make('Invoice'),
 
-            // BelongsTo::make('Company')
-            //     ->withMeta([
-            //         'belongsToId' => session('booking.company_id')
-            //     ])
-            //     ->searchable(),
+            BelongsTo::make('Company')
+                ->withMeta([
+                    'belongsToId' => session('booking.company_id')
+                ])
+                ->searchable(),
 
-            // BelongsTo::make('Contact', 'contact')
-            //     ->hideFromIndex()
-            //     ->withMeta([
-            //         'belongsToId' => session('booking.contact_id')
-            //     ])->searchable(),
+            BelongsTo::make('Contact', 'contact')
+                ->hideFromIndex()
+                ->withMeta([
+                    'belongsToId' => session('booking.contact_id')
+                ])->searchable(),
 
-            NovaBelongsToDepend::make('Company')
-                ->options(\App\Company::all()),
+            // NovaBelongsToDepend::make('Company')
+            //     ->options(\App\Company::all()),
 
-            NovaBelongsToDepend::make('Contact')
-                ->optionsResolve(function ($company) {
-                    return $company->contacts()->get();
-                })
-                ->dependsOn('Company'),
+            // NovaBelongsToDepend::make('Contact')
+            //     ->optionsResolve(function ($company) {
+            //         return $company->contacts()->get();
+            //     })
+            //     ->dependsOn('Company'),
 
             Boolean::make('Confirmation Sent')->hideWhenCreating(),
 
@@ -247,7 +247,7 @@ class Booking extends Resource
                 ->withWriterType(\Maatwebsite\Excel\Excel::XLS)
                 ->withFilename('bookings-' . time() . '.xls'),
 
-            (new Actions\CreateInvoice),
+            (new Actions\CreateAndDownloadInvoices),
 
             (new Actions\CreateInvoiceAndSendByEmail),
 

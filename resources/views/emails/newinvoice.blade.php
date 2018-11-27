@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>New Invoice</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+    {{-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet"> --}}
 </head>
 <body>
         
@@ -21,7 +21,7 @@
     </div>
 
     @component('emails.partials.footer')
-        <div class="font-bold">{{$invoice->user->name}}</div> 
+        <div class="font-bold">{{$data['user_name']}}</div> 
     @endcomponent
     
 </body>

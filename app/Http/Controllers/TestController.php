@@ -14,16 +14,31 @@ use App\Invoice;
 
 class TestController extends Controller
 {
+
     public function test()
     {
 
-        $invoices = Invoice::where('id', '>', 105)->get();
+        $invoices = Invoice::where('id', '>', 98)->get();
 
-        $i = new InvoiceController();
+        foreach ($invoices as $invoice ) {
 
-        $path = $i->makePDF(collect($invoices));
+            $inv = collect([]);
+            $inv = $inv->push($invoice);
 
-        dd($path);
+            $invoicePDF = new InvoiceController();
+            $path = $invoicePDF->makePDF($inv);
+
+            $data = [
+                'invoice_number' => $invoice->number(),
+                'user_name' => $invoice->user->name,
+                'path' => $path
+            ];
+
+            Mail::to('tomcentrumpl@gmail.com')
+                ->queue(new \App\Mail\NewInvoice($data));
+        }
+        
+
 
         // $pdf = \App::make('dompdf.wrapper');
         // $pdf->loadView('invoices.invoice', compact('invoices'));
