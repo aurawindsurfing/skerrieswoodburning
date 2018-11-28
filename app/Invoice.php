@@ -19,10 +19,10 @@ class Invoice extends Model
         'date'
     ];
 
-    // public function isPaid()
-    // {
-    //     return $this->status == paid ? true : false;
-    // }
+    public function isPaid()
+    {
+        return $this->status == 'paid' ? true : false;
+    }
 
     public function company()
     {

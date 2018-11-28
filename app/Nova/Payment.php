@@ -74,13 +74,6 @@ class Payment extends Resource
                 'cheque' => 'Cheque',
             ])->displayUsingLabels(),
 
-
-            Select::make('Status')->options([
-                'completed' => 'Completed',
-                'cancelled' => 'Cancelled',
-            ])->displayUsingLabels()
-              ->onlyOnForms(),
-
             Indicator::make('Status')
              ->labels([
                     'completed' => 'Completed',
@@ -90,7 +83,7 @@ class Payment extends Resource
                 'cancelled' => 'grey',
             ])->exceptOnForms(),
 
-            BelongsTo::make('Booking')
+            BelongsTo::make('Invoice')
                 ->searchable(),
 
         ];

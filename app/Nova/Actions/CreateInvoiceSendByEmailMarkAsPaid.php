@@ -78,6 +78,7 @@ class CreateInvoiceSendByEmailMarkAsPaid extends Action
 
         foreach ($invoices as $invoice) {
 
+            $invoice->update(['status' => 'paid']);
             $inv = collect([$invoice]);
 
             $invoicePDF = new \App\Http\Controllers\InvoiceController();

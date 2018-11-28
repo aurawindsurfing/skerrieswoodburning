@@ -28,7 +28,7 @@ class DownloadInvoice extends Action
 
             if ($model->bookings->isEmpty()) {
 
-                return Action::danger('One of invoices has no bookings!');
+                return Action::danger('One of invoices has NO bookings!');
 
             }
         }

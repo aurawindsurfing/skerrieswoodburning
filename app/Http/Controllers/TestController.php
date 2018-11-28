@@ -19,7 +19,7 @@ class TestController extends Controller
     {
 
         
-        $invoices = Invoice::where('id', '>', 99)->get();
+        $invoices = Invoice::where('id', '>', 102)->get();
 
 
         $pdf = \App::make('dompdf.wrapper');

@@ -15,20 +15,20 @@ class Payment extends Model
 
     protected static $logUnguarded = true;
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($payment) {
+            
+            $payment->status = 'Completed';
+            
+        });
+    }
+
     public function invoice()
     {
         return $this->belongsTo('App\Invoice');
     }
-
-    public function booking()
-    {
-        return $this->belongsTo('App\Booking');
-    }
-
-    public function receipt()
-    {
-        return $this->hasOne('App\Receipt');
-    }
-
 
 }

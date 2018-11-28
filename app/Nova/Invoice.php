@@ -33,6 +33,16 @@ class Invoice extends Resource
         return $this->number();
     }
 
+     /**
+     * softDeletes
+     *
+     * @return void
+     */
+    public static function softDeletes()
+    {
+        return false;
+    }
+
     /**
      * The columns that should be searched.
      *

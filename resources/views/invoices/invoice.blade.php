@@ -87,7 +87,6 @@
     @foreach ($invoices as $invoice)
     <div style="clear:both; position:relative;">
         <div style="position:absolute; left:0pt; width:250pt;">
-            <img style="float: right;" src="{{asset('images/paid.png')}}" alt="" width="150px"/>
             <img src="{{asset(config('invoice_details.logo'))}}" alt="" width="{{ config('invoice_details.logo_width') }}" />
         </div>
         <div style="margin-left:300pt;">
@@ -158,6 +157,11 @@
             </table>
         </div>
     </div>
+    @if ($invoice->isPaid())
+                <div style="text-align: center;">
+                    <img src="{{asset('images/paid.png')}}" alt="" width="150px"/>
+                </div>
+            @endif
     <div style="position: absolute;bottom: 0;width: 100%;">
         <h4>Bank details:</h4>
         <div class="panel panel-default">
