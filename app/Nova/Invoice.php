@@ -82,12 +82,12 @@ class Invoice extends Resource
 
             Money::make('Total', 'EUR'),
 
-            Select::make('Status')->options([
-                'paid' => 'Paid',
-                'unpaid' => 'Unpaid',
-            ])
-                ->displayUsingLabels()
-                ->onlyOnForms(),
+            // Select::make('Status')->options([
+            //     'paid' => 'Paid',
+            //     'unpaid' => 'Unpaid',
+            // ])
+            //     ->displayUsingLabels()
+            //     ->onlyOnForms(),
 
             Indicator::make('Status')
                 ->labels([
@@ -107,7 +107,8 @@ class Invoice extends Resource
                 'belongsToId' => $this->user_id ?? auth()->user()->id
             ])
             ->onlyOnForms()
-            ->hideWhenCreating(),
+            ->hideWhenCreating()
+            ->hideWhenUpdating(),
 
             BelongsTo::make('User')->onlyOnDetail(),
 

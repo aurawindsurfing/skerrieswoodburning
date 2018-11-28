@@ -157,7 +157,7 @@
             </table>
         </div>
     </div>
-    @if ($invoice->isPaid())
+    @if ($invoice->status == 'paid')
                 <div style="text-align: center;">
                     <img src="{{asset('images/paid.png')}}" alt="" width="150px"/>
                 </div>

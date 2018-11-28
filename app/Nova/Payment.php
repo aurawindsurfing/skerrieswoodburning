@@ -65,14 +65,15 @@ class Payment extends Resource
     {
         return [
 
-            Money::make('Amount', 'EUR'),
+            Money::make('Amount', 'EUR')->rules('required'),
 
             Select::make('Payment Method')->options([
                 'cc' => 'CC',
                 'eft' => 'EFT',
                 'cash' => 'Cash',
                 'cheque' => 'Cheque',
-            ])->displayUsingLabels(),
+            ])->displayUsingLabels()
+              ->rules('required'),
 
             Indicator::make('Status')
              ->labels([

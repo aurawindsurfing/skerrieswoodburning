@@ -21,9 +21,40 @@ class Payment extends Model
 
         static::saving(function ($payment) {
             
-            $payment->status = 'Completed';
-            
+            $payment->status = 'completed';
+    
         });
+
+        static::saved(function ($payment) {
+
+            static::changeInvoiceStatus($payment);
+
+        });
+
+        static::deleted(function ($payment) {
+            
+            static::changeInvoiceStatus($payment);
+
+        });
+    }
+
+    private static function changeInvoiceStatus($payment)
+    {
+        // check if corresponding invoice status should be paid
+        $booked = 0;
+        $paid = 0;
+
+            foreach ($payment->invoice->bookings as $booking ) {
+                $booked = $booked + $booking->rate;
+            }
+
+            foreach ($payment->invoice->payments as $payment ) {
+                if ($payment->status == 'completed') {
+                    $paid = $paid + $payment->amount;
+                }
+            }
+
+        ($booked - $paid) <= 0 ? $payment->invoice->update(['status' => 'paid']) : $payment->invoice->update(['status' => 'unpaid']);
     }
 
     public function invoice()

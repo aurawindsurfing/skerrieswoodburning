@@ -19,11 +19,6 @@ class Invoice extends Model
         'date'
     ];
 
-    public function isPaid()
-    {
-        return $this->status == 'paid' ? true : false;
-    }
-
     public function company()
     {
         return $this->belongsTo('App\Company');
