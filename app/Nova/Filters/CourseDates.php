@@ -27,6 +27,11 @@ class CourseDates extends Filter
             ->where('date', '>=', $value);
     }
 
+    public function default()
+    {
+        return ['currentValue' => 'Upcoming Only'];
+    }
+
     /**
      * Get the filter's available options.
      *

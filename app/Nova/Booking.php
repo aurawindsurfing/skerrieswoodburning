@@ -39,7 +39,7 @@ class Booking extends Resource
      * @var array
      */
     public static $indexDefaultOrder = [
-        'date' => 'desc'
+        'date' => 'dsc'
     ];
 
     /**
