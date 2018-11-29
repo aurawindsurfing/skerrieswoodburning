@@ -171,7 +171,7 @@ class Booking extends Resource
                 ])
                 ->hideFromIndex(),
 
-            HasMany::make('Payments'),
+            // HasMany::make('Payments'),
 
             BelongsTo::make('User')
                 ->withMeta([

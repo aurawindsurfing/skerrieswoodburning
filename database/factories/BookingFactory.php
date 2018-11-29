@@ -1,10 +1,11 @@
 <?php
 
 use Faker\Generator as Faker;
+use App\Scopes\UpcomingOnlyScope;
 
 $factory->define(App\Booking::class, function (Faker $faker) {
 
-    $course = App\Course::all()->random();
+    $course = \App\Course::query()->withoutGlobalScope(UpcomingOnlyScope::class)->get()->random();
     $bookingDate = $faker->dateTimeBetween($startDate = $course->date .' -4 weeks', $endDate = $course->date .' -1 days', $timezone = 'Europe/Dublin');
     $company = App\Company::all(['id'])->random();
 

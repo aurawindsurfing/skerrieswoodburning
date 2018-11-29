@@ -86,7 +86,7 @@ class Booking extends Model
 
         $payment = \App\Payment::create([
             'amount' => $this->rate,
-            'booking_id' => $this->id,
+            // 'booking_id' => $this->id,
             'invoice_id' => $invoice_id,
             'payment_method' => 'cash',
             'status' => 'completed'

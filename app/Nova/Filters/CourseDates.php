@@ -4,6 +4,8 @@ namespace App\Nova\Filters;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Filters\Filter;
+use Illuminate\Database\Eloquent\Scope;
+use App\Scopes\UpcomingOnlyScope;
 
 class CourseDates extends Filter
 {
@@ -17,7 +19,12 @@ class CourseDates extends Filter
      */
     public function apply(Request $request, $query, $value)
     {
-        return $query->where('date', '>=', $value);
+
+        // session()->has('filter.upcoming_value') ? $value = session('filters.upcoming_value') : session(['filters.upcomin_value' => $value]);
+
+        return $query
+            // ->withoutGlobalScope(UpcomingOnlyScope::class)
+            ->where('date', '>=', $value);
     }
 
     /**
@@ -30,7 +37,7 @@ class CourseDates extends Filter
     {
         return [
             'Upcoming Only' => date('Y-m-d h:m:s'),
-            'All' => '1900-01-01 00:00:00',
+            'All' => date('1900-01-01 00:00:00'),
         ];
     }
 }

@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
+use App\Scopes\UpcomingOnlyScope;
 
 class Course extends Model
 {
@@ -18,6 +19,13 @@ class Course extends Model
     protected $dates = [
         'date',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        // static::addGlobalScope(new UpcomingOnlyScope);
+    }
     
     public function venue()
     {

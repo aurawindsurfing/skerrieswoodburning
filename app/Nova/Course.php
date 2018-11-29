@@ -19,6 +19,8 @@ use Vyuldashev\NovaMoneyField\Money;
 use Laravel\Nova\Fields\Number;
 use Laraning\NovaTimeField\TimeField;
 use Orlyapps\NovaBelongsToDepend\NovaBelongsToDepend;
+use App\Scopes\UpcomingOnlyScope;
+use Illuminate\Database\Eloquent\Scope;
 
 class Course extends Resource
 {
@@ -44,6 +46,12 @@ class Course extends Resource
     public static $indexDefaultOrder = [
         'date' => 'asc'
     ];
+
+    // showing default upcoming courses only, will overwrite in filter query
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        // $query->withGlobalScope(UpcomingOnlyScope::class, new UpcomingOnlyScope);
+    }
 
     /**
      * title
