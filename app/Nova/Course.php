@@ -47,12 +47,6 @@ class Course extends Resource
         'date' => 'asc'
     ];
 
-    // showing default upcoming courses only, will overwrite in filter query
-    public static function indexQuery(NovaRequest $request, $query)
-    {
-        // $query->withGlobalScope(UpcomingOnlyScope::class, new UpcomingOnlyScope);
-    }
-
     /**
      * title
      *
@@ -154,9 +148,9 @@ class Course extends Resource
                 // })
                 ->rules('required'),
             
-            BelongsTo::make('Venue')->sortable()->searchable()->rules('required'),
+            // BelongsTo::make('Venue')->sortable()->searchable()->rules('required'),
 
-            BelongsTo::make('Tutor')->sortable()->searchable()->rules('required'),
+            // BelongsTo::make('Tutor')->sortable()->searchable()->rules('required'),
 
             Boolean::make('Inhouse'),
 

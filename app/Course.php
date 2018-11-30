@@ -19,13 +19,6 @@ class Course extends Model
     protected $dates = [
         'date',
     ];
-
-    protected static function boot()
-    {
-        parent::boot();
-
-        // static::addGlobalScope(new UpcomingOnlyScope);
-    }
     
     public function venue()
     {
