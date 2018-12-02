@@ -5,10 +5,12 @@
 <title>Confirmation</title>
 
 <style type="text/css">
+
     * {
         font-family: Verdana, Arial, sans-serif;
         font-size: x-small;
     }
+
     table.table1 {
         border: 1px solid black;
         border-collapse: collapse;

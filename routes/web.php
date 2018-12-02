@@ -19,6 +19,8 @@ Route::redirect('/', '/office', 301);
 
 Route::redirect('/nova', '/office', 301);
 
-Route::get('test', 'TestController@test');
+Route::get('pdftest1', 'TestController@pdftest1');
 
-Route::get('test2', 'TestController@test2');
+Route::get('pdftest2', 'TestController@pdftest2');
+
+Route::get('test', 'TestController@test');

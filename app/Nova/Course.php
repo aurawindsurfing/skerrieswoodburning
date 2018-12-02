@@ -2,25 +2,16 @@
 
 namespace App\Nova;
 
-use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Fields\DateTime;
-use Laravel\Nova\Fields\Date;
-use Laravel\Nova\Fields\HasOne;
-use Laravel\Nova\Fields\HasMany;
-use Laravel\Nova\Fields\BelongsTo;
-
-use Laravel\Nova\Fields\Boolean;
 use Inspheric\Fields\Indicator;
-
+use Laraning\NovaTimeField\TimeField;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Vyuldashev\NovaMoneyField\Money;
-use Laravel\Nova\Fields\Number;
-use Laraning\NovaTimeField\TimeField;
-use Orlyapps\NovaBelongsToDepend\NovaBelongsToDepend;
-use App\Scopes\UpcomingOnlyScope;
-use Illuminate\Database\Eloquent\Scope;
 
 class Course extends Resource
 {
@@ -44,7 +35,7 @@ class Course extends Resource
      * @var array
      */
     public static $indexDefaultOrder = [
-        'date' => 'asc'
+        'date' => 'asc',
     ];
 
     /**
@@ -54,7 +45,7 @@ class Course extends Resource
      */
     public function title()
     {
-        return $this->date->format('Y-m-d') .' - '. $this->course_type->name .' - '. $this->venue->name;
+        return $this->date->format('Y-m-d') . ' - ' . $this->course_type->name . ' - ' . $this->venue->name;
     }
 
     /**
@@ -86,6 +77,13 @@ class Course extends Resource
     public static $group_index = 110;
 
     /**
+     * The relationships that should be eager loaded on index queries.
+     *
+     * @var array
+     */
+    public static $with = ['venue', 'tutor'];
+
+    /**
      * label
      *
      * @return void
@@ -110,7 +108,6 @@ class Course extends Resource
     public function placesLeft()
     {
         return $this->capacity - $this->bookings->count();
-        
     }
 
     /**
@@ -126,11 +123,15 @@ class Course extends Resource
                 return isset($this->date) ? $this->uuid() : '';
             })->exceptOnForms(),
 
-            BelongsTo::make('Course Type', 'course_type')->sortable()->rules('required'),
-            
-            Money::make('Price','EUR')
+            // BelongsTo::make('Course Type', 'course_type')->sortable()->rules('required'),
+
+            Text::make('Course Type', function () {
+                return $this->course_type->name;
+            })->exceptOnForms(),
+
+            Money::make('Price', 'EUR')
                 ->withMeta([
-                    'value' => 115, 
+                    'value' => 115,
                 ])
                 ->hideFromIndex()
                 ->sortable()
@@ -141,13 +142,21 @@ class Course extends Resource
             TimeField::make('Time')
                 ->withMeta([
                     'value' => '08:00',
-                //     // 'belongsToId' => session('booking.course_id') 
+                    //     // 'belongsToId' => session('booking.course_id')
                 ])
-                // ->displayUsing(function ($course) {
-                //     return $course->course_type->name;
-                // })
+            // ->displayUsing(function ($course) {
+            //     return $course->course_type->name;
+            // })
                 ->rules('required'),
-            
+
+            Text::make('Venue', function () {
+                return $this->venue->name;
+            })->exceptOnForms(),
+
+            Text::make('Tutor', function () {
+                return $this->tutor->name;
+            })->exceptOnForms(),
+
             // BelongsTo::make('Venue')->sortable()->searchable()->rules('required'),
 
             // BelongsTo::make('Tutor')->sortable()->searchable()->rules('required'),
@@ -156,7 +165,7 @@ class Course extends Resource
 
             Indicator::make('Status', function () {
 
-                if ($this->placesLeft() > 0){
+                if ($this->placesLeft() > 0) {
                     return 'available';
                 } elseif ($this->placesLeft() == 0) {
                     return 'full';
