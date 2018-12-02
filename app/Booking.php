@@ -103,7 +103,7 @@ class Booking extends Model
      */
     public function routeNotificationForNexmo($notification)
     {
-        return $this->phone;
+        return '353' . ltrim($this->phone, '0');
     }
 
 }

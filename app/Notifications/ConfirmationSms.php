@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\NexmoMessage;
 
-class BookingConfirmationSms extends Notification
+class ConfirmationSms extends Notification
 {
     use Queueable;
 

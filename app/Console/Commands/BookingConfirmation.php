@@ -4,10 +4,10 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Booking;
-use App\Notifications\BookingConfirmationSms;
+use App\Notifications\ConfirmationSms;
 use Carbon\Carbon;
 
-class BookingConfirmations extends Command
+class BookingConfirmation extends Command
 {
     /**
      * The name and signature of the console command.
@@ -44,6 +44,8 @@ class BookingConfirmations extends Command
             ->where('confirmation_sent', null)
             ->where('updated_at', '<', Carbon::now()->subMinutes(2)->toDateTimeString())
             ->get();
+
+        error_log('Sending ' . $bookings->count() . ' sms confirmations');
 
         foreach ($bookings as $booking) {
             $booking->update(['confirmation_sent' => now()]);

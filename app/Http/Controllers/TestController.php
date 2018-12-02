@@ -16,19 +16,13 @@ use App\Scopes\UpcomingOnlyScope;
 class TestController extends Controller
 {
 
-    public function invoice_test()
+    public function test()
     {
 
         
-        // $invoices = Invoice::where('id', '>', 102)->get();
+        $e = '0862194744';
 
-
-        // $pdf = \App::make('dompdf.wrapper');
-        // $pdf->loadView('invoices.invoice', compact('invoices'));
-        // $id = 'xxx';
-        // return $pdf->stream('storage/tmp/invoices/N-'. $id .'.pdf');
-
-        // return view('invoices.invoice', compact('invoices'));
+        echo('353' . ltrim($e, '0'));
 
 
 

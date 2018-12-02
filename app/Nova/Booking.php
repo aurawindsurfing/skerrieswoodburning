@@ -14,6 +14,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Select;
 use Vyuldashev\NovaMoneyField\Money;
+use Dniccum\PhoneNumber\PhoneNumber;
 use Orlyapps\NovaBelongsToDepend\NovaBelongsToDepend;
 
 class Booking extends Resource
@@ -120,7 +121,18 @@ class Booking extends Resource
 
             Text::make('Name')->sortable(),
             Text::make('Surname')->sortable(),
-            Text::make('Phone')->sortable(),
+            Text::make('Phone')
+                    ->rules('required', 'regex:/08\d[0-9]{7}/')
+                    ->withMeta(['extraAttributes' => [
+                        'placeholder' => '08x']
+                    ]),
+            // PhoneNumber::make('Phone')
+            //     ->format( '(###) ### ####')
+            //     ->placeholder('(08x)')
+            //     ->disableValidation()
+            //     // ->countries(['GB', 'IE'])
+            //     // ->linkOnIndex()
+            //     ->linkOnDetail(),
             Text::make('Email')->sortable(),
             Boolean::make('PPS')->hideFromIndex(),
             
@@ -146,13 +158,16 @@ class Booking extends Resource
                 ->withMeta([
                     'belongsToId' => session('booking.company_id')
                 ])
+                ->nullable()
                 ->searchable(),
 
             BelongsTo::make('Contact', 'contact')
                 ->hideFromIndex()
                 ->withMeta([
                     'belongsToId' => session('booking.contact_id')
-                ])->searchable(),
+                ])
+                ->nullable()
+                ->searchable(),
 
             // NovaBelongsToDepend::make('Company')
             //     ->options(\App\Company::all()),

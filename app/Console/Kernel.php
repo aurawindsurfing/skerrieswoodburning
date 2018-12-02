@@ -4,7 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use App\Console\Commands\BookingConfirmations;
+use App\Console\Commands\BookingConfirmation;
 use App\Console\Commands\EmailAttendeeList;
 
 class Kernel extends ConsoleKernel
@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        BookingConfirmations::class,
+        BookingConfirmation::class,
         EmailAttendeeList::class,
     ];
 
@@ -27,6 +27,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('notify:newbookings')->timezone('Europe/Dublin')->everyMinute();
         $schedule->command('notify:attendeelist')->timezone('Europe/Dublin')->twiceDaily(6, 14);
     }
 
