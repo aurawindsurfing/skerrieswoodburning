@@ -36,8 +36,8 @@ class CourseDates extends Filter
     public function options(Request $request)
     {
         return [
-            'One' => 1,
-            'Two' => 2
+            'Upcoming Only' => now()->format('Y-m-d'),
+            'All' => date('1900-01-01'),
         ];
     }
 
@@ -48,6 +48,6 @@ class CourseDates extends Filter
      */
     public function default()
     {
-        return 1;
+        return now()->format('Y-m-d');
     }
 }

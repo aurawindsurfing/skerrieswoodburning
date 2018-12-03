@@ -3,18 +3,14 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\DateTime;
-use Laravel\Nova\Fields\Date;
-use Laravel\Nova\Fields\HasOne;
-use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\HasOne;
+use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Text;
 use Vyuldashev\NovaMoneyField\Money;
-use Orlyapps\NovaBelongsToDepend\NovaBelongsToDepend;
 
 class Booking extends Resource
 {
@@ -39,7 +35,7 @@ class Booking extends Resource
      * @var array
      */
     public static $indexDefaultOrder = [
-        'date' => 'dsc'
+        'date' => 'dsc',
     ];
 
     /**
@@ -56,7 +52,7 @@ class Booking extends Resource
      */
     public function title()
     {
-        return $this->name . ' ' . $this->surname .' - '. $this->course->course_type->name . ' - '. $this->course->date->format('Y-m-d');
+        return $this->name . ' ' . $this->surname . ' - ' . $this->course->course_type->name . ' - ' . $this->course->date->format('Y-m-d');
     }
 
     /**
@@ -105,44 +101,44 @@ class Booking extends Resource
 
         return [
 
-                BelongsTo::make('Course')
-                    ->sortable()
-                    ->searchable()
-                    ->onlyOnForms()
-                    ->hideWhenUpdating()
-                    ->withMeta([
-                        'belongsToId' => session('booking.course_id'), 
-                    ])
-                    ->displayUsing(function ($course) {
-                        return $course->course_type->name;
-                    })
-                    ->rules('required'),
+            BelongsTo::make('Course')
+                ->sortable()
+                ->searchable()
+                ->onlyOnForms()
+                ->hideWhenUpdating()
+                ->withMeta([
+                    'belongsToId' => session('booking.course_id'),
+                ])
+                ->displayUsing(function ($course) {
+                    return $course->course_type->name;
+                })
+                ->rules('required'),
 
-                BelongsTo::make('Course')
-                    ->sortable()
-                    ->searchable()
-                    ->onlyOnForms()
-                    ->hideWhenCreating()
-                    ->displayUsing(function ($course) {
-                        return $course->course_type->name;
-                    })
-                    ->rules('required'),
+            BelongsTo::make('Course')
+                ->sortable()
+                ->searchable()
+                ->onlyOnForms()
+                ->hideWhenCreating()
+                ->displayUsing(function ($course) {
+                    return $course->course_type->name;
+                })
+                ->rules('required'),
 
             Text::make('Name')->sortable(),
             Text::make('Surname')->sortable(),
             Text::make('Phone')
-                    ->rules('required', 'regex:/08\d[0-9]{7}/')
-                    ->withMeta(['extraAttributes' => [
-                        'placeholder' => '08x']
-                    ]),
+                ->rules('required', 'regex:/08\d[0-9]{7}/')
+                ->withMeta(['extraAttributes' => [
+                    'placeholder' => '08x'],
+                ]),
 
             Text::make('Email')->sortable(),
             Boolean::make('PPS')->hideFromIndex(),
-            
+
             Money::make('Rate', 'EUR')->exceptOnForms(),
             Money::make('Rate', 'EUR')->onlyOnForms()
                 ->withMeta([
-                    'value' => 115, 
+                    'value' => 115,
                 ]),
 
             BelongsTo::make('Course')
@@ -157,66 +153,63 @@ class Booking extends Resource
 
             HasOne::make('Invoice'),
 
-                BelongsTo::make('Company')
-                    ->onlyOnForms()
-                    ->hideWhenUpdating()
-                    ->withMeta([
-                        'belongsToId' => session('booking.company_id')
-                    ])
-                    ->nullable()
-                    ->searchable(),
+            // BelongsTo::make('Company')
+            //     ->onlyOnForms()
+            //     ->hideWhenUpdating()
+            //     ->withMeta([
+            //         'belongsToId' => session('booking.company_id')
+            //     ])
+            //     ->nullable()
+            //     ->searchable(),
 
-                BelongsTo::make('Company')
-                    // ->onlyOnForms()
-                    ->hideWhenCreating()
-                    ->nullable()
-                    ->searchable(),
+            BelongsTo::make('Company')
+                ->exceptOnForms()
+                ->nullable()
+                ->searchable(),
 
-                BelongsTo::make('Contact', 'contact')
-                    ->onlyOnForms()
-                    ->hideWhenUpdating()
-                    ->hideFromIndex()
-                    ->withMeta([
-                        'belongsToId' => session('booking.contact_id')
-                    ])
-                    ->nullable()
-                    ->searchable(),
+            BelongsTo::make('Contact', 'contact')
+                ->onlyOnForms()
+                ->hideWhenUpdating()
+                ->hideFromIndex()
+                ->withMeta([
+                    'belongsToId' => session('booking.contact_id'),
+                ])
+                ->nullable()
+                ->searchable(),
 
-                BelongsTo::make('Contact', 'contact')
-                    // ->onlyOnForms()
-                    ->hideWhenCreating()
-                    ->hideFromIndex()
-                    ->nullable()
-                    ->searchable(),
+            BelongsTo::make('Contact', 'contact')
+            // ->onlyOnForms()
+                ->hideWhenCreating()
+                ->hideFromIndex()
+                ->nullable()
+                ->searchable(),
 
             Boolean::make('Confirmation Sent')->hideWhenCreating(),
 
             Text::make('PO')
                 ->withMeta([
-                    'value' => session('booking.po')
+                    'value' => session('booking.po'),
                 ])
                 ->hideFromIndex(),
 
             BelongsTo::make('User')
                 ->withMeta([
-                    'value' => $this->user_id ?? auth()->user()->id, 
-                    'belongsToId' => $this->user_id ?? auth()->user()->id
+                    'value' => $this->user_id ?? auth()->user()->id,
+                    'belongsToId' => $this->user_id ?? auth()->user()->id,
                 ])
                 ->onlyOnForms()
                 ->hideWhenCreating(),
 
             BelongsTo::make('User')->onlyOnDetail(),
 
-
             Text::make('Comments')->hideWhenCreating()->hideFromIndex(),
 
             DateTime::make('Date')
-            ->sortable()
-                ->withMeta([ 
+                ->sortable()
+                ->withMeta([
                     'value' => date('Y-m-d H:m:s'),
                 ])
-                ->hideFromIndex()
-                ->hideWhenCreating(),
+                ->onlyOnDetail(),
 
         ];
     }
@@ -230,7 +223,7 @@ class Booking extends Resource
     public function cards(Request $request)
     {
         return [
-            new Metrics\NewBookings
+            new Metrics\NewBookings,
         ];
     }
 

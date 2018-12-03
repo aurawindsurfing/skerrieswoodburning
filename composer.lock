@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "75289d81a9fcf49bdc2cac0b58be6acd",
+    "content-hash": "95f40db880c3fa0048b56bd9ec43115d",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -2783,6 +2783,57 @@
                 "nova"
             ],
             "time": "2018-10-09T05:45:44+00:00"
+        },
+        {
+            "name": "outhebox/nova-hidden-field",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MohmmedAshraf/nova-hidden-field.git",
+                "reference": "7880e5377b27db92a641149959443b5062486797"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MohmmedAshraf/nova-hidden-field/zipball/7880e5377b27db92a641149959443b5062486797",
+                "reference": "7880e5377b27db92a641149959443b5062486797",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Outhebox\\NovaHiddenField\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Outhebox\\NovaHiddenField\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mohamed Ashraf",
+                    "email": "cupo.ashraf@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel Nova Hidden field.",
+            "keywords": [
+                "field",
+                "laravel",
+                "nova",
+                "nova default value",
+                "nova hidden field"
+            ],
+            "time": "2018-11-14T08:40:31+00:00"
         },
         {
             "name": "paragonie/random_compat",

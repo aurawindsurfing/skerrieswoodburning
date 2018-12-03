@@ -32,6 +32,8 @@ class Booking extends Model
         static::saving(function ($booking) {
             
             $booking->date = now();
+
+            isset($booking->contact) ? $booking->company_id = $booking->contact->company->id : null;
             
             if (Auth::check()){
                 $booking->user_id = Auth::user()->id;
@@ -79,20 +81,6 @@ class Booking extends Model
     public function rateForInvoice()
     {
         return number_format((float)$this->rate, 2, '.', '');
-    }
-
-    public function createPayment($invoice_id)
-    {
-
-        $payment = \App\Payment::create([
-            'amount' => $this->rate,
-            // 'booking_id' => $this->id,
-            'invoice_id' => $invoice_id,
-            'payment_method' => 'cash',
-            'status' => 'completed'
-        ]);
-
-        return;
     }
 
     /**

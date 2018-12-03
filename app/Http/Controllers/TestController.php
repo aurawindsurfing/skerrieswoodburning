@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Booking;
 use App\Invoice;
+use App\Company;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\CompanyContactConfirmation;
 
@@ -12,15 +13,9 @@ class TestController extends Controller
 
     public function test()
     {
-        $booking = Booking::find(17);
+        $e = Company::find(40);
 
-        $data = [
-            'booking' => $booking,
-        ];
-
-        // dd(!isset($booking->company->contact->phone));
-
-        Notification::notify(new CompanyContactConfirmation($data));
+        dd($e->accounts_payable->first()->email);
 
     }
 

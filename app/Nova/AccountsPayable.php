@@ -8,6 +8,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\HasMany;
+use Outhebox\NovaHiddenField\HiddenField;
 
 class AccountsPayable extends Resource
 {
@@ -113,6 +114,10 @@ class AccountsPayable extends Resource
                 ->rules('required', 'email', 'max:254'),
 
             HasMany::make('Bookings')->sortable(),
+            
+            HiddenField::make('Accounts Payable', 'accounts_payable')
+                ->onlyOnForms()
+                ->default(true),
 
         ];
     }

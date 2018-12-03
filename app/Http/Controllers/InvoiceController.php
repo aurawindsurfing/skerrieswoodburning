@@ -6,6 +6,8 @@ use App\Invoice;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewInvoice;
 
 
 class InvoiceController extends Controller
@@ -91,7 +93,6 @@ class InvoiceController extends Controller
         //
     }
 
-    
     /**
      * makePDF
      *
@@ -109,6 +110,76 @@ class InvoiceController extends Controller
         return $path;
 
     }
+
+
+    /**
+     * generateInvoices
+     *
+     * @param mixed $models
+     * @return void
+     */
+    public function generateInvoices($models, $markAsPaid)
+    {
+        $uninvoiced_bookings = collect([]);
+        $count = 0;
+
+        foreach ($models as $booking) {
+            if (is_null($booking->invoice_id)) {
+                $uninvoiced_bookings->push($booking);
+            }
+        }
+
+        if ($uninvoiced_bookings->isNotEmpty()) {
+
+            $bookings = $uninvoiced_bookings->groupBy('company_id');
+            $bookings_without_company = $bookings->pull('');
+
+            //corporate booking
+
+            if (!is_null($bookings) && $bookings->isNotEmpty()) {
+                foreach ($bookings as $company_bookings) {
+                    $invoice = $this->createMultipleBookingsInvoice($company_bookings);
+                    
+                    if ($markAsPaid) {
+                        foreach($company_bookings as $booking){
+                            $payment = \App\Payment::create([
+                                'amount' => $booking->rate,
+                                'invoice_id' => $booking->invoice_id,
+                                'payment_method' => 'cash',
+                                'status' => 'completed'
+                            ]);
+                        }
+                    }
+                    
+                    $count++;
+
+                }
+            }
+
+            // individual bookings
+
+            if (!is_null($bookings_without_company) && $bookings_without_company->isNotEmpty()) {
+                foreach ($bookings_without_company as $booking) {
+                    $invoice = $this->createSingleBookingInvoice($booking);
+
+                    if ($markAsPaid) {
+                        $payment = \App\Payment::create([
+                            'amount' => $booking->rate,
+                            'invoice_id' => $booking->invoice_id,
+                            'payment_method' => 'cash',
+                            'status' => 'completed'
+                        ]);
+                    }
+                    
+                    $count++;
+                }
+            }
+        }
+
+        return $count;
+    }
+
+
 
     /**
      * createMultipleBookingsInvoice
@@ -163,6 +234,62 @@ class InvoiceController extends Controller
     
         return $invoice;
         
+    }
+
+    /**
+     * emailInvoices
+     *
+     * @param mixed $models
+     * @return void
+     */
+    public function emailInvoices($models)
+    {
+
+        $invoices = collect([]);
+
+        foreach ($models as $booking) {
+            $invoice = $booking->invoice;
+            $invoices = $invoices->push($invoice);
+        }
+
+        $invoices = $invoices->unique();
+        $i = 0;
+
+        foreach ($invoices as $invoice) {
+
+            $inv = collect([$invoice]);
+
+            $path = $this->makePDF($inv);
+
+            $data = [
+                'invoice_number' => $invoice->number(),
+                'user_name' => $invoice->user->name,
+                'path' => $path,
+            ];
+
+            foreach ($invoice->bookings as $booking) {
+                
+                if (isset($booking->email)) {
+                    Mail::to($booking->email)
+                        // ->cc('alec@citltd.ie')
+                        ->queue(new NewInvoice($data));
+                }
+
+                if (isset($booking->accounts_payable)){
+                    if (isset($booking->company->accounts_payable->first()->email)) {
+                        Mail::to($booking->company->accounts_payable->first()->email)
+                            // ->cc('alec@citltd.ie')
+                            ->queue(new NewInvoice($data));
+                    }
+                }
+                
+
+            }
+
+            $i++;
+        }
+        
+        return $i;
     }
 
 }
