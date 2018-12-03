@@ -123,11 +123,11 @@ class Course extends Resource
                 return isset($this->date) ? $this->uuid() : '';
             })->exceptOnForms(),
 
-            // BelongsTo::make('Course Type', 'course_type')->sortable()->rules('required'),
+            BelongsTo::make('Course Type', 'course_type')->sortable()->rules('required'),
 
-            Text::make('Course Type', function () {
-                return $this->course_type->name;
-            })->exceptOnForms(),
+            // Text::make('Course Type', function () {
+            //     return $this->course_type->name;
+            // })->exceptOnForms(),
 
             Money::make('Price', 'EUR')
                 ->withMeta([
@@ -149,17 +149,17 @@ class Course extends Resource
             // })
                 ->rules('required'),
 
-            Text::make('Venue', function () {
-                return $this->venue->name;
-            })->exceptOnForms(),
+            // Text::make('Venue', function () {
+            //     return $this->venue->name;
+            // })->exceptOnForms(),
 
-            Text::make('Tutor', function () {
-                return $this->tutor->name;
-            })->exceptOnForms(),
+            // Text::make('Tutor', function () {
+            //     return $this->tutor->name;
+            // })->exceptOnForms(),
 
-            // BelongsTo::make('Venue')->sortable()->searchable()->rules('required'),
+            BelongsTo::make('Venue')->sortable()->searchable()->rules('required'),
 
-            // BelongsTo::make('Tutor')->sortable()->searchable()->rules('required'),
+            BelongsTo::make('Tutor')->sortable()->searchable()->rules('required'),
 
             Boolean::make('Inhouse'),
 
