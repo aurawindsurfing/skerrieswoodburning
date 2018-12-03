@@ -14,7 +14,6 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Select;
 use Vyuldashev\NovaMoneyField\Money;
-use Dniccum\PhoneNumber\PhoneNumber;
 use Orlyapps\NovaBelongsToDepend\NovaBelongsToDepend;
 
 class Booking extends Resource
@@ -106,18 +105,28 @@ class Booking extends Resource
 
         return [
 
-            BelongsTo::make('Course')
-                ->sortable()
-                ->searchable()
-                ->onlyOnForms()
-                ->withMeta([
-                    // 'value' => session('booking.course_id'),
-                    'belongsToId' => session('booking.course_id') 
-                ])
-                ->displayUsing(function ($course) {
-                    return $course->course_type->name;
-                })
-                ->rules('required'),
+                BelongsTo::make('Course')
+                    ->sortable()
+                    ->searchable()
+                    ->onlyOnForms()
+                    ->hideWhenUpdating()
+                    ->withMeta([
+                        'belongsToId' => session('booking.course_id'), 
+                    ])
+                    ->displayUsing(function ($course) {
+                        return $course->course_type->name;
+                    })
+                    ->rules('required'),
+
+                BelongsTo::make('Course')
+                    ->sortable()
+                    ->searchable()
+                    ->onlyOnForms()
+                    ->hideWhenCreating()
+                    ->displayUsing(function ($course) {
+                        return $course->course_type->name;
+                    })
+                    ->rules('required'),
 
             Text::make('Name')->sortable(),
             Text::make('Surname')->sortable(),
@@ -126,13 +135,7 @@ class Booking extends Resource
                     ->withMeta(['extraAttributes' => [
                         'placeholder' => '08x']
                     ]),
-            // PhoneNumber::make('Phone')
-            //     ->format( '(###) ### ####')
-            //     ->placeholder('(08x)')
-            //     ->disableValidation()
-            //     // ->countries(['GB', 'IE'])
-            //     // ->linkOnIndex()
-            //     ->linkOnDetail(),
+
             Text::make('Email')->sortable(),
             Boolean::make('PPS')->hideFromIndex(),
             
@@ -154,29 +157,37 @@ class Booking extends Resource
 
             HasOne::make('Invoice'),
 
-            BelongsTo::make('Company')
-                ->withMeta([
-                    'belongsToId' => session('booking.company_id')
-                ])
-                ->nullable()
-                ->searchable(),
+                BelongsTo::make('Company')
+                    ->onlyOnForms()
+                    ->hideWhenUpdating()
+                    ->withMeta([
+                        'belongsToId' => session('booking.company_id')
+                    ])
+                    ->nullable()
+                    ->searchable(),
 
-            BelongsTo::make('Contact', 'contact')
-                ->hideFromIndex()
-                ->withMeta([
-                    'belongsToId' => session('booking.contact_id')
-                ])
-                ->nullable()
-                ->searchable(),
+                BelongsTo::make('Company')
+                    // ->onlyOnForms()
+                    ->hideWhenCreating()
+                    ->nullable()
+                    ->searchable(),
 
-            // NovaBelongsToDepend::make('Company')
-            //     ->options(\App\Company::all()),
+                BelongsTo::make('Contact', 'contact')
+                    ->onlyOnForms()
+                    ->hideWhenUpdating()
+                    ->hideFromIndex()
+                    ->withMeta([
+                        'belongsToId' => session('booking.contact_id')
+                    ])
+                    ->nullable()
+                    ->searchable(),
 
-            // NovaBelongsToDepend::make('Contact')
-            //     ->optionsResolve(function ($company) {
-            //         return $company->contacts()->get();
-            //     })
-            //     ->dependsOn('Company'),
+                BelongsTo::make('Contact', 'contact')
+                    // ->onlyOnForms()
+                    ->hideWhenCreating()
+                    ->hideFromIndex()
+                    ->nullable()
+                    ->searchable(),
 
             Boolean::make('Confirmation Sent')->hideWhenCreating(),
 
@@ -185,8 +196,6 @@ class Booking extends Resource
                     'value' => session('booking.po')
                 ])
                 ->hideFromIndex(),
-
-            // HasMany::make('Payments'),
 
             BelongsTo::make('User')
                 ->withMeta([

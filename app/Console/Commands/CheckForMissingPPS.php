@@ -7,23 +7,22 @@ use App\Booking;
 use Carbon\Carbon;
 use App\Notifications\Confirmation;
 use App\Notifications\MissingPPSConfirmation;
-use App\Notifications\CompanyContactConfirmation;
 
-class BookingConfirmation extends Command
+class CheckForMissingPPS extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'notify:newbookings';
+    protected $signature = 'notify:missingpps';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Send confirmations to new bookings';
+    protected $description = 'Send PPS requests to bookings without PPS';
 
     /**
      * Create a new command instance.
@@ -43,20 +42,16 @@ class BookingConfirmation extends Command
     public function handle()
     {
         $bookings = Booking::query()
-            ->where('confirmation_sent', null)
-            // ->where('updated_at', '<', Carbon::now()->subMinutes(2)->toDateTimeString())
+            ->where('pps', false)
+            ->where('pps_reminder_sent', null)
+            ->where('updated_at', '<', Carbon::now()->subMinutes(2)->toDateTimeString())
             ->get();
 
-        error_log('Trying to send ' . $bookings->count() . ' confirmations');
+        error_log('Sending ' . $bookings->count() . ' pps reminders');
 
         foreach ($bookings as $booking) {
-            $booking->notify(new Confirmation($booking));
-            $booking->notify(new CompanyContactConfirmation($booking));
-
-            $booking->update(['confirmation_sent' => now()]);
-            error_log('Send booking id:' . $booking->id . ' confirmation');
+            $booking->update(['pps_reminder_sent' => now()]);
+            !isset($booking->pps) ?: $booking->notify(new MissingPPSConfirmation);
         }
-
-        error_log('Send all confirmations');
     }
 }

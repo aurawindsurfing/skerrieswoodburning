@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\NexmoMessage;
 
-class ConfirmationSms extends Notification
+class MissingPPSConfirmation extends Notification
 {
     use Queueable;
 
@@ -44,11 +44,9 @@ class ConfirmationSms extends Notification
         return (new NexmoMessage)
                     ->content(
                         $notifiable->name . 
-                        ', thank you for booking ' . 
-                        $notifiable->course->course_type->name . ' at: ' .
-                        $notifiable->course->venue->name . ' on: ' .
-                        $notifiable->course->date .
-                        ' we will text your directions one day before the course. CIT'
+                        ', we are missing your PPS number. It is required to take part in  ' . 
+                        $notifiable->course->course_type->name . ' course. ' .
+                        ' Please call CIT at 018097266 and provide it asap.'
                     );
     }
 

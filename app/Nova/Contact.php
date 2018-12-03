@@ -107,8 +107,10 @@ class Contact extends Resource
                 ->rules('required', 'max:255'),
 
             Text::make('Phone')
-                ->sortable()
-                ->rules('required', 'max:255'),
+                ->rules('required', 'regex:/08\d[0-9]{7}/')
+                ->withMeta(['extraAttributes' => [
+                    'placeholder' => '08x']
+                ]),
 
             Text::make('Email')
                 ->sortable()

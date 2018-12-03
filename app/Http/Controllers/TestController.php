@@ -2,29 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Carbon\Carbon;
 use App\Booking;
-use Illuminate\Support\Facades\Storage;
-use App\Course;
-use Illuminate\Support\Facades\Mail;
 use App\Invoice;
-use App\Scopes\UpcomingOnlyScope;
-
-
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\CompanyContactConfirmation;
 
 class TestController extends Controller
 {
 
     public function test()
     {
+        $booking = Booking::find(17);
 
-        
-        $e = '0862194744';
+        $data = [
+            'booking' => $booking,
+        ];
 
-        echo('353' . ltrim($e, '0'));
+        // dd(!isset($booking->company->contact->phone));
 
-
+        Notification::notify(new CompanyContactConfirmation($data));
 
     }
 
@@ -35,7 +31,7 @@ class TestController extends Controller
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadView('letters.course_confirmation_manual_handling', compact('bookings'));
         $id = 'xxx';
-        return $pdf->stream('storage/tmp/invoices/N-'. $id .'.pdf');
+        return $pdf->stream('storage/tmp/invoices/N-' . $id . '.pdf');
 
         // return view('letters.course_confirmation_manual_handling', compact('bookings'));
 
@@ -54,11 +50,10 @@ class TestController extends Controller
 
     }
 
-
     public function test2()
     {
         $invoice = Invoice::find(106);
-        
+
         return view('vendor.invoices.default', compact('invoice'));
 
     }

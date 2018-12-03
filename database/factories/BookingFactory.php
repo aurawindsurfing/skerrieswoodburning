@@ -26,6 +26,7 @@ $factory->define(App\Booking::class, function (Faker $faker) {
         'po' => $faker->optional()->randomNumber,
         'confirmation_sent' => now(),
         'reminder_sent' => date('Y-m-j H:m:s', strtotime($course->date.' -3 days')),
+        'pps_reminder_sent' => date('Y-m-j H:m:s', strtotime($course->date.' -3 days')),
         'confirmed' => $faker->boolean,
         'no_show' => $faker->boolean,
         'user_id' => $faker->optional()->randomElement(App\User::all(['id'])),
