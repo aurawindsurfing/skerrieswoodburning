@@ -17,7 +17,7 @@
         "itainathaniel/nova-nexmo": "^1.0",
         "laraning/nova-time-field": "^0.1.0",
         "laravel/framework": "5.7.*",
-        "laravel/nova": "~1.0",
+        "laravel/nova": "^1.2",
         "laravel/telescope": "^1.0",
         "laravel/tinker": "^1.0",
         "maatwebsite/laravel-nova-excel": "^1.1",
@@ -64,7 +64,7 @@
     "repositories": [
         {
             "type": "composer",
-            "url": "https://nova.laravel.com"
+            "url": "https://tom@gazeta.ie:KzV3Najwkms6xCWC@nova.laravel.com"
         }
     ],
     "scripts": {
