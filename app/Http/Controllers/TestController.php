@@ -7,15 +7,23 @@ use App\Invoice;
 use App\Company;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\CompanyContactConfirmation;
+use Maatwebsite\Excel\Excel;
+use Carbon\Carbon;
 
 class TestController extends Controller
 {
 
     public function test()
     {
-        $e = Company::find(40);
+        // $collection = Excel::import(new BookingImport, 'import.xlsx');
 
-        dd($e->accounts_payable->first()->email);
+        // dd($collection);
+
+        $dateTimeString = 'Friday 5th January 2018';
+
+        $e = Carbon::parse($dateTimeString)->format('Y-m-d'); 
+
+        dd($e);
 
     }
 

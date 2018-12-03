@@ -163,6 +163,8 @@ class Course extends Resource
 
             Boolean::make('Inhouse'),
 
+            Text::make('Notes')->exceptOnForms(),
+
             Indicator::make('Status', function () {
 
                 if ($this->placesLeft() > 0) {

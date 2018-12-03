@@ -45,5 +45,10 @@ class BookingMIssingPPS extends Booking
      * @return void
      */
     public static function label() { return 'Missing PPS'; }
+
+    public function create()
+    {
+        return false;
+    }
     
 }
