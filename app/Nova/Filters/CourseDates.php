@@ -24,7 +24,7 @@ class CourseDates extends Filter
      */
     public function apply(Request $request, $query, $value)
     {
-        return $query->where('id', $value);
+        return $query->where('date', '>=', $value);
     }
 
     /**
