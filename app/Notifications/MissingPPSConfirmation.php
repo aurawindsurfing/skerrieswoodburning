@@ -30,7 +30,7 @@ class MissingPPSConfirmation extends Notification
      */
     public function via($notifiable)
     {
-        return ['nexmo'];
+        return ['nexmo', 'mail'];
     }
 
     /**
@@ -43,11 +43,20 @@ class MissingPPSConfirmation extends Notification
     {
         return (new NexmoMessage)
                     ->content(
-                        $notifiable->name . 
-                        ', we are missing your PPS number. It is required to take part in  ' . 
+                        (isset($notifiable->name) ? $notifiable->name . ', we' : 'We' ) . ' are missing your PPS number. It is required to take part in  ' . 
                         $notifiable->course->course_type->name . ' course. ' .
                         ' Please call CIT at 018097266 and provide it asap.'
                     );
+    }
+
+    public function toMail($notifiable)
+    {
+        return (new MailMessage)
+            ->subject('We are missing your PPS number')
+            ->from('alec@citltd.ie')
+            ->view(
+                'emails.missingPPS', compact('notifiable')
+            );
     }
 
     /**

@@ -50,8 +50,8 @@ class CheckForMissingPPS extends Command
         error_log('Sending ' . $bookings->count() . ' pps reminders');
 
         foreach ($bookings as $booking) {
-            $booking->update(['pps_reminder_sent' => now()]);
             !isset($booking->pps) ?: $booking->notify(new MissingPPSConfirmation);
+            $booking->update(['pps_reminder_sent' => now()]);
         }
     }
 }
