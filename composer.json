@@ -64,7 +64,7 @@
     "repositories": [
         {
             "type": "composer",
-            "url": "https://tom@gazeta.ie:KzV3Najwkms6xCWC@nova.laravel.com"
+            "url": "https://nova.laravel.com"
         }
     ],
     "scripts": {
