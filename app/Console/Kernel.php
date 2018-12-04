@@ -6,6 +6,8 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Console\Commands\BookingConfirmation;
 use App\Console\Commands\EmailAttendeeList;
+use App\Console\Commands\CheckForMissingPPS;
+use App\Console\Commands\Import;
 
 class Kernel extends ConsoleKernel
 {
@@ -17,6 +19,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         BookingConfirmation::class,
         EmailAttendeeList::class,
+        CheckForMissingPPS::class,
+        Import::class,
     ];
 
     /**

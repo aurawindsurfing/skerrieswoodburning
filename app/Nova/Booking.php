@@ -11,6 +11,7 @@ use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Vyuldashev\NovaMoneyField\Money;
+use Outhebox\NovaHiddenField\HiddenField;
 
 class Booking extends Resource
 {
@@ -204,12 +205,13 @@ class Booking extends Resource
 
             Text::make('Comments')->hideWhenCreating()->hideFromIndex(),
 
-            DateTime::make('Date')
+            Date::make('Date')
                 ->sortable()
-                ->withMeta([
-                    'value' => date('Y-m-d H:m:s'),
-                ])
                 ->onlyOnDetail(),
+
+            HiddenField::make('Date', 'date')
+                ->onlyOnForms()
+                ->default(now()),
 
         ];
     }

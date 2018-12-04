@@ -7,7 +7,8 @@ use App\Invoice;
 use App\Company;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\CompanyContactConfirmation;
-use Maatwebsite\Excel\Excel;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\BookingImport;
 use Carbon\Carbon;
 
 class TestController extends Controller
@@ -15,15 +16,17 @@ class TestController extends Controller
 
     public function test()
     {
-        // $collection = Excel::import(new BookingImport, 'import.xlsx');
+        $collection = Excel::import(new BookingImport, 'import.xlsx');
 
         // dd($collection);
 
-        $dateTimeString = 'Friday 5th January 2018';
+        // return redirect('/')->with('success', 'All good!');
 
-        $e = Carbon::parse($dateTimeString)->format('Y-m-d'); 
+        // $dateTimeString = 'Friday 5th January 2018';
 
-        dd($e);
+        // $e = Carbon::parse($dateTimeString)->format('Y-m-d'); 
+
+        // dd($e);
 
     }
 

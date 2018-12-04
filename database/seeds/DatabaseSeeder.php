@@ -35,14 +35,14 @@ class DatabaseSeeder extends Seeder
         ]);
 
         factory(App\User::class, 3)->create();
-        factory(App\Venue::class, 50)->create();
-        factory(App\Tutor::class, 20)->create();
-        factory(App\CourseType::class, 7)->create();
-        factory(App\Course::class, 20)->create();
-        factory(App\Contact::class, 100)->create();
-        factory(App\Booking::class, 100)->create();
-        factory(App\Invoice::class, 100)->create();
-        factory(App\Payment::class, 300)->create();
+        // factory(App\Venue::class, 50)->create();
+        // factory(App\Tutor::class, 20)->create();
+        factory(App\CourseType::class, 1)->create();
+        // factory(App\Course::class, 20)->create();
+        // factory(App\Contact::class, 100)->create();
+        // factory(App\Booking::class, 100)->create();
+        // factory(App\Invoice::class, 100)->create();
+        // factory(App\Payment::class, 300)->create();
 
     }
 }

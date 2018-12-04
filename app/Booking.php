@@ -30,8 +30,6 @@ class Booking extends Model
         parent::boot();
 
         static::saving(function ($booking) {
-            
-            $booking->date = now();
 
             isset($booking->contact) ? $booking->company_id = $booking->contact->company->id : null;
             
