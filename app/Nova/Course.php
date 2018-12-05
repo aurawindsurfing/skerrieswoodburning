@@ -125,9 +125,9 @@ class Course extends Resource
 
             BelongsTo::make('Course Type', 'course_type')->onlyOnForms()->sortable()->rules('required'),
 
-            Text::make('Course Type', function () {
-                return $this->course_type->name;
-            })->exceptOnForms(),
+            // Text::make('Course Type', function () {
+            //     return $this->course_type->name;
+            // })->onlyOnIndex(),
 
             Money::make('Price', 'EUR')
                 ->withMeta([
@@ -149,13 +149,13 @@ class Course extends Resource
             // })
                 ->rules('required'),
 
-            Text::make('Venue', function () {
-                return $this->venue->name;
-            })->exceptOnForms(),
+            // Text::make('Venue', function () {
+            //     return $this->venue->name;
+            // })->onlyOnIndex(),
 
-            Text::make('Tutor', function () {
-                return $this->tutor->name;
-            })->exceptOnForms(),
+            // Text::make('Tutor', function () {
+            //     return $this->tutor->name;
+            // })->onlyOnIndex(),
 
             BelongsTo::make('Venue')->onlyOnForms()->sortable()->searchable()->rules('required'),
 
