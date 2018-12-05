@@ -39,6 +39,7 @@ class Import extends Command
      */
     public function handle()
     {
-        $collection = Excel::import(new BookingImport, 'import2.xlsx');
+        $this->call('migrate:fresh', ['--seed' => true]);
+        $collection = Excel::import(new BookingImport, 'import3.xlsx');
     }
 }

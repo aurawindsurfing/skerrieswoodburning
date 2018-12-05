@@ -3,34 +3,38 @@
 namespace App\Imports;
 
 use App\Booking;
+use App\Company;
+use App\Contact;
+use App\Course;
+use App\Tutor;
+use App\Venue;
+use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Output\ConsoleOutput;
-use Carbon\Carbon;
-use App\Tutor;
-use App\Venue;
-use App\Course;
-use App\Company;
-use App\Contact;
+use App\Invoice;
 
 class BookingImport implements ToCollection, WithHeadingRow
 {
+
+    public function chunkSize(): int
+    {
+        return 500;
+    }
+
     public function collection(Collection $rows)
     {
-
         $output = new ConsoleOutput();
         error_log('Importing bookings');
-        $bar = new ProgressBar($output, count($rows));
+        $bar = new ProgressBar($output, $rows->count());
 
-        foreach ($rows as $row) 
-        {
+        foreach ($rows as $row) {
 
             $bar->advance();
 
-            if (!str_contains($row['date'], ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']) && !empty($row['date']))
-            {
+            if (str_contains($row['date'], ['Eugene Hughes', 'John Kennedy', 'Michael Clarke']) && !empty($row['date'])) {
                 $tutor = Tutor::updateOrCreate(
                     ['name' => $row['date']], // this is yellow tutors name
                     ['phone' => null, 'email' => null]
@@ -41,67 +45,86 @@ class BookingImport implements ToCollection, WithHeadingRow
                     ['name' => $row['forename']]
                 );
 
+                $date = explode("2017 ", $row['company']);
+
                 $course = Course::updateOrCreate(
                     [
-                        'date' => Carbon::parse($row['company'])->format('Y-m-d'), // this is yellow course date
-                        'venue_id' => $venue->id, 
-                        'tutor_id' => $tutor->id], 
+                        'date' => Carbon::parse($date[0] . '2017')->format('Y-m-d'), // this is yellow course date
+                        'venue_id' => $venue->id,
+                        'tutor_id' => $tutor->id],
                     [
-                        'time'              => '00:00:00',
-                        'price'             => 0,
-                        'notes'             => $row['surname'], // this is yellow row SP number
-                        'course_type_id'    => 1
+                        'time' => '00:00:00',
+                        'price' => 0,
+                        'notes' => $row['surname'] . ' - ' . count($date) > 1 ? $date[1] : '', // this is yellow row SP number
+                        'course_type_id' => 1,
                     ]
                 );
-                
-            } elseif (!empty($row['date'])) {
 
-                if (!empty($row['company'])){
-                    $company = Company::updateOrCreate( 
+            } elseif (str_contains($row['date'], ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']) && !empty($row['date'])) {
+
+                // tryin to create a company if exists on the row
+                if (!empty($row['company'])) {
+                    $company = Company::updateOrCreate(
                         ['name' => $row['company']],
                         ['name' => $row['company']]
                     );
 
-                    if (!empty($row['contact'])){
-                        $contact = Contact::updateOrCreate( 
+                    if (!empty($row['contact'])) {
+                        $contact = Contact::updateOrCreate(
                             ['company_id' => $company->id, 'name' => $row['contact']],
                             ['company_id' => $company->id, 'name' => $row['contact'], 'email' => $row['contact_email'], 'phone' => $row['phone']]
                         );
                     }
-                    
+
                 } else {
                     $company = null;
                     $contact = null;
                 }
 
-                Booking::create([
-                    'date'              => $course->date, 
-                    'name'              => !empty($row['forename']) ? $row['forename'] : '',
-                    'surname'           => !empty($row['surname']) ? $row['surname'] : '',
-                    'phone'             => !empty($company) ? null : $row['phone'],
-                    'email'             => !empty($company) ? null : $row['contact_email'],
-                    'pps'               => true,
-                    'rate'              => !empty($row['rate']) ? (Int) $row['rate'] : (Int) 0,
+                if (!empty($row['invoice'])) {
+                    $invoice = Invoice::updateOrCreate(
+                        ['number' => preg_replace('/[^0-9.]+/', '', $row['invoice'])],
+                        ['prefix' => 'SI-',
+                        'company_id' => !empty($company) ? $company->id : null,
+                        'date' => $course->date,
+                        'total' => 100,
+                        'status' => 'paid',
+                        'user_id' => 1
+                        ]
+                    );
+                }
 
-                    'course_id'         => $course->id, 
-                    'company_id'        => !empty($company) ? $company->id : null,
-                    'contact_id'        => !empty($contact) ? $contact->id : null,
-                    'po'                => $row['po'],
-                    'invoice_id'        => null,
+                $booking = Booking::create([
+                    'date' => $course->date,
+                    'name' => !empty($row['forename']) ? $row['forename'] : null,
+                    'surname' => !empty($row['surname']) ? $row['surname'] : null,
+                    'phone' => !empty($company) ? null : $row['phone'],
+                    'email' => !empty($company) ? null : $row['contact_email'],
+                    'pps' => true,
+                    'rate' => !empty($row['rate']) ? (Int) $row['rate'] : (Int) 0,
+
+                    'course_id' => $course->id,
+                    'company_id' => !empty($company) ? $company->id : null,
+                    'contact_id' => !empty($contact) ? $contact->id : null,
+                    'po' => $row['po'],
+                    'invoice_id' => !empty($row['invoice']) ? $invoice->id : null,
                     'confirmation_sent' => $course->date,
-                    'reminder_sent'     => $course->date,
+                    'reminder_sent' => $course->date,
                     'pps_reminder_sent' => $course->date,
-                    'confirmed'         => true,
-                    'no_show'           => false,
-                    'user_id'           => 1,
-                    'comments'          => null,
-                    
-                 ]);
+                    'confirmed' => true,
+                    'no_show' => false,
+                    'user_id' => 1,
+                    'comments' => null,
+
+                ]);
+
+            } else {
+
             }
         }
 
         $bar->finish();
         error_log("\n");
-        
+
     }
 }
