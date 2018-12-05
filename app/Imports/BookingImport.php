@@ -15,6 +15,7 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use App\Invoice;
+use App\Payment;
 
 class BookingImport implements ToCollection, WithHeadingRow
 {
@@ -87,7 +88,7 @@ class BookingImport implements ToCollection, WithHeadingRow
                         ['prefix' => 'SI-',
                         'company_id' => !empty($company) ? $company->id : null,
                         'date' => $course->date,
-                        'total' => 100,
+                        // 'total' => 100,
                         'status' => 'paid',
                         'user_id' => 1
                         ]
@@ -98,7 +99,7 @@ class BookingImport implements ToCollection, WithHeadingRow
                     'date' => $course->date,
                     'name' => !empty($row['forename']) ? $row['forename'] : null,
                     'surname' => !empty($row['surname']) ? $row['surname'] : null,
-                    'phone' => !empty($company) ? null : $row['phone'],
+                    'phone' => !empty($company) ? null : preg_replace('/[^0-9.]+/', '', $row['phone']),
                     'email' => !empty($company) ? null : $row['contact_email'],
                     'pps' => true,
                     'rate' => !empty($row['rate']) ? (Int) $row['rate'] : (Int) 0,
@@ -117,6 +118,19 @@ class BookingImport implements ToCollection, WithHeadingRow
                     'comments' => null,
 
                 ]);
+
+                if (!empty($row['invoice'])) {
+                    $invoice->total = $invoice->total + $booking->rate;
+                    $invoice->save();
+
+                    $payment = Payment::create([
+                        'amount' => $booking->rate,
+                        'invoice_id' => $invoice->id,
+                        'payment_method' => !empty($row['actually_paid']) ? $row['actually_paid'] : 'cash',
+                        'status' => 'completed' 
+                        ]
+                    );
+                }
 
             } else {
 

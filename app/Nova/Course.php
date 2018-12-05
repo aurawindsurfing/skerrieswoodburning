@@ -123,7 +123,7 @@ class Course extends Resource
                 return isset($this->date) ? $this->uuid() : '';
             })->exceptOnForms(),
 
-            // BelongsTo::make('Course Type', 'course_type')->sortable()->rules('required'),
+            BelongsTo::make('Course Type', 'course_type')->onlyOnForms()->sortable()->rules('required'),
 
             Text::make('Course Type', function () {
                 return $this->course_type->name;
@@ -157,9 +157,9 @@ class Course extends Resource
                 return $this->tutor->name;
             })->exceptOnForms(),
 
-            // BelongsTo::make('Venue')->sortable()->searchable()->rules('required'),
+            BelongsTo::make('Venue')->onlyOnForms()->sortable()->searchable()->rules('required'),
 
-            // BelongsTo::make('Tutor')->sortable()->searchable()->rules('required'),
+            BelongsTo::make('Tutor')->onlyOnForms()->sortable()->searchable()->rules('required'),
 
             Boolean::make('Inhouse'),
 
