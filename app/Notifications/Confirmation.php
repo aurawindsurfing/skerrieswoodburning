@@ -30,7 +30,7 @@ class Confirmation extends Notification
      */
     public function via($notifiable)
     {
-        return ['nexmo', 'mail'];
+        return ['nexmo'];
     }
 
     /**

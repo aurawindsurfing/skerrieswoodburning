@@ -32,7 +32,7 @@ class CompanyContactConfirmation extends Notification
      */
     public function via($notifiable)
     {
-        return ['nexmo', 'mail'];
+        return ['mail'];
     }
 
     /**
