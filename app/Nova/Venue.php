@@ -13,6 +13,7 @@ use Laravel\Nova\Fields\Markdown;
 use Silvanite\NovaFieldCloudinary\Fields\CloudinaryImage;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\BelongsTo;
+use Inspheric\Fields\Url;
 
 class Venue extends Resource
 {
@@ -79,6 +80,8 @@ class Venue extends Resource
             Text::make('Phone')->rules('max:254')->hideFromIndex(),
             
             Markdown::make('Directions')->hideFromIndex(),
+
+            Url::make('Google Maps')->hideFromIndex()->rules('url')->clickable(),
             
             CloudinaryImage::make('Photo'),
 

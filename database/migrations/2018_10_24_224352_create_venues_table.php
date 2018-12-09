@@ -25,6 +25,7 @@ class CreateVenuesTable extends Migration
             $table->text('phone')->nullable()->default(null);
             $table->text('photo')->nullable()->default(null);
             $table->text('geo')->nullable()->default(null);
+            $table->text('google_maps')->nullable()->default(null);
             $table->text('directions')->nullable()->default(null);
             $table->softDeletes();
             $table->timestamps();

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "41146761c77869f6ca4ca447a9a6db64",
+    "content-hash": "3b60848c1dcc41641fedad0d48e54e8b",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -1213,6 +1213,50 @@
                 "status"
             ],
             "time": "2018-09-02T21:28:51+00:00"
+        },
+        {
+            "name": "inspheric/nova-url-field",
+            "version": "v1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/inspheric/nova-url-field.git",
+                "reference": "014df72fe0a16b4d4cf4786668bda02420228595"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/inspheric/nova-url-field/zipball/014df72fe0a16b4d4cf4786668bda02420228595",
+                "reference": "014df72fe0a16b4d4cf4786668bda02420228595",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Inspheric\\Fields\\UrlFieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Inspheric\\Fields\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova url field.",
+            "keywords": [
+                "field",
+                "href",
+                "laravel",
+                "nova",
+                "url"
+            ],
+            "time": "2018-08-27T22:01:46+00:00"
         },
         {
             "name": "itainathaniel/nova-nexmo",
