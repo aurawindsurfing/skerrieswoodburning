@@ -19,7 +19,7 @@ class BookingPolicy
      */
     public function view(User $user, Booking $booking)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +30,7 @@ class BookingPolicy
      */
     public function create(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -42,7 +42,7 @@ class BookingPolicy
      */
     public function update(User $user, Booking $booking)
     {
-        //
+        return true;
     }
 
     /**
@@ -54,7 +54,11 @@ class BookingPolicy
      */
     public function delete(User $user, Booking $booking)
     {
-        //
+        if (isset($booking->invoice)){
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**
@@ -66,7 +70,7 @@ class BookingPolicy
      */
     public function restore(User $user, Booking $booking)
     {
-        //
+        return false;
     }
 
     /**
@@ -78,6 +82,6 @@ class BookingPolicy
      */
     public function forceDelete(User $user, Booking $booking)
     {
-        //
+        return false;
     }
 }
