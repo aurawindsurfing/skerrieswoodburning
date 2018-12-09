@@ -31,7 +31,7 @@ class Invoice extends Model
 
     public function number()
     {
-        return $this->prefix . isset($this->number) ? $this->number : $this->id;
+        return $this->prefix . (isset($this->number) ? $this->number : $this->id);
     }
 
     public function payments()

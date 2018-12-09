@@ -16,18 +16,9 @@ class TestController extends Controller
 
     public function test()
     {
-        $collection = Excel::import(new BookingImport, 'import.xlsx');
+        $i = Invoice::find(1444);
 
-        // dd($collection);
-
-        // return redirect('/')->with('success', 'All good!');
-
-        // $dateTimeString = 'Friday 5th January 2018';
-
-        // $e = Carbon::parse($dateTimeString)->format('Y-m-d'); 
-
-        // dd($e);
-
+        dd($i->number());
     }
 
     public function pdftest1()

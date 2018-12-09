@@ -138,7 +138,7 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $item->id }}</td>
                 <td>{{ $item->name }}</td>
-                <td>{{ $item->rateForInvoice() }} &euro;</td>
+                <td>{{ $item->invoiceDescription() }} &euro;</td>
             </tr>
             @endforeach
         </tbody>
