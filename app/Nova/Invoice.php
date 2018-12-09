@@ -45,12 +45,23 @@ class Invoice extends Resource
 
     /**
      * The columns that should be searched.
-     *
+     * We are using titasgailius/search-relations here
+     * 
      * @var array
      */
     public static $search = [
         'id',
-        'total'
+        'number',
+        'total',
+    ];
+
+    /**
+     * The relationship columns that should be searched.
+     *
+     * @var array
+     */
+    public static $searchRelations = [
+        'company' => ['name'],
     ];
 
      /**
