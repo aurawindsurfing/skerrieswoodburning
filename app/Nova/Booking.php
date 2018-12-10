@@ -266,10 +266,10 @@ class Booking extends Resource
     {
         return [
 
-            (new Actions\ExportToExcel)
-                ->withHeadings()
-                ->withWriterType(\Maatwebsite\Excel\Excel::XLS)
-                ->withFilename('bookings-' . time() . '.xls'),
+            // (new Actions\ExportToExcel)
+            //     ->withHeadings()
+            //     ->withWriterType(\Maatwebsite\Excel\Excel::XLS)
+            //     ->withFilename('bookings-' . time() . '.xls'),
 
             (new Actions\InvoiceDownload),
             (new Actions\InvoiceDownloadMarkPaid),
