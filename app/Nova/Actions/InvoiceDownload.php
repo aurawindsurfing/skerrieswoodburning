@@ -2,7 +2,6 @@
 
 namespace App\Nova\Actions;
 
-use App\Http\Controllers\InvoiceController;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
@@ -10,7 +9,7 @@ use Illuminate\Support\Collection;
 use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Fields\ActionFields;
 
-class DownloadInvoice extends Action
+class InvoiceDownload extends Action
 {
     use InteractsWithQueue, Queueable, SerializesModels;
 
@@ -24,18 +23,9 @@ class DownloadInvoice extends Action
     public function handle(ActionFields $fields, Collection $models)
     {
 
-        foreach ($models as $model) {
-
-            if ($model->bookings->isEmpty()) {
-
-                return Action::danger('One of invoices has NO bookings!');
-
-            }
-        }
-
-        $invoicePDF = new InvoiceController();
-
-        $path = $invoicePDF->makePDF($models);
+        $invoiceController = new \App\Http\Controllers\InvoiceController();
+        $created = $invoiceController->generateInvoices($models, false);
+        $path = $invoiceController->preparePDF($models);
 
         return Action::download(url($path), uniqid() . '.pdf');
 
@@ -46,9 +36,11 @@ class DownloadInvoice extends Action
      *
      * @return array
      */
-
     public function fields()
     {
-        return [];
+        return [
+
+        ];
     }
+
 }

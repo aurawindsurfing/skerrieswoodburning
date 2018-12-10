@@ -267,12 +267,10 @@ class Booking extends Resource
                 ->withWriterType(\Maatwebsite\Excel\Excel::XLS)
                 ->withFilename('bookings-' . time() . '.xls'),
 
-            (new Actions\CreateAndDownloadInvoices),
-
-            (new Actions\CreateInvoiceAndSendByEmail),
-
-            (new Actions\CreateInvoiceSendByEmailMarkAsPaid),
-
+            (new Actions\InvoiceDownload),
+            (new Actions\InvoiceDownloadMarkPaid),
+            (new Actions\InvoiceSendByEmail),
+            (new Actions\InvoiceSendByEmailMarkPaid),
             (new Actions\DownloadCourseConfirmation),
 
         ];

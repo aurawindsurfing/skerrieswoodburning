@@ -6,12 +6,11 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Mail;
 use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Fields\ActionFields;
 
-// class CreateInvoiceSendByEmailMarkAsPaid extends Action implements ShouldQueue
-class CreateInvoiceSendByEmailMarkAsPaid extends Action
+// class CreateInvoiceAndSendByEmail extends Action implements ShouldQueue
+class InvoiceSendByEmail extends Action
 {
     use InteractsWithQueue, Queueable, SerializesModels;
 
@@ -26,10 +25,10 @@ class CreateInvoiceSendByEmailMarkAsPaid extends Action
     {
 
         $invoiceController = new \App\Http\Controllers\InvoiceController();
-        $created = $invoiceController->generateInvoices($models, true);
-        $email = $invoiceController->emailInvoices($models);
+        $count = $invoiceController->generateInvoices($models, false);
+        $i = $invoiceController->emailInvoices($models);
 
-        return Action::message('Created and marked as paid ' . $created . ' invoices. Emailing ' . $email . ' invoices now.');
+        return Action::message('Created ' . $count . ' invoices. Emailing ' . $i . ' invoices now.');
 
     }
 
