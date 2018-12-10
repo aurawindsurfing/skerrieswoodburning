@@ -90,8 +90,15 @@
             <img src="{{asset(config('invoice_details.logo'))}}" alt="" width="{{ config('invoice_details.logo_width') }}" />
         </div>
         <div style="margin-left:300pt;">
-            <b>Date: </b> {{ now()->formatLocalized('%A %d %B %Y') }}<br /> {{-- @if ($invoice->number()) --}}
-            <b>Invoice #: </b> {{ $invoice->number() }} {{-- @endif --}}
+            <b>Date: </b> {{ now()->formatLocalized('%A %d %B %Y') }}<br />
+            <b>Due Date: </b> {{ 
+
+            isset($invoice->company->payment_terms) ? 
+            Carbon\Carbon::now()->addDays($invoice->company->payment_terms)->format('Y-m-d') :
+            now()->formatLocalized('%A %d %B %Y') 
+            
+            }}<br />
+            <b>Invoice #: </b> {{ $invoice->number() }}
             <br />
         </div>
     </div>
@@ -172,7 +179,9 @@
             </div>
         </div>
         <div class="well">
-            {{ config('invoice_details.footnote') }}
+            {{ isset($invoice->company->payment_terms) ? 
+            ('Terms and Conditions: ' . $invoice->company->payment_terms . ' days from receipt of this invoice.') : 
+            ('Terms and Conditions: Payment due on the day of the receipt of this invoice.') }}
         </div>
     </div>
 

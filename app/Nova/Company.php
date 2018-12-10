@@ -93,6 +93,11 @@ class Company extends Resource
             Text::make('Tax')
                 ->onlyOnForms(),
 
+            Text::make('Payment terms')
+                ->displayUsing(function ($invoice) {
+                    return ($this->payment_terms . ' days');
+                })->hideFromIndex(),
+
             HasMany::make('Contacts')->sortable(),
 
             HasMany::make('Bookings')->sortable(),

@@ -109,7 +109,6 @@ return [
   */
 
   'footnote' => '
-        Terms and Conditions: Payment due 30 days from receipt of invoice.
   ',
 
 ];
