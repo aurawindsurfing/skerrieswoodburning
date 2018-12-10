@@ -13,6 +13,7 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Vyuldashev\NovaMoneyField\Money;
 use Outhebox\NovaHiddenField\HiddenField;
+use Laravel\Nova\Fields\Select;
 
 class Booking extends Resource
 {
@@ -143,6 +144,16 @@ class Booking extends Resource
                     'value' => 115,
                 ]),
 
+            Select::make('Payment Type')
+            ->withMeta([
+                'value' => session('booking.payment_type'),
+            ])->options([
+                'cash' => 'Cash',
+                'invoice' => 'Invoice',
+                'cheque' => 'Cheque',
+            ])->displayUsingLabels()
+            ->hideFromIndex(),
+
             BelongsTo::make('Course')
                 ->searchable()
                 ->exceptOnForms()
@@ -155,38 +166,31 @@ class Booking extends Resource
 
             HasOne::make('Invoice'),
 
-            // BelongsTo::make('Company')
-            //     ->onlyOnForms()
-            //     ->hideWhenUpdating()
-            //     ->withMeta([
-            //         'belongsToId' => session('booking.company_id')
-            //     ])
-            //     ->nullable()
-            //     ->searchable(),
-
             BelongsTo::make('Company')
                 ->exceptOnForms()
                 ->nullable()
                 ->searchable(),
 
-            BelongsTo::make('Contact', 'contact')
+            BelongsTo::make('Contact')
                 ->onlyOnForms()
-                ->hideWhenUpdating()
                 ->hideFromIndex()
+                ->hideWhenUpdating()
+                
                 ->withMeta([
                     'belongsToId' => session('booking.contact_id'),
                 ])
-                ->nullable()
-                ->searchable(),
+                ->displayUsing(function ($contact) {
+                    return ($contact->name . ' - ' . $contact->company->name);
+                })
+                ->nullable(),
 
-            BelongsTo::make('Contact', 'contact')
-            // ->onlyOnForms()
+            BelongsTo::make('Contact')
                 ->hideWhenCreating()
                 ->hideFromIndex()
                 ->nullable()
                 ->searchable(),
 
-            Boolean::make('Confirmation Sent')->hideWhenCreating(),
+            Boolean::make('Confirmation Sent')->exceptOnForms(),
 
             Text::make('PO')
                 ->withMeta([

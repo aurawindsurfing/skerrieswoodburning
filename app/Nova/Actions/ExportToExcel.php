@@ -3,37 +3,51 @@
 namespace App\Nova\Actions;
 
 use Illuminate\Bus\Queueable;
-use Laravel\Nova\Actions\Action;
-use Illuminate\Support\Collection;
-use Laravel\Nova\Fields\ActionFields;
-use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Collection;
+use Laravel\Nova\Actions\Action;
+use Laravel\Nova\Fields\ActionFields;
+use Maatwebsite\Excel\Facades\Excel;
 
-use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
-use Maatwebsite\Excel\Concerns\ShouldAutoSize;
-use Maatwebsite\Excel\Concerns\WithColumnFormatting;
-
-class ExportToExcel extends DownloadExcel implements ShouldAutoSize, WithColumnFormatting
+class ExportToExcel extends Action
 {
-    //  /**
-    //  * Get the displayable name of the action.
-    //  *
-    //  * @return string
-    //  */
-    // public function name()
-    // {
-    //     return ('Download');
-    // }
-
+    use InteractsWithQueue, Queueable, SerializesModels;
 
     /**
+     * Perform the action on the given models.
+     *
+     * @param  \Laravel\Nova\Fields\ActionFields  $fields
+     * @param  \Illuminate\Support\Collection  $models
+     * @return mixed
+     */
+    public function handle(ActionFields $fields, Collection $models)
+    {
+
+        $model = $models->first();
+
+        $path = 'tmp/lists/' . 
+                    str_replace(' ', '_', $model->course_type->name) . '_' . 
+                    $model->date->format('Y-m-d'). '_' . 
+                    str_replace(' ', '_', $model->venue->name) . 
+                    '_attendees.xlsx';
+
+        Excel::store(new \App\Exports\AttendeeExport($model), 'public/' . $path);
+
+        return Action::download(url($path), uniqid() . '.xlsx');
+
+    }
+
+    /**
+     * Get the fields available on the action.
+     *
      * @return array
      */
-    public function columnFormats(): array
+    public function fields()
     {
         return [
-            'C' => "###############"
+
         ];
     }
+
 }

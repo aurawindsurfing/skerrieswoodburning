@@ -235,7 +235,9 @@ class Course extends Resource
     public function actions(Request $request)
     {
         return [
+            (new Actions\ExportToExcel),
             (new Actions\DownloadCourseConfirmationForWholeCourse),
+            
         ];
     }
 }

@@ -23,7 +23,7 @@ class CreateBookingsTable extends Migration
             $table->text('email')->nullable()->default(null);
             $table->boolean('pps')->default(false);
             $table->integer('rate')->unsigned();
-            
+            $table->text('payment_type')->nullable()->default(null);
             $table->integer('course_id')->unsigned();
             $table->integer('company_id')->unsigned()->nullable()->default(null);
             $table->integer('contact_id')->unsigned()->nullable()->default(null);

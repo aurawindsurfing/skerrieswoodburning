@@ -44,7 +44,10 @@ class Contact extends Resource
      *
      * @var string
      */
-    public static $title = 'name';
+    public function title()
+    {
+        return $this->name . ' - ' . $this->company->name;
+    }
 
     /**
      * The columns that should be searched.

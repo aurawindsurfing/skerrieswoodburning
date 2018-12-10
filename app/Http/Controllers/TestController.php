@@ -16,9 +16,9 @@ class TestController extends Controller
 
     public function test()
     {
-        $i = Invoice::find(1444);
+        $i = Booking::take(20)->paginate(5);
 
-        dd($i->number());
+        dd($i);
     }
 
     public function pdftest1()

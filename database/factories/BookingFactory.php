@@ -21,6 +21,7 @@ $factory->define(App\Booking::class, function (Faker $faker) {
         'email' => $faker->randomElement(['tomcentrumpl@gmail.com', 'alec@citltd.ie', 'hank@citltd.ie']),
         'pps' => $faker->boolean,
         'rate' => $faker->randomElement([85,95,100,115]),
+        'payment_type' => $faker->randomElement(['cash', 'invoice', 'cheque']),
         'company_id' => $fake_or_false_company,
         'contact_id' => $fake_or_false_company ? $fake_or_false_company->contacts->first() : null,
         'po' => $faker->optional()->randomNumber,

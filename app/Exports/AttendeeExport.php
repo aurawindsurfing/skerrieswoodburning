@@ -56,6 +56,7 @@ class AttendeeExport implements FromQuery, WithHeadings, WithColumnFormatting, W
                     'phone',
                     'email',
                     'rate',
+                    'payment_type',
                     'invoice_id',
                     'company_id',
                     'contact_id')
@@ -75,6 +76,7 @@ class AttendeeExport implements FromQuery, WithHeadings, WithColumnFormatting, W
             isset($booking->phone) ? $booking->phone : '',
             // isset($booking->email) ? $booking->email : '',
             isset($booking->rate) ? $booking->rate : '',
+            isset($booking->payment_type) ? $booking->payment_type : '',
             isset($booking->invoice->number) ? $booking->invoice->number : '',
             isset($booking->company->name) ? $booking->company->name : '',
             isset($booking->contact->name) ? $booking->contact->name : '',
@@ -96,6 +98,7 @@ class AttendeeExport implements FromQuery, WithHeadings, WithColumnFormatting, W
             'Phone',
             // 'Email',
             'Rate',
+            'Payment Type',
             'Inv',
             'Company',
             'Contact',
@@ -141,14 +144,15 @@ class AttendeeExport implements FromQuery, WithHeadings, WithColumnFormatting, W
                 $event->sheet->getDelegate()->getColumnDimension('D')->setWidth(4); //confirm
                 $event->sheet->getDelegate()->getColumnDimension('E')->setWidth(12); //phone
                 $event->sheet->getDelegate()->getColumnDimension('F')->setWidth(6); //rate
-                $event->sheet->getDelegate()->getColumnDimension('G')->setWidth(7); //invoice
-                $event->sheet->getDelegate()->getColumnDimension('H')->setWidth(25); //company
-                $event->sheet->getDelegate()->getColumnDimension('I')->setWidth(16); //contact
-                $event->sheet->getDelegate()->getColumnDimension('J')->setWidth(16); //notes
+                $event->sheet->getDelegate()->getColumnDimension('G')->setWidth(14); //payment type
+                $event->sheet->getDelegate()->getColumnDimension('H')->setWidth(7); //invoice
+                $event->sheet->getDelegate()->getColumnDimension('I')->setWidth(25); //company
+                $event->sheet->getDelegate()->getColumnDimension('J')->setWidth(16); //contact
+                $event->sheet->getDelegate()->getColumnDimension('K')->setWidth(16); //notes
 
 
 
-                $tableHeaders = ('B7:J7');
+                $tableHeaders = ('B7:K7');
                 $event->sheet->getStyle($tableHeaders)->getFont()->setSize(14);
                 $event->sheet->getStyle($tableHeaders)->getAlignment()->setHorizontal('right');
                 $event->sheet->getStyle($tableHeaders)->applyFromArray(
@@ -178,33 +182,8 @@ class AttendeeExport implements FromQuery, WithHeadings, WithColumnFormatting, W
                 for ($row = 7; $row <= $event->sheet->getHighestRow(); ++$row) {
                     $event->sheet->getRowDimension($row)->setRowHeight(25);
                 }
-
-                
             },
         ];
     }
 }
 
-
-
-
-// $sheet->setOrientation('landscape');
-// $sheet->setPaperSize(1);
-// $sheet->setScale('100');
-// $sheet->setFitToHeight(false);
-// $sheet->setFitToWidth(true);
-// $sheet->setPageMargin(0.25);
-
-// $sheet->setWidth([
-//     'A'     =>  25,
-//     'B'     =>  11,
-//     'C'     =>  11,
-//     'D'     =>  11,
-//     'E'     =>  11,
-//     'F'     =>  11,
-//     'G'     =>  11,
-//     'H'     =>  11,
-//     'I'     =>  40
-// ]);
-
-// $sheet->getStyle('I:I')->getAlignment()->setWrapText(true);
