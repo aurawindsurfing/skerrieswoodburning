@@ -10,22 +10,22 @@ use App\Notifications\CompanyContactConfirmation;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\BookingImport;
 use Carbon\Carbon;
+use App\Contact;
 
 class TestController extends Controller
 {
 
     public function test()
     {
-        $company_bookings = Booking::query()
-        ->whereNotNull('contact_id')
-        ->where('company_contact_notified', false)
-        ->where('updated_at', '<', Carbon::now()->subMinutes(5)->toDateTimeString())
-        ->get();
+        $company_contacts = Contact::whereCompanyId(11)->get();
 
-        $company_bookings = $company_bookings->groupBy('contact_id');
+        foreach ($company_contacts as $contact) {
+            $contact = ($contact->accounts_payable == 1) ? $contact : false;
+        }
 
-        dd($company_bookings);
+        $contact = $contact ?: $company_contacts->first();
 
+        dd($contact);
 
     }
 

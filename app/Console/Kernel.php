@@ -18,6 +18,7 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\EmailAttendeeList::class,
         \App\Console\Commands\CheckForMissingPPS::class,
         \App\Console\Commands\Import::class,
+        \App\Console\Commands\InvoicePaymentReminder::class,
     ];
 
     /**
@@ -31,6 +32,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('notify:newbookings_student')->timezone('Europe/Dublin')->everyMinute();
         $schedule->command('notify:newbookings_company')->timezone('Europe/Dublin')->everyFiveMinutes();
         $schedule->command('notify:attendeelist')->timezone('Europe/Dublin')->twiceDaily(6, 14);
+        $schedule->command('notify:invoice_reminder')->timezone('Europe/Dublin')->weekly()->mondays()->at('10:00');
     }
 
     /**
