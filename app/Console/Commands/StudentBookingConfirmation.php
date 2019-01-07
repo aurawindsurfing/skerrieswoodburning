@@ -52,16 +52,6 @@ class StudentBookingConfirmation extends Command
 
             foreach ($student_bookings as $booking) {
                 $booking->notify(new Confirmation($booking));
-
-                $notification_log = NotificationLog::create([
-                    'booking_id' => $booking->id,
-                    'type' => 'student',
-                    'confirmation_sent' => now()
-                ]);
-
-                $booking->update(['student_notified' => true]);
-                error_log('Notified student from booking id: ' . $booking->id);
-
             }
 
         error_log('Send all student notifications');

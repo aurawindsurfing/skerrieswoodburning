@@ -7,6 +7,8 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\NexmoMessage;
+use Illuminate\View\View;
+use App\NotificationLog;
 
 class CompanyContactConfirmation extends Notification
 {
@@ -21,7 +23,7 @@ class CompanyContactConfirmation extends Notification
      */
     public function __construct($data)
     {
-        $this->bookings = $data['bookings'];
+        $this->bookings = $data;
     }
 
     /**
@@ -43,20 +45,30 @@ class CompanyContactConfirmation extends Notification
      */
     public function toNexmo($notifiable)
     {
+        $message = (isset($notifiable->contact) ? $notifiable->contact->name : '') 
+                    . ', this text is to confirm that we booked '
+                    . (!isset($notifiable->name) ?: $notifiable->name)  .' '. (!isset($notifiable->surname) ?: $notifiable->surname) . ' for: '
+                    . $notifiable->course->course_type->name . ' course at: '
+                    . $notifiable->course->venue->name . ' on: '
+                    . $notifiable->course->date->format('Y-m-d H:m')
+                    . '. Thank you. CIT';
+
+        foreach ($this->bookings as $booking) {
+            $this->updateNotificationLog('sms booking confirmation', $booking, $message);
+        }
+
         return (new NexmoMessage)
-            ->content(
-                (isset($notifiable->contact) ? $notifiable->contact->name : '') 
-                . ', this text is to confirm that we booked '
-                . (!isset($notifiable->name) ?: $notifiable->name)  .' '. (!isset($notifiable->surname) ?: $notifiable->surname) . ' for: '
-                . $notifiable->course->course_type->name . ' course at: '
-                . $notifiable->course->venue->name . ' on: '
-                . $notifiable->course->date->format('Y-m-d H:m')
-                . '. Thank you. CIT'
-            );
+            ->content($message);
     }
 
     public function toMail($notifiable)
     {
+        $message = view('emails.companyconfirmation', ['bookings' => $this->bookings])->render();
+
+        foreach ($this->bookings as $booking) {
+            $this->updateNotificationLog('email booking confirmation', $booking, $message);
+        }
+
         return (new MailMessage)
             ->subject('Company Bookings Confirmation')
             ->from('alec@citltd.ie')
@@ -76,5 +88,19 @@ class CompanyContactConfirmation extends Notification
         return [
             //
         ];
+    }
+
+    public function updateNotificationLog($type, $booking, $message)
+    {
+        $notification_log = NotificationLog::create([
+            'booking_id' => $booking->id,
+            'subject' => 'company_contact',
+            'type' => $type,
+            'message' => $message,
+            'confirmation_sent' => now(),
+        ]);
+
+        $booking->update(['company_contact_notified' => true]);
+        error_log('Notified company contact from booking id: ' . $booking->id);
     }
 }

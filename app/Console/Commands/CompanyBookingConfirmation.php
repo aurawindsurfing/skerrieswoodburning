@@ -59,17 +59,6 @@ class CompanyBookingConfirmation extends Command
 
             $contact->notify(new CompanyContactConfirmation($bookings));
 
-            foreach ($bookings as $booking) {
-                $notification_log = NotificationLog::create([
-                    'booking_id' => $booking->id,
-                    'type' => 'company_contact',
-                    'confirmation_sent' => now(),
-                ]);
-
-                $booking->update(['company_contact_notified' => true]);
-                error_log('Notified company contact from booking id: ' . $booking->id);
-            }
-
         };
 
         error_log('Send all company notifications');

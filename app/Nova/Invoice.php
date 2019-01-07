@@ -93,7 +93,7 @@ class Invoice extends Resource
 
             Text::make('Due Date', 'payment_terms')
                 ->displayUsing(function ($invoice) {
-                    return (($this->date)->addDays($this->company->payment_terms)->format('Y-m-d'));
+                    return (($this->date)->addDays($this->payment_terms)->format('Y-m-d'));
                 })->onlyOnDetail(),
 
             Money::make('Total', 'EUR'),

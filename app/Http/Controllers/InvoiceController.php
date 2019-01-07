@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Invoice;
+use App\Company;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -154,7 +155,7 @@ class InvoiceController extends Controller
 
             if (!is_null($bookings) && $bookings->isNotEmpty()) {
                 foreach ($bookings as $company_bookings) {
-                    $invoice = $this->createMultipleBookingsInvoice($company_bookings);
+                    $invoice = $this->createCompanyInvoice($company_bookings);
                     
                     if ($markAsPaid) {
                         foreach($company_bookings as $booking){
@@ -176,7 +177,7 @@ class InvoiceController extends Controller
 
             if (!is_null($bookings_without_company) && $bookings_without_company->isNotEmpty()) {
                 foreach ($bookings_without_company as $booking) {
-                    $invoice = $this->createSingleBookingInvoice($booking);
+                    $invoice = $this->createNonCompanyInvoice($booking);
 
                     if ($markAsPaid) {
                         $payment = \App\Payment::create([
@@ -198,18 +199,21 @@ class InvoiceController extends Controller
 
 
     /**
-     * createMultipleBookingsInvoice
+     * createCompanyInvoice
      *
      * @param mixed $bookings
      * @return void
      */
-    public function createMultipleBookingsInvoice($bookings)
+    public function createCompanyInvoice($bookings)
     {
+
+        isset($bookings->first()->company_id) ? ($company_id = $bookings->first()->company_id) : ($company_id = null);
         
         $invoice = Invoice::create([
                 'prefix' => 'N-',
                 'date' => Carbon::now(),
-                'company_id' => isset($bookings->first()->company_id) ?: null,
+                'company_id' => $company_id,
+                'payment_terms' => $company_id ? (Company::find($company_id)->payment_terms) : 0,
                 'status' => 'unpaid',
                 'user_id' => $this->user_id ?? auth()->user()->id,
             ]);
@@ -227,18 +231,19 @@ class InvoiceController extends Controller
 
 
     /**
-     * createSingleBookingInvoice
+     * createNonCompanyInvoice
      *
      * @param mixed $booking
      * @return void
      */
-    public function createSingleBookingInvoice($booking)
+    public function createNonCompanyInvoice($booking)
     {
 
         $invoice = Invoice::create([
                 'prefix' => 'N-',
                 'date' => Carbon::now(),
                 'company_id' => null,
+                'payment_terms' => 0,
                 'status' => 'unpaid',
                 'user_id' => $this->user_id ?? auth()->user()->id,
             ]);

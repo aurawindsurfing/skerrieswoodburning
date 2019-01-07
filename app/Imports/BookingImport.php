@@ -109,6 +109,8 @@ class BookingImport implements ToCollection, WithHeadingRow
                     'contact_id' => !empty($contact) ? $contact->id : null,
                     'po' => $row['po'],
                     'invoice_id' => !empty($row['invoice']) ? $invoice->id : null,
+                    'student_notified' => true,
+                    'company_contact_notified' => true, 
                     'confirmation_sent' => $course->date,
                     'reminder_sent' => $course->date,
                     'pps_reminder_sent' => $course->date,

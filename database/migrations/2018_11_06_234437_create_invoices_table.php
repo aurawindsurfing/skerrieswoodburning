@@ -19,7 +19,7 @@ class CreateInvoicesTable extends Migration
             $table->integer('number')->unsigned()->nullable()->default(null);
             $table->integer('company_id')->unsigned()->nullable()->default(null);
             $table->date('date');
-            $table->integer('payment_terms')->unsigned()->nullable()->default(30);
+            $table->integer('payment_terms')->unsigned()->nullable()->default(0);
             $table->double('total', 8, 2)->nullable();
             $table->text('status');
             $table->integer('user_id')->unsigned();

@@ -41,16 +41,23 @@ class MissingPPSConfirmation extends Notification
      */
     public function toNexmo($notifiable)
     {
+
+        $message = (isset($notifiable->name) ? $notifiable->name . ', we' : 'We' ) . ' are missing your PPS number. It is required to take part in  ' . 
+                    $notifiable->course->course_type->name . ' course. ' .
+                    ' Please call CIT at 018097266 and provide it asap.';
+
+        $this->updateNotificationLog('sms pps reminder', $notifiable, $message);
+
         return (new NexmoMessage)
-                    ->content(
-                        (isset($notifiable->name) ? $notifiable->name . ', we' : 'We' ) . ' are missing your PPS number. It is required to take part in  ' . 
-                        $notifiable->course->course_type->name . ' course. ' .
-                        ' Please call CIT at 018097266 and provide it asap.'
-                    );
+                    ->content($message);
     }
 
     public function toMail($notifiable)
     {
+        $message = view('emails.missingPPS', compact('notifiable'))->render();
+
+        $this->updateNotificationLog('email pps reminder', $notifiable, $message);
+
         return (new MailMessage)
             ->subject('We are missing your PPS number')
             ->from('alec@citltd.ie')
@@ -70,5 +77,19 @@ class MissingPPSConfirmation extends Notification
         return [
             //
         ];
+    }
+
+    public function updateNotificationLog($type, $booking, $message)
+    {
+        $notification_log = NotificationLog::create([
+            'booking_id' => $booking->id,
+            'subject' => 'company_contact',
+            'type' => $type,
+            'message' => $message,
+            'confirmation_sent' => now(),
+        ]);
+
+        $booking->update(['company_contact_notified' => true]);
+        error_log('Notified company contact from booking id: ' . $booking->id);
     }
 }

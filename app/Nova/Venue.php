@@ -79,7 +79,7 @@ class Venue extends Resource
             
             Text::make('Phone')->rules('max:254')->hideFromIndex(),
             
-            Markdown::make('Directions')->hideFromIndex(),
+            Markdown::make('Directions')->hideFromIndex()->alwaysShow(),
 
             Url::make('Google Maps')->hideFromIndex()->rules('url')->clickable(),
             

@@ -17,16 +17,14 @@ class TestController extends Controller
     public function test()
     {
         $company_bookings = Booking::query()
-            ->whereNotNull('contact_id')
-            ->where('company_contact_notified', true)
-            // ->where('updated_at', '<', Carbon::now()->subMinutes(2)->toDateTimeString())
-            ->get();
+        ->whereNotNull('contact_id')
+        ->where('company_contact_notified', false)
+        ->where('updated_at', '<', Carbon::now()->subMinutes(5)->toDateTimeString())
+        ->get();
 
-            $company_bookings = $company_bookings->groupBy('contact_id');
+        $company_bookings = $company_bookings->groupBy('contact_id');
 
-            $bookings = $company_bookings[72];
-
-            return view('emails.companyconfirmation', compact('bookings'));
+        dd($company_bookings);
 
 
     }

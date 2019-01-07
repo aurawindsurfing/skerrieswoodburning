@@ -91,36 +91,44 @@ class CourseType extends Resource
 
             Textarea::make('Objectives')
                 ->rows(5)
-                ->hideFromIndex(),
+                ->hideFromIndex()
+                ->alwaysShow(),
 
             Textarea::make('Who should attend', 'who_should_attend')
                 ->rows(5)
-                ->hideFromIndex(),
+                ->hideFromIndex()
+                ->alwaysShow(),
 
             Textarea::make('Delegates')
                 ->rows(5)
-                ->hideFromIndex(),
+                ->hideFromIndex()
+                ->alwaysShow(),
 
             Markdown::make('Outline')
-                ->hideFromIndex(),
+                ->hideFromIndex()
+                ->alwaysShow(),
 
             Textarea::make('Duration')
                 ->rows(5)
-                ->hideFromIndex(),
+                ->hideFromIndex()
+                ->alwaysShow(),
 
             Textarea::make('Certification')
                 ->rows(5)
-                ->hideFromIndex(),
+                ->hideFromIndex()
+                ->alwaysShow(),
 
             Textarea::make('What to bring', 'what_to_bring')
                 ->rows(5)
-                ->hideFromIndex(),
+                ->hideFromIndex()
+                ->alwaysShow(),
 
             TimeField::make('Start Time'),
 
             Textarea::make('Plan of the day', 'plan_of_the_day')
                 ->rows(5)
-                ->hideFromIndex(),
+                ->hideFromIndex()
+                ->alwaysShow(),
 
             Number::make('Valid for years', 'valid_for_years'),
 

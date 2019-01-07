@@ -3,23 +3,45 @@
 namespace App\Nova;
 
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Trix;
+use Laravel\Nova\Fields\DateTime;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Vyuldashev\NovaMoneyField\Money;
-use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\HasOne;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Select;
-use Inspheric\Fields\Indicator;
 
-class Payment extends Resource
+
+class NotificationLog extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\Payment';
+    public static $model = 'App\NotificationLog';
+
+    /**
+     * $displayInNavigation
+     *
+     * @var boolean
+     */
+    public static $displayInNavigation = false;
+
+    /**
+     * $group
+     *
+     * @var string
+     */
+    public static $group = "Customers";
+
+    public static $group_index = 200;
+
+    /**
+     * label
+     *
+     * @return void
+     */
+    public static function label() { return 'Notifications'; }
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -36,25 +58,6 @@ class Payment extends Resource
     public static $search = [];
 
     /**
-     * $group
-     *
-     * @var string
-     */
-    public static $group = "Accounting";
-
-    public static $group_index = 300;
-
-    /**
-     * softDeletes
-     *
-     * @return void
-     */
-    public static function softDeletes()
-    {
-        return false;
-    }
-
-    /**
      * Get the fields displayed by the resource.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -63,28 +66,15 @@ class Payment extends Resource
     public function fields(Request $request)
     {
         return [
+            ID::make()->sortable(),
 
-            Money::make('Amount', 'EUR')->rules('required'),
+            BelongsTo::make('Booking')->sortable(),
 
-            Select::make('Payment Method')->options([
-                'cc' => 'CC',
-                'eft' => 'EFT',
-                'cash' => 'Cash',
-                'cheque' => 'Cheque',
-            ])->displayUsingLabels()
-              ->rules('required'),
+            Text::make('Type'),
 
-            Indicator::make('Status')
-             ->labels([
-                    'completed' => 'Completed',
-                    'cancelled' => 'Cancelled',
-            ])->colors([
-                'completed' => 'green',
-                'cancelled' => 'grey',
-            ])->exceptOnForms(),
+            Trix::make('Message')->alwaysShow(),
 
-            BelongsTo::make('Invoice')
-                ->searchable(),
+            DateTime::make('Confirmation Sent')
 
         ];
     }

@@ -5,6 +5,7 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\DateTime;
@@ -190,7 +191,9 @@ class Booking extends Resource
                 ->nullable()
                 ->searchable(),
 
-            Boolean::make('Confirmation Sent')->exceptOnForms(),
+            Boolean::make('Student Notified')->exceptOnForms(),
+
+            Boolean::make('Company Contact Notified')->exceptOnForms(),
 
             Text::make('PO')
                 ->withMeta([
@@ -217,6 +220,8 @@ class Booking extends Resource
             HiddenField::make('Date', 'date')
                 ->onlyOnForms()
                 ->default(now()),
+
+            HasMany::make('Notification Log')->sortable(),
 
         ];
     }
