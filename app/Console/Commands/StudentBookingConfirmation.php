@@ -8,15 +8,16 @@ use Carbon\Carbon;
 use App\Notifications\Confirmation;
 use App\Notifications\MissingPPSConfirmation;
 use App\Notifications\CompanyContactConfirmation;
+use App\NotificationLog;
 
-class BookingConfirmation extends Command
+class StudentBookingConfirmation extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'notify:newbookings';
+    protected $signature = 'notify:newbookings_student';
 
     /**
      * The console command description.
@@ -42,21 +43,27 @@ class BookingConfirmation extends Command
      */
     public function handle()
     {
-        $bookings = Booking::query()
-            ->where('confirmation_sent', null)
+        $student_bookings = Booking::query()
+            ->where('student_notified', false)
             // ->where('updated_at', '<', Carbon::now()->subMinutes(2)->toDateTimeString())
             ->get();
 
-        error_log('Trying to send ' . $bookings->count() . ' confirmations');
+        error_log('Trying to notify ' . $student_bookings->count() . ' students');
 
-        foreach ($bookings as $booking) {
-            $booking->notify(new Confirmation($booking));
-            $booking->notify(new CompanyContactConfirmation($booking));
+            foreach ($student_bookings as $booking) {
+                $booking->notify(new Confirmation($booking));
 
-            $booking->update(['confirmation_sent' => now()]);
-            error_log('Send booking id:' . $booking->id . ' confirmation');
-        }
+                $notification_log = NotificationLog::create([
+                    'booking_id' => $booking->id,
+                    'type' => 'student',
+                    'confirmation_sent' => now()
+                ]);
 
-        error_log('Send all confirmations');
+                $booking->update(['student_notified' => true]);
+                error_log('Notified student from booking id: ' . $booking->id);
+
+            }
+
+        error_log('Send all student notifications');
     }
 }

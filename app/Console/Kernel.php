@@ -17,7 +17,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        BookingConfirmation::class,
+        CompanyBookingConfirmation::class,
+        StudentBookingConfirmation::class,
         EmailAttendeeList::class,
         CheckForMissingPPS::class,
         Import::class,
@@ -31,7 +32,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('notify:newbookings')->timezone('Europe/Dublin')->everyMinute();
+        $schedule->command('notify:newbookings_student')->timezone('Europe/Dublin')->everyMinute();
+        $schedule->command('notify:newbookings_company')->timezone('Europe/Dublin')->everyFiveMinutes();
         $schedule->command('notify:attendeelist')->timezone('Europe/Dublin')->twiceDaily(6, 14);
     }
 

@@ -16,9 +16,15 @@ class TestController extends Controller
 
     public function test()
     {
-        $i = Booking::take(20)->paginate(5);
+        $company_bookings = Booking::query()
+            ->whereNotNull('contact_id')
+            ->where('company_contact_notified', true)
+            // ->where('updated_at', '<', Carbon::now()->subMinutes(2)->toDateTimeString())
+            ->get();
 
-        dd($i);
+            $company_bookings = $company_bookings->groupBy('contact_id');
+
+            dd($company_bookings);
     }
 
     public function pdftest1()
