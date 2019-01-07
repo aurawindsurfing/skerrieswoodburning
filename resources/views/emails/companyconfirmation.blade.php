@@ -11,15 +11,25 @@
         
     @include('emails.partials.header')
 
-    <div class="container ml-6 mt-12 max-w-sm">
+    <div class="container ml-6 max-w-sm">
+        {{ isset($bookings->first->company->contact->name) ? $bookings->first->company->contact->name . ', thank you for your booking. ' : 'Thank you for your booking. '}}<br><br>
+        BOOKING DETAILS:<br><br>
+    </div>
 
-        {{ isset($booking->contact->name) ? $booking->contact->name . ', thank you for your booking. ' : 'Thank you for your booking. '}}<br><br>
-        BOOKING DETAILS:<br>
-        Course: {{ $booking->course->course_type->name }}<br>
-        Candidate: {{ !isset($booking->name) ?: $booking->name  .' '. !isset($booking->surname) ?: $booking->surname }}<br>
-        Venue: {{ $booking->course->venue->name }} <br>
-        Date: {{ $booking->course->date->format('Y-m-d H:m') }} <br><br>
-        We will text you exact directions one day before the course.<br>
+    @foreach ($bookings as $booking)
+
+        <div class="container ml-6 max-w-sm">
+            Course: {{ $booking->course->course_type->name }}<br>
+            Candidate: {{ !isset($booking->name) ?: $booking->name  .' '. !isset($booking->surname) ?: $booking->surname }}<br>
+            Venue: {{ $booking->course->venue->name }} <br>
+            Date: {{ $booking->course->date->format('Y-m-d H:m') }}<br><br>
+        </div>
+
+    @endforeach
+
+    <div class="container ml-6 max-w-sm">
+        <br>
+            We will text you exact directions one day before the course.<br>
         <br>
     </div>
 

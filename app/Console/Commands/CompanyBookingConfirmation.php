@@ -2,13 +2,12 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Booking;
-use Carbon\Carbon;
-use App\Notifications\Confirmation;
-use App\Notifications\MissingPPSConfirmation;
-use App\Notifications\CompanyContactConfirmation;
+use App\Contact;
 use App\NotificationLog;
+use App\Notifications\CompanyContactConfirmation;
+use Carbon\Carbon;
+use Illuminate\Console\Command;
 
 class CompanyBookingConfirmation extends Command
 {
@@ -24,7 +23,7 @@ class CompanyBookingConfirmation extends Command
      *
      * @var string
      */
-    protected $description = 'Send confirmations to new bookings';
+    protected $description = 'Send new bookings to company contact';
 
     /**
      * Create a new command instance.
@@ -46,29 +45,32 @@ class CompanyBookingConfirmation extends Command
 
         $company_bookings = Booking::query()
             ->whereNotNull('contact_id')
-            ->where('company_contact_notified', true)
-            // ->where('updated_at', '<', Carbon::now()->subMinutes(2)->toDateTimeString())
+            ->where('company_contact_notified', false)
+            ->where('updated_at', '<', Carbon::now()->subMinutes(5)->toDateTimeString())
             ->get();
 
         $company_bookings = $company_bookings->groupBy('contact_id');
 
         error_log('Trying to notify ' . $company_bookings->count() . ' company contacts');
 
-            foreach ($company_bookings as $contact_bookings) {
+        foreach ($company_bookings as $contact_id => $bookings) {
 
-                // notify contact a nie booking w tym wypadku
-                $booking->notify(new CompanyContactConfirmation($booking));
+            $contact = Contact::find($contact_id);
 
+            $contact->notify(new CompanyContactConfirmation($bookings));
+
+            foreach ($bookings as $booking) {
                 $notification_log = NotificationLog::create([
                     'booking_id' => $booking->id,
                     'type' => 'company_contact',
-                    'confirmation_sent' => now()
+                    'confirmation_sent' => now(),
                 ]);
 
                 $booking->update(['company_contact_notified' => true]);
                 error_log('Notified company contact from booking id: ' . $booking->id);
-
             }
+
+        };
 
         error_log('Send all company notifications');
     }

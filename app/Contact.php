@@ -5,11 +5,11 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Illuminate\Notifications\Notifiable;
 
 class Contact extends Model
 {
-    use SoftDeletes;
-    use LogsActivity;
+    use SoftDeletes, LogsActivity, Notifiable;
 
     protected $guarded = [];
 

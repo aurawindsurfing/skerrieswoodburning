@@ -4,10 +4,6 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use App\Console\Commands\BookingConfirmation;
-use App\Console\Commands\EmailAttendeeList;
-use App\Console\Commands\CheckForMissingPPS;
-use App\Console\Commands\Import;
 
 class Kernel extends ConsoleKernel
 {
@@ -17,11 +13,11 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        CompanyBookingConfirmation::class,
-        StudentBookingConfirmation::class,
-        EmailAttendeeList::class,
-        CheckForMissingPPS::class,
-        Import::class,
+        \App\Console\Commands\CompanyBookingConfirmation::class,
+        \App\Console\Commands\StudentBookingConfirmation::class,
+        \App\Console\Commands\EmailAttendeeList::class,
+        \App\Console\Commands\CheckForMissingPPS::class,
+        \App\Console\Commands\Import::class,
     ];
 
     /**

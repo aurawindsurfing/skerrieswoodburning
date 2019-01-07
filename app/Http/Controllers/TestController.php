@@ -24,7 +24,11 @@ class TestController extends Controller
 
             $company_bookings = $company_bookings->groupBy('contact_id');
 
-            dd($company_bookings);
+            $bookings = $company_bookings[72];
+
+            return view('emails.companyconfirmation', compact('bookings'));
+
+
     }
 
     public function pdftest1()

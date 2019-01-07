@@ -21,7 +21,7 @@ class CompanyContactConfirmation extends Notification
      */
     public function __construct($data)
     {
-        $this->booking = $data['booking'];
+        $this->bookings = $data['bookings'];
     }
 
     /**
@@ -58,10 +58,10 @@ class CompanyContactConfirmation extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('Company Booking Confirmation')
+            ->subject('Company Bookings Confirmation')
             ->from('alec@citltd.ie')
             ->view(
-                'emails.companyconfirmation', ['booking' => $notifiable]
+                'emails.companyconfirmation', ['bookings' => $this->bookings]
             );
     }
 

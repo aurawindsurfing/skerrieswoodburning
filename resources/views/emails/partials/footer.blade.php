@@ -1,5 +1,6 @@
-<div class="container ml-6 mt-12 max-w-sm">
+<div class="container ml-6 max-w-sm">
 
+    <br><br>
     {{ $slot }} 
     <div>Construction Industry Training Ltd</div>
     <div>Unit 10, Block 8</div>
