@@ -6,6 +6,9 @@ use Illuminate\Console\Command;
 use App\Invoice;
 use App\Contact;
 use App\Notifications\CompanyInvoiceReminder;
+use App\Mail\CompanyInvoicePaymentReminder;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class InvoicePaymentReminder extends Command
 {
@@ -59,10 +62,20 @@ class InvoicePaymentReminder extends Command
 
             $contact = $contact ?: $company_contacts->first();
 
-            $contact->notify(new CompanyInvoiceReminder($invoices));
+            $invoiceController = new \App\Http\Controllers\InvoiceController();
+            $path = $invoiceController->makePDF($invoices);
+
+            $data = [
+                'invoices' => $invoices,
+                'path' => $path,
+            ];
+
+            Mail::to($contact->email)
+            // ->cc('alec@citltd.ie')
+            ->send(new CompanyInvoicePaymentReminder($data));
 
         };
 
-    error_log('Send all company notifications');
+        error_log('Send all company notifications');
     }
 }

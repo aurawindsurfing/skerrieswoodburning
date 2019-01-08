@@ -1,47 +1,44 @@
 <?php
 
-namespace App\Notifications;
+namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
+use Illuminate\Mail\Mailable;
+use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 use App\NotificationLog;
 
-class CompanyInvoiceReminder extends Notification
+class CompanyInvoicePaymentReminder extends Mailable
 {
-    use Queueable;
+    use Queueable, SerializesModels;
 
-    protected $invoices;
+    
+    /**
+     * $data
+     *
+     * @var Array
+     */
+    public $path;
+
+    public $invoices;
 
     /**
-     * Create a new notification instance.
+     * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($invoices)
+    public function __construct($data)
     {
-        $this->invoices = $invoices;
+        $this->path = $data['path'];
+        $this->invoices = $data['invoices'];
     }
 
     /**
-     * Get the notification's delivery channels.
+     * Build the message.
      *
-     * @param  mixed  $notifiable
-     * @return array
+     * @return $this
      */
-    public function via($notifiable)
-    {
-        return ['mail'];
-    }
-
-    /**
-     * Get the mail representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
-     */
-    public function toMail($notifiable)
+    public function build()
     {
         $message = view('emails.company_invoice_reminder', ['invoices' => $this->invoices])->render();
 
@@ -51,19 +48,11 @@ class CompanyInvoiceReminder extends Notification
 
         error_log('Notified company about ' . $this->invoices->count() . ' unpaid invoices');
 
-        //
-        //
-        //
-        //
-        
-        // $path = $this->makePDF($inv);
-
-
-        return (new MailMessage)
+        return $this->from('alec@citltd.ie')
             ->subject('Invoice Payment Reminder')
-            ->from('alec@citltd.ie')
-            // ->attach(url($this->data['path']))
+            ->attach(url($this->path))
             ->view('emails.company_invoice_reminder', ['invoices' => $this->invoices]);
+
     }
 
 

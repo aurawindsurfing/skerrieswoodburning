@@ -17,13 +17,7 @@ class TestController extends Controller
 
     public function test()
     {
-        $invoices = Invoice::whereCompanyId(11)->get();
-
-        // $invoice = Invoice::find(58);
-
-        // dd($invoices->first()->company->accounts_payable->first()->name);
-
-        return view('emails.company_invoice_reminder', compact('invoices'));
+        dd(storage_path('vendor/bin'));
 
     }
 
