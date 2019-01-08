@@ -17,7 +17,15 @@ class TestController extends Controller
 
     public function test()
     {
-        dd(storage_path('vendor/bin'));
+        $invoices = \Illuminate\Support\Facades\Storage::files('public/tmp/invoices');
+        $confirmations = \Illuminate\Support\Facades\Storage::files('public/tmp/confirmations');
+        $lists = \Illuminate\Support\Facades\Storage::files('public/tmp/lists');
+
+        $files = array_merge($invoices, $confirmations, $lists);
+
+        \Illuminate\Support\Facades\Storage::delete($files);
+
+        // dd($files);
 
     }
 
