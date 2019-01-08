@@ -6,19 +6,22 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use App\NotificationLog;
 
 class CompanyInvoiceReminder extends Notification
 {
     use Queueable;
+
+    protected $invoices;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($invoices)
     {
-        //
+        $this->invoices = $invoices;
     }
 
     /**
@@ -40,22 +43,38 @@ class CompanyInvoiceReminder extends Notification
      */
     public function toMail($notifiable)
     {
+        $message = view('emails.company_invoice_reminder', ['invoices' => $this->invoices])->render();
+
+        foreach ($this->invoices as $unpaid_invoice) {
+            $this->updateNotificationLog('company unpaid invoices 7 days reminder', $unpaid_invoice, $message);
+        }
+
+        error_log('Notified company about ' . $this->invoices->count() . ' unpaid invoices');
+
+        //
+        //
+        //
+        //
+        
+        // $path = $this->makePDF($inv);
+
+
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->subject('Invoice Payment Reminder')
+            ->from('alec@citltd.ie')
+            // ->attach(url($this->data['path']))
+            ->view('emails.company_invoice_reminder', ['invoices' => $this->invoices]);
     }
 
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
-    public function toArray($notifiable)
+
+    public function updateNotificationLog($type, $unpaid_invoice, $message)
     {
-        return [
-            //
-        ];
+        $notification_log = NotificationLog::create([
+            'invoice_id' => $unpaid_invoice->id,
+            'subject' => 'accounts payable',
+            'type' => $type,
+            'message' => $message,
+            'confirmation_sent' => now(),
+        ]);
     }
 }

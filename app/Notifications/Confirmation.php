@@ -64,9 +64,7 @@ class Confirmation extends Notification
         return (new MailMessage)
             ->subject('Booking Confirmation')
             ->from('alec@citltd.ie')
-            ->view(
-                'emails.confirmation', compact('notifiable')
-            );
+            ->view('emails.confirmation', compact('notifiable'));
     }
 
     /**

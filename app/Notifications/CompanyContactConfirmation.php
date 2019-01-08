@@ -70,11 +70,9 @@ class CompanyContactConfirmation extends Notification
         }
 
         return (new MailMessage)
-            ->subject('Company Bookings Confirmation')
+            ->subject('Booking Confirmation')
             ->from('alec@citltd.ie')
-            ->view(
-                'emails.companyconfirmation', ['bookings' => $this->bookings]
-            );
+            ->view('emails.companyconfirmation', ['bookings' => $this->bookings]);
     }
 
     /**

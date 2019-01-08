@@ -130,7 +130,9 @@ class Invoice extends Resource
 
             HasMany::make('Payments'),
 
-            HasMany::make('Bookings')
+            HasMany::make('Bookings'),
+
+            HasMany::make('Notification Log')->sortable(),
 
         ];
     }

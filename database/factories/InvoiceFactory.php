@@ -13,7 +13,7 @@ $factory->define(App\Invoice::class, function (Faker $faker) {
         'date' => $booking->date,
         'company_id' => $company,
         'total' => $booking->rate,
-        'status' => $faker->randomElement(['paid','unpaid']),
+        'status' => $faker->randomElement(['paid']),
         'user_id' => $user, 
     ];
 });

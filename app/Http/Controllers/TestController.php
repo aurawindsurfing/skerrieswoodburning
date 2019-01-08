@@ -17,15 +17,13 @@ class TestController extends Controller
 
     public function test()
     {
-        $company_contacts = Contact::whereCompanyId(11)->get();
+        $invoices = Invoice::whereCompanyId(11)->get();
 
-        foreach ($company_contacts as $contact) {
-            $contact = ($contact->accounts_payable == 1) ? $contact : false;
-        }
+        // $invoice = Invoice::find(58);
 
-        $contact = $contact ?: $company_contacts->first();
+        // dd($invoices->first()->company->accounts_payable->first()->name);
 
-        dd($contact);
+        return view('emails.company_invoice_reminder', compact('invoices'));
 
     }
 

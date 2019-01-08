@@ -14,7 +14,7 @@ class InvoicePaymentReminder extends Command
      *
      * @var string
      */
-    protected $signature = 'notify:invoice_reminder';
+    protected $signature = 'notify:unpaid_invoices';
 
     /**
      * The console command description.
@@ -45,11 +45,11 @@ class InvoicePaymentReminder extends Command
             ->whereStatus('unpaid')
             ->get();
 
-        $unpaid_invoices = $unpaid_invoices->groupBy('company_id');
+        $unpaid_invoices_grouped_by_company = $unpaid_invoices->groupBy('company_id');
 
-        error_log('Trying to notify ' . $company_bookings->count() . ' company contacts');
+        error_log('Trying to notify ' . $unpaid_invoices_grouped_by_company->count() . ' companies about unpaid invoices');
 
-        foreach ($unpaid_invoices as $company_id => $invoices) {
+        foreach ($unpaid_invoices_grouped_by_company as $company_id => $invoices) {
 
             $company_contacts = Contact::whereCompanyId($company_id)->get();
 
@@ -59,7 +59,7 @@ class InvoicePaymentReminder extends Command
 
             $contact = $contact ?: $company_contacts->first();
 
-            $contact->notify(new CompanyInvoiceReminder($bookings));
+            $contact->notify(new CompanyInvoiceReminder($invoices));
 
         };
 

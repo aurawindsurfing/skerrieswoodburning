@@ -61,9 +61,7 @@ class MissingPPSConfirmation extends Notification
         return (new MailMessage)
             ->subject('We are missing your PPS number')
             ->from('alec@citltd.ie')
-            ->view(
-                'emails.missingPPS', compact('notifiable')
-            );
+            ->view('emails.missingPPS', compact('notifiable'));
     }
 
     /**

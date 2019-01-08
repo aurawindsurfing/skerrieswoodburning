@@ -43,6 +43,11 @@ class Invoice extends Model
     {
         return $this->hasMany('App\Booking');
     }
+
+    public function notification_log()
+    {
+        return $this->hasMany('App\NotificationLog');
+    }
     
     public function totalForInvoice()
     {

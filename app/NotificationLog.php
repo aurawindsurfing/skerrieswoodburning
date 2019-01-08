@@ -19,4 +19,9 @@ class NotificationLog extends Model
     {
         return $this->belongsTo('App\Booking');
     }
+
+    public function invoice()
+    {
+        return $this->belongsTo('App\Invoice');
+    }
 }

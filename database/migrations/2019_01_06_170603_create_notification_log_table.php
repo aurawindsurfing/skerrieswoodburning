@@ -15,7 +15,8 @@ class CreateNotificationLogTable extends Migration
     {
         Schema::create('notification_log', function (Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('booking_id');
+            $table->bigInteger('booking_id')->nullable()->default(null);
+            $table->bigInteger('invoice_id')->nullable()->default(null);
             $table->text('subject');
             $table->text('type');
             $table->text('message');
