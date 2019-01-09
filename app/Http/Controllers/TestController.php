@@ -11,21 +11,17 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\BookingImport;
 use Carbon\Carbon;
 use App\Contact;
+use Nexmo;
 
 class TestController extends Controller
 {
 
     public function test()
     {
-        $invoices = \Illuminate\Support\Facades\Storage::files('public/tmp/invoices');
-        $confirmations = \Illuminate\Support\Facades\Storage::files('public/tmp/confirmations');
-        $lists = \Illuminate\Support\Facades\Storage::files('public/tmp/lists');
 
-        $files = array_merge($invoices, $confirmations, $lists);
+       $bookings = Booking::find([10,30]);
 
-        \Illuminate\Support\Facades\Storage::delete($files);
-
-        // dd($files);
+       return view('emails.company_venue_change', compact('bookings'));
 
     }
 

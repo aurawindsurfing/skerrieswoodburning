@@ -6,11 +6,9 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Messages\NexmoMessage;
-use Illuminate\View\View;
 use App\NotificationLog;
 
-class CompanyContactConfirmation extends Notification
+class CompanyVenueChange extends Notification
 {
     use Queueable;
 
@@ -38,41 +36,25 @@ class CompanyContactConfirmation extends Notification
     }
 
     /**
-     * Get the Nexmo / SMS representation of the notification.
+     * Get the mail representation of the notification.
      *
      * @param  mixed  $notifiable
-     * @return NexmoMessage
+     * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    public function toNexmo($notifiable)
-    {
-        $message = (isset($notifiable->contact) ? $notifiable->contact->name : '') 
-                    . ', this text is to confirm that we booked '
-                    . (!isset($notifiable->name) ?: $notifiable->name)  .' '. (!isset($notifiable->surname) ?: $notifiable->surname) . ' for: '
-                    . $notifiable->course->course_type->name . ' course at: '
-                    . $notifiable->course->venue->name . ' on: '
-                    . $notifiable->course->date->format('Y-m-d H:m')
-                    . '. Thank you. CIT';
-
-        foreach ($this->bookings as $booking) {
-            $this->updateNotificationLog('sms booking confirmation', $booking, $message);
-        }
-
-        return (new NexmoMessage)
-            ->content($message);
-    }
-
     public function toMail($notifiable)
     {
-        $message = view('emails.companyconfirmation', ['bookings' => $this->bookings])->render();
+
+        $message = view('emails.company_venue_change', ['bookings' => $this->bookings])->render();
 
         foreach ($this->bookings as $booking) {
-            $this->updateNotificationLog('email booking confirmation', $booking, $message);
+            $this->updateNotificationLog('email venue change', $booking, $message);
         }
 
         return (new MailMessage)
-            ->subject('Booking Confirmation')
+            ->subject('Course Venue Change Notification!!!')
             ->from('alec@citltd.ie')
-            ->view('emails.companyconfirmation', ['bookings' => $this->bookings]);
+            ->view('emails.company_venue_change', ['bookings' => $this->bookings]);
+
     }
 
     /**
@@ -98,7 +80,6 @@ class CompanyContactConfirmation extends Notification
             'confirmation_sent' => now(),
         ]);
 
-        $booking->update(['company_contact_notified' => true]);
         error_log('Notified company contact from booking id: ' . $booking->id);
     }
 }
