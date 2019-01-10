@@ -9,7 +9,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\NexmoMessage;
 use App\NotificationLog;
 
-class VenueChange extends Notification
+class CourseCancelled extends Notification
 {
     use Queueable;
 
@@ -44,16 +44,15 @@ class VenueChange extends Notification
     {
 
         $message =  strtoupper($notifiable->course->course_type->name)
-                    . ' VENUE HAS CHANGED!!! '
+                    . ' HAS BEEN CANCELLED!!! '
                     . (isset($notifiable->name) ? $notifiable->name . ', your ' : 'Your ')
                     . $notifiable->course->course_type->name . ' course on: '
-                    . $notifiable->course->date->format('Y-m-d H:m')
-                    . ' venue has been changed to: '
+                    . $notifiable->course->date->format('Y-m-d H:m') . ' at: '
                     . $notifiable->course->venue->name
-                    . (isset($notifiable->course->venue->google_maps) ? ', here are exact directions: ' . $notifiable->course->venue->google_maps : '')
+                    . ' has been CANCELLED!!! '
                     . ' We are sorry for any inconvenience caused. CIT';
 
-        $this->updateNotificationLog('sms venue change', $notifiable, $message);
+        $this->updateNotificationLog('sms course cancellation', $notifiable, $message);
 
         return (new NexmoMessage)
                     ->content($message);

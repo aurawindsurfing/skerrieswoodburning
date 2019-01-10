@@ -45,7 +45,7 @@ class InformAboutVenueChange extends Action
             $contact->notify(new \App\Notifications\CompanyVenueChange($bookings));
         };
 
-        error_log('Send all company notifications');
+        return Action::message('Notifications sent with venue change info');
 
     }
 

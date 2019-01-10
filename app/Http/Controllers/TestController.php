@@ -19,9 +19,14 @@ class TestController extends Controller
     public function test()
     {
 
-       $bookings = Booking::find([10,30]);
+        $course = \App\Course::find(1);
+        $course->save(['cancelled' => true]);
 
-       return view('emails.company_venue_change', compact('bookings'));
+        // $bookings = Booking::find([10, 30]);
+
+        // dd($bookings);
+
+        // return view('emails.company_course_cancelled', compact('bookings'));
 
     }
 

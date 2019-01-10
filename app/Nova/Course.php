@@ -238,6 +238,7 @@ class Course extends Resource
             (new Actions\ExportToExcel),
             (new Actions\DownloadCourseConfirmationForWholeCourse),
             (new Actions\InformAboutVenueChange),
+            (new Actions\CancelCourse),
             
         ];
     }
