@@ -167,22 +167,26 @@ class Course extends Resource
 
             Indicator::make('Status', function () {
 
-                if ($this->placesLeft() > 0) {
+                if ($this->placesLeft() > 0 && $this->cancelled == false) {
                     return 'available';
-                } elseif ($this->placesLeft() == 0) {
+                } elseif ($this->placesLeft() == 0 && $this->cancelled == false) {
                     return 'full';
-                } elseif ($this->placesLeft() < 0) {
+                } elseif ($this->placesLeft() < 0 && $this->cancelled == false) {
                     return 'overbooked';
+                } elseif ($this->cancelled == true) {
+                    return 'cancelled';
                 }
 
             })->labels([
                 'available' => $this->placesLeft() . ' Available',
                 'full' => 'Full',
                 'overbooked' => $this->placesLeft() . ' Overbooked',
+                'cancelled' => 'Cancelled',
             ])->colors([
                 'available' => 'green',
                 'full' => 'purple',
                 'overbooked' => 'red',
+                'cancelled' => 'red',
             ]),
 
             HasMany::make('Bookings')->sortable(),
