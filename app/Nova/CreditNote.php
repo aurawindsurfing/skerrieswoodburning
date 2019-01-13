@@ -2,26 +2,24 @@
 
 namespace App\Nova;
 
-use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Fields\Date;
+use Inspheric\Fields\Indicator;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Money\Number;
 use Vyuldashev\NovaMoneyField\Money;
-use Laravel\Nova\Fields\Select;
-use Laravel\Nova\Fields\HasMany;
-use Inspheric\Fields\Indicator;
+use Outhebox\NovaHiddenField\HiddenField;
 
-class Invoice extends Resource
+class CreditNote extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\Invoice';
+    public static $model = 'App\CreditNote';
 
     /**
      * title
@@ -33,7 +31,7 @@ class Invoice extends Resource
         return $this->number();
     }
 
-     /**
+    /**
      * softDeletes
      *
      * @return void
@@ -46,7 +44,7 @@ class Invoice extends Resource
     /**
      * The columns that should be searched.
      * We are using titasgailius/search-relations here
-     * 
+     *
      * @var array
      */
     public static $search = [
@@ -64,14 +62,29 @@ class Invoice extends Resource
         'company' => ['name'],
     ];
 
+    /**
+     * label
+     *
+     * @return void
+     */
+    public static function label()
+    {return 'Credit Notes';}
+
      /**
+     * $displayInNavigation
+     *
+     * @var boolean
+     */
+    public static $displayInNavigation = false;
+
+    /**
      * $group
      *
      * @var string
      */
     public static $group = "Accounting";
 
-    public static $group_index = 330;
+    public static $group_index = 340;
 
     /**
      * Get the fields displayed by the resource.
@@ -82,53 +95,42 @@ class Invoice extends Resource
     public function fields(Request $request)
     {
         return [
-
             Text::make('ID')
                 ->displayUsing(function ($course) {
                     return $this->number();
                 })
                 ->sortable(),
-            
-            Date::make('Date'),
 
-            Text::make('Due Date', 'payment_terms')
-                ->displayUsing(function ($invoice) {
-                    return (($this->date)->addDays($this->payment_terms)->format('Y-m-d'));
-                })->onlyOnDetail(),
+            Date::make('Date')
+            ->rules('required'),
 
             Money::make('Total', 'EUR'),
 
             Indicator::make('Status')
                 ->labels([
-                'paid' => 'Paid',
-                'unpaid' => 'Unpaid',
-            ])->colors([
-                'paid' => 'green',
-                'unpaid' => 'red',
+                    'issued' => 'Issued',
+                    'cancelled' => 'Cancelled',
+                ])->colors([
+                'issued' => 'green',
+                'cancelled' => 'red',
             ])->exceptOnForms(),
 
-            BelongsTo::make('Company')
-                ->searchable(),
+            BelongsTo::make('Invoice'),
 
             BelongsTo::make('User')
-            ->withMeta([
-                'value' => $this->user_id ?? auth()->user()->id, 
-                'belongsToId' => $this->user_id ?? auth()->user()->id
-            ])
-            ->onlyOnForms()
-            ->hideWhenCreating()
-            ->hideWhenUpdating(),
+                ->withMeta([
+                    'value' => $this->user_id ?? auth()->user()->id,
+                    'belongsToId' => $this->user_id ?? auth()->user()->id,
+                ])
+                ->onlyOnForms()
+                ->hideWhenCreating()
+                ->hideWhenUpdating(),
 
             BelongsTo::make('User')->onlyOnDetail(),
 
-            HasMany::make('Payments'),
-
-            HasMany::make('Bookings'),
-
-            HasMany::make('Credit Notes'),
-
-            HasMany::make('Notification Log')->sortable(),
-            
+            HiddenField::make('Status')
+            ->onlyOnForms()
+            ->default('issued'),
 
         ];
     }
@@ -174,8 +176,6 @@ class Invoice extends Resource
      */
     public function actions(Request $request)
     {
-        return [
-            (new Actions\Download)
-        ];
+        return [];
     }
 }
