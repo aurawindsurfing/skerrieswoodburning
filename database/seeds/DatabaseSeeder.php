@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
         factory(App\Contact::class, 100)->create();
         factory(App\Booking::class, 100)->create();
         factory(App\Invoice::class, 100)->create();
-        factory(App\Payment::class, 300)->create();
+        factory(App\Payment::class, 200)->create();
 
     }
 }

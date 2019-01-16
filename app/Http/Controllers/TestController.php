@@ -19,14 +19,11 @@ class TestController extends Controller
     public function test()
     {
 
-        $course = \App\Course::find(1);
-        $course->save(['cancelled' => true]);
+        $i = Invoice::find(100);
 
-        // $bookings = Booking::find([10, 30]);
+        $i->update(['status' => 'paid']);
 
-        // dd($bookings);
-
-        // return view('emails.company_course_cancelled', compact('bookings'));
+        dd($i->status);
 
     }
 

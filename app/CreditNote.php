@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Traits\UpdatesInvoiceStatus;
 
 class CreditNote extends Model
 {
     use SoftDeletes;
     use LogsActivity;
+    use UpdatesInvoiceStatus;
 
     protected $guarded = [];
 
@@ -20,24 +22,24 @@ class CreditNote extends Model
         'date'
     ];
 
-    public static function boot()
-    {
-        parent::boot();
+    // public static function boot()
+    // {
+    //     parent::boot();
 
-        static::saving(function ($credit_note) {
+    //     static::saving(function ($credit_note) {
 
-            $credit_note->prefix = 'CN-';
+    //         $credit_note->prefix = 'CN-';
             
-            if (Auth::check()){
-                $credit_note->user_id = Auth::user()->id;
-            }
+    //         if (Auth::check()){
+    //             $credit_note->user_id = Auth::user()->id;
+    //         }
             
-        });
-    }
+    //     });
+    // }
 
     public function invoice()
     {
-        return $this->belongsTo('App\Company');
+        return $this->belongsTo('App\Invoice');
     }
 
     public function user()
@@ -52,6 +54,6 @@ class CreditNote extends Model
     
     public function totalForInvoice()
     {
-        return number_format((float)$this->total, 2, '.', '');
+        return number_format((float)$this->amount, 2, '.', '');
     }
 }

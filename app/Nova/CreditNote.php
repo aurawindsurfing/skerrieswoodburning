@@ -11,6 +11,7 @@ use Laravel\Nova\Fields\Text;
 use Money\Number;
 use Vyuldashev\NovaMoneyField\Money;
 use Outhebox\NovaHiddenField\HiddenField;
+use Laravel\Nova\Fields\Select;
 
 class CreditNote extends Resource
 {
@@ -104,7 +105,7 @@ class CreditNote extends Resource
             Date::make('Date')
             ->rules('required'),
 
-            Money::make('Total', 'EUR'),
+            Money::make('Amount', 'EUR'),
 
             Indicator::make('Status')
                 ->labels([
@@ -131,6 +132,14 @@ class CreditNote extends Resource
             HiddenField::make('Status')
             ->onlyOnForms()
             ->default('issued'),
+
+            HiddenField::make('Prefix')
+            ->onlyOnForms()
+            ->default('CN-'),
+
+            HiddenField::make('User Id')
+            ->onlyOnForms()
+            ->default(auth()->user()->id),
 
         ];
     }

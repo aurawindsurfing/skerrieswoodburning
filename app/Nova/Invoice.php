@@ -108,7 +108,8 @@ class Invoice extends Resource
             ])->exceptOnForms(),
 
             BelongsTo::make('Company')
-                ->searchable(),
+                ->searchable()
+                ->hideWhenUpdating(),
 
             BelongsTo::make('User')
             ->withMeta([

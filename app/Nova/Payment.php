@@ -11,6 +11,7 @@ use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Select;
 use Inspheric\Fields\Indicator;
+use Outhebox\NovaHiddenField\HiddenField;
 
 class Payment extends Resource
 {
@@ -85,6 +86,10 @@ class Payment extends Resource
 
             BelongsTo::make('Invoice')
                 ->searchable(),
+
+            HiddenField::make('Status')
+            ->onlyOnForms()
+            ->default('completed'),
 
         ];
     }
