@@ -17,6 +17,10 @@ class Payment extends Model
 
     protected static $logUnguarded = true;
 
+    protected $dates = [
+        'date'
+    ];
+
     public function invoice()
     {
         return $this->belongsTo('App\Invoice');

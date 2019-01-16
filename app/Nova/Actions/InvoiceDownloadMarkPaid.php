@@ -32,6 +32,16 @@ class InvoiceDownloadMarkPaid extends Action
     }
 
     /**
+     * Get the displayable name of the action.
+     *
+     * @return string
+     */
+    public function name()
+    {
+        return ('Create invoice and mark as paid');
+    }
+
+    /**
      * Get the fields available on the action.
      *
      * @return array

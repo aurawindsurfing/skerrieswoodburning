@@ -12,6 +12,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Select;
 use Inspheric\Fields\Indicator;
 use Outhebox\NovaHiddenField\HiddenField;
+use Laravel\Nova\Fields\Date;
 
 class Payment extends Resource
 {
@@ -74,6 +75,8 @@ class Payment extends Resource
                 'cheque' => 'Cheque',
             ])->displayUsingLabels()
               ->rules('required'),
+
+            Date::make('Date', 'created_at')->exceptOnForms(),
 
             Indicator::make('Status')
              ->labels([

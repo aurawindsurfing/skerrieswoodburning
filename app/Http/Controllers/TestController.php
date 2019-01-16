@@ -29,35 +29,35 @@ class TestController extends Controller
 
     public function pdftest1()
     {
-        $bookings = Booking::take(2)->get();
+        $credit_notes = \App\CreditNote::take(2)->get();
 
         $pdf = \App::make('dompdf.wrapper');
-        $pdf->loadView('letters.course_confirmation_manual_handling', compact('bookings'));
+        $pdf->loadView('invoices.credit_note', compact('credit_notes'));
         $id = 'xxx';
-        return $pdf->stream('storage/tmp/invoices/N-' . $id . '.pdf');
+        return $pdf->stream('storage/tmp/invoices/N-'. $id .'.pdf');
 
-        // return view('letters.course_confirmation_manual_handling', compact('bookings'));
+        return view('invoices.credit_note', compact('credit_notes'));
 
     }
 
     public function pdftest2()
     {
-        $bookings = Booking::take(2)->get();
+        $invoices = Invoice::skip(100)->take(2)->get();
 
-        // $pdf = \App::make('dompdf.wrapper');
-        // $pdf->loadView('letters.course_confirmation_manual_handling', compact('bookings'));
-        // $id = 'xxx';
-        // return $pdf->stream('storage/tmp/invoices/N-'. $id .'.pdf');
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadView('invoices.invoice', compact('invoices'));
+        $id = 'xxx';
+        return $pdf->stream('storage/tmp/invoices/N-'. $id .'.pdf');
 
-        return view('letters.course_confirmation_manual_handling', compact('bookings'));
+        return view('invoices.invoice', compact('invoices'));
 
     }
 
     public function test2()
     {
-        $invoice = Invoice::find(106);
+        // $invoices = Invoice::find([102, 106]);
 
-        return view('vendor.invoices.default', compact('invoice'));
+        // return view('invoices.invoice', compact('invoices'));
 
     }
 }

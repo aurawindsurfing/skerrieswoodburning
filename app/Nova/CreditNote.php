@@ -102,10 +102,9 @@ class CreditNote extends Resource
                 })
                 ->sortable(),
 
-            Date::make('Date')
-            ->rules('required'),
-
             Money::make('Amount', 'EUR'),
+
+            Date::make('Date', 'created_at')->exceptOnForms(),
 
             Indicator::make('Status')
                 ->labels([

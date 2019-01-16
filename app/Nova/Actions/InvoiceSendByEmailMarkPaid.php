@@ -34,6 +34,16 @@ class InvoiceSendByEmailMarkPaid extends Action
     }
 
     /**
+     * Get the displayable name of the action.
+     *
+     * @return string
+     */
+    public function name()
+    {
+        return ('Create invoice, send email and mark as paid');
+    }
+
+    /**
      * Get the fields available on the action.
      *
      * @return array

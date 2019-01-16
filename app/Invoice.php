@@ -39,6 +39,11 @@ class Invoice extends Model
         return $this->hasMany('App\Payment');
     }
 
+    public function payments_completed()
+    {
+        return $this->hasMany('App\Payment')->whereStatus('completed');
+    }
+
     public function bookings()
     {
         return $this->hasMany('App\Booking');
@@ -49,6 +54,16 @@ class Invoice extends Model
         return $this->hasMany('App\CreditNote');
     }
 
+    public function credit_notes_issued()
+    {
+        return $this->hasMany('App\CreditNote')->whereStatus('issued');
+    }
+
+    public function balance_due()
+    {
+        return $this->total - $this->payments_completed->sum('amount') - $this->credit_notes_issued->sum('amount');
+    }
+
     public function notification_log()
     {
         return $this->hasMany('App\NotificationLog');
@@ -57,6 +72,21 @@ class Invoice extends Model
     public function totalForInvoice()
     {
         return number_format((float)$this->total, 2, '.', '');
+    }
+
+    public function paymentsMadeForInvoice()
+    {
+        return number_format((float)$this->payments_completed->sum('amount'), 2, '.', '');
+    }
+
+    public function creaditNotesIssuedForInvoice()
+    {
+        return number_format((float)$this->credit_notes_issued->sum('amount'), 2, '.', '');
+    }
+
+    public function balanceDueForInvoice()
+    {
+        return number_format((float)$this->balance_due(), 2, '.', '');
     }
 
 }

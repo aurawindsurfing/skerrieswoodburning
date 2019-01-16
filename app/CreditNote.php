@@ -22,21 +22,6 @@ class CreditNote extends Model
         'date'
     ];
 
-    // public static function boot()
-    // {
-    //     parent::boot();
-
-    //     static::saving(function ($credit_note) {
-
-    //         $credit_note->prefix = 'CN-';
-            
-    //         if (Auth::check()){
-    //             $credit_note->user_id = Auth::user()->id;
-    //         }
-            
-    //     });
-    // }
-
     public function invoice()
     {
         return $this->belongsTo('App\Invoice');

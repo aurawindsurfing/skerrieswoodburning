@@ -22,13 +22,18 @@
         div {
             font-family: DejaVu Sans;
             font-size: 10px;
-            font-weight: normal;
         }
 
-        th,
+        th {
+            font-family: DejaVu Sans;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
         td {
             font-family: DejaVu Sans;
             font-size: 10px;
+            font-weight: normal;
         }
 
         .panel {
@@ -64,9 +69,13 @@
             vertical-align: middle;
         }
 
-        th,
-        td {
+        th {
             border: 1px solid #ddd;
+            padding: 6px;
+        }
+
+        td {
+            /* border: 1px solid #ddd; */
             padding: 6px;
         }
 
@@ -90,6 +99,7 @@
             <img src="{{asset(config('invoice_details.logo'))}}" alt="" width="{{ config('invoice_details.logo_width') }}" />
         </div>
         <div style="margin-left:300pt;">
+            <b>Invoice #: </b> {{ $invoice->number() }}<br />
             <b>Date: </b> {{ now()->formatLocalized('%A %d %B %Y') }}<br />
             <b>Due Date: </b> {{ 
 
@@ -98,8 +108,6 @@
             now()->formatLocalized('%A %d %B %Y') 
             
             }}<br />
-            <b>Invoice #: </b> {{ $invoice->number() }}
-            <br />
         </div>
     </div>
     <br />
@@ -119,12 +127,10 @@
             <h4>Customer Details:</h4>
             <div class="panel panel-default">
                 <div class="panel-body">
-                    {{-- {!! $invoice->customer_details->count() == 0 ? '<i>No customer details</i><br />' : '' !!} --}}
-                    {{ isset($invoice->company->name) ? $invoice->company->name : $invoice->bookings->first()->name .' '.
-                    $invoice->bookings->first()->surname }}<br /> ID: {{ isset($invoice->company->tax) ? $invoice->company->tax
-                    : '' }}<br /> {{ isset($invoice->company->phone) ? $invoice->company->phone : $invoice->bookings->first()->phone
-                    }}<br /> {{ isset($invoice->company->address) ? $invoice->company->address : '' }}<br />
-
+                    {{ $invoice->company->name ?? $invoice->bookings->first()->name .' '.$invoice->bookings->first()->surname }}<br/>
+                    ID: {{ $invoice->company->tax ?? '' }}<br/>
+                    {{ $invoice->company->phone ?? $invoice->bookings->first()->phone}}<br/>
+                    {{ $invoice->company->address ?? '' }}<br/>
                 </div>
             </div>
         </div>
@@ -132,38 +138,82 @@
     <h5 style="margin-top: 0px;">Items:</h5>
     <table>
         <thead>
-            <tr>
-                <th style="width:10%;">#</th>
-                <th style="width:10%;">ref</th>
-                <th>Item Name</th>
-                <th style="width:20%;">Price</th>
+            <tr bgcolor="black">
+                <th style="width:5%;"><font color="white">#</font></th>
+                <th style="width:10%;"><font color="white">Ref</font></th>
+                <th style="border-right: none;"><font color="white">Item Name</font></th>
+                <th style="width:20%; border-left: none;"></th>
+                <th style="width:20%;"><font color="white">Price</font></th>
             </tr>
         </thead>
         <tbody>
             @foreach ($invoice->bookings as $item)
             <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ $item->id }}</td>
-                <td>{{ $item->invoiceDescription() }}</td>
-                <td>{{ $item->rateForInvoice() }} &euro;</td>
+                <td style="border-bottom: 1px solid #ddd;">{{ $loop->iteration }}</td>
+                <td style="border-bottom: 1px solid #ddd;">{{ $item->id }}</td>
+                <td style="border-bottom: 1px solid #ddd;">{{ $item->invoiceDescription() }}</td>
+                <td style="border-bottom: 1px solid #ddd;"></td>
+                <td style="border-bottom: 1px solid #ddd;">&euro;{{ $item->rateForInvoice() }}</td>
             </tr>
             @endforeach
+                <tr border="0">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><b>Total</b></td>
+                    <td><b>&euro;{{ $invoice->totalForInvoice() }}</b></td>
+                </tr>
+            @if ($invoice->paymentsMadeForInvoice() > 0)
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Payments Made</td>
+                    <td><font color="red">{{ '(-) ' . $invoice->paymentsMadeForInvoice() }}</font></td>
+                </tr>
+            @endif
+            @if ($invoice->creaditNotesIssuedForInvoice() > 0)
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Credits Issued</td>
+                    <td><font color="red">{{ $invoice->creaditNotesIssuedForInvoice() > 0 ? '(-) ' . $invoice->creaditNotesIssuedForInvoice() : '0.00' }}</font></td>
+                </tr>
+            @endif       
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td style="background-color: #f5f5f5;"><b>Balance Due</b></td>
+                <td style="background-color: #f5f5f5;"><b>&euro;{{ $invoice->balanceDueForInvoice() }}</b></td>
+            </tr>
         </tbody>
     </table>
-    <div style="clear:both; position:relative;">
+    {{-- <div style="clear:both; position:relative;">
         <div style="margin-left: 350pt; padding-top: 10pt; margin-bottom: 20pt;">
-            {{--
-            <h5>Total:</h5> --}}
             <table>
                 <tbody>
                     <tr>
-                        <td><b>TOTAL</b></td>
-                        <td><b>{{ $invoice->totalForInvoice() }} &euro;</b></td>
+                        <td><b>Total</b></td>
+                        <td><b>&euro;{{ $invoice->totalForInvoice() }}</b></td>
+                    </tr>
+                    <tr>
+                        <td>Payments Made</td>
+                        <td><font color="red">{{ $invoice->paymentsMadeForInvoice() > 0 ? '(-) ' . $invoice->paymentsMadeForInvoice() : '0.00' }}</font></td>
+                    </tr>
+                    <tr>
+                        <td>Credits Issued</td>
+                        <td><font color="red">{{ $invoice->creaditNotesIssuedForInvoice() > 0 ? '(-) ' . $invoice->creaditNotesIssuedForInvoice() : '0.00' }}</font></td>
+                    </tr>
+                    <tr>
+                        <td><b>Balance Due</b></td>
+                        <td><b>&euro;{{ $invoice->balanceDueForInvoice() }}</b></td>
                     </tr>
                 </tbody>
             </table>
         </div>
-    </div>
+    </div> --}}
     @if ($invoice->status == 'paid')
                 <div style="text-align: center;">
                     <img src="{{asset('images/paid.png')}}" alt="" width="150px"/>
