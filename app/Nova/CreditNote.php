@@ -50,17 +50,7 @@ class CreditNote extends Resource
      */
     public static $search = [
         'id',
-        'number',
-        'total',
-    ];
-
-    /**
-     * The relationship columns that should be searched.
-     *
-     * @var array
-     */
-    public static $searchRelations = [
-        'company' => ['name'],
+        'amount',
     ];
 
     /**

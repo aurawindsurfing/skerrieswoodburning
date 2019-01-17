@@ -35,7 +35,19 @@ class Payment extends Resource
      *
      * @var array
      */
-    public static $search = [];
+    public static $search = [
+        'id',
+        'amount',
+    ];
+
+       /**
+     * The relationship columns that should be searched.
+     *
+     * @var array
+     */
+    public static $searchRelations = [
+        'invoice' => ['id'],
+    ];
 
     /**
      * $group
