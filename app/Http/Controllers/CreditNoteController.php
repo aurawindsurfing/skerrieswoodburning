@@ -82,4 +82,38 @@ class CreditNoteController extends Controller
     {
         //
     }
+
+     /**
+     * makePDF
+     *
+     * @param mixed $invoices
+     * @return void
+     */
+    public function makePDF($credit_notes)
+    {
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadView('invoices.credit_note', compact('credit_notes'));
+        $id = uniqid();
+        $path = '/storage/tmp/invoices/'. $id .'.pdf';
+        $pdf->save(public_path($path));
+
+        return $path;
+
+    }
+
+    // public function preparePDF($models)
+    // {
+    //     $invoices = collect([]);
+
+    //     foreach ($models as $booking ) {
+    //         $invoice = $booking->invoice;
+    //         $invoices->push($invoice);
+    //     }
+
+    //     $invoices = $invoices->unique();
+    //     $invoicePDF = new \App\Http\Controllers\InvoiceController();
+    //     $path = $invoicePDF->makePDF($invoices);
+
+    //     return $path;
+    // }
 }
