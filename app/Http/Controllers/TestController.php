@@ -12,6 +12,7 @@ use App\Imports\BookingImport;
 use Carbon\Carbon;
 use App\Contact;
 use Nexmo;
+use App\Payment;
 
 class TestController extends Controller
 {
@@ -50,6 +51,19 @@ class TestController extends Controller
         return $pdf->stream('storage/tmp/invoices/N-'. $id .'.pdf');
 
         return view('invoices.invoice', compact('invoices'));
+
+    }
+
+    public function pdftest3()
+    {
+        $receipts = Payment::take(2)->get();
+
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadView('invoices.payment_receipt', compact('receipts'));
+        $id = 'xxx';
+        return $pdf->stream('storage/tmp/invoices/N-'. $id .'.pdf');
+
+        return view('invoices.payment_receipt', compact('receipts'));
 
     }
 

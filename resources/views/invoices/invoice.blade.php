@@ -100,7 +100,7 @@
         </div>
         <div style="margin-left:300pt;">
             <b>Invoice #: </b> {{ $invoice->number() }}<br />
-            <b>Date: </b> {{ now()->formatLocalized('%A %d %B %Y') }}<br />
+            <b>Date: </b> {{ $invoice->date->formatLocalized('%A %d %B %Y') }}<br />
             <b>Due Date: </b> {{ 
 
             isset($invoice->company->payment_terms) ? 

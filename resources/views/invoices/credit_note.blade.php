@@ -101,7 +101,7 @@
         </div>
         <div style="margin-left:300pt;">
             <b>Credit Note #: </b> {{ $credit_note->number() }}<br />
-            <b>Credit Date: </b> {{ now()->formatLocalized('%A %d %B %Y') }}<br />
+            <b>Credit Date: </b> {{ $credit_note->created_at->formatLocalized('%A %d %B %Y') }}<br />
         </div>
     </div>
     <br />

@@ -26,4 +26,14 @@ class Payment extends Model
         return $this->belongsTo('App\Invoice');
     }
 
+    public function number()
+    {
+        return 'R/' . $this->id . $this->created_at->format('Ymd');
+    }
+    
+    public function amountForReceipt()
+    {
+        return number_format((float)$this->amount, 2, '.', '');
+    }
+
 }
