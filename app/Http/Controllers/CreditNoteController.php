@@ -100,20 +100,5 @@ class CreditNoteController extends Controller
         return $path;
 
     }
-
-    // public function preparePDF($models)
-    // {
-    //     $invoices = collect([]);
-
-    //     foreach ($models as $booking ) {
-    //         $invoice = $booking->invoice;
-    //         $invoices->push($invoice);
-    //     }
-
-    //     $invoices = $invoices->unique();
-    //     $invoicePDF = new \App\Http\Controllers\InvoiceController();
-    //     $path = $invoicePDF->makePDF($invoices);
-
-    //     return $path;
-    // }
+    
 }
