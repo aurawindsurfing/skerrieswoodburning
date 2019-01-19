@@ -20,11 +20,18 @@ class TestController extends Controller
     public function test()
     {
 
-        $i = Invoice::find(100);
+        $text = 'This a sample task';
+        $words = explode(' ', $text);
+        
+        foreach ($words as $id => $word) {
+            $word = collect(str_split($word))->shuffle();
+            
+            foreach ($word as $key => $letter) {
+                echo $letter;
+            }
 
-        $i->update(['status' => 'paid']);
-
-        dd($i->status);
+            echo ' ';
+        }
 
     }
 
@@ -67,11 +74,17 @@ class TestController extends Controller
 
     }
 
-    public function test2()
+    public function pdftest4()
     {
-        // $invoices = Invoice::find([102, 106]);
+        $bookings = Booking::take(2)->get();
 
-        // return view('invoices.invoice', compact('invoices'));
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadView('letters.course_confirmation_manual_handling', compact('bookings'));
+        $pdf->setOptions(['defaultMediaType' => 'all', 'isFontSubsettingEnabled' => true ]);
+        $id = 'xxx';
+        return $pdf->stream('storage/tmp/invoices/N-'. $id .'.pdf');
+
+        return view('letters.course_confirmation_manual_handling', compact('bookings'));
 
     }
 }

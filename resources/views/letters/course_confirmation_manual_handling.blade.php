@@ -6,16 +6,42 @@
 
 <style type="text/css">
 
+    @font-face {    font-family: NanumMyeongjo; 
+                    src: url('{{ public_path("fonts/NanumMyeongjo-Bold.ttf")}}');
+                    /* format("truetype"); */
+                    /* font-weight: 500;  */
+                    /* font-style: normal; */
+                    
+                 } 
+    @font-face { font-family: Zapfino; 
+                    src: url('{{ public_path("fonts/Zapfino.ttf")}}');
+                    format("truetype");
+                    font-weight: 400; 
+                    font-style: normal;
+                }
+
+    /* html { margin: 0px}; */
+
     * {
-        font-family: Verdana, Arial, sans-serif;
-        font-size: medium;
+        font-family: NanumMyeongjo, sans-serif;
+        font-size: 60px;
+        color: #6394A3;
     }
 
     .backdrop {
         position: absolute;
-        left: 0px;
-        top: 0px;
-        z-index: -1;
+        left: -5px;
+        top: -45px;
+        width: 100%;
+        /* height: 200%; */
+    }
+
+    .center {
+        z-index: 1; 
+        margin-left: 49px;
+        margin-top: 10px;
+        width: 612px; 
+        border: 2px solid red;
     }
 
     /* body {
@@ -30,15 +56,15 @@
 </head>
 <body>
     @foreach ($bookings as $booking)  
-    <div> 
-        <img class="backdrop" src="{{ asset('images/A4@1x.png') }}" width="103%">
-        <div style="border: 6px solid blue; z-index: 1; margin-left: 83px; margin-top: 90px; width: 100%;">
-            z-index: 1, order: 3
-        </div>
-        <div style="page-break-after:always;">
-    </div>      
-        
+        <div> 
+            <img class="backdrop" src="{{ public_path('images/ManualCertA4.svg') }}">
+            <div class="center">
+                <div style="height: 860px">
+                    THOMAS LOTOCKI
+                </div>
+            </div>
+            <div style="page-break-after:always;">
+        </div>      
     @endforeach
-
 </body>
 </html>
