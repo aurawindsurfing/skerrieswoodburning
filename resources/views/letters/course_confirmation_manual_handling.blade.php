@@ -50,6 +50,7 @@
     }
 
     .signature {
+        text-align:unset;
         font-family: Zapfino, sans-serif;
         font-size: 14px;
     }
@@ -68,16 +69,10 @@
         margin-top: 60px;
         width: 660px;
         height: 950px;
-        border: 2px solid red;
+        /* border:transparent; */
         text-align: center;
     }
 
-    /* body {
-          background-image:url("{{ asset('images/A4@1x.png') }}");
-          background-repeat:no-repeat;
-          background-position:left top;
-          background-size: 595px 842px;
-       } */
     
 </style>
 
@@ -87,7 +82,7 @@
         <div> 
             <img class="backdrop" src="{{ public_path('images/ManualCertA4.svg') }}">
             <div class="center">
-                <div class="cetrificate" style="margin-top: 64px;">
+                <div class="cetrificate" style="margin-top: 126px;">
                     CERTIFICATE
                 </div>
                 <div class="attendance" style="margin-top: 13px;">
@@ -125,6 +120,24 @@
                 </div>
                 <div style="margin-top: 60px;">
                     <img src="{{ public_path('images/cit_logo.png') }}" alt="" width="120px" />
+                </div>
+                <div style="margin-top: 55px; margin-left:75px; text-align:unset">
+                    <span class="signature">
+                        Paul Hickey
+                    </span>
+                    <span class="small" style="margin-left:300px;">
+                        WWW.CITLTD.IE
+                    </span>
+                </div>
+
+                
+                <div style="margin-top: -2px; margin-left:75px; text-align:unset">
+                    <span class="small">
+                        TUTOR: PAUL HICKEY
+                    </span>
+                    <span class="small" style="margin-left:300px;">
+                        HANK@CITLTD.IE
+                    </span>
                 </div>
             </div>
             <div style="page-break-after:always;">
