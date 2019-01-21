@@ -200,9 +200,10 @@
                     </table>
                 </div>
 
-
             </div>
-            <div style="page-break-after:always;">
+            @if (!$loop->last)
+                <div style="page-break-after:always;"></div>
+            @endif 
         </div>      
     @endforeach
 </body>
