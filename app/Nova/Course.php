@@ -241,6 +241,7 @@ class Course extends Resource
         return [
             (new Actions\ExportToExcel),
             (new Actions\DownloadCourseConfirmationForWholeCourse),
+            (new Actions\DownloadCourseCertificateForWholeCourse),
             (new Actions\InformAboutVenueChange),
             (new Actions\CancelCourse),
             

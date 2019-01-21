@@ -4,7 +4,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\CourseType::class, function (Faker $faker) {
     return [
-        'name' => $faker->unique()->randomElement(['Safepass']),
+        'name' => $faker->unique()->randomElement(['Safepass', 'Manual Handling']),
         'title' => 'SOLAS',
         'tutor_title' => 'SOLAS Accredited Tutor',
         'default_rate' => $faker->randomElement([85,95,100,115,130]),
@@ -12,7 +12,7 @@ $factory->define(App\CourseType::class, function (Faker $faker) {
         'who_should_attend' => $faker->sentence($nbWords = 8),
         'delegates' => $faker->sentence($nbWords = 8),
         'outline' => $faker->paragraphs($nb = 5, $asText = true),
-        'duration' => $faker-> sentence($nbWords = 4),
+        'duration' => $faker->randomElement(['Full Day', 'Half Day', '2 Day', '4 Day']),
         'certification' => $faker->paragraphs($nb = 2, $asText = true),
         'what_to_bring' => $faker->sentence($nbWords = 4),
         'start_time' => $faker->time($format = 'H:i', $max = 'now'),

@@ -31,28 +31,30 @@
 
     .cetrificate {
         font-family: NanumMyeongjo, sans-serif;
-        font-size: 60px;
+        font-size: 70px;
+        font-weight:500; 
+        /* font-style: ; */
     }
 
     .attendance {
         font-family: NanumMyeongjo, sans-serif;
-        font-size: 35px;
+        font-size: 40px;
     }
 
     .big {
         font-family: NanumMyeongjo, sans-serif;
-        font-size: 24px;
+        font-size: 28px;
     }
 
     .small {
         font-family: NanumMyeongjo, sans-serif;
-        font-size: 10px;
+        font-size: 12px;
     }
 
     .signature {
         text-align:center;
         font-family: Zapfino, sans-serif;
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .backdrop {
@@ -60,7 +62,6 @@
         left: 0px;
         top: 0px;
         width: 100%;
-        /* height: 95%; */
     }
 
     .center {
@@ -69,21 +70,14 @@
         margin-top: 60px;
         width: 660px;
         height: 950px;
-        /* border:transparent; */
         text-align: center;
     }
 
-    div.demo {
-        margin-left: 20px;
-        margin-top: 45px;
-        display: table;
-        width: 90%;
-        table-layout: fixed;    /* For cells of equal size */
-    }
-    div.demo span {
-        display: table-cell;
+    .bottom {
+        position: absolute;
+        bottom: 68px;
+        z-index: 1; 
         text-align: center;
-        vertical-align: bottom;
     }
 
     
@@ -101,85 +95,52 @@
                 <div class="attendance" style="margin-top: 13px;">
                     OF ATTENDANCE
                 </div>
-                <div class="small" style="margin-top: 70px;">
+                <div class="small" style="margin-top: 45px;">
                     THIS IS TO CERTIFY THAT
                 </div>
                 <div class="big" style="margin-top: 40px;">
-                    THOMAS DAVID LOTOCKI
+                    {{ strtoupper(($booking->name ?? 'no name given') . ' ' . ($booking->surname ?? 'no surname given'))   }}
+                    {{-- MARIANO SANCHES DE MARIA GONZALEZ FERNANDEZ --}}
                 </div>
                 <div class="small" style="margin-top: 19px;">
-                    HAS ATTENDED AND COMPLETED A HALF DAY COURSE
+                    HAS ATTENDED AND COMPLETED A {{strtoupper($booking->course->course_type->duration)}} COURSE
                 </div>
                 <div class="small" style="margin-top: 6px;">
                     ON
                 </div>
                 <div class="big" style="margin-top: 30px;">
-                    MANUAL HANDLING
+                    {{ strtoupper($booking->course->course_type->name)}}
                 </div>
                 <div class="small" style="margin-top: 15px;">
                     ON
                 </div>
                 <div class="big" style="margin-top: 30px;">
-                    27th OCTOBER 2019
+                    {{ $booking->course->date->format('dS') . strtoupper($booking->course->date->format(' F ')) . $booking->course->date->format('Y') }}
                 </div>
                 <div class="small" style="margin-top: 15px;">
                     AT
                 </div>
                 <div class="big" style="margin-top: 30px;">
-                    DUBLIN PORT
+                    {{ strtoupper($booking->course->venue->name)}}
                 </div>
                 <div class="small" style="margin-top: 15px;">
-                    EXPIRY ON: OCTOBER 2019
+                    EXPIRY ON: {{ strtoupper( Carbon\Carbon::parse($booking->course->date)->addYears($booking->course->course_type->valid_for_years)->format('F Y'))}}
                 </div>
-                <div style="margin-top: 60px;">
+                
+
+            </div>
+
+            <div class="bottom">
+                <div style="">
                     <img src="{{ public_path('images/cit_logo.png') }}" alt="" width="120px" />
                 </div>
-                {{-- <div style="margin-top: 55px; margin-left:0px; text-align:center; border:1px solid red;">
-                    <span class="signature" style="border:1px solid blue;">
-                        Paul Hickey
-                    </span>
-                    <span class="small" style="margin-left:300px; border:1px solid blue;">
-                        WWW.CITLTD.IE
-                    </span>
-                </div>
 
-                
-                <div style="margin-top: -2px; margin-left:5px; text-align:center; border:1px solid red;">
-                    <span class="small" style="border:1px solid blue;">
-                        TUTOR: PAUL HICKEY
-                    </span>
-                    <span class="small" style="margin-left:295px; border:1px solid blue;">
-                        HANK@CITLTD.IEdewdewdwwe
-                    </span>
-                </div> --}}
-
-
-                {{-- <div class="demo" style="border:1px solid red;">
-                    <span class="signature" style="border:1px solid blue;">
-                        Paul Hickey
-                    </span>
-                    <span></span>
-                    <span class="small" style="border:1px solid blue; ;">
-                        SOME SUPER LONG TEXT
-                    </span>
-                </div> --}}
-
-                
-                {{-- <div style="margin-top: -2px; margin-left:5px; text-align:center; border:1px solid red;">
-                    <span class="small" style="border:1px solid blue;">
-                        TUTOR: PAUL HICKEY
-                    </span>
-                    <span class="small" style="margin-left:295px; border:1px solid blue;">
-                        HANK@CITLTD.IEdewdewdwwe
-                    </span>
-                </div> --}}
-
-                <div style="margin-top:44px">
-                    <table width="100%">
+                <div style="margin-top:5px">
+                    <table width="100%" style="z-index: 1;">
                         <tr bgcolor="" style="border: 1px solid black">
                             <td style="width:3%;"></td>
-                            <td style="width:20%;" class="signature">Paul Hickey</td>
-                            <td style="width:20%;"></td>
+                            <td style="width:20%;" class="signature">{{ $booking->course->tutor->name}}</td>
+                            <td style="width:10%;"></td>
                             <td style="width:20%; text-align: center; vertical-align: bottom;">WWW.CITLTD.IE</td>
                             <td style="width:3%;"></td>
                         </tr>
@@ -192,15 +153,15 @@
                         </tr>
                         <tr bgcolor="">
                             <td style=""></td>
-                            <td style="text-align: center; vertical-align: top;">TUTOR: PAUL HICKEY</td>
+                            <td style="text-align: center; vertical-align: top;">TUTOR: {{ strtoupper($booking->course->tutor->name)}}</td>
                             <td style=""></td>
                             <td style="text-align: center; vertical-align: top;">HANK@CITLTD.IE</td>
                             <td style=""></td>
                         </tr>
                     </table>
                 </div>
-
             </div>
+
             @if (!$loop->last)
                 <div style="page-break-after:always;"></div>
             @endif 

@@ -281,6 +281,7 @@ class Booking extends Resource
             (new Actions\InvoiceSendByEmail),
             (new Actions\InvoiceSendByEmailMarkPaid),
             (new Actions\DownloadCourseConfirmation),
+            (new Actions\DownloadCourseCertificate),
 
         ];
     }
