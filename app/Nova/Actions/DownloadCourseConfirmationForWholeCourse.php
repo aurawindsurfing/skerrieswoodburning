@@ -46,6 +46,16 @@ class DownloadCourseConfirmationForWholeCourse extends Action
     }
 
     /**
+     * Get the displayable name of the action.
+     *
+     * @return string
+     */
+    public function name()
+    {
+        return ('Download Confirmations');
+    }
+
+    /**
      * Get the fields available on the action.
      *
      * @return array

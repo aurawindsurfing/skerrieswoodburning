@@ -42,6 +42,16 @@ class DownloadCourseConfirmation extends Action
 
     }
 
+     /**
+     * Get the displayable name of the action.
+     *
+     * @return string
+     */
+    public function name()
+    {
+        return ('Download Confirmation');
+    }
+
     /**
      * Get the fields available on the action.
      *
