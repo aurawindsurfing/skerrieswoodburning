@@ -19,11 +19,6 @@ class Course extends Model
     protected $dates = [
         'date',
     ];
-    
-    public function venue()
-    {
-        return $this->belongsTo('App\Venue');
-    }
 
     public function tutor()
     {
@@ -40,14 +35,24 @@ class Course extends Model
         return $this->hasMany('App\Booking');
     }
 
+    public function course_dates()
+    {
+        return $this->hasMany('App\CourseDate');
+    }
+
+    public function start_date()
+    {
+        return $this->course_dates()->first()->date;
+    }
+
     public function uuid()
     {
-        return $this->id . '/' . $this->date->format('Y');
+        return $this->id . '/' . $this->start_date()->format('Y');
     }
 
     public function upcoming()
     {
-        return $this->date >= now() ? true : false;
+        return $this->start_date() >= now() ? true : false;
     }
     
 }

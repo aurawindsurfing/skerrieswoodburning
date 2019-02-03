@@ -20,18 +20,9 @@ class TestController extends Controller
     public function test()
     {
 
-        $text = 'This a sample task';
-        $words = explode(' ', $text);
-        
-        foreach ($words as $id => $word) {
-            $word = collect(str_split($word))->shuffle();
-            
-            foreach ($word as $key => $letter) {
-                echo $letter;
-            }
+        $e = \App\Course::first()->start_date()->format('Y m d');
 
-            echo ' ';
-        }
+        dd($e);
 
     }
 

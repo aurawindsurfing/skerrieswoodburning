@@ -35,7 +35,8 @@ class Course extends Resource
      * @var array
      */
     public static $indexDefaultOrder = [
-        'date' => 'asc',
+        // 'date' => 'asc',
+        'id' => 'asc',
     ];
 
     /**
@@ -45,7 +46,8 @@ class Course extends Resource
      */
     public function title()
     {
-        return $this->date->format('Y-m-d') . ' - ' . $this->course_type->name . ' - ' . $this->venue->name;
+        // return $this->start_date()->format('Y-m-d') . ' - ' . $this->course_dates->first()->venue->name . ' - ' . $this->venue->name;
+        return $this->course_type->name . ' - ' . $this->course_dates->first()->venue->name;
     }
 
     /**
@@ -55,7 +57,7 @@ class Course extends Resource
      */
     public static $search = [
         'id',
-        'date',
+        // 'date',
     ];
 
     /**
@@ -81,7 +83,7 @@ class Course extends Resource
      *
      * @var array
      */
-    public static $with = ['venue', 'tutor'];
+    public static $with = ['tutor'];
 
     /**
      * label
@@ -119,9 +121,9 @@ class Course extends Resource
     public function fields(Request $request)
     {
         return [
-            Text::make('Uuid', function () {
-                return isset($this->date) ? $this->uuid() : '';
-            })->exceptOnForms(),
+            // Text::make('Uuid', function () {
+            //     return ($this->start_date() !== null) ? $this->uuid() : '';
+            // })->exceptOnForms(),
 
             BelongsTo::make('Course Type', 'course_type')->sortable()->rules('required'),
 
@@ -137,17 +139,8 @@ class Course extends Resource
                 ->sortable()
                 ->rules('required'),
 
-            Date::make('Date')->sortable()->rules('required'),
+            // Date::make('Start Date')->sortable()->rules('required'),
 
-            TimeField::make('Time')
-                ->withMeta([
-                    'value' => '08:00',
-                    //     // 'belongsToId' => session('booking.course_id')
-                ])
-            // ->displayUsing(function ($course) {
-            //     return $course->course_type->name;
-            // })
-                ->rules('required'),
 
             // Text::make('Venue', function () {
             //     return $this->venue->name;
@@ -157,7 +150,7 @@ class Course extends Resource
             //     return $this->tutor->name;
             // })->onlyOnIndex(),
 
-            BelongsTo::make('Venue')->sortable()->searchable()->rules('required'),
+            HasMany::make('Course Dates')->sortable(),
 
             BelongsTo::make('Tutor')->sortable()->searchable()->rules('required'),
 
@@ -213,7 +206,7 @@ class Course extends Resource
     public function filters(Request $request)
     {
         return [
-            new Filters\CourseDates,
+            // new Filters\CourseDates,
         ];
     }
 

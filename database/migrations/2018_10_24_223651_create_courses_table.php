@@ -15,10 +15,7 @@ class CreateCoursesTable extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('venue_id')->unsigned();
             $table->integer('tutor_id')->unsigned()->nullable();
-            $table->date('date');
-            $table->time('time');
             $table->integer('price')->unsigned();
             $table->boolean('inhouse')->nullable()->default(false);
             $table->boolean('cancelled')->nullable()->default(false);
