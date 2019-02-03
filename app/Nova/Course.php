@@ -35,7 +35,6 @@ class Course extends Resource
      * @var array
      */
     public static $indexDefaultOrder = [
-        // 'date' => 'asc',
         'id' => 'asc',
     ];
 
@@ -46,10 +45,9 @@ class Course extends Resource
      */
     public function title()
     {
-        // return $this->start_date()->format('Y-m-d') . ' - ' . $this->course_dates->first()->venue->name . ' - ' . $this->venue->name;
         return $this->course_type->name . ' - ' . $this->course_dates->first()->venue->name;
     }
-
+    
     /**
      * The columns that should be searched.
      *
@@ -57,7 +55,6 @@ class Course extends Resource
      */
     public static $search = [
         'id',
-        // 'date',
     ];
 
     /**
@@ -139,12 +136,13 @@ class Course extends Resource
                 ->sortable()
                 ->rules('required'),
 
-            // Date::make('Start Date')->sortable()->rules('required'),
+            Date::make('Start Date', function () {
+                return $this->start_date()->format('Y-m-d');
+            })->sortable()->rules('required'),
 
-
-            // Text::make('Venue', function () {
-            //     return $this->venue->name;
-            // })->onlyOnIndex(),
+            Text::make('Venue', function () {
+                return $this->course_dates()->first()->venue->name;
+            })->onlyOnIndex(),
 
             // Text::make('Tutor', function () {
             //     return $this->tutor->name;

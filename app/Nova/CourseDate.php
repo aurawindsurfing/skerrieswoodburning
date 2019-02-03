@@ -18,12 +18,10 @@ class CourseDate extends Resource
      */
     public static $model = 'App\CourseDate';
 
-    /**
-     * The single value that should be used to represent the resource when being displayed.
-     *
-     * @var string
-     */
-    public static $title = 'id';
+    public function title()
+    {
+        return $this->date->format('Y-m-d') . ' - ' . $this->course->course_type->name . ' - ' . $this->venue->name;
+    }
 
     /**
      * The columns that should be searched.
@@ -31,7 +29,7 @@ class CourseDate extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'date',
     ];
 
     /**
@@ -44,6 +42,22 @@ class CourseDate extends Resource
     ];
 
     /**
+     * $group
+     *
+     * @var string
+     */
+    public static $group = "Resources";
+
+    public static $group_index = 150;
+
+    /**
+     * $displayInNavigation
+     *
+     * @var boolean
+     */
+    public static $displayInNavigation = false;
+
+    /**
      * Get the fields displayed by the resource.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -52,7 +66,6 @@ class CourseDate extends Resource
     public function fields(Request $request)
     {
         return [
-            // ID::make()->sortable(),
 
             Date::make('Date')->sortable(),
 
