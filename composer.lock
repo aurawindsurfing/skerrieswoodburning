@@ -4,8 +4,49 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3b60848c1dcc41641fedad0d48e54e8b",
+    "content-hash": "64dfec6eec892fb7b10526221bc43f7e",
     "packages": [
+        {
+            "name": "64robots/nova-fields",
+            "version": "0.6.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/64robots/nova-fields.git",
+                "reference": "6d4bcd457432d9d4ca830ebb56043cf3e5c59a32"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/64robots/nova-fields/zipball/6d4bcd457432d9d4ca830ebb56043cf3e5c59a32",
+                "reference": "6d4bcd457432d9d4ca830ebb56043cf3e5c59a32",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "R64\\NovaFields\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "R64\\NovaFields\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-01-22T07:52:12+00:00"
+        },
         {
             "name": "anahkiasen/underscore-php",
             "version": "2.0.0",

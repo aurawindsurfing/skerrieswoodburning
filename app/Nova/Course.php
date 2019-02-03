@@ -118,15 +118,11 @@ class Course extends Resource
     public function fields(Request $request)
     {
         return [
-            // Text::make('Uuid', function () {
-            //     return ($this->start_date() !== null) ? $this->uuid() : '';
-            // })->exceptOnForms(),
+            Text::make('Uuid', function () {
+                return isset($this->course_dates()->first()->date) ? $this->uuid() : '';
+            })->exceptOnForms(),
 
             BelongsTo::make('Course Type', 'course_type')->sortable()->rules('required'),
-
-            // Text::make('Course Type', function () {
-            //     return $this->course_type->name;
-            // })->onlyOnIndex(),
 
             Money::make('Price', 'EUR')
                 ->withMeta([
@@ -137,16 +133,14 @@ class Course extends Resource
                 ->rules('required'),
 
             Date::make('Start Date', function () {
-                return $this->start_date()->format('Y-m-d');
-            })->sortable()->rules('required'),
+                return isset($this->course_dates()->first()->date) ? $this->start_date()->format('Y-m-d') : '';
+            })
+            ->sortable()
+            ->onlyOnIndex(),
 
             Text::make('Venue', function () {
-                return $this->course_dates()->first()->venue->name;
-            })->onlyOnIndex(),
-
-            // Text::make('Tutor', function () {
-            //     return $this->tutor->name;
-            // })->onlyOnIndex(),
+                return isset($this->course_dates()->first()->date) ? $this->course_dates()->first()->venue->name : '';
+            })->exceptOnForms(),
 
             HasMany::make('Course Dates')->sortable(),
 
