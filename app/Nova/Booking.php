@@ -56,7 +56,7 @@ class Booking extends Resource
      */
     public function title()
     {
-        return $this->name . ' ' . $this->surname . ' - ' . $this->course->course_type->name . ' - ' . $this->course->start_date()->format('Y-m-d');
+        return $this->name . ' ' . $this->surname . ' - ' . $this->course->course_type->name . ' - ' . $this->course->date->format('Y-m-d');
     }
 
     /**

@@ -16,8 +16,12 @@ class CreateCoursesTable extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('tutor_id')->unsigned()->nullable();
+            $table->integer('venue_id')->unsigned();
+            $table->date('date');
+            $table->time('time');
             $table->integer('price')->unsigned();
             $table->boolean('inhouse')->nullable()->default(false);
+            $table->boolean('multiday')->nullable()->default(false);
             $table->boolean('cancelled')->nullable()->default(false);
             $table->integer('capacity')->unsigned()->nullable()->default(20);
             $table->text('notes')->nullable()->default(null);

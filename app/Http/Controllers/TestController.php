@@ -20,9 +20,13 @@ class TestController extends Controller
     public function test()
     {
 
-        $e = \App\Course::first()->start_date()->format('Y m d');
+        HasMany::make('Gym')
 
-        dd($e);
+            ->canSee(function () {
+
+                return $this->member;
+
+            }),
 
     }
 

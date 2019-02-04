@@ -35,7 +35,7 @@ class Course extends Resource
      * @var array
      */
     public static $indexDefaultOrder = [
-        'id' => 'asc',
+        'date' => 'asc',
     ];
 
     /**
@@ -45,7 +45,7 @@ class Course extends Resource
      */
     public function title()
     {
-        return $this->course_type->name . ' - ' . $this->course_dates->first()->venue->name;
+        return $this->date->format('Y-m-d') . ' - ' . $this->course_type->name . ' - ' . $this->venue->name;
     }
     
     /**
@@ -55,6 +55,7 @@ class Course extends Resource
      */
     public static $search = [
         'id',
+        'date',
     ];
 
     /**
@@ -80,7 +81,7 @@ class Course extends Resource
      *
      * @var array
      */
-    public static $with = ['tutor'];
+    public static $with = ['venue', 'tutor'];
 
     /**
      * label
@@ -119,7 +120,7 @@ class Course extends Resource
     {
         return [
             Text::make('Uuid', function () {
-                return isset($this->course_dates()->first()->date) ? $this->uuid() : '';
+                return isset($this->date) ? $this->uuid() : '';
             })->exceptOnForms(),
 
             BelongsTo::make('Course Type', 'course_type')->sortable()->rules('required'),
@@ -132,23 +133,23 @@ class Course extends Resource
                 ->sortable()
                 ->rules('required'),
 
-            Date::make('Start Date', function () {
-                return isset($this->course_dates()->first()->date) ? $this->start_date()->format('Y-m-d') : '';
-            })
-            ->sortable()
-            ->onlyOnIndex(),
+            Date::make('Date')->sortable()->rules('required'),
 
-            Text::make('Venue', function () {
-                return isset($this->course_dates()->first()->date) ? $this->course_dates()->first()->venue->name : '';
-            })->exceptOnForms(),
+            TimeField::make('Time')
+                ->withMeta([
+                    'value' => '08:00',
+                ])
+                ->rules('required'),
 
-            HasMany::make('Course Dates')->sortable(),
+            BelongsTo::make('Venue')->sortable()->searchable()->rules('required'),
 
             BelongsTo::make('Tutor')->sortable()->searchable()->rules('required'),
 
             Boolean::make('Inhouse'),
 
-            Text::make('Notes')->exceptOnForms(),
+            Boolean::make('Multiday'),
+
+            Text::make('Notes')->exceptOnForms()->hideFromIndex(),
 
             Indicator::make('Status', function () {
 
@@ -174,6 +175,11 @@ class Course extends Resource
                 'cancelled' => 'red',
             ]),
 
+            HasMany::make('Course Dates')->sortable()
+                ->canSee(function () {
+                    return $this->multiday;
+                }),
+
             HasMany::make('Bookings')->sortable(),
         ];
     }
@@ -198,7 +204,7 @@ class Course extends Resource
     public function filters(Request $request)
     {
         return [
-            // new Filters\CourseDates,
+            new Filters\CourseDates,
         ];
     }
 

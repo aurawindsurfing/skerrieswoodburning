@@ -40,7 +40,9 @@ class DatabaseSeeder extends Seeder
         factory(App\CourseType::class, 2)->create();
 
         factory(App\Course::class, 20)->create()->each(function ($course) {
-            $course->course_dates()->saveMany(factory(App\CourseDate::class, rand(1,4))->make());
+            if ($course->multiday) {
+                $course->course_dates()->saveMany(factory(App\CourseDate::class, rand(1,3))->make());
+            }
         });
 
         factory(App\Contact::class, 100)->create();
