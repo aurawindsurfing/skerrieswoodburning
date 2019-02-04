@@ -31,8 +31,8 @@ class CreateBookingsTable extends Migration
             $table->text('invoice_id')->nullable()->default(null);
             $table->boolean('student_notified')->default(false);
             $table->boolean('company_contact_notified')->default(false);
-            $table->dateTime('reminder_sent')->nullable()->default(null);
-            $table->dateTime('pps_reminder_sent')->nullable()->default(null);
+            $table->boolean('reminder_sent')->default(false);
+            $table->boolean('pps_reminder_sent')->default(false);
             $table->boolean('confirmed')->default(false);
             $table->boolean('no_show')->default(false);
             $table->integer('user_id')->unsigned()->nullable()->default(null);

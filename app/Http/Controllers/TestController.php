@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Booking;
 use App\Invoice;
 use App\Company;
+use App\Course;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\CompanyContactConfirmation;
 use Maatwebsite\Excel\Facades\Excel;
@@ -20,13 +21,11 @@ class TestController extends Controller
     public function test()
     {
 
-        HasMany::make('Gym')
+        $e = Course::find(3);
 
-            ->canSee(function () {
+        // dd($e->course_dates()->get()->pluck('date'));
 
-                return $this->member;
-
-            }),
+        dd($e->bookings->first()->booking_dates());       
 
     }
 

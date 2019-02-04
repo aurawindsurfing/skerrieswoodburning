@@ -85,6 +85,23 @@ class Booking extends Model
         return number_format((float)$this->rate, 2, '.', '');
     }
 
+    public function booking_dates()
+    {
+
+        $booking_dates = collect([]);
+
+        $booking_dates->push($this->date);
+
+        if ($this->course->multiday) {
+            foreach ($this->course->course_dates()->get() as $course_date) {
+                $booking_dates->push($course_date->date);
+            }
+        }
+
+        return $booking_dates;
+
+    }
+
     /**
      * Route notifications for the Nexmo channel.
      *

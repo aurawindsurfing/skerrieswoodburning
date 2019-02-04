@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Booking;
 use Carbon\Carbon;
-use App\Notifications\Confirmation;
+use App\Notifications\StudentConfirmation;
 use App\Notifications\MissingPPSConfirmation;
 
 class CheckForMissingPPS extends Command
@@ -51,7 +51,7 @@ class CheckForMissingPPS extends Command
 
         foreach ($bookings as $booking) {
             !isset($booking->pps) ?: $booking->notify(new MissingPPSConfirmation);
-            $booking->update(['pps_reminder_sent' => now()]);
+            $booking->update(['pps_reminder_sent' => true]);
         }
     }
 }

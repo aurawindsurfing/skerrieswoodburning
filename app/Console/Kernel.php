@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         \App\Console\Commands\CompanyBookingConfirmation::class,
         \App\Console\Commands\StudentBookingConfirmation::class,
+        \App\Console\Commands\StudentBookingReminder::class,
         \App\Console\Commands\EmailAttendeeList::class,
         \App\Console\Commands\CheckForMissingPPS::class,
         \App\Console\Commands\Import::class,
