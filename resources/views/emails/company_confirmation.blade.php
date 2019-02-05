@@ -19,10 +19,10 @@
     @foreach ($bookings as $booking)
 
         <div class="container ml-6 max-w-sm">
+            Candidate: {{ ($booking->name ?? '')  .' '. ($booking->surname ?? '') }}<br>
             Course: {{ $booking->course->course_type->name }}<br>
-            Candidate: {{ !isset($booking->name) ?: $booking->name  .' '. !isset($booking->surname) ?: $booking->surname }}<br>
-            Venue: {{ $booking->course->venue->name }} <br>
-            Date: {{ $booking->course->date->format('Y-m-d H:m') }}<br><br>
+            Date: {{ $booking->course->date->format('Y-m-d H:m') }}<br>
+            Venue: {{ $booking->course->venue->name }} <br><br>
         </div>
 
     @endforeach

@@ -44,10 +44,12 @@ class StudentReminder extends Notification
     {
 
         $message = (isset($notifiable->name) ? $notifiable->name . ', just a quick reminder, your course:  ' : 'Just a quick reminder, your course: ')
-                    . $notifiable->course->course_type->name . ' takes place tomorrow at: '
+                    . $notifiable->course->course_type->name . ' takes place on '
+                    . $notifiable->upcoming_course_dates()->first()->course->date->format('l') .' at: '
                     . $notifiable->upcoming_course_dates()->first()->course->venue->name . ' on: '
-                    . $notifiable->upcoming_course_dates()->first()->course->date->format('Y-m-d H:m')
-                    . '. Please call us back if for any reason you are unable to attend. CIT';
+                    . $notifiable->upcoming_course_dates()->first()->course->date->format('H:m')
+                    . (isset($notifiable->upcoming_course_dates()->first()->course->venue->google_maps) ? ' directions: ' . $notifiable->upcoming_course_dates()->first()->course->venue->google_maps : '')
+                    . '. Please call us back if for any reasons you are unable to attend. CIT';
 
         $this->updateNotificationLog('sms course date reminder', $notifiable, $message);
 

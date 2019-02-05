@@ -63,7 +63,7 @@ class CompanyContactConfirmation extends Notification
 
     public function toMail($notifiable)
     {
-        $message = view('emails.companyconfirmation', ['bookings' => $this->bookings])->render();
+        $message = view('emails.company_confirmation', ['bookings' => $this->bookings])->render();
 
         foreach ($this->bookings as $booking) {
             $this->updateNotificationLog('email booking confirmation', $booking, $message);
@@ -72,7 +72,7 @@ class CompanyContactConfirmation extends Notification
         return (new MailMessage)
             ->subject('Booking Confirmation')
             ->from('alec@citltd.ie')
-            ->view('emails.companyconfirmation', ['bookings' => $this->bookings]);
+            ->view('emails.company_confirmation', ['bookings' => $this->bookings]);
     }
 
     /**

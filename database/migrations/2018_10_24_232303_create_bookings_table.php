@@ -32,6 +32,7 @@ class CreateBookingsTable extends Migration
             $table->boolean('student_notified')->default(false);
             $table->boolean('company_contact_notified')->default(false);
             $table->boolean('reminders_sent')->default(false);
+            $table->boolean('company_contact_reminders_sent')->default(false);
             $table->boolean('pps_reminder_sent')->default(false);
             $table->boolean('confirmed')->default(false);
             $table->boolean('no_show')->default(false);

@@ -45,12 +45,17 @@ class StudentBookingReminder extends Command
 
         $student_bookings = Booking::query()
             ->where('reminders_sent', false)
+            ->whereNull('company_id')
             // ->where('updated_at', '<', Carbon::now()->subMinutes(2)->toDateTimeString())
             ->get();
 
-        error_log('Trying to notify ' . $student_bookings->count() . ' students');
+        $tomorrow_student_bookings = $student_bookings->filter(function ($booking) {
+            return Carbon::make($booking->upcoming_course_dates()->first()->date)->isTomorrow();
+        });
 
-            foreach ($student_bookings as $booking) {
+        error_log('Trying to notify ' . $tomorrow_student_bookings->count() . ' students');
+
+            foreach ($tomorrow_student_bookings as $booking) {
                 $booking->notify(new StudentReminder($booking));
             }
 
