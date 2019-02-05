@@ -13,16 +13,14 @@ class StudentReminder extends Notification
 {
     use Queueable;
 
-    protected $dates;
-
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct()
     {
-        $this->dates = $data;
+        
     }
 
     /**
@@ -46,12 +44,12 @@ class StudentReminder extends Notification
     {
 
         $message = (isset($notifiable->name) ? $notifiable->name . ', just a quick reminder, your course:  ' : 'Just a quick reminder, your course: ')
-                    . $notifiable->course->course_type->name . ' at: '
-                    . $notifiable->course->venue->name . ' on: '
-                    . $notifiable->course->date->format('Y-m-d H:m')
-                    . ' we will text you exact directions one day before the course date. CIT';
+                    . $notifiable->course->course_type->name . ' takes place tomorrow at: '
+                    . $notifiable->upcoming_course_dates()->first()->course->venue->name . ' on: '
+                    . $notifiable->upcoming_course_dates()->first()->course->date->format('Y-m-d H:m')
+                    . '. Please call us back if for any reason you are unable to attend. CIT';
 
-        $this->updateNotificationLog('sms booking confirmation', $notifiable, $message);
+        $this->updateNotificationLog('sms course date reminder', $notifiable, $message);
 
         return (new NexmoMessage)
                     ->content($message);
@@ -68,7 +66,12 @@ class StudentReminder extends Notification
             'confirmation_sent' => now(),
         ]);
 
-        $booking->update(['student_notified' => true]);
+        if ($booking->upcoming_course_dates()->count() == 1) {
+
+            $booking->update(['reminders_sent' => true]);
+
+        }
+
         error_log('Notified student from booking id: ' . $booking->id);
     }
 }

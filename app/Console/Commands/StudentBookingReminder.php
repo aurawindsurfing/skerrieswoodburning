@@ -42,8 +42,9 @@ class StudentBookingReminder extends Command
      */
     public function handle()
     {   
+
         $student_bookings = Booking::query()
-            ->where('reminder_sent', false)
+            ->where('reminders_sent', false)
             // ->where('updated_at', '<', Carbon::now()->subMinutes(2)->toDateTimeString())
             ->get();
 

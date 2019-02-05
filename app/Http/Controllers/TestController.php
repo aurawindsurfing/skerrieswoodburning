@@ -21,11 +21,16 @@ class TestController extends Controller
     public function test()
     {
 
-        $e = Course::find(3);
+        $student_bookings = Booking::query()
+            ->where('reminders_sent', false)
+            // ->where('updated_at', '<', Carbon::now()->subMinutes(2)->toDateTimeString())
+            ->get();
 
         // dd($e->course_dates()->get()->pluck('date'));
 
-        dd($e->bookings->first()->booking_dates());       
+        $e = $student_bookings->first()->upcoming_course_dates()->count();  
+        
+        dd($e);
 
     }
 

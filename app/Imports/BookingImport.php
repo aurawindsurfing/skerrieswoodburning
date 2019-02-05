@@ -112,7 +112,7 @@ class BookingImport implements ToCollection, WithHeadingRow
                     'student_notified' => true,
                     'company_contact_notified' => true, 
                     // 'confirmation_sent' => $course->date,
-                    'reminder_sent' => true,
+                    'reminders_sent' => true,
                     'pps_reminder_sent' => true,
                     'confirmed' => true,
                     'no_show' => false,

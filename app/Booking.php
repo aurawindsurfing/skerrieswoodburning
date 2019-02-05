@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Notifications\Notifiable;
+use Carbon\Carbon;
 
 class Booking extends Model
 {
@@ -85,22 +86,40 @@ class Booking extends Model
         return number_format((float)$this->rate, 2, '.', '');
     }
 
-    public function booking_dates()
+    // if multiday then we coalate all dates into a collection of dates and we sort them asc by date then we ase that to send notifications
+
+    public function upcoming_course_dates()
     {
 
-        $booking_dates = collect([]);
+        $dates = collect([]);
 
-        $booking_dates->push($this->date);
+        if ($this->course->date > Carbon::now()) {
+            
+            $course_date = new CourseDate;
+            $course_date->course_id = $this->course->id;
+            $course_date->venue_id = $this->course->venue->id;
+            $course_date->date = $this->course->date;
+            $course_date->time = $this->course->time;
+            $dates->push($course_date); /// trzeba z tego zrobic taki sam objekt jak coursedates
+        }
 
+        
         if ($this->course->multiday) {
             foreach ($this->course->course_dates()->get() as $course_date) {
-                $booking_dates->push($course_date->date);
+                if ($course_date->date > Carbon::now()){
+                    $dates->push($course_date);
+                }
             }
         }
 
-        return $booking_dates;
+        $sorted_course_dates = $dates->sortBy(function ($course_date) {
+            return $course_date->date;
+        });
+
+        return $sorted_course_dates;
 
     }
+ 
 
     /**
      * Route notifications for the Nexmo channel.

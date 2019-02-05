@@ -27,7 +27,7 @@ $factory->define(App\Booking::class, function (Faker $faker) {
         'po' => $faker->optional()->randomNumber,
         'student_notified' => true,
         'company_contact_notified' => true,
-        'reminder_sent' => true,
+        'reminders_sent' => true,
         'pps_reminder_sent' => true,
         'confirmed' => $faker->boolean,
         'no_show' => $faker->boolean,

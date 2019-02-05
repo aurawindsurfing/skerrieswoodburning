@@ -12,7 +12,7 @@ class ClearTemporaryFiles extends Command
      *
      * @var string
      */
-    protected $signature = 'tmp_files:clear';
+    protected $signature = 'housekeeping:clear_tmp_files';
 
     /**
      * The console command description.
