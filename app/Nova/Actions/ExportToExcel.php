@@ -26,7 +26,7 @@ class ExportToExcel extends Action
 
         $model = $models->first();
 
-        $path = 'storage/tmp/lists/' . 
+        $path = 'tmp/lists/' . 
                     str_replace(' ', '_', $model->course_type->name) . '_' . 
                     $model->date->format('Y-m-d'). '_' . 
                     str_replace(' ', '_', $model->venue->name) . 
