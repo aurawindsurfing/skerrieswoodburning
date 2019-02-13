@@ -47,7 +47,7 @@ class StudentReminder extends Notification
                     . $notifiable->course->course_type->name . ' takes place on '
                     . $notifiable->upcoming_course_dates()->first()->course->date->format('l') .' at: '
                     . $notifiable->upcoming_course_dates()->first()->course->venue->name . ' on: '
-                    . $notifiable->upcoming_course_dates()->first()->course->date->format('H:m')
+                    . date('H:i', strtotime($notifiable->upcoming_course_dates()->first()->course->time)) . ' '
                     . (isset($notifiable->upcoming_course_dates()->first()->course->venue->google_maps) ? ' directions: ' . $notifiable->upcoming_course_dates()->first()->course->venue->google_maps : '')
                     . '. Please call us back if for any reasons you are unable to attend. CIT';
 

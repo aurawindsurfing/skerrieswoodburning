@@ -21,30 +21,9 @@ class TestController extends Controller
     public function test()
     {
 
-        $company_bookings = Booking::query()
-        ->whereNotNull('contact_id')
-        ->where('company_contact_reminders_sent', false)
-        ->get();
+       $e = Course::find(1);
 
-        dd($company_bookings);
-
-        $next_company_bookings = $company_bookings->filter(function ($booking) {
-
-            
-
-            if (Carbon::today()->isFriday()) {
-
-                $saturday = Carbon::tomorrow();
-                $monday = Carbon::make('next monday');
-                return Carbon::make($booking->upcoming_course_dates()->first()->date)->between($saturday, $monday);
-
-            } else {
-                return Carbon::make($booking->upcoming_course_dates()->first()->date)->isTomorrow();
-            }
-            
-        });
-
-        dd($next_company_bookings);
+       dd(date('H:i', strtotime($e->time)));
 
     }
 

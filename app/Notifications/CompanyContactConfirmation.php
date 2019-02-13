@@ -37,30 +37,6 @@ class CompanyContactConfirmation extends Notification
         return ['mail'];
     }
 
-    /**
-     * Get the Nexmo / SMS representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return NexmoMessage
-     */
-    public function toNexmo($notifiable)
-    {
-        $message = (isset($notifiable->contact) ? $notifiable->contact->name : '') 
-                    . ', this text is to confirm that we booked '
-                    . (!isset($notifiable->name) ?: $notifiable->name)  .' '. (!isset($notifiable->surname) ?: $notifiable->surname) . ' for: '
-                    . $notifiable->course->course_type->name . ' course at: '
-                    . $notifiable->course->venue->name . ' on: '
-                    . $notifiable->course->date->format('Y-m-d H:m')
-                    . '. Thank you. CIT';
-
-        foreach ($this->bookings as $booking) {
-            $this->updateNotificationLog('sms booking confirmation', $booking, $message);
-        }
-
-        return (new NexmoMessage)
-            ->content($message);
-    }
-
     public function toMail($notifiable)
     {
         $message = view('emails.company_confirmation', ['bookings' => $this->bookings])->render();
@@ -73,19 +49,6 @@ class CompanyContactConfirmation extends Notification
             ->subject('Booking Confirmation')
             ->from('alec@citltd.ie')
             ->view('emails.company_confirmation', ['bookings' => $this->bookings]);
-    }
-
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
-    public function toArray($notifiable)
-    {
-        return [
-            //
-        ];
     }
 
     public function updateNotificationLog($type, $booking, $message)

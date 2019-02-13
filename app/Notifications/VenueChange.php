@@ -47,7 +47,8 @@ class VenueChange extends Notification
                     . ' VENUE HAS CHANGED!!! '
                     . (isset($notifiable->name) ? $notifiable->name . ', your ' : 'Your ')
                     . $notifiable->course->course_type->name . ' course on: '
-                    . $notifiable->course->date->format('Y-m-d H:m')
+                    . $notifiable->course->date->format('Y-m-d') . ' '
+                    . date('H:i', strtotime($notifiable->course->time)) . ' '
                     . ' venue has been changed to: '
                     . $notifiable->course->venue->name
                     . (isset($notifiable->course->venue->google_maps) ? ', here are exact directions: ' . $notifiable->course->venue->google_maps : '')
@@ -57,19 +58,6 @@ class VenueChange extends Notification
 
         return (new NexmoMessage)
                     ->content($message);
-    }
-
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
-    public function toArray($notifiable)
-    {
-        return [
-            //
-        ];
     }
 
     public function updateNotificationLog($type, $booking, $message)

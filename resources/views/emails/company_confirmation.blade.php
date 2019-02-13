@@ -21,17 +21,13 @@
         <div class="container ml-6 max-w-sm">
             Candidate: {{ ($booking->name ?? '')  .' '. ($booking->surname ?? '') }}<br>
             Course: {{ $booking->course->course_type->name }}<br>
-            Date: {{ $booking->course->date->format('Y-m-d H:m') }}<br>
+            Date: {{ $booking->course->date->format('Y-m-d') }}<br>
+            Time: {{ date('H:i', strtotime($booking->course->time)) }}<br>
             Venue: {{ $booking->course->venue->name }} <br><br>
+            <b>{{ isset($booking->course->venue->google_maps) ? 'Directions: ' : ''}}</b><a href="{{ isset($booking->course->venue->google_maps) ? $booking->course->venue->google_maps : '' }}">{{ isset($booking->course->venue->google_maps) ? $booking->course->venue->google_maps : '' }}</a><br><br><br>
         </div>
 
     @endforeach
-
-    <div class="container ml-6 max-w-sm">
-        <br>
-            We will text you exact directions one day before the course.<br>
-        <br>
-    </div>
 
     @component('emails.partials.footer')
         <div class="font-bold">{{ $booking->user->name }}</div> 

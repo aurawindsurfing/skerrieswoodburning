@@ -66,8 +66,7 @@ class CompanyContactReminder extends Notification
             $booking->update(['company_contact_reminders_sent' => true]);
 
         }
-
-
+        
         error_log('Notified company contact from booking id: ' . $booking->id);
     }
 }

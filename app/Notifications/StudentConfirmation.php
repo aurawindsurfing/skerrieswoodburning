@@ -46,38 +46,15 @@ class StudentConfirmation extends Notification
         $message = (isset($notifiable->name) ? $notifiable->name . ', thank you for booking ' : 'Thank you for booking ')
                     . $notifiable->course->course_type->name . ' at: '
                     . $notifiable->course->venue->name . ' on: '
-                    . $notifiable->course->date->format('Y-m-d H:m')
-                    . ' we will text you exact directions one day before the course date. CIT';
+                    . $notifiable->course->date->format('Y-m-d') . ' '
+                    . date('H:i', strtotime($notifiable->course->time)) . ' '
+                    . (isset($notifiable->course->venue->google_maps) ? '. Directions: ' . $notifiable->course->venue->google_maps : '')
+                    . '. CIT';
 
         $this->updateNotificationLog('sms booking confirmation', $notifiable, $message);
 
         return (new NexmoMessage)
                     ->content($message);
-    }
-
-    public function toMail($notifiable)
-    {
-        $message = view('emails.confirmation', compact('notifiable'))->render();
-
-        $this->updateNotificationLog('email booking confirmation', $notifiable, $message);
-
-        return (new MailMessage)
-            ->subject('Booking Confirmation')
-            ->from('alec@citltd.ie')
-            ->view('emails.confirmation', compact('notifiable'));
-    }
-
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
-    public function toArray($notifiable)
-    {
-        return [
-            //
-        ];
     }
 
     public function updateNotificationLog($type, $booking, $message)

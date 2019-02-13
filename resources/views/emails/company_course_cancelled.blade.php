@@ -15,7 +15,8 @@
         {{ isset($bookings->first->company->contact->name) ? $bookings->first->company->contact->name . ', thank you for your bookings. ' : 'Thank you for your bookings. '}}<br><br>
         <b>{{ strtoupper($bookings->first()->course->course_type->name) }} COURSE HAS BEEN CANCELLED!!!</b><br><br>
         
-        <b>DATE:</b>    {{ $bookings->first()->course->date->format('Y-m-d H:m') }}<br><br>
+        <b>DATE:</b>    {{ $bookings->first()->course->date->format('Y-m-d') }}<br><br>
+        <b>TIME:</b>    {{ date('H:i', strtotime($bookings->first()->course->time)) }}<br><br>
         <b>VENUE:</b>   {{ $bookings->first()->course->venue->name }}<br><br>
         <b>ADDRESS:</b> {{ $bookings->first()->course->venue->address_line_1 }}<br><br>
         <b>CITY:</b>    {{ $bookings->first()->course->venue->city }}<br><br>

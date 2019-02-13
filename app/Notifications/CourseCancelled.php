@@ -47,7 +47,9 @@ class CourseCancelled extends Notification
                     . ' HAS BEEN CANCELLED!!! '
                     . (isset($notifiable->name) ? $notifiable->name . ', your ' : 'Your ')
                     . $notifiable->course->course_type->name . ' course on: '
-                    . $notifiable->course->date->format('Y-m-d H:m') . ' at: '
+                    . $notifiable->course->date->format('Y-m-d') 
+                    . date('H:i', strtotime($notifiable->course->time)) . ' '
+                    . ' at: '
                     . $notifiable->course->venue->name
                     . ' has been CANCELLED!!! '
                     . ' We are sorry for any inconvenience caused. CIT';
@@ -56,19 +58,6 @@ class CourseCancelled extends Notification
 
         return (new NexmoMessage)
                     ->content($message);
-    }
-
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
-    public function toArray($notifiable)
-    {
-        return [
-            //
-        ];
     }
 
     public function updateNotificationLog($type, $booking, $message)

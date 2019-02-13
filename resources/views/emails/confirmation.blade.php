@@ -16,8 +16,10 @@
         {{ isset($notifiable->name) ? $notifiable->name . ', thank you for your booking: ' : 'Thank you for your booking: '}}<br><br>
         Course Type: {{ $notifiable->course->course_type->name }} <br>
         Venue: {{ $notifiable->course->venue->name }} <br>
-        Date: {{ $notifiable->course->date->format('Y-m-d H:m') }} <br><br>
-        We will text you exact directions one day before the course.<br>
+        Date: {{ $notifiable->course->date->format('Y-m-d') }} <br>
+        Time: {{ date('H:i', strtotime($notifiable->course->time)) }} <br><br>
+        <b>{{ isset($notifiable->course->venue->google_maps) ? 'Directions: ' : ''}}</b><a href="{{ isset($notifiable->course->venue->google_maps) ? $notifiable->course->venue->google_maps : '' }}">{{ isset($notifiable->course->venue->google_maps) ? $notifiable->course->venue->google_maps : '' }}</a><br>
+        
         Kind Regards<br>
         <br>
 
