@@ -46,6 +46,7 @@ class StudentBookingReminder extends Command
         $student_bookings = Booking::query()
             ->where('reminders_sent', false)
             ->whereCompanyId(null)
+            ->whereNotNull('phone')
             // ->where('updated_at', '<', Carbon::now()->subMinutes(2)->toDateTimeString())
             ->get();
 

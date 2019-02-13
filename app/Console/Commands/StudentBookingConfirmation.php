@@ -42,6 +42,7 @@ class StudentBookingConfirmation extends Command
         $student_bookings = Booking::query()
             ->where('student_notified', false)
             ->whereCompanyId(null)
+            ->whereNotNull('phone')
         // ->where('updated_at', '<', Carbon::now()->subMinutes(2)->toDateTimeString())
             ->get();
 
