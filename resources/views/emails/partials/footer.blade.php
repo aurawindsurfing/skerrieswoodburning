@@ -3,10 +3,11 @@
     <br>
     {{ $slot }} 
     <div>Construction Industry Training Ltd</div>
-    <div>Unit 10, Block 8</div>
-    <div>Blanchardstown Corporate Park</div>
+    <div>Unit C3</div>
+    <div>Dunshaughlin Business Park</div>
     <div>D15EKC2</div>
-    <div>Dublin</div>
+    <div>Dunshaughlin</div>
+    <div>Co. Meath</div>
 
     <br>
     
@@ -17,10 +18,10 @@
         <div class="flex flex-row justify-between">
                 <div>Mob: 086 8065966</div>
         </div>
-        <div class="flex flex-row justify-between">
+        {{-- <div class="flex flex-row justify-between">
                 <div>Web: <a href="{{config('app.url')}}">www.citltd.ie</a>
                 </div>
-        </div>
+        </div> --}}
     </div>
 
 </div>
