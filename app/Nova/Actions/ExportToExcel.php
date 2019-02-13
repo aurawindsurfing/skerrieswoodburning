@@ -34,7 +34,7 @@ class ExportToExcel extends Action
 
         Excel::store(new \App\Exports\AttendeeExport($model), 'public/' . $path);
 
-        return Action::download(url(public_path($path)), uniqid() . '.xlsx');
+        return Action::download(url($path), uniqid() . '.xlsx');
 
     }
 
