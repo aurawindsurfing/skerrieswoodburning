@@ -130,27 +130,31 @@ class Booking extends Resource
 
             Text::make('Name')->sortable(),
             Text::make('Surname')->sortable(),
+
             Text::make('Phone')
-                ->rules('required', 'regex:/08\d[0-9]{7}/')
+                ->rules('nullable', 'regex:/08\d[0-9]{7}/')
                 ->withMeta(['extraAttributes' => [
                     'placeholder' => '08x'],
-                ]),
+                ])
+                ,
 
             Text::make('Email')->sortable(),
-            Boolean::make('PPS')->hideFromIndex(),
+
+            Boolean::make('Holds Irish PPS number', 'pps')->hideFromIndex(),
 
             Money::make('Rate', 'EUR')->exceptOnForms(),
             Money::make('Rate', 'EUR')->onlyOnForms()
                 ->withMeta([
-                    'value' => 115,
+                    'value' => session()->has('booking.rate') ? session('booking.rate') : 115,
                 ]),
 
             Select::make('Payment Type')
             ->withMeta([
                 'value' => session('booking.payment_type'),
             ])->options([
+                'cc' => 'Credit Card',
+                'eft' => 'EFT',
                 'cash' => 'Cash',
-                'invoice' => 'Invoice',
                 'cheque' => 'Cheque',
             ])->displayUsingLabels()
             ->hideFromIndex(),

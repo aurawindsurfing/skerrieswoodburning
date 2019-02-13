@@ -28,7 +28,6 @@
             (isset($booking->upcoming_course_dates()->first()->course->venue->city) ? ', ' . $booking->upcoming_course_dates()->first()->course->venue->city : '') .
             (isset($booking->upcoming_course_dates()->first()->course->venue->postal_code) ? ', ' . $booking->upcoming_course_dates()->first()->course->venue->postal_code : '') }} <br>
             <b>{{ isset($booking->upcoming_course_dates()->first()->course->venue->phone) ? 'Venue contact number: ' : ''}}</b>{{ isset($booking->upcoming_course_dates()->first()->course->venue->phone) ? $booking->upcoming_course_dates()->first()->course->venue->phone : '' }} <br>
-            <b>{{ isset($booking->upcoming_course_dates()->first()->course->venue->directions) ? 'Directions: ' : ''}}</b>{{ isset($booking->upcoming_course_dates()->first()->course->venue->directions) ? $booking->upcoming_course_dates()->first()->course->venue->directions : '' }} <br>
             <b>{{ isset($booking->upcoming_course_dates()->first()->course->venue->google_maps) ? 'Google maps: ' : ''}}</b><a href="{{ isset($booking->upcoming_course_dates()->first()->course->venue->google_maps) ? $booking->upcoming_course_dates()->first()->course->venue->google_maps : '' }}">{{ isset($booking->upcoming_course_dates()->first()->course->venue->google_maps) ? $booking->upcoming_course_dates()->first()->course->venue->google_maps : '' }}</a><br><br><br>
         </div>
 
@@ -51,7 +50,6 @@
             (isset($additional_date->venue->city) ? ', ' . $additional_date->venue->city : '') .
             (isset($additional_date->venue->postal_code) ? ', ' . $additional_date->venue->postal_code : '') }} <br>
             <b>{{ isset($additional_date->venue->phone) ? 'Venue contact number: ' : ''}}</b>{{ isset($additional_date->venue->phone) ? $additional_date->venue->phone : '' }} <br>
-            <b>{{ isset($additional_date->venue->directions) ? 'Directions: ' : ''}}</b>{{ isset($additional_date->venue->directions) ? $additional_date->venue->directions : '' }} <br>
             <b>{{ isset($additional_date->venue->google_maps) ? 'Google maps: ' : ''}}</b><a href="{{ isset($additional_date->venue->google_maps) ? $additional_date->venue->google_maps : '' }}">{{ isset($additional_date->venue->google_maps) ? $additional_date->venue->google_maps : '' }}</a><br><br><br>
         </div>
 

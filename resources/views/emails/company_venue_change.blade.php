@@ -32,7 +32,6 @@
         {{ (isset($bookings->first()->course->venue->city)) ? 'City: ' . $bookings->first()->course->venue->city : '' }}<br>
         {{ (isset($bookings->first()->course->venue->postal_code)) ? 'Postal Code: ' . $bookings->first()->course->venue->postal_code : '' }}<br>
         {{ (isset($bookings->first()->course->venue->phone)) ? 'Phone: ' . $bookings->first()->course->venue->phone : '' }}<br><br>
-        {{ (isset($bookings->first()->course->venue->directions)) ? 'Directions: ' . $bookings->first()->course->venue->directions : '' }}<br><br>
         {{ (isset($bookings->first()->course->venue->google_maps)) ? 'Google Maps: ' : '' }} <a href="{{ (isset($bookings->first()->course->venue->google_maps)) ? $bookings->first()->course->venue->google_maps : '' }}">{{ (isset($bookings->first()->course->venue->google_maps)) ? $bookings->first()->course->venue->google_maps : '' }}</a><br><br>
 
     </div>
