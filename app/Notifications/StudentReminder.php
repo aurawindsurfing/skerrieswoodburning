@@ -48,7 +48,7 @@ class StudentReminder extends Notification
                     . $notifiable->upcoming_course_dates()->first()->course->date->format('l') .' at: '
                     . $notifiable->upcoming_course_dates()->first()->course->venue->name . ' on: '
                     . date('H:i', strtotime($notifiable->upcoming_course_dates()->first()->course->time)) . ' '
-                    . (isset($notifiable->upcoming_course_dates()->first()->course->venue->google_maps) ? ' directions: ' . $notifiable->upcoming_course_dates()->first()->course->venue->google_maps : '')
+                    . (isset($notifiable->upcoming_course_dates()->first()->course->venue->google_maps) ? ' Directions: ' . $notifiable->upcoming_course_dates()->first()->course->venue->google_maps : '')
                     . '. Please call us back if for any reasons you are unable to attend. CIT';
 
         $this->updateNotificationLog('sms course date reminder', $notifiable, $message);

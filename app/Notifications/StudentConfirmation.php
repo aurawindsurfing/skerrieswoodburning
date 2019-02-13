@@ -48,7 +48,7 @@ class StudentConfirmation extends Notification
                     . $notifiable->course->venue->name . ' on: '
                     . $notifiable->course->date->format('Y-m-d') . ' '
                     . date('H:i', strtotime($notifiable->course->time)) . ' '
-                    . (isset($notifiable->course->venue->google_maps) ? '. Directions: ' . $notifiable->course->venue->google_maps : '')
+                    . (isset($notifiable->course->venue->google_maps) ? ' Directions: ' . $notifiable->course->venue->google_maps : '')
                     . '. CIT';
 
         $this->updateNotificationLog('sms booking confirmation', $notifiable, $message);
