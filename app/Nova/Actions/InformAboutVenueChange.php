@@ -26,7 +26,7 @@ class InformAboutVenueChange extends Action
     public function handle(ActionFields $fields, Collection $models)
     {
         //split bookings private / company
-        $student_bookings = $models->first()->bookings()->whereCompanyId(null)->get();
+        $student_bookings = $models->first()->bookings()->whereCompanyId(null)->whereNotNull('phone')->get();
         $companies_bookings = $models->first()->bookings()->whereNotNull('company_id')->get();
         $companies_bookings = $companies_bookings->groupBy('contact_id');
 
@@ -40,12 +40,25 @@ class InformAboutVenueChange extends Action
         //notify companies with one notificaion
         error_log('Trying to notify ' . $companies_bookings->count() . ' company contacts');
 
+        $missing_company_contacts = 0;
+
         foreach ($companies_bookings as $contact_id => $bookings) {
             $contact = Contact::find($contact_id);
-            $contact->notify(new \App\Notifications\CompanyVenueChange($bookings));
+            if (isset($contact)) {
+                $contact->notify(new \App\Notifications\CompanyVenueChange($bookings));
+            } else {
+                $missing_company_contacts = $missing_company_contacts + 1;
+            }
+            
         };
 
-        return Action::message('Notifications sent with venue change info');
+        if ($missing_company_contacts > 0) {
+            return Action::danger($missing_company_contacts . ' companies are missing contact details! Failed to notify them about venue change!');
+        } else {
+            return Action::message('All notifications sent with venue change info');
+        }
+
+        
 
     }
 

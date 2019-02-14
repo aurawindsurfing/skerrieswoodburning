@@ -14,8 +14,8 @@
     <div class="container ml-6 max-w-m">
         {{ isset($bookings->first->company->contact->name) ? $bookings->first->company->contact->name . ', thank you for your bookings. ' : 'Thank you for your bookings. '}}<br><br>
         <b>{{ strtoupper($bookings->first()->course->course_type->name) }} COURSE VENUE HAS CHANGED!!!</b><br><br>
-        <b>DATE: {{ $bookings->first()->course->date->format('Y-m-d H:m') }}<br><br></b>
-        <b>TIME: {{ date('H:i', strtotime($bookings->first()->course->date)) }}<br><br></b>
+        <b>DATE: {{ $bookings->first()->course->date->format('Y-m-d') }}<br><br></b>
+        <b>TIME: {{ date('H:i', strtotime($bookings->first()->course->time)) }}<br><br></b>
 
         FOLLOWING EMPLOYEES / CONTRACTORS NEED TO BE INFORMED ABOUT CHANGE OF VENUE:<br><br>
         

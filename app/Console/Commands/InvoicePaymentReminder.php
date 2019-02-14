@@ -9,6 +9,7 @@ use App\Notifications\CompanyInvoiceReminder;
 use App\Mail\CompanyInvoicePaymentReminder;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class InvoicePaymentReminder extends Command
 {
@@ -48,9 +49,13 @@ class InvoicePaymentReminder extends Command
             ->whereStatus('unpaid')
             ->get();
 
-        $unpaid_invoices_grouped_by_company = $unpaid_invoices->groupBy('company_id');
+        $unpaid_invoices = $unpaid_invoices->filter(function ($invoice){
+            return Carbon::parse($invoice->date)->addDays($invoice->payment_terms) <= Carbon::now();
+        });
 
+        $unpaid_invoices_grouped_by_company = $unpaid_invoices->groupBy('company_id');
         error_log('Trying to notify ' . $unpaid_invoices_grouped_by_company->count() . ' companies about unpaid invoices');
+
 
         foreach ($unpaid_invoices_grouped_by_company as $company_id => $invoices) {
 

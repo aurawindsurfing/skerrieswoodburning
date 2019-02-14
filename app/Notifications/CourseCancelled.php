@@ -54,7 +54,7 @@ class CourseCancelled extends Notification
                     . ' has been CANCELLED!!! '
                     . ' We are sorry for any inconvenience caused. CIT';
 
-        $this->updateNotificationLog('sms course cancellation', $notifiable, $message);
+        $this->updateNotificationLog('sms course cancellation info', $notifiable, $message);
 
         return (new NexmoMessage)
                     ->content($message);

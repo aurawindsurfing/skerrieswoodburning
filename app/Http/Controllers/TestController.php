@@ -21,9 +21,15 @@ class TestController extends Controller
     public function test()
     {
 
-        $path = 'public/tmp/lists/' . uniqid() . '.xlsx';
+        $unpaid_invoices = Invoice::query()
+            ->whereStatus('unpaid')
+            ->get();
 
-        dd(url($path));
+        $unpaid_invoices = $unpaid_invoices->filter(function ($invoice){
+            return Carbon::parse($invoice->date)->addDays($invoice->payment_terms) <= Carbon::now();
+        });
+
+        dd($unpaid_invoices);
 
     }
 

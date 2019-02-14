@@ -57,19 +57,6 @@ class CompanyVenueChange extends Notification
 
     }
 
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
-    public function toArray($notifiable)
-    {
-        return [
-            //
-        ];
-    }
-
     public function updateNotificationLog($type, $booking, $message)
     {
         $notification_log = NotificationLog::create([
