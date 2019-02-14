@@ -84,9 +84,9 @@ return [
       'name'        => 'Contruction Industry Training Ltd',
       'id'          => '8220493A',
       'phone'       => '01 809 7266',
-      'location'    => 'Unit 10, Block 8, Blanchardstown Corporate Park',
-      'zip'         => 'D15EKC2',
-      'city'        => 'Dublin',
+      'location'    => 'Unit C3, Dunshaughlin Business Park ',
+      'zip'         => 'A85 YV58',
+      'city'        => 'Dunshaughlin, Co. Meath',
       'country'     => 'Ireland',
   ],
 
