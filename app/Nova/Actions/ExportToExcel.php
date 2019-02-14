@@ -9,6 +9,8 @@ use Illuminate\Support\Collection;
 use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Fields\ActionFields;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\AttendeeExport;
+use Illuminate\Support\Facades\Storage;
 
 class ExportToExcel extends Action
 {
@@ -26,15 +28,12 @@ class ExportToExcel extends Action
 
         $model = $models->first();
 
-        $path = 'tmp/lists/' . 
-                    str_replace(' ', '_', $model->course_type->name) . '_' . 
-                    $model->date->format('Y-m-d'). '_' . 
-                    str_replace(' ', '_', $model->venue->name) . 
-                    '_attendees.xlsx';
+        $path = 'tmp/lists/' . uniqid() . '.xlsx';
 
-        Excel::store(new \App\Exports\AttendeeExport($model), 'public/' . $path);
+        Excel::store(new AttendeeExport($model), 'public/' . $path);
 
-        return Action::download(url($path), uniqid() . '.xlsx');
+        return Action::download(url('storage/' . $path), 'export.xlsx');
+
 
     }
 

@@ -21,9 +21,9 @@ class TestController extends Controller
     public function test()
     {
 
-       $e = Course::find(1);
+        $path = 'public/tmp/lists/' . uniqid() . '.xlsx';
 
-       dd(date('H:i', strtotime($e->time)));
+        dd(url($path));
 
     }
 
