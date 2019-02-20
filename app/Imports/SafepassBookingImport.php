@@ -16,8 +16,9 @@ use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use App\Invoice;
 use App\Payment;
+use App\CourseType;
 
-class BookingImport implements ToCollection, WithHeadingRow
+class SafepassBookingImport implements ToCollection, WithHeadingRow
 {
 
     public function chunkSize(): int
@@ -28,14 +29,16 @@ class BookingImport implements ToCollection, WithHeadingRow
     public function collection(Collection $rows)
     {
         $output = new ConsoleOutput();
-        error_log('Importing bookings');
+        error_log('Importing safepass bookings');
         $bar = new ProgressBar($output, $rows->count());
+
+        $course_type_id = CourseType::whereName('Safepass')->pluck('id')->first();
 
         foreach ($rows as $row) {
 
             $bar->advance();
 
-            if (str_contains($row['date'], ['Eugene Hughes', 'John Kennedy', 'Michael Clarke']) && !empty($row['date'])) {
+            if (str_contains($row['date'], ['Eugene Hughes', 'John Kennedy', 'Michael Clarke', 'Chriss Mee', 'Martin Cooper', 'Stephen Browne']) && !empty($row['date'])) {
                 $tutor = Tutor::updateOrCreate(
                     ['name' => $row['date']], // this is yellow tutors name
                     ['phone' => null, 'email' => null]
@@ -46,18 +49,22 @@ class BookingImport implements ToCollection, WithHeadingRow
                     ['name' => $row['forename']]
                 );
 
-                $date = explode("2017 ", $row['company']);
+                $date = explode(' - ', $row['company'], 2);
+
+                $inHouse = ( (count($date) > 1 ) ? str_contains(strtolower($date[1]), 'in house') : false ) || str_contains(strtolower($row['forename']), 'house');
 
                 $course = Course::updateOrCreate(
                     [
-                        'date' => Carbon::parse($date[0] . '2017')->format('Y-m-d'), // this is yellow course date
+                        'date' => Carbon::parse($date[0])->format('Y-m-d'), // this is yellow course date
                         'venue_id' => $venue->id,
-                        'tutor_id' => $tutor->id],
+                        'tutor_id' => $tutor->id
+                    ],
                     [
-                        'time' => '00:00:00',
-                        'price' => 0,
+                        'time' => '08:00:00',
+                        'price' => 115,
                         'notes' => $row['surname'] . ' - ' . count($date) > 1 ? $date[1] : '', // this is yellow row SP number
-                        'course_type_id' => 1,
+                        'course_type_id' => $course_type_id,
+                        'cancelled' => strtolower($row['surname']) == 'cancelled' ? true : false,
                     ]
                 );
 
@@ -117,7 +124,7 @@ class BookingImport implements ToCollection, WithHeadingRow
                     'confirmed' => true,
                     'no_show' => false,
                     'user_id' => 1,
-                    'comments' => null,
+                    'comments' => !empty($row['comment']) ? $row['comment'] : null,
 
                 ]);
 

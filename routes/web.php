@@ -15,15 +15,15 @@
 //     return view('welcome');
 // });
 
-Route::redirect('/', '/office', 301);
+// Route::redirect('/', '/office', 301);
 
-Route::redirect('/nova', '/office', 301);
+// Route::redirect('/nova', '/office', 301);
 
-Route::get('pdftest1', 'TestController@pdftest1');
-Route::get('pdftest2', 'TestController@pdftest2');
-Route::get('pdftest3', 'TestController@pdftest3');
-Route::get('pdftest4', 'TestController@pdftest4');
+// Route::get('pdftest1', 'TestController@pdftest1');
+// Route::get('pdftest2', 'TestController@pdftest2');
+// Route::get('pdftest3', 'TestController@pdftest3');
+// Route::get('pdftest4', 'TestController@pdftest4');
 
-Route::get('test', 'TestController@test');
-Route::get('test2', 'TestController@test2');
+// Route::get('test', 'TestController@test');
+// Route::get('test2', 'TestController@test2');
 

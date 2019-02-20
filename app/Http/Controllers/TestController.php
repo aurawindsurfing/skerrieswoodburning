@@ -9,11 +9,13 @@ use App\Course;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\CompanyContactConfirmation;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Imports\BookingImport;
+use App\Imports\SafepassBookingImport;
 use Carbon\Carbon;
 use App\Contact;
 use Nexmo;
 use App\Payment;
+use Illuminate\Support\Str;
+use App\CourseType;
 
 class TestController extends Controller
 {
@@ -21,15 +23,9 @@ class TestController extends Controller
     public function test()
     {
 
-        $unpaid_invoices = Invoice::query()
-            ->whereStatus('unpaid')
-            ->get();
+        $e = Carbon::parse('01-01-1999')->format('Y-m-d');
 
-        $unpaid_invoices = $unpaid_invoices->filter(function ($invoice){
-            return Carbon::parse($invoice->date)->addDays($invoice->payment_terms) <= Carbon::now();
-        });
-
-        dd($unpaid_invoices);
+        dd($e);
 
     }
 
