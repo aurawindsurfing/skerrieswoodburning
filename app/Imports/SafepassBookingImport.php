@@ -139,11 +139,13 @@ class SafepassBookingImport implements ToCollection, WithHeadingRow
                     if (!empty($row['actually_paid'])) {
                         if (str_contains('cash', $row['actually_paid'])) {
                             $payment_method = 'cash';
-                        } elseif (str_contains($row['actually_paid'], 'inv')) {
+                        } elseif (str_contains($row['actually_paid'], 'Inv')) {
                             $payment_method = 'eft';
-                        } elseif (str_contains($row['actually_paid'], 'cc')) {
-                            $payment_method = 'invoice';
+                        } elseif (str_contains($row['actually_paid'], 'CC')) {
+                            $payment_method = 'cc';
                         } elseif (str_contains($row['actually_paid'], 'chq')) {
+                            $payment_method = 'cheque';
+                        } elseif (str_contains($row['actually_paid'], 'ch')) {
                             $payment_method = 'cheque';
                         } elseif (str_contains($row['actually_paid'], 'cheq')) {
                             $payment_method = 'cheque';
