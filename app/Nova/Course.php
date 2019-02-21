@@ -123,7 +123,7 @@ class Course extends Resource
                 return isset($this->date) ? $this->uuid() : '';
             })->exceptOnForms(),
 
-            BelongsTo::make('Course Type', 'course_type')->sortable()->rules('required'),
+            BelongsTo::make('Course Type', 'course_type')->rules('required'),
 
             Money::make('Price', 'EUR')
                 ->withMeta([
@@ -141,9 +141,9 @@ class Course extends Resource
                 ])
                 ->rules('required'),
 
-            BelongsTo::make('Venue')->sortable()->searchable()->rules('required'),
+            BelongsTo::make('Venue')->searchable()->rules('required'),
 
-            BelongsTo::make('Tutor')->sortable()->searchable()->rules('required'),
+            BelongsTo::make('Tutor')->searchable()->rules('required'),
 
             Boolean::make('Inhouse'),
 

@@ -23,7 +23,10 @@ class TestController extends Controller
     public function test()
     {
 
-        $e = Carbon::parse('01-01-1999')->format('Y-m-d');
+        $string = '36711';
+        $e = ($string - 25569) * 86400;
+
+        $e = Carbon::createFromTimestamp($e);
 
         dd($e);
 

@@ -14,27 +14,27 @@ class DatabaseSeeder extends Seeder
     {
 
         DB::table('users')->insert([
-            'name' => 'Tomasz Lotocki',
-            'email' => 'tomcentrumpl@gmail.com',
-            'role' => 'admin',
-            'password' => bcrypt('alamakota'),
-        ]);
-
-        DB::table('users')->insert([
             'name' => 'Alec Hayden',
             'email' => 'alec@citltd.ie',
             'role' => 'admin',
-            'password' => bcrypt('cabbage'),
+            'password' => bcrypt('paycheck-sawmill-ascot-nicker-demented-rebuke-sweat-unlike'),
         ]);
 
         DB::table('users')->insert([
             'name' => 'Hank',
             'email' => 'hank@citltd.ie',
             'role' => 'user',
-            'password' => bcrypt('cabbage'),
+            'password' => bcrypt('garlicky-auspice-eric-recount-hornpipe-shield-floe-brown'),
         ]);
 
-        factory(App\User::class, 3)->create();
+        DB::table('users')->insert([
+            'name' => 'Tomasz Lotocki',
+            'email' => 'tomcentrumpl@gmail.com',
+            'role' => 'admin',
+            'password' => bcrypt('KhvtJDdVp6s3xXtnNabUWzYrhIrzDToXrpUsWItZ'),
+        ]);
+
+        // factory(App\User::class, 3)->create();
         // factory(App\Venue::class, 50)->create();
         // factory(App\Tutor::class, 20)->create();
         factory(App\CourseType::class, 2)->create();

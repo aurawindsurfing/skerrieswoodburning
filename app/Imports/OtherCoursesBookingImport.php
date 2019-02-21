@@ -68,8 +68,10 @@ class OtherCoursesBookingImport implements ToCollection, WithHeadingRow
                 ['name' => $row['type']]
             );
 
+            $date = ($row['date'] - 25569) * 86400;
+
             if (!empty($row['date'])) {
-                $date = Carbon::createFromFormat('d m Y', $row['date'])->format('Y-m-d');
+                $date = Carbon::createFromTimestamp($date)->format('Y-m-d');
             } else {
                 $date = Carbon::parse('01-01-1999')->format('Y-m-d');
             }

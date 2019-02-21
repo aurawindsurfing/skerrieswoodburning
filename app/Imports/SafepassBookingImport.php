@@ -86,10 +86,10 @@ class SafepassBookingImport implements ToCollection, WithHeadingRow
 
                 } else {
                     $company = null;
-                    $contact = null;
+                    $contact = null;    
                 }
 
-                if (!empty($row['invoice'])) {
+                if (!empty($row['invoice']) && is_numeric($row['invoice'])) {
                     $invoice = Invoice::updateOrCreate(
                         ['number' => preg_replace('/[^0-9.]+/', '', $row['invoice'])],
                         ['prefix' => 'SI-',
@@ -102,43 +102,66 @@ class SafepassBookingImport implements ToCollection, WithHeadingRow
                     );
                 }
 
-                $booking = Booking::create([
-                    'date' => $course->date,
-                    'name' => !empty($row['forename']) ? $row['forename'] : null,
-                    'surname' => !empty($row['surname']) ? $row['surname'] : null,
-                    'phone' => !empty($company) ? null : preg_replace('/[^0-9.]+/', '', $row['phone']),
-                    'email' => !empty($company) ? null : $row['contact_email'],
-                    'pps' => true,
-                    'rate' => !empty($row['rate']) ? (Int) $row['rate'] : (Int) 0,
+                if (!empty($row['forename']) || !empty($row['surname']) || !empty($row['company'])) {
+                    $booking = Booking::create([
+                        'date' => $course->date,
+                        'name' => !empty($row['forename']) ? $row['forename'] : null,
+                        'surname' => !empty($row['surname']) ? $row['surname'] : null,
+                        'phone' => !empty($company) ? null : preg_replace('/[^0-9.]+/', '', $row['phone']),
+                        'email' => !empty($company) ? null : $row['contact_email'],
+                        'pps' => true,
+                        'rate' => (!empty($row['rate']) && is_numeric($row['rate'])) ? (Int) $row['rate'] : (Int) 0,
+    
+                        'course_id' => $course->id,
+                        'company_id' => !empty($company) ? $company->id : null,
+                        'contact_id' => !empty($contact) ? $contact->id : null,
+                        'po' => $row['po'],
+                        'invoice_id' => !empty($row['invoice']) ? $invoice->id : null,
+                        'student_notified' => true,
+                        'company_contact_notified' => true, 
+                        // 'confirmation_sent' => $course->date,
+                        'reminders_sent' => true,
+                        'pps_reminder_sent' => true,
+                        'confirmed' => true,
+                        'no_show' => false,
+                        'user_id' => 1,
+                        'comments' => !empty($row['comment']) ? $row['comment'] : null,
+    
+                    ]);
+                }
 
-                    'course_id' => $course->id,
-                    'company_id' => !empty($company) ? $company->id : null,
-                    'contact_id' => !empty($contact) ? $contact->id : null,
-                    'po' => $row['po'],
-                    'invoice_id' => !empty($row['invoice']) ? $invoice->id : null,
-                    'student_notified' => true,
-                    'company_contact_notified' => true, 
-                    // 'confirmation_sent' => $course->date,
-                    'reminders_sent' => true,
-                    'pps_reminder_sent' => true,
-                    'confirmed' => true,
-                    'no_show' => false,
-                    'user_id' => 1,
-                    'comments' => !empty($row['comment']) ? $row['comment'] : null,
+                
 
-                ]);
-
-                if (!empty($row['invoice'])) {
+                if (!empty($row['invoice']) && is_numeric($row['invoice'])) {
                     $invoice->total = $invoice->total + $booking->rate;
                     $invoice->save();
 
-                    $payment = Payment::create([
-                        'amount' => $booking->rate,
-                        'invoice_id' => $invoice->id,
-                        'payment_method' => !empty($row['actually_paid']) ? $row['actually_paid'] : 'cash',
-                        'status' => 'completed' 
-                        ]
-                    );
+                    if (!empty($row['actually_paid'])) {
+                        if (str_contains('cash', $row['actually_paid'])) {
+                            $payment_method = 'cash';
+                        } elseif (str_contains($row['actually_paid'], 'inv')) {
+                            $payment_method = 'eft';
+                        } elseif (str_contains($row['actually_paid'], 'cc')) {
+                            $payment_method = 'invoice';
+                        } elseif (str_contains($row['actually_paid'], 'chq')) {
+                            $payment_method = 'cheque';
+                        } elseif (str_contains($row['actually_paid'], 'cheq')) {
+                            $payment_method = 'cheque';
+                        }
+                    } else {
+                        $payment_method = 'cash';
+                    }
+
+                    if ($booking->rate > 0){
+                        $payment = Payment::create([
+                            'amount' => $booking->rate,
+                            'invoice_id' => $invoice->id,
+                            'payment_method' => $payment_method,
+                            'status' => 'completed' 
+                            ]
+                        );
+                    }
+                    
                 }
 
             } else {
