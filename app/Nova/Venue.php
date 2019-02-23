@@ -71,6 +71,8 @@ class Venue extends Resource
     public function fields(Request $request)
     {
         return [
+            ID::make()->sortable(),
+            
             Text::make('Name')
             ->sortable()
             ->rules('required', 'max:255'),
@@ -146,6 +148,8 @@ class Venue extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+            (new Actions\GroupVenues),
+        ];
     }
 }
