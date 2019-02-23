@@ -10,11 +10,11 @@ use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Actions\DestructiveAction;
 use Laravel\Nova\Fields\ActionFields;
 
-class MergeVenues extends DestructiveAction
+class MergeCompanies extends DestructiveAction
 {
     use InteractsWithQueue, Queueable, SerializesModels;
 
-    public $name = 'Group Venues';
+    public $name = 'Group Companies';
 
     /**
      * Perform the action on the given models.
@@ -26,16 +26,17 @@ class MergeVenues extends DestructiveAction
     public function handle(ActionFields $fields, Collection $models)
     {
 
-        $old_venues = $models;
-        $venue_to_stay = $old_venues->shift();
+        $old_companies = $models;
+        $company_to_stay = $old_companies->shift();
 
-        foreach ($old_venues as $old_venue) {
-            $old_venue->courses()->update(['venue_id' => $venue_to_stay->id]);
-            $old_venue->course_dates()->update(['venue_id' => $venue_to_stay->id]);
-            $old_venue->delete();
+        foreach ($old_companies as $old_company) {
+            $old_company->invoices()->update(['company_id' => $company_to_stay->id]);
+            $old_company->bookings()->update(['company_id' => $company_to_stay->id]);
+            $old_company->contacts()->update(['company_id' => $company_to_stay->id]);
+            $old_company->delete();
         }
 
-        return Action::message('Venues merged to: ' . $venue_to_stay->name);
+        return Action::message('All companies merged to: ' . $company_to_stay->name);
 
     }
 

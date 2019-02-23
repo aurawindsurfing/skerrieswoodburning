@@ -149,7 +149,7 @@ class Venue extends Resource
     public function actions(Request $request)
     {
         return [
-            (new Actions\GroupVenues),
+            (new Actions\MergeVenues),
         ];
     }
 }
