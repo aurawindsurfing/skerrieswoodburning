@@ -9,6 +9,7 @@ use Illuminate\Support\Collection;
 use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Actions\DestructiveAction;
 use Laravel\Nova\Fields\ActionFields;
+use Laravel\Nova\Fields\Text;
 
 class MergeCompanies extends DestructiveAction
 {
@@ -36,6 +37,8 @@ class MergeCompanies extends DestructiveAction
             $old_company->delete();
         }
 
+        $company_to_stay->update(['name' => $fields->name]);
+
         return Action::message('All companies merged to: ' . $company_to_stay->name);
 
     }
@@ -47,6 +50,10 @@ class MergeCompanies extends DestructiveAction
      */
     public function fields()
     {
-        return [];
+        return [
+            Text::make('Name')->withMeta(['extraAttributes' => [
+                'placeholder' => 'New company name']
+            ]),
+        ];
     }
 }

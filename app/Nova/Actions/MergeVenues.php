@@ -9,6 +9,7 @@ use Illuminate\Support\Collection;
 use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Actions\DestructiveAction;
 use Laravel\Nova\Fields\ActionFields;
+use Laravel\Nova\Fields\Text;
 
 class MergeVenues extends DestructiveAction
 {
@@ -35,6 +36,8 @@ class MergeVenues extends DestructiveAction
             $old_venue->delete();
         }
 
+        $venue_to_stay->update(['name' => $fields->name]);
+
         return Action::message('Venues merged to: ' . $venue_to_stay->name);
 
     }
@@ -46,6 +49,10 @@ class MergeVenues extends DestructiveAction
      */
     public function fields()
     {
-        return [];
+        return [
+            Text::make('Name')->withMeta(['extraAttributes' => [
+                'placeholder' => 'New venue name']
+            ]),
+        ];
     }
 }
