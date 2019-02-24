@@ -19,6 +19,8 @@ use Orlyapps\NovaBelongsToDepend\NovaBelongsToDepend;
 class BookingMIssingPPS extends Booking
 {
 
+    public static $group_index = 220;
+
      /**
      * Build an "index" query for the given resource.
      *

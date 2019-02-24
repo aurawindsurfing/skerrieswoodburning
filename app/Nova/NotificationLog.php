@@ -25,7 +25,7 @@ class NotificationLog extends Resource
      *
      * @var boolean
      */
-    public static $displayInNavigation = false;
+    public static $displayInNavigation = true;
 
     /**
      * $group
@@ -34,14 +34,14 @@ class NotificationLog extends Resource
      */
     public static $group = "Customers";
 
-    public static $group_index = 200;
+    public static $group_index = 210;
 
     /**
      * label
      *
      * @return void
      */
-    public static function label() { return 'Notifications'; }
+    public static function label() { return 'Notifications Sent'; }
 
     /**
      * The single value that should be used to represent the resource when being displayed.

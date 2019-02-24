@@ -47,7 +47,7 @@ class Booking extends Resource
      *
      * @var int
      */
-    public static $perPageViaRelationship = 10;
+    public static $perPageViaRelationship = 50;
 
     /**
      * title
