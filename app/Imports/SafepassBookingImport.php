@@ -80,7 +80,7 @@ class SafepassBookingImport implements ToCollection, WithHeadingRow
                     if (!empty($row['contact'])) {
                         $contact = Contact::updateOrCreate(
                             ['company_id' => $company->id, 'name' => $row['contact']],
-                            ['company_id' => $company->id, 'name' => $row['contact'], 'email' => $row['contact_email'], 'phone' => $row['phone']]
+                            ['company_id' => $company->id, 'name' => $row['contact'], 'email' => $row['contact_email'], 'phone' => preg_replace('/[^0-9.]+/', '', $row['phone'])]
                         );
                     }
 
