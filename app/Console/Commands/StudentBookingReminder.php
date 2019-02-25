@@ -5,8 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Booking;
 use Carbon\Carbon;
-
-use App\NotificationLog;
+use Propaganistas\LaravelPhone\PhoneNumber;
 use App\Notifications\StudentReminder;
 
 class StudentBookingReminder extends Command
@@ -57,7 +56,9 @@ class StudentBookingReminder extends Command
         error_log('Trying to notify ' . $tomorrow_student_bookings->count() . ' students');
 
             foreach ($tomorrow_student_bookings as $booking) {
-                $booking->notify(new StudentReminder($booking));
+                if (PhoneNumber::make($booking->phone, config('nexmo.countries'))->isOfType('mobile')) {
+                    $booking->notify(new StudentReminder($booking));
+                }
             }
 
         error_log('Send all student notifications');

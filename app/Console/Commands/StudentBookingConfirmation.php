@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Booking;
 use App\Notifications\StudentConfirmation;
 use Illuminate\Console\Command;
+use Propaganistas\LaravelPhone\PhoneNumber;
 
 class StudentBookingConfirmation extends Command
 {
@@ -49,7 +50,9 @@ class StudentBookingConfirmation extends Command
         error_log('Trying to notify ' . $student_bookings->count() . ' students');
 
         foreach ($student_bookings as $booking) {
-            $booking->notify(new StudentConfirmation($booking));
+            if (PhoneNumber::make($booking->phone, config('nexmo.countries'))->isOfType('mobile')) {
+                $booking->notify(new StudentConfirmation($booking));
+            }
         }
 
         error_log('Send all student notifications');

@@ -7,6 +7,7 @@ use App\Booking;
 use Carbon\Carbon;
 use App\Notifications\StudentConfirmation;
 use App\Notifications\MissingPPSConfirmation;
+use Propaganistas\LaravelPhone\PhoneNumber;
 
 class CheckForMissingPPS extends Command
 {
@@ -50,7 +51,12 @@ class CheckForMissingPPS extends Command
         error_log('Sending ' . $bookings->count() . ' pps reminders');
 
         foreach ($bookings as $booking) {
-            !isset($booking->pps) ?: $booking->notify(new MissingPPSConfirmation);
+            if (!isset($booking->pps)) {
+                if (PhoneNumber::make($booking->phone, config('nexmo.countries'))->isOfType('mobile')) {
+                    $booking->notify(new MissingPPSConfirmation);
+                }
+            } 
+
             $booking->update(['pps_reminder_sent' => true]);
         }
     }

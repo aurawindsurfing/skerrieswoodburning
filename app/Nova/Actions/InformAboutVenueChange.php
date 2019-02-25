@@ -11,6 +11,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Notification;
 use App\Contact;
+use Propaganistas\LaravelPhone\PhoneNumber;
 
 class InformAboutVenueChange extends Action
 {
@@ -34,7 +35,9 @@ class InformAboutVenueChange extends Action
         error_log('Trying to notify ' . $student_bookings->count() . ' students');
 
         foreach ($student_bookings as $booking) {
-            $booking->notify(new \App\Notifications\VenueChange);
+            if (PhoneNumber::make($booking->phone, config('nexmo.countries'))->isOfType('mobile')) {
+                $booking->notify(new \App\Notifications\VenueChange);
+            }
         }
 
         //notify companies with one notificaion
