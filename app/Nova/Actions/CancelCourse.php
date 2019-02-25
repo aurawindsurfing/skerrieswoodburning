@@ -10,6 +10,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Contact;
+use Propaganistas\LaravelPhone\PhoneNumber;
 
 class CancelCourse extends Action
 {
@@ -33,7 +34,9 @@ class CancelCourse extends Action
         error_log('Trying to notify ' . $student_bookings->count() . ' students');
 
         foreach ($student_bookings as $booking) {
-            $booking->notify(new \App\Notifications\CourseCancelled);
+            if (PhoneNumber::make($booking->phone, config('nexmo.countries'))->isOfType('mobile')) {
+                $booking->notify(new \App\Notifications\CourseCancelled);
+            }
         }
 
         //notify companies with one notificaion

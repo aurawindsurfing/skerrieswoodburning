@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Notifications\Notifiable;
+use Propaganistas\LaravelPhone\PhoneNumber;
 
 class Contact extends Model
 {
@@ -33,6 +34,8 @@ class Contact extends Model
      */
     public function routeNotificationForNexmo($notification)
     {
-        return '353' . ltrim($this->phone, '0');
+        $phone = PhoneNumber::make($this->phone, config('nexmo.countries'))->formatE164();
+
+        return ltrim($phone, '+');
     }
 }

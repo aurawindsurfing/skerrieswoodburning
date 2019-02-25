@@ -8,6 +8,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Notifications\Notifiable;
 use Carbon\Carbon;
+use Propaganistas\LaravelPhone\PhoneNumber;
 
 class Booking extends Model
 {
@@ -129,7 +130,9 @@ class Booking extends Model
      */
     public function routeNotificationForNexmo($notification)
     {
-        return '353' . ltrim($this->phone, '0');
+        $phone = PhoneNumber::make($this->phone, config('nexmo.countries'))->formatE164();
+
+        return ltrim($phone, '+');
     }
 
 }

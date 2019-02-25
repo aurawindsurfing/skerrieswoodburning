@@ -70,6 +70,7 @@ class Booking extends Resource
         'surname',
         'email',
         'date',
+        'phone'
         // 'course',
         // 'company',
         // 'contact'
@@ -132,7 +133,8 @@ class Booking extends Resource
             Text::make('Surname')->sortable(),
 
             Text::make('Phone')
-                ->rules('nullable', 'regex:/08\d[0-9]{7}/')
+                ->rules('nullable')
+                ->sortable()
                 ->withMeta(['extraAttributes' => [
                     'placeholder' => '08x'],
                 ])

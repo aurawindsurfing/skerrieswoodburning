@@ -5,18 +5,17 @@ namespace App\Http\Controllers;
 use App\Booking;
 use App\Invoice;
 use App\Payment;
-use App\Venue;
+use Propaganistas\LaravelPhone\PhoneNumber;
+use Laravel\Nova\Fields\Place;
 
 class TestController extends Controller
 {
 
     public function test()
     {
+        // $e = PhoneNumber::make('894317152', config('nexmo.countries'))->formatE164();
 
-        $old_venues = Venue::take(5)->get();
-        $venue_to_stay = $old_venues->shift();
-
-        dd($old_venues);
+        dd(ltrim('00353862194744', '0'));
 
     }
 
