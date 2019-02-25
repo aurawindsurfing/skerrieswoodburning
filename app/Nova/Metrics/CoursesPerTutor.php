@@ -3,9 +3,10 @@
 namespace App\Nova\Metrics;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Metrics\Value;
+use Laravel\Nova\Metrics\Partition;
+use App\Course;
 
-class NewBookings extends Value
+class CoursesPerTutor extends Partition
 {
     /**
      * Calculate the value of the metric.
@@ -15,24 +16,7 @@ class NewBookings extends Value
      */
     public function calculate(Request $request)
     {
-        return $this->count($request, \App\Booking::class, 'date', 'date');
-    }
-
-    /**
-     * Get the ranges available for the metric.
-     *
-     * @return array
-     */
-    public function ranges()
-    {
-        return [
-            30 => '30 Days',
-            60 => '60 Days',
-            365 => '365 Days',
-            'MTD' => 'Month To Date',
-            'QTD' => 'Quarter To Date',
-            'YTD' => 'Year To Date',
-        ];
+        return $this->count($request, Course::class, 'tutor_id');
     }
 
     /**
@@ -52,6 +36,6 @@ class NewBookings extends Value
      */
     public function uriKey()
     {
-        return 'new-bookings';
+        return 'courses-per-tutor';
     }
 }

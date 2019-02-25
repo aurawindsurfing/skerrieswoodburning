@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4fca638a26e354a98a6d7366878ad884",
+    "content-hash": "b0312973c36b672d4389f5fe64d7bf89",
     "packages": [
         {
             "name": "64robots/nova-fields",
@@ -1421,58 +1421,6 @@
             "time": "2018-08-27T22:01:46+00:00"
         },
         {
-            "name": "itainathaniel/nova-nexmo",
-            "version": "v1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/itainathaniel/nova-nexmo.git",
-                "reference": "4da5c22aace09d35e82f23b0d63c1818f32b6bf7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/itainathaniel/nova-nexmo/zipball/4da5c22aace09d35e82f23b0d63c1818f32b6bf7",
-                "reference": "4da5c22aace09d35e82f23b0d63c1818f32b6bf7",
-                "shasum": ""
-            },
-            "require": {
-                "nexmo/laravel": "^1.1",
-                "php": ">=7.1.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Itainathaniel\\NovaNexmo\\NovaNexmoServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Itainathaniel\\NovaNexmo\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Itai Nathaniel",
-                    "email": "itainathaniel@gmail.com",
-                    "homepage": "http://it.ai",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Laravel Nova card & tool to interact with Nexmo.com",
-            "homepage": "https://github.com/itainathaniel/nova-nexmo",
-            "keywords": [
-                "laravel",
-                "nexmo",
-                "nova"
-            ],
-            "time": "2018-09-10T23:32:26+00:00"
-        },
-        {
             "name": "jakub-onderka/php-console-color",
             "version": "v0.2",
             "source": {
@@ -2241,6 +2189,63 @@
                 "library"
             ],
             "time": "2018-07-17T06:10:10+00:00"
+        },
+        {
+            "name": "llaski/nova-scheduled-jobs",
+            "version": "1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/llaski/nova-scheduled-jobs.git",
+                "reference": "5032cd59fc52c4327eca9193c23a89dd3e5d7e47"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/llaski/nova-scheduled-jobs/zipball/5032cd59fc52c4327eca9193c23a89dd3e5d7e47",
+                "reference": "5032cd59fc52c4327eca9193c23a89dd3e5d7e47",
+                "shasum": ""
+            },
+            "require": {
+                "dragonmantank/cron-expression": "^2.2",
+                "illuminate/console": "^5.6|^5.7",
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "illuminate/cache": "^5.6",
+                "orchestra/testbench": "^3.7",
+                "phpunit/phpunit": "^7.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Llaski\\NovaScheduledJobs\\NovaScheduledJobsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Llaski\\NovaScheduledJobs\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Larry Laski",
+                    "email": "larry.laski@gmail.com",
+                    "homepage": "https://larrylaski.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel Nova card to view your scheduled jobs.",
+            "homepage": "https://github.com/llaski/nova-scheduled-jobs",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2018-12-07T18:26:01+00:00"
         },
         {
             "name": "maatwebsite/excel",
@@ -4092,6 +4097,59 @@
                 "uuid"
             ],
             "time": "2018-07-19T23:38:55+00:00"
+        },
+        {
+            "name": "richardkeep/nova-timenow",
+            "version": "0.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/richardkeep/nova-timenow.git",
+                "reference": "905efc3d98610d3d0155d9b6d402b0146aea7f80"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/richardkeep/nova-timenow/zipball/905efc3d98610d3d0155d9b6d402b0146aea7f80",
+                "reference": "905efc3d98610d3d0155d9b6d402b0146aea7f80",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "*",
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Richardkeep\\NovaTimenow\\TimenowServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Richardkeep\\NovaTimenow\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Richard Keep",
+                    "email": "r.kipsang@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel Nova card to display the current time from different timezones in the world.",
+            "homepage": "https://github.com/richardkeep/nova-timenow",
+            "keywords": [
+                "card",
+                "datetime",
+                "laravel",
+                "nova",
+                "timezone"
+            ],
+            "time": "2018-09-20T07:28:28+00:00"
         },
         {
             "name": "sabberworm/php-css-parser",

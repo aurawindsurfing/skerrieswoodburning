@@ -19,6 +19,8 @@
 
 // Route::redirect('/nova', '/office', 301);
 
+// Route::redirect('/', '/resources/bookings');
+
 // Route::get('pdftest1', 'TestController@pdftest1');
 // Route::get('pdftest2', 'TestController@pdftest2');
 // Route::get('pdftest3', 'TestController@pdftest3');

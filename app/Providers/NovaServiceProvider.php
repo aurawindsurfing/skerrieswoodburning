@@ -9,6 +9,10 @@ use Laravel\Nova\NovaApplicationServiceProvider;
 use App\Nova\Metrics\NewCandidates;
 use App\Nova\Metrics\NewBookings;
 use App\Nova\Booking;
+use App\Nova\Metrics\CoursesPerTutor;
+use Itainathaniel\NovaNexmo\NovaNexmoTool;
+use Itainathaniel\NovaNexmo\NovaNexmoCard;
+use PeterBrinck\NovaLaravelNews\NovaLaravelNews;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -60,11 +64,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function cards()
     {
         return [
-            // new NewCandidates,
             new NewBookings,
-            // new \Itainathaniel\NovaNexmo\NovaNexmoCard(),
-            // new Booking
-
+            new \Richardkeep\NovaTimenow\NovaTimenow,
+            (new \Llaski\NovaScheduledJobs\NovaScheduledJobsCard)->width('full'),
         ];
     }
 
@@ -76,7 +78,6 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function tools()
     {
         return [
-            // new \Itainathaniel\NovaNexmo\NovaNexmoTool(),
         ];
     }
 
