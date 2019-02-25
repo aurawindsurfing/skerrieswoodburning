@@ -44,14 +44,14 @@ class CheckForMissingPPS extends Command
     {
         $bookings = Booking::query()
             ->where('pps', false)
-            ->where('pps_reminder_sent', null)
+            ->where('pps_reminder_sent', false)
             ->where('updated_at', '<', Carbon::now()->subMinutes(2)->toDateTimeString())
             ->get();
 
         error_log('Sending ' . $bookings->count() . ' pps reminders');
 
         foreach ($bookings as $booking) {
-            if (!isset($booking->pps)) {
+            if ($booking->pps == false) {
                 if (PhoneNumber::make($booking->phone, config('nexmo.countries'))->isOfType('mobile')) {
                     $booking->notify(new MissingPPSConfirmation);
                 }
