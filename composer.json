@@ -27,6 +27,7 @@
         "nexmo/laravel": "^1.1",
         "orlyapps/nova-belongsto-depend": "^0.0.6",
         "outhebox/nova-hidden-field": "^1.0",
+        "peterbrinck/nova-laravel-news": "^0.4.0",
         "phpoffice/phpspreadsheet": "^1.5",
         "predis/predis": "^1.1",
         "propaganistas/laravel-phone": "^4.1",

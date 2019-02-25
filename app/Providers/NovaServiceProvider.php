@@ -67,6 +67,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             new NewBookings,
             new \Richardkeep\NovaTimenow\NovaTimenow,
             (new \Llaski\NovaScheduledJobs\NovaScheduledJobsCard)->width('full'),
+            // (new NovaLaravelNews)->width('full'),
         ];
     }
 

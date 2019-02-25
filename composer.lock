@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b0312973c36b672d4389f5fe64d7bf89",
+    "content-hash": "b69fd7cc632c4e2f409be97b96053245",
     "packages": [
         {
             "name": "64robots/nova-fields",
@@ -3259,6 +3259,47 @@
                 "utf8"
             ],
             "time": "2016-05-18T13:57:10+00:00"
+        },
+        {
+            "name": "peterbrinck/nova-laravel-news",
+            "version": "v0.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/peterbrinck/nova-laravel-news.git",
+                "reference": "cabed4d6c2a0bc0cb2c2877438a45463461dabab"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/peterbrinck/nova-laravel-news/zipball/cabed4d6c2a0bc0cb2c2877438a45463461dabab",
+                "reference": "cabed4d6c2a0bc0cb2c2877438a45463461dabab",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "PeterBrinck\\NovaLaravelNews\\CardServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PeterBrinck\\NovaLaravelNews\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Adds a card to the Nova dashboard with the latest news from Laravel News",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2018-08-24T12:36:24+00:00"
         },
         {
             "name": "phenx/php-font-lib",
