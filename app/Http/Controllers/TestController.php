@@ -7,15 +7,14 @@ use App\Invoice;
 use App\Payment;
 use Propaganistas\LaravelPhone\PhoneNumber;
 use Laravel\Nova\Fields\Place;
+use Carbon\Carbon;
 
 class TestController extends Controller
 {
 
     public function test()
     {
-        // $e = PhoneNumber::make('894317152', config('nexmo.countries'))->formatE164();
-
-        dd(ltrim('00353862194744', '0'));
+        dd(Carbon::parse(' 22nd March 2019'));
 
     }
 

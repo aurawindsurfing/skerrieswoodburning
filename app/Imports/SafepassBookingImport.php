@@ -38,7 +38,7 @@ class SafepassBookingImport implements ToCollection, WithHeadingRow
 
             $bar->advance();
 
-            if (str_contains($row['date'], ['Eugene Hughes', 'John Kennedy', 'Michael Clarke', 'Chriss Mee', 'Martin Cooper', 'Stephen Browne']) && !empty($row['date'])) {
+            if (str_contains($row['date'], ['Eugene Hughes', 'John Kennedy', 'Michael Clarke', 'Chriss Mee', 'Martin Cooper', 'Stephen Browne', 'Noel Gannon']) && !empty($row['date'])) {
                 $tutor = Tutor::updateOrCreate(
                     ['name' => $row['date']], // this is yellow tutors name
                     ['phone' => null, 'email' => null]
@@ -51,11 +51,12 @@ class SafepassBookingImport implements ToCollection, WithHeadingRow
 
                 $date = explode(' - ', $row['company'], 2);
 
-                $inHouse = ( (count($date) > 1 ) ? str_contains(strtolower($date[1]), 'in house') : false ) || str_contains(strtolower($row['forename']), 'house');
+                $inHouse = ( (count($date) > 1 ) ? str_contains(strtolower($date[1]), 'house') : false ) || str_contains(strtolower($row['forename']), 'In-House');
+                $course_date_ready_for_parsing = str_replace(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], '', $date[0]);
 
                 $course = Course::updateOrCreate(
                     [
-                        'date' => Carbon::parse($date[0])->format('Y-m-d'), // this is yellow course date
+                        'date' => Carbon::parse($course_date_ready_for_parsing)->format('Y-m-d'), // this is yellow course date
                         'venue_id' => $venue->id,
                         'tutor_id' => $tutor->id
                     ],
@@ -65,6 +66,7 @@ class SafepassBookingImport implements ToCollection, WithHeadingRow
                         'notes' => $row['surname'] . ' - ' . count($date) > 1 ? $date[1] : '', // this is yellow row SP number
                         'course_type_id' => $course_type_id,
                         'cancelled' => strtolower($row['surname']) == 'cancelled' ? true : false,
+                        'inhouse' => $inHouse,
                     ]
                 );
 
