@@ -20,7 +20,7 @@
 
         <div class="container ml-6 max-w-sm">
             Candidate: {{ ($booking->name ?? '')  .' '. ($booking->surname ?? '') }}<br>
-            Course: {{ $booking->course->course_type->name }}<br>
+            Course: {{ $booking->course->course_type->name ?? '' }}<br>
             Date: {{ $booking->course->date->format('Y-m-d') }}<br>
             Time: {{ date('H:i', strtotime($booking->course->time)) }}<br>
             Venue: {{ $booking->course->venue->name }} <br><br>

@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use App\Booking;
 use App\Contact;
-use App\NotificationLog;
 use App\Notifications\CompanyContactConfirmation;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
