@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b69fd7cc632c4e2f409be97b96053245",
+    "content-hash": "3d15bc98cd4e3e7ae087f6d4ad429d0a",
     "packages": [
         {
             "name": "64robots/nova-fields",
@@ -5610,6 +5610,70 @@
                 "search"
             ],
             "time": "2018-09-02T07:55:27+00:00"
+        },
+        {
+            "name": "understand/understand-laravel5",
+            "version": "v2.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/understand/understand-laravel5.git",
+                "reference": "180df22ec7c500a52519ed35ababb4dc71c4fe18"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/understand/understand-laravel5/zipball/180df22ec7c500a52519ed35ababb4dc71c4fe18",
+                "reference": "180df22ec7c500a52519ed35ababb4dc71c4fe18",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "illuminate/support": "~5.0",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.4",
+                "orchestra/testbench": "^3.5",
+                "phpunit/phpunit": "~6.0"
+            },
+            "type": "library",
+            "extra": {
+                "component": "package",
+                "frameworks": [
+                    "Laravel 5"
+                ],
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Understand\\UnderstandLaravel5\\UnderstandLaravel5ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Understand\\UnderstandLaravel5\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aivis",
+                    "email": "aivis.silins@gmail.com"
+                }
+            ],
+            "description": "Laravel 5 service provider for Understand.io",
+            "keywords": [
+                "Understand.io",
+                "laravel",
+                "laravel 5",
+                "logs",
+                "understand"
+            ],
+            "time": "2019-01-23T07:37:56+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
