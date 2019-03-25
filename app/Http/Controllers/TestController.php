@@ -14,7 +14,10 @@ class TestController extends Controller
 
     public function test()
     {
-        dd(Carbon::parse(' 22nd March 2019'));
+
+        $booking = Booking::find(15218);
+
+        dd($booking->course->course_type->name);
 
     }
 
