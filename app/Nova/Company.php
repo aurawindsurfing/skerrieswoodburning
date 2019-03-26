@@ -90,13 +90,15 @@ class Company extends Resource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            Text::make('Tax')
-                ->onlyOnForms(),
+            Text::make('Tax Number', 'tax')
+                ->hideFromIndex(),
 
             Text::make('Payment terms')
                 ->displayUsing(function ($invoice) {
                     return ($this->payment_terms . ' days');
-                })->hideFromIndex(),
+                })
+                ->rules('numeric')
+                ->hideFromIndex(),
 
             HasMany::make('Contacts')->sortable(),
 
