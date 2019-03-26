@@ -43,6 +43,7 @@ class CompanyBookingConfirmation extends Command
     {
 
         $company_bookings = Booking::query()
+            ->where('date', '>', Carbon::now()->toDateTimeString())
             ->whereNotNull('contact_id')
             ->where('company_contact_notified', false)
             ->where('updated_at', '<', Carbon::now()->subMinutes(5)->toDateTimeString())

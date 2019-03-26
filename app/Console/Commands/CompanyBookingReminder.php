@@ -44,6 +44,7 @@ class CompanyBookingReminder extends Command
     {
 
         $company_bookings = Booking::query()
+            ->where('date', '>', Carbon::now()->toDateTimeString())
             ->whereNotNull('contact_id')
             ->where('company_contact_reminders_sent', false)
             ->get();
