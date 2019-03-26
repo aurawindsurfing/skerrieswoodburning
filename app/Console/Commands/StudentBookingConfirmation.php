@@ -6,6 +6,7 @@ use App\Booking;
 use App\Notifications\StudentConfirmation;
 use Illuminate\Console\Command;
 use Propaganistas\LaravelPhone\PhoneNumber;
+use Carbon\Carbon;
 
 class StudentBookingConfirmation extends Command
 {
