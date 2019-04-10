@@ -43,7 +43,9 @@ class StudentBookingReminder extends Command
     {   
 
         $student_bookings = Booking::query()
-            ->where('date', '>', Carbon::now()->toDateTimeString())
+            ->whereHas('course', function($q){
+                $q->where('date', '>=', Carbon::now()->toDateTimeString());
+            })
             ->where('reminders_sent', false)
             ->whereCompanyId(null)
             ->whereNotNull('phone')

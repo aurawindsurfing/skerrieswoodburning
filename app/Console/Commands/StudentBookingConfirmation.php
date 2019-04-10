@@ -42,7 +42,9 @@ class StudentBookingConfirmation extends Command
     public function handle()
     {
         $student_bookings = Booking::query()
-            ->where('date', '>', Carbon::now()->toDateTimeString())
+            ->whereHas('course', function($q){
+                $q->where('date', '>=', Carbon::now()->toDateTimeString());
+            })
             ->where('student_notified', false)
             ->whereCompanyId(null)
             ->whereNotNull('phone')

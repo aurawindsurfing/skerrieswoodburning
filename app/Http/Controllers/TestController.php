@@ -15,9 +15,17 @@ class TestController extends Controller
     public function test()
     {
 
-        $booking = Booking::find(15218);
+        $student_bookings = Booking::query()
+            ->whereHas('course', function($q){
+                $q->where('date', '>=', Carbon::now()->toDateTimeString());
+            })
+            ->where('student_notified', false)
+            ->whereCompanyId(null)
+            ->whereNotNull('phone')
+        // ->where('updated_at', '<', Carbon::now()->subMinutes(2)->toDateTimeString())
+            ->get();
 
-        dd($booking->course->course_type->name);
+            dd($student_bookings);
 
     }
 
