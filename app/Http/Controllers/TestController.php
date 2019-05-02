@@ -15,17 +15,15 @@ class TestController extends Controller
     public function test()
     {
 
-        $student_bookings = Booking::query()
-            ->whereHas('course', function($q){
-                $q->where('date', '>=', Carbon::now()->toDateTimeString());
-            })
-            ->where('student_notified', false)
-            ->whereCompanyId(null)
-            ->whereNotNull('phone')
-        // ->where('updated_at', '<', Carbon::now()->subMinutes(2)->toDateTimeString())
-            ->get();
+        $str = '11 The Tides, South STrand, Skerries, Co. Dublin';
 
-            dd($student_bookings);
+        // $str = explode(',', $str);
+
+        foreach (explode(',', $str) as $key => $value) {
+            echo($value . '</br>');
+        }
+
+        // dd($str);
 
     }
 

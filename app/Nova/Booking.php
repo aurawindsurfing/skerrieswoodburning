@@ -163,10 +163,11 @@ class Booking extends Resource
 
             BelongsTo::make('Course')
                 ->searchable()
-                ->exceptOnForms()
-                ->displayUsing(function ($course) {
-                    return $course->course_type->name;
-                }),
+                ->exceptOnForms(),
+            //     ->displayUsing(function ($course) {
+            //         return $course->course_type->name;
+            //     }
+            // ),
 
             BelongsTo::make('Invoice')
                 ->onlyOnIndex(),
@@ -219,7 +220,7 @@ class Booking extends Resource
 
             Text::make('Comments')->hideWhenCreating()->hideFromIndex(),
 
-            Date::make('Date')
+            Date::make('Booked on', 'date')
                 ->sortable()
                 ->onlyOnDetail(),
 

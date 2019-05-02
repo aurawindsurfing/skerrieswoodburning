@@ -75,7 +75,10 @@ class User extends Resource
                 ->updateRules('unique:users,email,{{resourceId}}'),
 
             Select::make('Role')
-                ->exceptOnForms(),
+                ->options([
+                    'admin' => 'Admin',
+                    'user' => 'Clerk',
+                ]),
 
             Password::make('Password')
                 ->onlyOnForms()

@@ -112,29 +112,43 @@
     </div>
     <br />
     <div style="clear:both; position:relative;">
+
         <div style="position:absolute; left:0pt; width:250pt;">
-            <h4>Business Details:</h4>
             <div class="panel panel-default">
                 <div class="panel-body">
-                    {{ config('invoice_details.business_details.name') }}<br /> ID: {{ config('invoice_details.business_details.id')
-                    }}<br /> {{ config('invoice_details.business_details.phone') }}<br /> {{ config('invoice_details.business_details.location')
-                    }}<br /> {{ config('invoice_details.business_details.zip') }} {{ config('invoice_details.business_details.city')
-                    }} {{ config('invoice_details.business_details.country') }}<br />
+                    <div style="padding-left: 20pt;">
+                        <h3>Customer Address:</h3>
+                        {{ $invoice->company->name ?? $invoice->bookings->first()->name .' '.$invoice->bookings->first()->surname }}<br/>
+                        {{-- {{ $invoice->company->address ? str_replace(',', '</br>', $invoice->company->address) : '' }}<br/> --}}
+                        @foreach (explode(',', $invoice->company->address) as $address_line)
+                            {{ $address_line }} <br/>
+                        @endforeach
+                        {{-- {{ $invoice->company->phone ?? $invoice->bookings->first()->phone}}<br/> --}}
+                        {{-- {{ $invoice->company->tax ? 'ID: ' . $invoice->company->tax : '' }}<br/> --}}
+                    </div>
                 </div>
             </div>
         </div>
+
+
         <div style="margin-left: 300pt;">
-            <h4>Customer Details:</h4>
             <div class="panel panel-default">
                 <div class="panel-body">
-                    {{ $invoice->company->name ?? $invoice->bookings->first()->name .' '.$invoice->bookings->first()->surname }}<br/>
-                    ID: {{ $invoice->company->tax ?? '' }}<br/>
-                    {{ $invoice->company->phone ?? $invoice->bookings->first()->phone}}<br/>
-                    {{ $invoice->company->address ?? '' }}<br/>
+                    <div style="padding-left: 20pt;">
+                        <h4>Business Details:</h4>
+                        {{ config('invoice_details.business_details.name') }}
+                        {{-- <br /> ID: {{ config('invoice_details.business_details.id')}} --}}
+                        <br /> {{ config('invoice_details.business_details.phone') }}
+                        <br /> {{ config('invoice_details.business_details.location')}}
+                        <br /> {{ config('invoice_details.business_details.zip') }} {{ config('invoice_details.business_details.city')
+                        }} {{ config('invoice_details.business_details.country') }}<br />
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+
     <h5 style="margin-top: 0px;">Items:</h5>
     <table>
         <thead>

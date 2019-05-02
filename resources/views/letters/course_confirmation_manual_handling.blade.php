@@ -106,7 +106,7 @@
                     HAS ATTENDED AND COMPLETED A {{strtoupper($booking->course->course_type->duration)}} COURSE
                 </div>
                 <div class="small" style="margin-top: 6px;">
-                    ON
+                    IN
                 </div>
                 <div class="big" style="margin-top: 30px;">
                     {{ strtoupper($booking->course->course_type->name)}}

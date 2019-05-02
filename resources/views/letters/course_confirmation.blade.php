@@ -85,10 +85,12 @@
                         <td>Candidate Name:</td>
                         <td>{{$booking->name .' '. $booking->surname}}</td>
                     </tr>
+                    @if (!isset($booking->company))
                     <tr>
                         <td>Amount:</td>
                         <td>{{$booking->rate}} &euro;</td>
                     </tr>
+                    @endif
                 </tbody>
             </table>
             <div style="margin-top: 20px;">
