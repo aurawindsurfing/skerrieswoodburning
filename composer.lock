@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "02105a4a4c189f1556d58941db2e4595",
+    "content-hash": "687f2ceee4b0d77e4d864d84f520480f",
     "packages": [
         {
             "name": "64robots/nova-fields",
@@ -1922,16 +1922,16 @@
         },
         {
             "name": "laraning/nova-time-field",
-            "version": "v0.1.5",
+            "version": "v0.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laraning/nova-time-field.git",
-                "reference": "e0533b89cb5d9db72e141d3d2b170f99aeb3b4aa"
+                "reference": "b6fc6fdadff38f56c1f7560c7a558b4fb56b02d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laraning/nova-time-field/zipball/e0533b89cb5d9db72e141d3d2b170f99aeb3b4aa",
-                "reference": "e0533b89cb5d9db72e141d3d2b170f99aeb3b4aa",
+                "url": "https://api.github.com/repos/laraning/nova-time-field/zipball/b6fc6fdadff38f56c1f7560c7a558b4fb56b02d2",
+                "reference": "b6fc6fdadff38f56c1f7560c7a558b4fb56b02d2",
                 "shasum": ""
             },
             "require": {
@@ -1959,7 +1959,7 @@
                 "laravel",
                 "nova"
             ],
-            "time": "2019-08-23T07:31:03+00:00"
+            "time": "2020-02-07T19:36:15+00:00"
         },
         {
             "name": "laravel/framework",
