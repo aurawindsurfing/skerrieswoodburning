@@ -2,7 +2,6 @@
 
 namespace App\Imports;
 
-use Illuminate\Support\Str;
 use App\Booking;
 use App\Company;
 use App\Contact;
@@ -14,6 +13,7 @@ use App\Tutor;
 use App\Venue;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Symfony\Component\Console\Helper\ProgressBar;
