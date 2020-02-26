@@ -2,10 +2,10 @@
 
 namespace App;
 
+use App\Scopes\UpcomingOnlyScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
-use App\Scopes\UpcomingOnlyScope;
 
 class Course extends Model
 {
@@ -47,12 +47,11 @@ class Course extends Model
 
     public function uuid()
     {
-        return $this->id . '/' . $this->date->format('Y');
+        return $this->id.'/'.$this->date->format('Y');
     }
 
     public function upcoming()
     {
         return $this->date >= now() ? true : false;
     }
-    
 }

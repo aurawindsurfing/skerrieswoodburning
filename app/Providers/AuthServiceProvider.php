@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -17,7 +17,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Invoice' => 'App\Policies\InvoicePolicy',
         'App\Booking' => 'App\Policies\BookingPolicy',
         // 'App\CreditNote' => 'App\Policies\CreditNotePolicy',
-        'App\NotificationLog' => 'App\Policies\NotificationLogPolicy'
+        'App\NotificationLog' => 'App\Policies\NotificationLogPolicy',
     ];
 
     /**

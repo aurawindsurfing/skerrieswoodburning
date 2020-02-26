@@ -14,7 +14,7 @@ class Tutor extends Model
     protected $guarded = [];
 
     protected static $logUnguarded = true;
-    
+
     public function courses()
     {
         return $this->hasMany('App\Course');
@@ -24,5 +24,4 @@ class Tutor extends Model
     {
         return $this->hasManyThrough('App\CourseType', 'App\Course');
     }
-
 }

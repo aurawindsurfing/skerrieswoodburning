@@ -12,7 +12,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
         DB::table('users')->insert([
             'name' => 'Alec Hayden',
             'email' => 'alec@citltd.ie',
@@ -49,6 +48,5 @@ class DatabaseSeeder extends Seeder
         // factory(App\Booking::class, 100)->create();
         // factory(App\Invoice::class, 100)->create();
         // factory(App\Payment::class, 200)->create();
-
     }
 }

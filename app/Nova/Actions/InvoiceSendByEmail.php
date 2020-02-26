@@ -23,13 +23,11 @@ class InvoiceSendByEmail extends Action
      */
     public function handle(ActionFields $fields, Collection $models)
     {
-
         $invoiceController = new \App\Http\Controllers\InvoiceController();
         $count = $invoiceController->generateInvoices($models, false);
         $i = $invoiceController->emailInvoices($models);
 
-        return Action::message('Created ' . $count . ' invoices. Emailing ' . $i . ' invoices now.');
-
+        return Action::message('Created '.$count.' invoices. Emailing '.$i.' invoices now.');
     }
 
     /**
@@ -39,7 +37,7 @@ class InvoiceSendByEmail extends Action
      */
     public function name()
     {
-        return ('Create invoice and send email');
+        return 'Create invoice and send email';
     }
 
     /**
@@ -53,5 +51,4 @@ class InvoiceSendByEmail extends Action
 
         ];
     }
-
 }

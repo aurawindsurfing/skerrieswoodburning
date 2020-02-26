@@ -2,14 +2,14 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use App\Invoice;
 use App\Contact;
-use App\Notifications\CompanyInvoiceReminder;
+use App\Invoice;
 use App\Mail\CompanyInvoicePaymentReminder;
+use App\Notifications\CompanyInvoiceReminder;
+use Carbon\Carbon;
+use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
-use Carbon\Carbon;
 
 class InvoicePaymentReminder extends Command
 {
@@ -44,26 +44,23 @@ class InvoicePaymentReminder extends Command
      */
     public function handle()
     {
-        
         $unpaid_invoices = Invoice::query()
             ->whereStatus('unpaid')
             ->get();
 
-        $unpaid_invoices = $unpaid_invoices->filter(function ($invoice){
+        $unpaid_invoices = $unpaid_invoices->filter(function ($invoice) {
             return Carbon::parse($invoice->date)->addDays($invoice->payment_terms) <= Carbon::now();
         });
 
         $unpaid_invoices_grouped_by_company = $unpaid_invoices->groupBy('company_id');
-        error_log('Trying to notify ' . $unpaid_invoices_grouped_by_company->count() . ' companies about unpaid invoices');
-
+        error_log('Trying to notify '.$unpaid_invoices_grouped_by_company->count().' companies about unpaid invoices');
 
         foreach ($unpaid_invoices_grouped_by_company as $company_id => $invoices) {
-
             $company_contacts = Contact::whereCompanyId($company_id)->get();
 
-                foreach ($company_contacts as $contact) {
-                    $contact = ($contact->accounts_payable == 1) ? $contact : false;
-                }
+            foreach ($company_contacts as $contact) {
+                $contact = ($contact->accounts_payable == 1) ? $contact : false;
+            }
 
             $contact = $contact ?: $company_contacts->first();
 
@@ -78,8 +75,7 @@ class InvoicePaymentReminder extends Command
             Mail::to($contact->email)
             // ->cc('alec@citltd.ie')
             ->send(new CompanyInvoicePaymentReminder($data));
-
-        };
+        }
 
         error_log('Send all company notifications');
     }

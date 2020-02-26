@@ -2,11 +2,11 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Booking;
-use Carbon\Carbon;
-use App\Notifications\StudentConfirmation;
 use App\Notifications\MissingPPSConfirmation;
+use App\Notifications\StudentConfirmation;
+use Carbon\Carbon;
+use Illuminate\Console\Command;
 use Propaganistas\LaravelPhone\PhoneNumber;
 
 class CheckForMissingPPS extends Command
@@ -48,14 +48,14 @@ class CheckForMissingPPS extends Command
             ->where('updated_at', '<', Carbon::now()->subMinutes(2)->toDateTimeString())
             ->get();
 
-        error_log('Sending ' . $bookings->count() . ' pps reminders');
+        error_log('Sending '.$bookings->count().' pps reminders');
 
         foreach ($bookings as $booking) {
             if ($booking->pps == false) {
                 if (PhoneNumber::make($booking->phone, config('nexmo.countries'))->isOfType('mobile')) {
                     $booking->notify(new MissingPPSConfirmation);
                 }
-            } 
+            }
 
             $booking->update(['pps_reminder_sent' => true]);
         }

@@ -22,13 +22,11 @@ class InvoiceDownload extends Action
      */
     public function handle(ActionFields $fields, Collection $models)
     {
-
         $invoiceController = new \App\Http\Controllers\InvoiceController();
         $created = $invoiceController->generateInvoices($models, false);
         $path = $invoiceController->preparePDF($models);
 
-        return Action::download(url($path), uniqid() . '.pdf');
-
+        return Action::download(url($path), uniqid().'.pdf');
     }
 
     /**
@@ -38,7 +36,7 @@ class InvoiceDownload extends Action
      */
     public function name()
     {
-        return ('Create invoice');
+        return 'Create invoice';
     }
 
     /**
@@ -52,5 +50,4 @@ class InvoiceDownload extends Action
 
         ];
     }
-
 }

@@ -23,13 +23,9 @@ class Download extends Action
      */
     public function handle(ActionFields $fields, Collection $models)
     {
-
         foreach ($models as $model) {
-
             if ($model->bookings->isEmpty()) {
-
                 return Action::danger('Whoops! One of invoices has NO bookings!');
-
             }
         }
 
@@ -37,8 +33,7 @@ class Download extends Action
 
         $path = $invoicePDF->makePDF($models);
 
-        return Action::download(url($path), uniqid() . '.pdf');
-
+        return Action::download(url($path), uniqid().'.pdf');
     }
 
     /**
@@ -46,7 +41,6 @@ class Download extends Action
      *
      * @return array
      */
-
     public function fields()
     {
         return [];

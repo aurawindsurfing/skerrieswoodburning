@@ -11,11 +11,10 @@ class NewInvoice extends Mailable
 {
     use Queueable, SerializesModels;
 
-    
     /**
-     * $data
+     * $data.
      *
-     * @var Array
+     * @var array
      */
     public $data;
 
@@ -37,7 +36,7 @@ class NewInvoice extends Mailable
     public function build()
     {
         return $this->from('alec@citltd.ie')
-            ->subject('New invoice number: ' . $this->data['invoice_number'] . ' from CIT')
+            ->subject('New invoice number: '.$this->data['invoice_number'].' from CIT')
             ->attach(url($this->data['path']))
             ->view('emails.newinvoice');
     }

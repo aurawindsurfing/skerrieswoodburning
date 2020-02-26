@@ -39,5 +39,4 @@ class Company extends Model
     {
         return $this->hasMany('App\Invoice')->where('status', 'unpaid');
     }
-
 }

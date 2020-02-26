@@ -2,18 +2,18 @@
 
 namespace App\Nova;
 
-use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Place;
-use Laravel\Nova\Fields\Country;
-use Laravel\Nova\Fields\Textarea;
-use Laravel\Nova\Fields\Markdown;
-use Silvanite\NovaFieldCloudinary\Fields\CloudinaryImage;
-use Laravel\Nova\Fields\HasMany;
-use Laravel\Nova\Fields\BelongsTo;
 use Inspheric\Fields\Url;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Country;
+use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Markdown;
+use Laravel\Nova\Fields\Place;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
+use Laravel\Nova\Http\Requests\NovaRequest;
+use Silvanite\NovaFieldCloudinary\Fields\CloudinaryImage;
 
 class Venue extends Resource
 {
@@ -40,20 +40,20 @@ class Venue extends Resource
         'name',
         'address_line_1',
         'postal_code',
-        'city'
+        'city',
     ];
 
     /**
-     * $group
+     * $group.
      *
      * @var string
      */
-    public static $group = "Resources";
+    public static $group = 'Resources';
 
     public static $group_index = 120;
 
-     /**
-     * softDeletes
+    /**
+     * softDeletes.
      *
      * @return void
      */
@@ -72,26 +72,26 @@ class Venue extends Resource
     {
         return [
             ID::make()->sortable(),
-            
+
             Text::make('Name')
             ->sortable()
             ->rules('required', 'max:255'),
-            
+
             $this->addressFields(),
-            
+
             Text::make('Phone')->rules('max:254')->hideFromIndex(),
 
             Url::make('Google Maps')->hideFromIndex()->rules('url')->clickable(),
-            
+
             CloudinaryImage::make('Photo'),
 
             HasMany::make('Courses'),
-            
+
         ];
     }
 
     /**
-     * addressFields
+     * addressFields.
      *
      * @return void
      */

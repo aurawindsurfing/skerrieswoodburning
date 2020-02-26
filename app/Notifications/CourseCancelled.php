@@ -2,12 +2,12 @@
 
 namespace App\Notifications;
 
+use App\NotificationLog;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\NexmoMessage;
-use App\NotificationLog;
+use Illuminate\Notifications\Notification;
 
 class CourseCancelled extends Notification
 {
@@ -23,7 +23,7 @@ class CourseCancelled extends Notification
         //
     }
 
-     /**
+    /**
      * Get the notification's delivery channels.
      *
      * @param  mixed  $notifiable
@@ -42,17 +42,16 @@ class CourseCancelled extends Notification
      */
     public function toNexmo($notifiable)
     {
-
-        $message =  strtoupper($notifiable->course->course_type->name)
-                    . ' HAS BEEN CANCELLED!!! '
-                    . (isset($notifiable->name) ? $notifiable->name . ', your ' : 'Your ')
-                    . $notifiable->course->course_type->name . ' course on: '
-                    . $notifiable->course->date->format('Y-m-d') 
-                    . date('H:i', strtotime($notifiable->course->time)) . ' '
-                    . ' at: '
-                    . $notifiable->course->venue->name
-                    . ' has been CANCELLED!!! '
-                    . ' We are sorry for any inconvenience caused. CIT';
+        $message = strtoupper($notifiable->course->course_type->name)
+                    .' HAS BEEN CANCELLED!!! '
+                    .(isset($notifiable->name) ? $notifiable->name.', your ' : 'Your ')
+                    .$notifiable->course->course_type->name.' course on: '
+                    .$notifiable->course->date->format('Y-m-d')
+                    .date('H:i', strtotime($notifiable->course->time)).' '
+                    .' at: '
+                    .$notifiable->course->venue->name
+                    .' has been CANCELLED!!! '
+                    .' We are sorry for any inconvenience caused. CIT';
 
         $this->updateNotificationLog('sms course cancellation info', $notifiable, $message);
 
@@ -70,6 +69,6 @@ class CourseCancelled extends Notification
             'confirmation_sent' => now(),
         ]);
 
-        error_log('Notified student from booking id: ' . $booking->id);
+        error_log('Notified student from booking id: '.$booking->id);
     }
 }

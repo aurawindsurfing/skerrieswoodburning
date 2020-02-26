@@ -2,11 +2,11 @@
 
 namespace App;
 
+use App\Http\Traits\UpdatesInvoiceStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Traits\UpdatesInvoiceStatus;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class CreditNote extends Model
 {
@@ -19,7 +19,7 @@ class CreditNote extends Model
     protected static $logUnguarded = true;
 
     protected $dates = [
-        'date'
+        'date',
     ];
 
     public function invoice()
@@ -34,11 +34,11 @@ class CreditNote extends Model
 
     public function number()
     {
-        return $this->prefix . $this->id;
+        return $this->prefix.$this->id;
     }
-    
+
     public function totalForInvoice()
     {
-        return number_format((float)$this->amount, 2, '.', '');
+        return number_format((float) $this->amount, 2, '.', '');
     }
 }

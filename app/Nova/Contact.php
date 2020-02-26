@@ -2,14 +2,14 @@
 
 namespace App\Nova;
 
-use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\HasOne;
-use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Contact extends Resource
 {
@@ -29,13 +29,14 @@ class Contact extends Resource
      */
     public static function indexQuery(NovaRequest $request, $query)
     {
-
         $query->where('accounts_payable', false);
 
         if (empty($request->get('orderBy'))) {
             $query->getQuery()->orders = [];
+
             return $query->orderBy(key(static::$indexDefaultOrder), reset(static::$indexDefaultOrder));
         }
+
         return $query;
     }
 
@@ -46,7 +47,7 @@ class Contact extends Resource
      */
     public function title()
     {
-        return $this->name . ' - ' . $this->company->name;
+        return $this->name.' - '.$this->company->name;
     }
 
     /**
@@ -56,34 +57,37 @@ class Contact extends Resource
      */
     public static $search = [
         'name',
-        'phone'
+        'phone',
     ];
 
     /**
-     * $group
+     * $group.
      *
      * @var string
      */
-    public static $group = "Customers";
+    public static $group = 'Customers';
 
     public static $group_index = 4;
 
     /**
-     * $displayInNavigation
+     * $displayInNavigation.
      *
-     * @var boolean
+     * @var bool
      */
     public static $displayInNavigation = false;
 
     /**
-     * label
+     * label.
      *
      * @return void
      */
-    public static function label() { return 'Contacts'; }
+    public static function label()
+    {
+        return 'Contacts';
+    }
 
-     /**
-     * softDeletes
+    /**
+     * softDeletes.
      *
      * @return void
      */

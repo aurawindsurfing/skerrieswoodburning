@@ -2,11 +2,11 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Booking;
-use Carbon\Carbon;
-use Propaganistas\LaravelPhone\PhoneNumber;
 use App\Notifications\StudentReminder;
+use Carbon\Carbon;
+use Illuminate\Console\Command;
+use Propaganistas\LaravelPhone\PhoneNumber;
 
 class StudentBookingReminder extends Command
 {
@@ -40,10 +40,9 @@ class StudentBookingReminder extends Command
      * @return mixed
      */
     public function handle()
-    {   
-
+    {
         $student_bookings = Booking::query()
-            ->whereHas('course', function($q){
+            ->whereHas('course', function ($q) {
                 $q->where('date', '>=', Carbon::now()->toDateTimeString());
             })
             ->where('reminders_sent', false)
@@ -56,13 +55,13 @@ class StudentBookingReminder extends Command
             return Carbon::make($booking->upcoming_course_dates()->first()->date)->isTomorrow();
         });
 
-        error_log('Trying to notify ' . $tomorrow_student_bookings->count() . ' students');
+        error_log('Trying to notify '.$tomorrow_student_bookings->count().' students');
 
-            foreach ($tomorrow_student_bookings as $booking) {
-                if (PhoneNumber::make($booking->phone, config('nexmo.countries'))->isOfType('mobile')) {
-                    $booking->notify(new StudentReminder($booking));
-                }
+        foreach ($tomorrow_student_bookings as $booking) {
+            if (PhoneNumber::make($booking->phone, config('nexmo.countries'))->isOfType('mobile')) {
+                $booking->notify(new StudentReminder($booking));
             }
+        }
 
         error_log('Send all student notifications');
     }

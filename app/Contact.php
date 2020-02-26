@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Notifications\Notifiable;
 use Propaganistas\LaravelPhone\PhoneNumber;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Contact extends Model
 {
@@ -15,7 +15,7 @@ class Contact extends Model
     protected $guarded = [];
 
     protected static $logUnguarded = true;
-    
+
     public function company()
     {
         return $this->belongsTo('App\Company');

@@ -58,7 +58,7 @@ return [
    | You can change it on each invoice individually.
    */
 
-  'logo' => env('APP_URL') . '/images/cit_logo.png',
+  'logo' => env('APP_URL').'/images/cit_logo.png',
 
   /*
   |--------------------------------------------------------------------------
@@ -97,7 +97,6 @@ return [
     'iban'        => 'IE92BOFI90042078384868',
     'swift'       => 'BOFIIE2D',
 ],
-
 
   /*
   |--------------------------------------------------------------------------

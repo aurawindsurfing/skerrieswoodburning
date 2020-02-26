@@ -16,7 +16,7 @@ class Invoice extends Model
     protected static $logUnguarded = true;
 
     protected $dates = [
-        'date'
+        'date',
     ];
 
     public function company()
@@ -31,7 +31,7 @@ class Invoice extends Model
 
     public function number()
     {
-        return $this->prefix . (isset($this->number) ? $this->number : $this->id);
+        return $this->prefix.(isset($this->number) ? $this->number : $this->id);
     }
 
     public function payments()
@@ -68,25 +68,24 @@ class Invoice extends Model
     {
         return $this->hasMany('App\NotificationLog');
     }
-    
+
     public function totalForInvoice()
     {
-        return number_format((float)$this->total, 2, '.', '');
+        return number_format((float) $this->total, 2, '.', '');
     }
 
     public function paymentsMadeForInvoice()
     {
-        return number_format((float)$this->payments_completed->sum('amount'), 2, '.', '');
+        return number_format((float) $this->payments_completed->sum('amount'), 2, '.', '');
     }
 
     public function creaditNotesIssuedForInvoice()
     {
-        return number_format((float)$this->credit_notes_issued->sum('amount'), 2, '.', '');
+        return number_format((float) $this->credit_notes_issued->sum('amount'), 2, '.', '');
     }
 
     public function balanceDueForInvoice()
     {
-        return number_format((float)$this->balance_due(), 2, '.', '');
+        return number_format((float) $this->balance_due(), 2, '.', '');
     }
-
 }

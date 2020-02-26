@@ -41,9 +41,8 @@ class CompanyBookingConfirmation extends Command
      */
     public function handle()
     {
-
         $company_bookings = Booking::query()
-            ->whereHas('course', function($q){
+            ->whereHas('course', function ($q) {
                 $q->where('date', '>=', Carbon::now()->toDateTimeString());
             })
             ->whereNotNull('contact_id')
@@ -53,15 +52,13 @@ class CompanyBookingConfirmation extends Command
 
         $company_bookings = $company_bookings->groupBy('contact_id');
 
-        error_log('Trying to notify ' . $company_bookings->count() . ' company contacts');
+        error_log('Trying to notify '.$company_bookings->count().' company contacts');
 
         foreach ($company_bookings as $contact_id => $bookings) {
-
             $contact = Contact::find($contact_id);
 
             $contact->notify(new CompanyContactConfirmation($bookings));
-
-        };
+        }
 
         error_log('Send all company notifications');
     }

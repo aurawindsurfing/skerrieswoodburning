@@ -24,13 +24,11 @@ class InvoiceSendByEmailMarkPaid extends Action
      */
     public function handle(ActionFields $fields, Collection $models)
     {
-
         $invoiceController = new \App\Http\Controllers\InvoiceController();
         $created = $invoiceController->generateInvoices($models, true);
         $email = $invoiceController->emailInvoices($models);
 
-        return Action::message('Created and marked as paid ' . $created . ' invoices. Emailing ' . $email . ' invoices now.');
-
+        return Action::message('Created and marked as paid '.$created.' invoices. Emailing '.$email.' invoices now.');
     }
 
     /**
@@ -40,7 +38,7 @@ class InvoiceSendByEmailMarkPaid extends Action
      */
     public function name()
     {
-        return ('Create invoice, send email and mark as paid');
+        return 'Create invoice, send email and mark as paid';
     }
 
     /**
@@ -54,5 +52,4 @@ class InvoiceSendByEmailMarkPaid extends Action
 
         ];
     }
-
 }

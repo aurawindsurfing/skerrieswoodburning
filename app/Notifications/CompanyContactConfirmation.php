@@ -2,13 +2,13 @@
 
 namespace App\Notifications;
 
+use App\NotificationLog;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\NexmoMessage;
+use Illuminate\Notifications\Notification;
 use Illuminate\View\View;
-use App\NotificationLog;
 
 class CompanyContactConfirmation extends Notification
 {
@@ -62,6 +62,6 @@ class CompanyContactConfirmation extends Notification
         ]);
 
         $booking->update(['company_contact_notified' => true]);
-        error_log('Notified company contact from booking id: ' . $booking->id);
+        error_log('Notified company contact from booking id: '.$booking->id);
     }
 }

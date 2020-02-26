@@ -2,17 +2,17 @@
 
 namespace App\Nova;
 
-use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Fields\Date;
+use Inspheric\Fields\Indicator;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Http\Requests\NovaRequest;
 use Money\Number;
 use Vyuldashev\NovaMoneyField\Money;
-use Laravel\Nova\Fields\Select;
-use Laravel\Nova\Fields\HasMany;
-use Inspheric\Fields\Indicator;
 
 class Invoice extends Resource
 {
@@ -24,7 +24,7 @@ class Invoice extends Resource
     public static $model = 'App\Invoice';
 
     /**
-     * title
+     * title.
      *
      * @return void
      */
@@ -33,8 +33,8 @@ class Invoice extends Resource
         return $this->number();
     }
 
-     /**
-     * softDeletes
+    /**
+     * softDeletes.
      *
      * @return void
      */
@@ -45,8 +45,8 @@ class Invoice extends Resource
 
     /**
      * The columns that should be searched.
-     * We are using titasgailius/search-relations here
-     * 
+     * We are using titasgailius/search-relations here.
+     *
      * @var array
      */
     public static $search = [
@@ -64,12 +64,12 @@ class Invoice extends Resource
         'company' => ['name'],
     ];
 
-     /**
-     * $group
+    /**
+     * $group.
      *
      * @var string
      */
-    public static $group = "Accounting";
+    public static $group = 'Accounting';
 
     public static $group_index = 330;
 
@@ -88,12 +88,12 @@ class Invoice extends Resource
                     return $this->number();
                 })
                 ->sortable(),
-            
+
             Date::make('Date'),
 
             Text::make('Due Date', 'payment_terms')
                 ->displayUsing(function ($invoice) {
-                    return (($this->date)->addDays($this->payment_terms)->format('Y-m-d'));
+                    return ($this->date)->addDays($this->payment_terms)->format('Y-m-d');
                 })->onlyOnDetail(),
 
             Money::make('Total', 'EUR'),
@@ -113,8 +113,8 @@ class Invoice extends Resource
 
             BelongsTo::make('User')
             ->withMeta([
-                'value' => $this->user_id ?? auth()->user()->id, 
-                'belongsToId' => $this->user_id ?? auth()->user()->id
+                'value' => $this->user_id ?? auth()->user()->id,
+                'belongsToId' => $this->user_id ?? auth()->user()->id,
             ])
             ->onlyOnForms()
             ->hideWhenCreating()
@@ -129,7 +129,6 @@ class Invoice extends Resource
             HasMany::make('Credit Notes'),
 
             HasMany::make('Notification Log')->sortable(),
-            
 
         ];
     }
@@ -176,7 +175,7 @@ class Invoice extends Resource
     public function actions(Request $request)
     {
         return [
-            (new Actions\Download)
+            (new Actions\Download),
         ];
     }
 }

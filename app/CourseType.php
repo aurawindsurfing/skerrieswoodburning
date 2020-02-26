@@ -14,7 +14,7 @@ class CourseType extends Model
     protected $guarded = [];
 
     protected static $logUnguarded = true;
-    
+
     public function courses()
     {
         return $this->hasMany('App\Course');

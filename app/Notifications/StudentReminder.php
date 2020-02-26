@@ -2,12 +2,12 @@
 
 namespace App\Notifications;
 
+use App\NotificationLog;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\NexmoMessage;
-use App\NotificationLog;
+use Illuminate\Notifications\Notification;
 
 class StudentReminder extends Notification
 {
@@ -20,7 +20,6 @@ class StudentReminder extends Notification
      */
     public function __construct()
     {
-        
     }
 
     /**
@@ -42,21 +41,19 @@ class StudentReminder extends Notification
      */
     public function toNexmo($notifiable)
     {
-
-        $message = (isset($notifiable->name) ? $notifiable->name . ', just a quick reminder, your course:  ' : 'Just a quick reminder, your course: ')
-                    . $notifiable->course->course_type->name . ' takes place on '
-                    . $notifiable->upcoming_course_dates()->first()->course->date->format('l') .' at: '
-                    . $notifiable->upcoming_course_dates()->first()->course->venue->name . ' on: '
-                    . date('H:i', strtotime($notifiable->upcoming_course_dates()->first()->course->time)) . ' '
-                    . (isset($notifiable->upcoming_course_dates()->first()->course->venue->google_maps) ? ' Directions: ' . $notifiable->upcoming_course_dates()->first()->course->venue->google_maps : '')
-                    . '. Please call us back if for any reasons you are unable to attend. CIT';
+        $message = (isset($notifiable->name) ? $notifiable->name.', just a quick reminder, your course:  ' : 'Just a quick reminder, your course: ')
+                    .$notifiable->course->course_type->name.' takes place on '
+                    .$notifiable->upcoming_course_dates()->first()->course->date->format('l').' at: '
+                    .$notifiable->upcoming_course_dates()->first()->course->venue->name.' on: '
+                    .date('H:i', strtotime($notifiable->upcoming_course_dates()->first()->course->time)).' '
+                    .(isset($notifiable->upcoming_course_dates()->first()->course->venue->google_maps) ? ' Directions: '.$notifiable->upcoming_course_dates()->first()->course->venue->google_maps : '')
+                    .'. Please call us back if for any reasons you are unable to attend. CIT';
 
         $this->updateNotificationLog('sms course date reminder', $notifiable, $message);
 
         return (new NexmoMessage)
                     ->content($message);
     }
-
 
     public function updateNotificationLog($type, $booking, $message)
     {
@@ -69,11 +66,9 @@ class StudentReminder extends Notification
         ]);
 
         if ($booking->upcoming_course_dates()->count() == 1) {
-
             $booking->update(['reminders_sent' => true]);
-
         }
 
-        error_log('Notified student from booking id: ' . $booking->id);
+        error_log('Notified student from booking id: '.$booking->id);
     }
 }

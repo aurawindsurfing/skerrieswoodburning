@@ -2,13 +2,13 @@
 
 namespace App\Notifications;
 
+use App\NotificationLog;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\NexmoMessage;
+use Illuminate\Notifications\Notification;
 use Illuminate\View\View;
-use App\NotificationLog;
 
 class CompanyContactReminder extends Notification
 {
@@ -62,11 +62,9 @@ class CompanyContactReminder extends Notification
         ]);
 
         if ($booking->upcoming_course_dates()->count() == 1) {
-
             $booking->update(['company_contact_reminders_sent' => true]);
-
         }
-        
-        error_log('Notified company contact from booking id: ' . $booking->id);
+
+        error_log('Notified company contact from booking id: '.$booking->id);
     }
 }

@@ -3,12 +3,12 @@
 namespace App\Nova\Actions;
 
 use Illuminate\Bus\Queueable;
-use Laravel\Nova\Actions\Action;
-use Illuminate\Support\Collection;
-use Laravel\Nova\Fields\ActionFields;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Collection;
+use Laravel\Nova\Actions\Action;
+use Laravel\Nova\Fields\ActionFields;
 
 class CreditNoteDownload extends Action
 {
@@ -26,7 +26,7 @@ class CreditNoteDownload extends Action
         $creditNoteController = new \App\Http\Controllers\CreditNoteController();
         $path = $creditNoteController->makePDF($models);
 
-        return Action::download(url($path), uniqid() . '.pdf');
+        return Action::download(url($path), uniqid().'.pdf');
     }
 
     /**
@@ -36,7 +36,7 @@ class CreditNoteDownload extends Action
      */
     public function name()
     {
-        return ('Download');
+        return 'Download';
     }
 
     /**

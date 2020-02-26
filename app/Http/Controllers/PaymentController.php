@@ -83,8 +83,8 @@ class PaymentController extends Controller
         //
     }
 
-     /**
-     * makePDF
+    /**
+     * makePDF.
      *
      * @param mixed $invoices
      * @return void
@@ -94,10 +94,9 @@ class PaymentController extends Controller
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadView('invoices.payment_receipt', compact('receipts'));
         $id = uniqid();
-        $path = '/storage/tmp/invoices/'. $id .'.pdf';
+        $path = '/storage/tmp/invoices/'.$id.'.pdf';
         $pdf->save(public_path($path));
 
         return $path;
-
     }
 }

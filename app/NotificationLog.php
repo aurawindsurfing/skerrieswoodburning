@@ -6,13 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class NotificationLog extends Model
 {
-
     protected $table = 'notification_log';
 
     protected $guarded = [];
 
     protected $casts = [
-        'confirmation_sent' => 'datetime'
+        'confirmation_sent' => 'datetime',
     ];
 
     public function booking()

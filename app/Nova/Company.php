@@ -2,17 +2,16 @@
 
 namespace App\Nova;
 
-use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Inspheric\Fields\Email;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Company extends Resource
 {
-
     /**
      * The model the resource corresponds to.
      *
@@ -37,20 +36,20 @@ class Company extends Resource
         'name',
         'email',
         'phone',
-        'address'
+        'address',
     ];
 
     /**
-     * $group
+     * $group.
      *
      * @var string
      */
-    public static $group = "Customers";
+    public static $group = 'Customers';
 
     public static $group_index = 240;
 
     /**
-     * softDeletes
+     * softDeletes.
      *
      * @return void
      */
@@ -95,7 +94,7 @@ class Company extends Resource
 
             Text::make('Payment terms')
                 ->displayUsing(function ($invoice) {
-                    return ($this->payment_terms . ' days');
+                    return $this->payment_terms.' days';
                 })
                 ->rules('numeric')
                 ->hideFromIndex(),
@@ -109,7 +108,6 @@ class Company extends Resource
             HasMany::make('Unpaid Invoices')->sortable(),
 
             HasMany::make('Invoices')->sortable(),
-
 
         ];
     }

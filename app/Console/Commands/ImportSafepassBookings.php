@@ -2,9 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Imports\SafepassBookingImport;
 use Illuminate\Console\Command;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Imports\SafepassBookingImport;
 
 class ImportSafepassBookings extends Command
 {

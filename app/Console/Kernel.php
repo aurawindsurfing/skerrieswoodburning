@@ -34,21 +34,18 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // student 
+        // student
         $schedule->command('notify:newbookings_student')->timezone('Europe/Dublin')->everyMinute();
         // $schedule->command('notify:booking_reminder_student')->timezone('Europe/Dublin')->dailyAt('14:00');
 
-
-        // company 
+        // company
         $schedule->command('notify:newbookings_company')->timezone('Europe/Dublin')->everyMinute();
         // $schedule->command('notify:booking_reminder_company')->timezone('Europe/Dublin')->weekdays()->at('9:30');
 
-
-        // cit 
+        // cit
         $schedule->command('notify:attendeelist')->timezone('Europe/Dublin')->dailyAt('18:00');
         // $schedule->command('notify:unpaid_invoices')->timezone('Europe/Dublin')->weekly()->mondays()->at('10:00');
         $schedule->command('housekeeping:clear_tmp_files')->timezone('Europe/Dublin')->daily();
-        
     }
 
     /**

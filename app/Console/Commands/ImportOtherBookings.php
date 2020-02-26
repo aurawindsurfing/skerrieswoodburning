@@ -2,9 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Imports\OtherCoursesBookingImport;
 use Illuminate\Console\Command;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Imports\OtherCoursesBookingImport;
 
 class ImportOtherBookings extends Command
 {

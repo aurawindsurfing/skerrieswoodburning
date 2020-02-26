@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\User;
 use App\Booking;
+use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class BookingPolicy
@@ -54,7 +54,7 @@ class BookingPolicy
      */
     public function delete(User $user, Booking $booking)
     {
-        if (isset($booking->invoice)){
+        if (isset($booking->invoice)) {
             return false;
         } else {
             return true;

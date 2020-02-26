@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\OtherCoursesBookingImport;
 use App\Imports\SafepassBookingImport;
+use Illuminate\Console\Command;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ImportAll extends Command
 {
