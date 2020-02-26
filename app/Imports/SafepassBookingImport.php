@@ -2,6 +2,7 @@
 
 namespace App\Imports;
 
+use Illuminate\Support\Str;
 use App\Booking;
 use App\Company;
 use App\Contact;
@@ -36,7 +37,7 @@ class SafepassBookingImport implements ToCollection, WithHeadingRow
         foreach ($rows as $row) {
             $bar->advance();
 
-            if (str_contains($row['date'], ['Eugene Hughes', 'John Kennedy', 'Michael Clarke', 'Chriss Mee', 'Martin Cooper', 'Stephen Browne', 'Noel Gannon']) && ! empty($row['date'])) {
+            if (Str::contains($row['date'], ['Eugene Hughes', 'John Kennedy', 'Michael Clarke', 'Chriss Mee', 'Martin Cooper', 'Stephen Browne', 'Noel Gannon']) && ! empty($row['date'])) {
                 $tutor = Tutor::updateOrCreate(
                     ['name' => $row['date']], // this is yellow tutors name
                     ['phone' => null, 'email' => null]
@@ -49,7 +50,7 @@ class SafepassBookingImport implements ToCollection, WithHeadingRow
 
                 $date = explode(' - ', $row['company'], 2);
 
-                $inHouse = ((count($date) > 1) ? str_contains(strtolower($date[1]), 'house') : false) || str_contains(strtolower($row['forename']), 'In-House');
+                $inHouse = ((count($date) > 1) ? Str::contains(strtolower($date[1]), 'house') : false) || Str::contains(strtolower($row['forename']), 'In-House');
                 $course_date_ready_for_parsing = str_replace(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], '', $date[0]);
 
                 $course = Course::updateOrCreate(
@@ -67,7 +68,7 @@ class SafepassBookingImport implements ToCollection, WithHeadingRow
                         'inhouse' => $inHouse,
                     ]
                 );
-            } elseif (str_contains($row['date'], ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']) && ! empty($row['date'])) {
+            } elseif (Str::contains($row['date'], ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']) && ! empty($row['date'])) {
 
                 // tryin to create a company if exists on the row
                 if (! empty($row['company'])) {
@@ -133,17 +134,17 @@ class SafepassBookingImport implements ToCollection, WithHeadingRow
                     $invoice->save();
 
                     if (! empty($row['actually_paid'])) {
-                        if (str_contains('cash', $row['actually_paid'])) {
+                        if (Str::contains('cash', $row['actually_paid'])) {
                             $payment_method = 'cash';
-                        } elseif (str_contains($row['actually_paid'], 'Inv')) {
+                        } elseif (Str::contains($row['actually_paid'], 'Inv')) {
                             $payment_method = 'eft';
-                        } elseif (str_contains($row['actually_paid'], 'CC')) {
+                        } elseif (Str::contains($row['actually_paid'], 'CC')) {
                             $payment_method = 'cc';
-                        } elseif (str_contains($row['actually_paid'], 'chq')) {
+                        } elseif (Str::contains($row['actually_paid'], 'chq')) {
                             $payment_method = 'cheque';
-                        } elseif (str_contains($row['actually_paid'], 'ch')) {
+                        } elseif (Str::contains($row['actually_paid'], 'ch')) {
                             $payment_method = 'cheque';
-                        } elseif (str_contains($row['actually_paid'], 'cheq')) {
+                        } elseif (Str::contains($row['actually_paid'], 'cheq')) {
                             $payment_method = 'cheque';
                         }
                     } else {
