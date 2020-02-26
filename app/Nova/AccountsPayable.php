@@ -2,12 +2,12 @@
 
 namespace App\Nova;
 
-use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Http\Requests\NovaRequest;
 use Outhebox\NovaHiddenField\HiddenField;
 
 class AccountsPayable extends Resource
@@ -17,7 +17,7 @@ class AccountsPayable extends Resource
      *
      * @var string
      */
-    public static $model = 'App\Contact';
+    public static $model = \App\Contact::class;
 
     /**
      * Build an "index" query for the given resource.
@@ -28,13 +28,14 @@ class AccountsPayable extends Resource
      */
     public static function indexQuery(NovaRequest $request, $query)
     {
-
         $query->where('accounts_payable', true);
 
         if (empty($request->get('orderBy'))) {
             $query->getQuery()->orders = [];
+
             return $query->orderBy(key(static::$indexDefaultOrder), reset(static::$indexDefaultOrder));
         }
+
         return $query;
     }
 
@@ -52,34 +53,37 @@ class AccountsPayable extends Resource
      */
     public static $search = [
         'name',
-        'phone'
+        'phone',
     ];
 
     /**
-     * $group
+     * $group.
      *
      * @var string
      */
-    public static $group = "Customers";
+    public static $group = 'Customers';
 
     public static $group_index = 4;
 
     /**
-     * $displayInNavigation
+     * $displayInNavigation.
      *
-     * @var boolean
+     * @var bool
      */
     public static $displayInNavigation = false;
 
     /**
-     * label
+     * label.
      *
      * @return void
      */
-    public static function label() { return 'Accounts Payable'; }
+    public static function label()
+    {
+        return 'Accounts Payable';
+    }
 
-     /**
-     * softDeletes
+    /**
+     * softDeletes.
      *
      * @return void
      */
@@ -114,7 +118,7 @@ class AccountsPayable extends Resource
                 ->rules('required', 'email', 'max:254'),
 
             HasMany::make('Bookings')->sortable(),
-            
+
             HiddenField::make('Accounts Payable', 'accounts_payable')
                 ->onlyOnForms()
                 ->default(true),

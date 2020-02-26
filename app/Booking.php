@@ -2,13 +2,13 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\Activitylog\Traits\LogsActivity;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Notifications\Notifiable;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Propaganistas\LaravelPhone\PhoneNumber;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Booking extends Model
 {
@@ -19,11 +19,11 @@ class Booking extends Model
     protected static $logUnguarded = true;
 
     protected $dates = [
-        'date'
+        'date',
     ];
 
     protected $casts = [
-        'confirmation_sent' => 'boolean'
+        'confirmation_sent' => 'boolean',
     ];
 
     public static function boot()
@@ -31,71 +31,68 @@ class Booking extends Model
         parent::boot();
 
         static::saving(function ($booking) {
-
             isset($booking->contact) ? $booking->company_id = $booking->contact->company->id : null;
-            
-            if (Auth::check()){
+
+            if (Auth::check()) {
                 $booking->user_id = Auth::user()->id;
             }
-            
+
             session(['booking' => $booking]);
         });
     }
 
     public function course()
     {
-        return $this->belongsTo('App\Course');
+        return $this->belongsTo(\App\Course::class);
     }
 
     public function invoice()
     {
-        return $this->belongsTo('App\Invoice');
+        return $this->belongsTo(\App\Invoice::class);
     }
 
     public function payments()
     {
-        return $this->hasMany('App\Payment');
+        return $this->hasMany(\App\Payment::class);
     }
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(\App\User::class);
     }
 
     public function company()
     {
-        return $this->belongsTo('App\Company');
+        return $this->belongsTo(\App\Company::class);
     }
 
     public function contact()
     {
-        return $this->belongsTo('App\Contact');
+        return $this->belongsTo(\App\Contact::class);
     }
 
     public function notification_log()
     {
-        return $this->hasMany('App\NotificationLog');
+        return $this->hasMany(\App\NotificationLog::class);
     }
 
     public function invoiceDescription()
     {
-        return $this->name . ' ' . $this->surname .' - '. $this->course->course_type->name . ' - '. $this->course->date->format('Y-m-d') . (isset($this->po) ? ' PO: ' . $this->po : '');
+        return $this->name.' '.$this->surname.' - '.$this->course->course_type->name.' - '.$this->course->date->format('Y-m-d').(isset($this->po) ? ' PO: '.$this->po : '');
     }
 
     public function rateForInvoice()
     {
-        return number_format((float)$this->rate, 2, '.', '');
+        return number_format((float) $this->rate, 2, '.', '');
     }
 
     // if multiday then we coalate all dates into a collection of dates and we sort them asc by date then we ase that to send notifications
 
     public function upcoming_course_dates()
     {
-
         $dates = collect([]);
 
         if ($this->course->date > Carbon::now()) {
-            
             $course_date = new CourseDate;
             $course_date->course_id = $this->course->id;
             $course_date->venue_id = $this->course->venue->id;
@@ -104,10 +101,9 @@ class Booking extends Model
             $dates->push($course_date); /// trzeba z tego zrobic taki sam objekt jak coursedates
         }
 
-        
         if ($this->course->multiday) {
             foreach ($this->course->course_dates()->get() as $course_date) {
-                if ($course_date->date > Carbon::now()){
+                if ($course_date->date > Carbon::now()) {
                     $dates->push($course_date);
                 }
             }
@@ -118,9 +114,7 @@ class Booking extends Model
         });
 
         return $sorted_course_dates;
-
     }
- 
 
     /**
      * Route notifications for the Nexmo channel.
@@ -134,5 +128,4 @@ class Booking extends Model
 
         return ltrim($phone, '+');
     }
-
 }

@@ -3,28 +3,27 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Text;
-use Vyuldashev\NovaMoneyField\Money;
-use Outhebox\NovaHiddenField\HiddenField;
 use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Http\Requests\NovaRequest;
+use Outhebox\NovaHiddenField\HiddenField;
+use Vyuldashev\NovaMoneyField\Money;
 
 class Booking extends Resource
 {
-
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\Booking';
+    public static $model = \App\Booking::class;
 
     // /**
     //  * The single value that should be used to represent the resource when being displayed.
@@ -50,13 +49,13 @@ class Booking extends Resource
     public static $perPageViaRelationship = 50;
 
     /**
-     * title
+     * title.
      *
      * @return void
      */
     public function title()
     {
-        return $this->name . ' ' . $this->surname . ' - ' . $this->course->course_type->name . ' - ' . $this->course->date->format('Y-m-d');
+        return $this->name.' '.$this->surname.' - '.$this->course->course_type->name.' - '.$this->course->date->format('Y-m-d');
     }
 
     /**
@@ -70,23 +69,23 @@ class Booking extends Resource
         'surname',
         'email',
         'date',
-        'phone'
+        'phone',
         // 'course',
         // 'company',
         // 'contact'
     ];
 
     /**
-     * $group
+     * $group.
      *
      * @var string
      */
-    public static $group = "Customers";
+    public static $group = 'Customers';
 
     public static $group_index = 200;
 
     /**
-     * softDeletes
+     * softDeletes.
      *
      * @return void
      */
@@ -103,7 +102,6 @@ class Booking extends Resource
      */
     public function fields(Request $request)
     {
-
         return [
 
             BelongsTo::make('Course')
@@ -136,9 +134,8 @@ class Booking extends Resource
                 ->rules('nullable')
                 ->sortable()
                 ->withMeta(['extraAttributes' => [
-                    'placeholder' => '08x'],
-                ])
-                ,
+                    'placeholder' => '08x', ],
+                ]),
 
             Text::make('Email')->sortable(),
 
@@ -183,12 +180,12 @@ class Booking extends Resource
                 ->onlyOnForms()
                 ->hideFromIndex()
                 ->hideWhenUpdating()
-                
+
                 ->withMeta([
                     'belongsToId' => session('booking.contact_id'),
                 ])
                 ->displayUsing(function ($contact) {
-                    return ($contact->name . ' - ' . $contact->company->name);
+                    return $contact->name.' - '.$contact->company->name;
                 })
                 ->nullable(),
 

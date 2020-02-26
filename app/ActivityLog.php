@@ -12,5 +12,4 @@ class ActivityLog extends Model
      * @var string
      */
     protected $table = 'activity_log';
-
 }

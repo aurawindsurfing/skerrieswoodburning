@@ -2,14 +2,13 @@
 
 namespace App\Nova;
 
-use Laravel\Nova\Fields\ID;
+use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Trix;
-use Laravel\Nova\Fields\DateTime;
-use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
-
 
 class NotificationLog extends Resource
 {
@@ -18,30 +17,33 @@ class NotificationLog extends Resource
      *
      * @var string
      */
-    public static $model = 'App\NotificationLog';
+    public static $model = \App\NotificationLog::class;
 
     /**
-     * $displayInNavigation
+     * $displayInNavigation.
      *
-     * @var boolean
+     * @var bool
      */
     public static $displayInNavigation = true;
 
     /**
-     * $group
+     * $group.
      *
      * @var string
      */
-    public static $group = "Customers";
+    public static $group = 'Customers';
 
     public static $group_index = 210;
 
     /**
-     * label
+     * label.
      *
      * @return void
      */
-    public static function label() { return 'Notifications Sent'; }
+    public static function label()
+    {
+        return 'Notifications Sent';
+    }
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -74,7 +76,7 @@ class NotificationLog extends Resource
 
             Trix::make('Message')->alwaysShow(),
 
-            DateTime::make('Confirmation Sent')
+            DateTime::make('Confirmation Sent'),
 
         ];
     }

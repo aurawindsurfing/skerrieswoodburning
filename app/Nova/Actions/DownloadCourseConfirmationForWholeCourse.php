@@ -4,14 +4,14 @@ namespace App\Nova\Actions;
 
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
-use Laravel\Nova\Actions\Action;
-use Illuminate\Support\Collection;
-use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\ActionFields;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
+use Laravel\Nova\Actions\Action;
+use Laravel\Nova\Fields\ActionFields;
+use Laravel\Nova\Fields\BelongsTo;
 
 class DownloadCourseConfirmationForWholeCourse extends Action
 {
@@ -26,7 +26,6 @@ class DownloadCourseConfirmationForWholeCourse extends Action
      */
     public function handle(ActionFields $fields, Collection $models)
     {
-
         $model = $models->first();
 
         $data = [
@@ -36,13 +35,12 @@ class DownloadCourseConfirmationForWholeCourse extends Action
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadView('letters.course_confirmation', $data);
         $id = uniqid();
-        $pdf->save('storage/tmp/confirmations/confirmation_letter_'. $id .'.pdf');
-        
-        return Action::download(
-            url(Storage::url('tmp/confirmations/confirmation_letter_'. $id .'.pdf')),
-            'confirmation_letter_id_' . $id . '.pdf'
-        );
+        $pdf->save('storage/tmp/confirmations/confirmation_letter_'.$id.'.pdf');
 
+        return Action::download(
+            url(Storage::url('tmp/confirmations/confirmation_letter_'.$id.'.pdf')),
+            'confirmation_letter_id_'.$id.'.pdf'
+        );
     }
 
     /**
@@ -52,7 +50,7 @@ class DownloadCourseConfirmationForWholeCourse extends Action
      */
     public function name()
     {
-        return ('Download Confirmations');
+        return 'Download Confirmations';
     }
 
     /**
@@ -63,7 +61,7 @@ class DownloadCourseConfirmationForWholeCourse extends Action
     public function fields()
     {
         return [
-            
+
         ];
     }
 }

@@ -2,11 +2,11 @@
 
 namespace App\Notifications;
 
+use App\NotificationLog;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use App\NotificationLog;
+use Illuminate\Notifications\Notification;
 
 class CompanyCourseCancelled extends Notification
 {
@@ -43,7 +43,6 @@ class CompanyCourseCancelled extends Notification
      */
     public function toMail($notifiable)
     {
-
         $message = view('emails.company_course_cancelled', ['bookings' => $this->bookings])->render();
 
         foreach ($this->bookings as $booking) {
@@ -54,7 +53,6 @@ class CompanyCourseCancelled extends Notification
             ->subject('Course Cancellation Notice!!!')
             ->from('alec@citltd.ie')
             ->view('emails.company_course_cancelled', ['bookings' => $this->bookings]);
-
     }
 
     public function updateNotificationLog($type, $booking, $message)
@@ -67,6 +65,6 @@ class CompanyCourseCancelled extends Notification
             'confirmation_sent' => now(),
         ]);
 
-        error_log('Notified company contact from booking id: ' . $booking->id);
+        error_log('Notified company contact from booking id: '.$booking->id);
     }
 }

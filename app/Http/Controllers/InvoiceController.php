@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Invoice;
 use App\Company;
+use App\Invoice;
+use App\Mail\NewInvoice;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\NewInvoice;
-
+use Illuminate\Support\Facades\Storage;
 
 class InvoiceController extends Controller
 {
@@ -23,9 +22,8 @@ class InvoiceController extends Controller
         //
     }
 
-
     /**
-     * create
+     * create.
      *
      * @param Request $request
      * @return void
@@ -34,9 +32,7 @@ class InvoiceController extends Controller
     {
 
         //
-        
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -95,7 +91,7 @@ class InvoiceController extends Controller
     }
 
     /**
-     * makePDF
+     * makePDF.
      *
      * @param mixed $invoices
      * @return void
@@ -105,32 +101,30 @@ class InvoiceController extends Controller
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadView('invoices.invoice', compact('invoices'));
         $id = uniqid();
-        $path = '/storage/tmp/invoices/'. $id .'.pdf';
+        $path = '/storage/tmp/invoices/'.$id.'.pdf';
         $pdf->save(public_path($path));
 
         return $path;
-
     }
 
     public function preparePDF($models)
     {
         $invoices = collect([]);
 
-        foreach ($models as $booking ) {
+        foreach ($models as $booking) {
             $invoice = $booking->invoice;
             $invoices->push($invoice);
         }
 
         $invoices = $invoices->unique();
-        $invoicePDF = new \App\Http\Controllers\InvoiceController();
+        $invoicePDF = new self();
         $path = $invoicePDF->makePDF($invoices);
 
         return $path;
     }
 
-
     /**
-     * generateInvoices
+     * generateInvoices.
      *
      * @param mixed $models
      * @return void
@@ -147,35 +141,33 @@ class InvoiceController extends Controller
         }
 
         if ($uninvoiced_bookings->isNotEmpty()) {
-
             $bookings = $uninvoiced_bookings->groupBy('company_id');
             $bookings_without_company = $bookings->pull('');
 
             //corporate booking
 
-            if (!is_null($bookings) && $bookings->isNotEmpty()) {
+            if (! is_null($bookings) && $bookings->isNotEmpty()) {
                 foreach ($bookings as $company_bookings) {
                     $invoice = $this->createCompanyInvoice($company_bookings);
-                    
+
                     if ($markAsPaid) {
-                        foreach($company_bookings as $booking){
+                        foreach ($company_bookings as $booking) {
                             $payment = \App\Payment::create([
                                 'amount' => $booking->rate,
                                 'invoice_id' => $booking->invoice_id,
                                 'payment_method' => 'cash',
-                                'status' => 'completed'
+                                'status' => 'completed',
                             ]);
                         }
                     }
-                    
-                    $count++;
 
+                    $count++;
                 }
             }
 
             // individual bookings
 
-            if (!is_null($bookings_without_company) && $bookings_without_company->isNotEmpty()) {
+            if (! is_null($bookings_without_company) && $bookings_without_company->isNotEmpty()) {
                 foreach ($bookings_without_company as $booking) {
                     $invoice = $this->createNonCompanyInvoice($booking);
 
@@ -184,10 +176,10 @@ class InvoiceController extends Controller
                             'amount' => $booking->rate,
                             'invoice_id' => $booking->invoice_id,
                             'payment_method' => 'cash',
-                            'status' => 'completed'
+                            'status' => 'completed',
                         ]);
                     }
-                    
+
                     $count++;
                 }
             }
@@ -196,19 +188,16 @@ class InvoiceController extends Controller
         return $count;
     }
 
-
-
     /**
-     * createCompanyInvoice
+     * createCompanyInvoice.
      *
      * @param mixed $bookings
      * @return void
      */
     public function createCompanyInvoice($bookings)
     {
-
         isset($bookings->first()->company_id) ? ($company_id = $bookings->first()->company_id) : ($company_id = null);
-        
+
         $invoice = Invoice::create([
                 'prefix' => 'N-',
                 'date' => Carbon::now(),
@@ -224,21 +213,18 @@ class InvoiceController extends Controller
             $booking->update(['invoice_id' => $invoice->id]);
             $invoice->update(['total' => $invoice->total + $booking->rate]);
         }
-    
+
         return $invoice;
-        
     }
 
-
     /**
-     * createNonCompanyInvoice
+     * createNonCompanyInvoice.
      *
      * @param mixed $booking
      * @return void
      */
     public function createNonCompanyInvoice($booking)
     {
-
         $invoice = Invoice::create([
                 'prefix' => 'N-',
                 'date' => Carbon::now(),
@@ -252,20 +238,18 @@ class InvoiceController extends Controller
 
         $booking->update(['invoice_id' => $invoice->id]);
         $invoice->update(['total' => $invoice->total + $booking->rate]);
-    
+
         return $invoice;
-        
     }
 
     /**
-     * emailInvoices
+     * emailInvoices.
      *
      * @param mixed $models
      * @return void
      */
     public function emailInvoices($models)
     {
-
         $invoices = collect([]);
 
         foreach ($models as $booking) {
@@ -277,7 +261,6 @@ class InvoiceController extends Controller
         $i = 0;
 
         foreach ($invoices as $invoice) {
-
             $inv = collect([$invoice]);
 
             $path = $this->makePDF($inv);
@@ -289,28 +272,24 @@ class InvoiceController extends Controller
             ];
 
             foreach ($invoice->bookings as $booking) {
-                
                 if (isset($booking->email)) {
                     Mail::to($booking->email)
                         // ->cc('alec@citltd.ie')
                         ->queue(new NewInvoice($data));
                 }
 
-                if (isset($booking->accounts_payable)){
+                if (isset($booking->accounts_payable)) {
                     if (isset($booking->company->accounts_payable->first()->email)) {
                         Mail::to($booking->company->accounts_payable->first()->email)
                             // ->cc('alec@citltd.ie')
                             ->queue(new NewInvoice($data));
                     }
                 }
-                
-
             }
 
             $i++;
         }
-        
+
         return $i;
     }
-
 }

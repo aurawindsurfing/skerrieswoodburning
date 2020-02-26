@@ -2,15 +2,15 @@
 
 namespace App\Nova;
 
-use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Fields\Number;
+use Laraning\NovaTimeField\TimeField;
+use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Markdown;
+use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
+use Laravel\Nova\Http\Requests\NovaRequest;
 use Vyuldashev\NovaMoneyField\Money;
-use Laraning\NovaTimeField\TimeField;
 
 class CourseType extends Resource
 {
@@ -19,7 +19,7 @@ class CourseType extends Resource
      *
      * @var string
      */
-    public static $model = 'App\CourseType';
+    public static $model = \App\CourseType::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -38,23 +38,26 @@ class CourseType extends Resource
     ];
 
     /**
-     * $group
+     * $group.
      *
      * @var string
      */
-    public static $group = "Settings";
+    public static $group = 'Settings';
 
-    public static $group_index =400;
+    public static $group_index = 400;
 
     /**
-     * label
+     * label.
      *
      * @return void
      */
-    public static function label() { return 'Course Types'; }
+    public static function label()
+    {
+        return 'Course Types';
+    }
 
-     /**
-     * softDeletes
+    /**
+     * softDeletes.
      *
      * @return void
      */
@@ -132,7 +135,7 @@ class CourseType extends Resource
 
             Number::make('Valid for years', 'valid_for_years'),
 
-            Number::make('Capacity')
+            Number::make('Capacity'),
 
         ];
     }

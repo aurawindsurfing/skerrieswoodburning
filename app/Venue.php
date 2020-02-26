@@ -14,19 +14,19 @@ class Venue extends Model
     protected $guarded = [];
 
     protected static $logUnguarded = true;
-    
+
     public function courses()
     {
-        return $this->hasMany('App\Course');
+        return $this->hasMany(\App\Course::class);
     }
 
     public function course_dates()
     {
-        return $this->hasMany('App\CourseDate');
+        return $this->hasMany(\App\CourseDate::class);
     }
 
     public function fullAddress()
     {
-        return $this->address_line_1 .' '. $this->city .' '. $this->postal_code;
+        return $this->address_line_1.' '.$this->city.' '.$this->postal_code;
     }
 }

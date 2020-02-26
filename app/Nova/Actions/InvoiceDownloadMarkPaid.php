@@ -22,13 +22,11 @@ class InvoiceDownloadMarkPaid extends Action
      */
     public function handle(ActionFields $fields, Collection $models)
     {
-
         $invoiceController = new \App\Http\Controllers\InvoiceController();
         $created = $invoiceController->generateInvoices($models, true);
         $path = $invoiceController->preparePDF($models);
 
-        return Action::download(url($path), uniqid() . '.pdf');
-
+        return Action::download(url($path), uniqid().'.pdf');
     }
 
     /**
@@ -38,7 +36,7 @@ class InvoiceDownloadMarkPaid extends Action
      */
     public function name()
     {
-        return ('Create invoice and mark as paid');
+        return 'Create invoice and mark as paid';
     }
 
     /**
@@ -52,5 +50,4 @@ class InvoiceDownloadMarkPaid extends Action
 
         ];
     }
-
 }

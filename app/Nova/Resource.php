@@ -2,13 +2,12 @@
 
 namespace App\Nova;
 
-use Laravel\Nova\Resource as NovaResource;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Resource as NovaResource;
 use Titasgailius\SearchRelations\SearchesRelations;
 
 abstract class Resource extends NovaResource
 {
-
     use SearchesRelations;
 
     /**
@@ -17,7 +16,7 @@ abstract class Resource extends NovaResource
      * @var array
      */
     public static $indexDefaultOrder = [
-        'id' => 'desc'
+        'id' => 'desc',
     ];
 
     public static $group_index = 1;
@@ -33,8 +32,10 @@ abstract class Resource extends NovaResource
     {
         if (empty($request->get('orderBy'))) {
             $query->getQuery()->orders = [];
+
             return $query->orderBy(key(static::$indexDefaultOrder), reset(static::$indexDefaultOrder));
         }
+
         return $query;
     }
 

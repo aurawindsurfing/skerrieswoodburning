@@ -7,11 +7,11 @@ use Inspheric\Fields\Indicator;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Money\Number;
-use Vyuldashev\NovaMoneyField\Money;
 use Outhebox\NovaHiddenField\HiddenField;
-use Laravel\Nova\Fields\Select;
+use Vyuldashev\NovaMoneyField\Money;
 
 class CreditNote extends Resource
 {
@@ -20,10 +20,10 @@ class CreditNote extends Resource
      *
      * @var string
      */
-    public static $model = 'App\CreditNote';
+    public static $model = \App\CreditNote::class;
 
     /**
-     * title
+     * title.
      *
      * @return void
      */
@@ -33,7 +33,7 @@ class CreditNote extends Resource
     }
 
     /**
-     * softDeletes
+     * softDeletes.
      *
      * @return void
      */
@@ -44,7 +44,7 @@ class CreditNote extends Resource
 
     /**
      * The columns that should be searched.
-     * We are using titasgailius/search-relations here
+     * We are using titasgailius/search-relations here.
      *
      * @var array
      */
@@ -54,26 +54,28 @@ class CreditNote extends Resource
     ];
 
     /**
-     * label
+     * label.
      *
      * @return void
      */
     public static function label()
-    {return 'Credit Notes';}
+    {
+        return 'Credit Notes';
+    }
 
-     /**
-     * $displayInNavigation
+    /**
+     * $displayInNavigation.
      *
-     * @var boolean
+     * @var bool
      */
     public static $displayInNavigation = false;
 
     /**
-     * $group
+     * $group.
      *
      * @var string
      */
-    public static $group = "Accounting";
+    public static $group = 'Accounting';
 
     public static $group_index = 340;
 
@@ -175,7 +177,7 @@ class CreditNote extends Resource
     public function actions(Request $request)
     {
         return [
-            (new Actions\CreditNoteDownload)
+            (new Actions\CreditNoteDownload),
         ];
     }
 }

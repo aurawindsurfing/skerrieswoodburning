@@ -2,16 +2,16 @@
 
 namespace App\Providers;
 
-use Laravel\Nova\Nova;
-use Laravel\Nova\Cards\Help;
-use Illuminate\Support\Facades\Gate;
-use Laravel\Nova\NovaApplicationServiceProvider;
-use App\Nova\Metrics\NewCandidates;
-use App\Nova\Metrics\NewBookings;
 use App\Nova\Booking;
 use App\Nova\Metrics\CoursesPerTutor;
-use Itainathaniel\NovaNexmo\NovaNexmoTool;
+use App\Nova\Metrics\NewBookings;
+use App\Nova\Metrics\NewCandidates;
+use Illuminate\Support\Facades\Gate;
 use Itainathaniel\NovaNexmo\NovaNexmoCard;
+use Itainathaniel\NovaNexmo\NovaNexmoTool;
+use Laravel\Nova\Cards\Help;
+use Laravel\Nova\Nova;
+use Laravel\Nova\NovaApplicationServiceProvider;
 use PeterBrinck\NovaLaravelNews\NovaLaravelNews;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
@@ -52,7 +52,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             return in_array($user->email, [
                 'tomcentrumpl@gmail.com',
                 'alec@citltd.ie',
-                'hank@citltd.ie'
+                'hank@citltd.ie',
             ]);
         });
     }

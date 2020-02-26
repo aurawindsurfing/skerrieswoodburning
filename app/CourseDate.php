@@ -21,11 +21,11 @@ class CourseDate extends Model
 
     public function course()
     {
-        return $this->belongsTo('App\Course');
+        return $this->belongsTo(\App\Course::class);
     }
 
     public function venue()
     {
-        return $this->belongsTo('App\Venue');
+        return $this->belongsTo(\App\Venue::class);
     }
 }

@@ -2,12 +2,12 @@
 
 namespace App\Nova;
 
-use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Http\Requests\NovaRequest;
+use Laraning\NovaTimeField\TimeField;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Date;
-use Laraning\NovaTimeField\TimeField;
+use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
 class CourseDate extends Resource
 {
@@ -16,11 +16,11 @@ class CourseDate extends Resource
      *
      * @var string
      */
-    public static $model = 'App\CourseDate';
+    public static $model = \App\CourseDate::class;
 
     public function title()
     {
-        return $this->date->format('Y-m-d') . ' - ' . $this->course->course_type->name . ' - ' . $this->venue->name;
+        return $this->date->format('Y-m-d').' - '.$this->course->course_type->name.' - '.$this->venue->name;
     }
 
     /**
@@ -42,18 +42,18 @@ class CourseDate extends Resource
     ];
 
     /**
-     * $group
+     * $group.
      *
      * @var string
      */
-    public static $group = "Resources";
+    public static $group = 'Resources';
 
     public static $group_index = 150;
 
     /**
-     * $displayInNavigation
+     * $displayInNavigation.
      *
-     * @var boolean
+     * @var bool
      */
     public static $displayInNavigation = false;
 

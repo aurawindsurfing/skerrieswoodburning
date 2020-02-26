@@ -3,13 +3,13 @@
 namespace App\Nova\Actions;
 
 use Illuminate\Bus\Queueable;
-use Laravel\Nova\Actions\Action;
-use Illuminate\Support\Collection;
-use Laravel\Nova\Fields\ActionFields;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
+use Laravel\Nova\Actions\Action;
+use Laravel\Nova\Fields\ActionFields;
 
 class DownloadCourseCertificate extends Action
 {
@@ -30,25 +30,24 @@ class DownloadCourseCertificate extends Action
 
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadView('letters.course_confirmation_manual_handling', $data);
-        $pdf->setOptions(['defaultMediaType' => 'all', 'isFontSubsettingEnabled' => true ]);
+        $pdf->setOptions(['defaultMediaType' => 'all', 'isFontSubsettingEnabled' => true]);
         $id = uniqid();
-        $pdf->save('storage/tmp/confirmations/course_certificate_'. $id .'.pdf');
-        
-        return Action::download(
-            url(Storage::url('tmp/confirmations/course_certificate_'. $id .'.pdf')),
-            'course_certificate_id_' . $id . '.pdf'
-        );
+        $pdf->save('storage/tmp/confirmations/course_certificate_'.$id.'.pdf');
 
+        return Action::download(
+            url(Storage::url('tmp/confirmations/course_certificate_'.$id.'.pdf')),
+            'course_certificate_id_'.$id.'.pdf'
+        );
     }
 
-     /**
+    /**
      * Get the displayable name of the action.
      *
      * @return string
      */
     public function name()
     {
-        return ('Download Certificate');
+        return 'Download Certificate';
     }
 
     /**

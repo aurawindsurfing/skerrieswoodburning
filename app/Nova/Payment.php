@@ -2,17 +2,17 @@
 
 namespace App\Nova;
 
-use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Http\Requests\NovaRequest;
-use Vyuldashev\NovaMoneyField\Money;
-use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\HasOne;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Select;
 use Inspheric\Fields\Indicator;
-use Outhebox\NovaHiddenField\HiddenField;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\HasOne;
+use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Http\Requests\NovaRequest;
+use Outhebox\NovaHiddenField\HiddenField;
+use Vyuldashev\NovaMoneyField\Money;
 
 class Payment extends Resource
 {
@@ -21,7 +21,7 @@ class Payment extends Resource
      *
      * @var string
      */
-    public static $model = 'App\Payment';
+    public static $model = \App\Payment::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -40,7 +40,7 @@ class Payment extends Resource
         'amount',
     ];
 
-       /**
+    /**
      * The relationship columns that should be searched.
      *
      * @var array
@@ -50,16 +50,16 @@ class Payment extends Resource
     ];
 
     /**
-     * $group
+     * $group.
      *
      * @var string
      */
-    public static $group = "Accounting";
+    public static $group = 'Accounting';
 
     public static $group_index = 300;
 
     /**
-     * softDeletes
+     * softDeletes.
      *
      * @return void
      */
@@ -151,7 +151,7 @@ class Payment extends Resource
     public function actions(Request $request)
     {
         return [
-            (new Actions\PaymentReceiptDownload)
+            (new Actions\PaymentReceiptDownload),
         ];
     }
 }

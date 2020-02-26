@@ -2,9 +2,9 @@
 
 namespace App\Nova\Metrics;
 
+use App\Course;
 use Illuminate\Http\Request;
 use Laravel\Nova\Metrics\Partition;
-use App\Course;
 
 class CoursesPerTutor extends Partition
 {

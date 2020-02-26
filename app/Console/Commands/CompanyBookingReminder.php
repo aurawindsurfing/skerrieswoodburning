@@ -42,9 +42,8 @@ class CompanyBookingReminder extends Command
      */
     public function handle()
     {
-
         $company_bookings = Booking::query()
-            ->whereHas('course', function($q){
+            ->whereHas('course', function ($q) {
                 $q->where('date', '>=', Carbon::now()->toDateTimeString());
             })
             ->whereNotNull('contact_id')
@@ -52,29 +51,24 @@ class CompanyBookingReminder extends Command
             ->get();
 
         $next_company_bookings = $company_bookings->filter(function ($booking) {
-
             if (Carbon::today()->isFriday()) {
-
                 $saturday = Carbon::tomorrow();
                 $monday = Carbon::make('next monday');
-                return Carbon::make($booking->upcoming_course_dates()->first()->date)->between($saturday, $monday);
 
+                return Carbon::make($booking->upcoming_course_dates()->first()->date)->between($saturday, $monday);
             } else {
                 return Carbon::make($booking->upcoming_course_dates()->first()->date)->isTomorrow();
             }
-            
         });
 
         $next_company_bookings = $next_company_bookings->groupBy('contact_id');
-        
-        error_log('Trying to notify ' . $next_company_bookings->count() . ' company contacts');
+
+        error_log('Trying to notify '.$next_company_bookings->count().' company contacts');
 
         foreach ($next_company_bookings as $contact_id => $bookings) {
-
             $contact = Contact::find($contact_id);
             $contact->notify(new CompanyContactReminder($bookings));
-
-        };
+        }
 
         error_log('Send all company booking reminders');
     }

@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateBookingsTable extends Migration
 {
@@ -16,8 +16,8 @@ class CreateBookingsTable extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->increments('id');
             $table->dateTime('date');
-            
-            $table->text('name')->nullable()->default(null);;
+
+            $table->text('name')->nullable()->default(null);
             $table->text('surname')->nullable()->default(null);
             $table->text('phone')->nullable()->default(null);
             $table->text('email')->nullable()->default(null);

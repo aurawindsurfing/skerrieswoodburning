@@ -26,7 +26,6 @@ class MergeCompanies extends DestructiveAction
      */
     public function handle(ActionFields $fields, Collection $models)
     {
-
         $old_companies = $models;
         $company_to_stay = $old_companies->shift();
 
@@ -39,8 +38,7 @@ class MergeCompanies extends DestructiveAction
 
         $company_to_stay->update(['name' => $fields->name]);
 
-        return Action::message('All companies merged to: ' . $company_to_stay->name);
-
+        return Action::message('All companies merged to: '.$company_to_stay->name);
     }
 
     /**
@@ -52,7 +50,7 @@ class MergeCompanies extends DestructiveAction
     {
         return [
             Text::make('Name')->withMeta(['extraAttributes' => [
-                'placeholder' => 'New company name']
+                'placeholder' => 'New company name', ],
             ]),
         ];
     }

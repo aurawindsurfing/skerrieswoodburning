@@ -83,8 +83,8 @@ class CreditNoteController extends Controller
         //
     }
 
-     /**
-     * makePDF
+    /**
+     * makePDF.
      *
      * @param mixed $invoices
      * @return void
@@ -94,11 +94,9 @@ class CreditNoteController extends Controller
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadView('invoices.credit_note', compact('credit_notes'));
         $id = uniqid();
-        $path = '/storage/tmp/invoices/'. $id .'.pdf';
+        $path = '/storage/tmp/invoices/'.$id.'.pdf';
         $pdf->save(public_path($path));
 
         return $path;
-
     }
-    
 }

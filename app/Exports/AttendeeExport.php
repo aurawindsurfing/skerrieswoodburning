@@ -3,26 +3,24 @@
 namespace App\Exports;
 
 use App\Booking;
+use App\Invoice;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
-use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
-use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithEvents;
+use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Events\AfterSheet;
 use Maatwebsite\Excel\Events\BeforeSheet;
 use Maatwebsite\Excel\Sheet;
-use App\Invoice;
-
 
 class AttendeeExport implements FromQuery, WithHeadings, WithColumnFormatting, WithMapping, WithEvents
 {
-
     private $count = 1;
 
     /**
-     * __construct
+     * __construct.
      *
      * @param \App\Course $course
      * @return void
@@ -30,9 +28,7 @@ class AttendeeExport implements FromQuery, WithHeadings, WithColumnFormatting, W
     public function __construct(\App\Course $course)
     {
         $this->course = $course;
-
     }
-
 
     public function register()
     {
@@ -41,9 +37,8 @@ class AttendeeExport implements FromQuery, WithHeadings, WithColumnFormatting, W
         // });
     }
 
-     
     /**
-     * query
+     * query.
      *
      * @return void
      */
@@ -63,11 +58,8 @@ class AttendeeExport implements FromQuery, WithHeadings, WithColumnFormatting, W
             ->where('course_id', $this->course->id);
     }
 
-    
     public function map($booking): array
     {
-        
-
         return [
             $this->count++,
             isset($booking->name) ? $booking->name : '',
@@ -84,7 +76,7 @@ class AttendeeExport implements FromQuery, WithHeadings, WithColumnFormatting, W
     }
 
     /**
-     * headings
+     * headings.
      *
      * @return void
      */
@@ -102,8 +94,8 @@ class AttendeeExport implements FromQuery, WithHeadings, WithColumnFormatting, W
             'Inv',
             'Company',
             'Contact',
-            'Notes'
-            
+            'Notes',
+
         ];
     }
 
@@ -113,10 +105,9 @@ class AttendeeExport implements FromQuery, WithHeadings, WithColumnFormatting, W
     public function columnFormats(): array
     {
         return [
-            'E' => "### #######"
+            'E' => '### #######',
         ];
     }
-
 
     /**
      * @return array
@@ -124,8 +115,7 @@ class AttendeeExport implements FromQuery, WithHeadings, WithColumnFormatting, W
     public function registerEvents(): array
     {
         return [
-            BeforeSheet::class  => function(BeforeSheet $event) {
-                
+            BeforeSheet::class  => function (BeforeSheet $event) {
                 $event->sheet->append([' ', 'Date:', $this->course->date->format('Y-m-d')]);
                 $event->sheet->append([' ', 'Course:', $this->course->course_type->name]);
                 $event->sheet->append([' ', 'Tutor:', $this->course->tutor->name]);
@@ -134,8 +124,7 @@ class AttendeeExport implements FromQuery, WithHeadings, WithColumnFormatting, W
                 $event->sheet->append([' ']);
                 $event->sheet->append([' ']);
             },
-            AfterSheet::class    => function(AfterSheet $event) {
-
+            AfterSheet::class    => function (AfterSheet $event) {
                 $event->sheet->getPageSetup()->setPaperSize(10);
                 $event->sheet->getPageSetup()->setOrientation('landscape');
                 $event->sheet->getDelegate()->getColumnDimension('A')->setWidth(5); //id
@@ -150,8 +139,6 @@ class AttendeeExport implements FromQuery, WithHeadings, WithColumnFormatting, W
                 $event->sheet->getDelegate()->getColumnDimension('J')->setWidth(16); //contact
                 $event->sheet->getDelegate()->getColumnDimension('K')->setWidth(16); //notes
 
-
-
                 $tableHeaders = ('B7:K7');
                 $event->sheet->getStyle($tableHeaders)->getFont()->setSize(14);
                 $event->sheet->getStyle($tableHeaders)->getAlignment()->setHorizontal('right');
@@ -162,10 +149,10 @@ class AttendeeExport implements FromQuery, WithHeadings, WithColumnFormatting, W
                                 'borderStyle' => 'thin',
                                 'color' => ['argb' => '00000000'],
                             ],
-                        ]
+                        ],
                     ]);
 
-                $tableCells = ('B8:' . $event->sheet->getHighestColumn() . $event->sheet->getHighestRow());
+                $tableCells = ('B8:'.$event->sheet->getHighestColumn().$event->sheet->getHighestRow());
                 $event->sheet->getDelegate()->getPageSetup()->setFitToWidth(true);
                 $event->sheet->getStyle($tableCells)->getFont()->setSize(12);
                 $event->sheet->getStyle($tableCells)->getAlignment()->setHorizontal('right');
@@ -176,14 +163,13 @@ class AttendeeExport implements FromQuery, WithHeadings, WithColumnFormatting, W
                                 'borderStyle' => 'thin',
                                 'color' => ['argb' => '00000000'],
                             ],
-                        ]
+                        ],
                     ]);
 
-                for ($row = 7; $row <= $event->sheet->getHighestRow(); ++$row) {
+                for ($row = 7; $row <= $event->sheet->getHighestRow(); $row++) {
                     $event->sheet->getRowDimension($row)->setRowHeight(25);
                 }
             },
         ];
     }
 }
-

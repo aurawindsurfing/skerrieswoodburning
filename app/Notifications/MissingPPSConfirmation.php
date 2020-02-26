@@ -2,12 +2,12 @@
 
 namespace App\Notifications;
 
+use App\NotificationLog;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\NexmoMessage;
-use App\NotificationLog;
+use Illuminate\Notifications\Notification;
 
 class MissingPPSConfirmation extends Notification
 {
@@ -42,9 +42,8 @@ class MissingPPSConfirmation extends Notification
      */
     public function toNexmo($notifiable)
     {
-
-        $message = (isset($notifiable->name) ? $notifiable->name . ', we' : 'We' ) . ' are missing your PPS number. It is required to take part in  ' . 
-                    $notifiable->course->course_type->name . ' course. ' .
+        $message = (isset($notifiable->name) ? $notifiable->name.', we' : 'We').' are missing your PPS number. It is required to take part in  '.
+                    $notifiable->course->course_type->name.' course. '.
                     ' Please call CIT at 018097266 and provide it asap.';
 
         $this->updateNotificationLog('sms pps reminder', $notifiable, $message);
@@ -76,6 +75,6 @@ class MissingPPSConfirmation extends Notification
         ]);
 
         $booking->update(['company_contact_notified' => true]);
-        error_log('Notified company contact from booking id: ' . $booking->id);
+        error_log('Notified company contact from booking id: '.$booking->id);
     }
 }

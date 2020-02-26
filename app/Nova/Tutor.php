@@ -2,12 +2,12 @@
 
 namespace App\Nova;
 
-use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Tutor extends Resource
 {
@@ -16,7 +16,7 @@ class Tutor extends Resource
      *
      * @var string
      */
-    public static $model = 'App\Tutor';
+    public static $model = \App\Tutor::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -36,7 +36,7 @@ class Tutor extends Resource
     ];
 
     /**
-     * softDeletes
+     * softDeletes.
      *
      * @return void
      */
@@ -46,11 +46,11 @@ class Tutor extends Resource
     }
 
     /**
-     * $group
+     * $group.
      *
      * @var string
      */
-    public static $group = "Resources";
+    public static $group = 'Resources';
 
     public static $group_index = 140;
 
@@ -81,7 +81,7 @@ class Tutor extends Resource
                 ->sortable()
                 ->rules('required', 'max:254'),
 
-            HasMany::make('Courses')
+            HasMany::make('Courses'),
         ];
     }
 

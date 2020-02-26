@@ -2,15 +2,15 @@
 
 namespace App\Nova\Actions;
 
+use App\Exports\AttendeeExport;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Fields\ActionFields;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\AttendeeExport;
-use Illuminate\Support\Facades\Storage;
 
 class ExportToExcel extends Action
 {
@@ -25,16 +25,13 @@ class ExportToExcel extends Action
      */
     public function handle(ActionFields $fields, Collection $models)
     {
-
         $model = $models->first();
 
-        $path = 'tmp/lists/' . uniqid() . '.xlsx';
+        $path = 'tmp/lists/'.uniqid().'.xlsx';
 
-        Excel::store(new AttendeeExport($model), 'public/' . $path);
+        Excel::store(new AttendeeExport($model), 'public/'.$path);
 
-        return Action::download(url('storage/' . $path), 'export.xlsx');
-
-
+        return Action::download(url('storage/'.$path), 'export.xlsx');
     }
 
     /**
@@ -48,5 +45,4 @@ class ExportToExcel extends Action
 
         ];
     }
-
 }

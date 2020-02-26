@@ -2,14 +2,14 @@
 
 namespace App\Nova\Actions;
 
-use Illuminate\Bus\Queueable;
-use Laravel\Nova\Actions\Action;
-use Illuminate\Support\Collection;
-use Laravel\Nova\Fields\ActionFields;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Contact;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Collection;
+use Laravel\Nova\Actions\Action;
+use Laravel\Nova\Fields\ActionFields;
 use Propaganistas\LaravelPhone\PhoneNumber;
 
 class CancelCourse extends Action
@@ -31,7 +31,7 @@ class CancelCourse extends Action
         $companies_bookings = $companies_bookings->groupBy('contact_id');
 
         //notify single
-        error_log('Trying to notify ' . $student_bookings->count() . ' students');
+        error_log('Trying to notify '.$student_bookings->count().' students');
 
         foreach ($student_bookings as $booking) {
             if (PhoneNumber::make($booking->phone, config('nexmo.countries'))->isOfType('mobile')) {
@@ -40,8 +40,8 @@ class CancelCourse extends Action
         }
 
         //notify companies with one notificaion
-        error_log('Trying to notify ' . $companies_bookings->count() . ' company contacts');
-        
+        error_log('Trying to notify '.$companies_bookings->count().' company contacts');
+
         $missing_company_contacts = 0;
 
         foreach ($companies_bookings as $contact_id => $bookings) {
@@ -51,19 +51,17 @@ class CancelCourse extends Action
             } else {
                 $missing_company_contacts = $missing_company_contacts + 1;
             }
-            
-        };
+        }
 
         $course = \App\Course::find($models->first()->id);
         $course->cancelled = true;
         $course->save();
 
         if ($missing_company_contacts > 0) {
-            return Action::danger($missing_company_contacts . ' companies are missing contact details! Failed to notify them about course cancellation!');
+            return Action::danger($missing_company_contacts.' companies are missing contact details! Failed to notify them about course cancellation!');
         } else {
             return Action::message('Course cancelled. Notifications sent.');
         }
-
     }
 
     /**

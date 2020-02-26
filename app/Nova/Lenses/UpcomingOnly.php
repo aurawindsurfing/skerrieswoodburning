@@ -2,17 +2,17 @@
 
 namespace App\Nova\Lenses;
 
-use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Lenses\Lens;
-use Laravel\Nova\Http\Requests\LensRequest;
-use Laravel\Nova\Fields\BelongsTo;
-use Vyuldashev\NovaMoneyField\Money;
-use Laravel\Nova\Fields\DateTime;
-use Laravel\Nova\Fields\Date;
 use Inspheric\Fields\Indicator;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Http\Requests\LensRequest;
+use Laravel\Nova\Lenses\Lens;
+use Vyuldashev\NovaMoneyField\Money;
 
 class UpcomingOnly extends Lens
 {
@@ -41,7 +41,7 @@ class UpcomingOnly extends Lens
         return [
             ID::make()->sortable(),
             // BelongsTo::make('Course Type', 'course_type')->sortable(),
-            Money::make('Price','EUR')->sortable(),
+            Money::make('Price', 'EUR')->sortable(),
             DateTime::make('Date')->sortable()->hideFromIndex(),
             Date::make('Date')->sortable()->onlyOnIndex(),
             // BelongsTo::make('Venue', 'vanue', \App\Venue::class)->sortable()->searchable(),

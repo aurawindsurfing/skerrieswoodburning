@@ -4,9 +4,9 @@ namespace App\Console\Commands;
 
 use App\Booking;
 use App\Notifications\StudentConfirmation;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Propaganistas\LaravelPhone\PhoneNumber;
-use Carbon\Carbon;
 
 class StudentBookingConfirmation extends Command
 {
@@ -42,7 +42,7 @@ class StudentBookingConfirmation extends Command
     public function handle()
     {
         $student_bookings = Booking::query()
-            ->whereHas('course', function($q){
+            ->whereHas('course', function ($q) {
                 $q->where('date', '>=', Carbon::now()->toDateTimeString());
             })
             ->where('student_notified', false)
@@ -51,7 +51,7 @@ class StudentBookingConfirmation extends Command
         // ->where('updated_at', '<', Carbon::now()->subMinutes(2)->toDateTimeString())
             ->get();
 
-        error_log('Trying to notify ' . $student_bookings->count() . ' students');
+        error_log('Trying to notify '.$student_bookings->count().' students');
 
         foreach ($student_bookings as $booking) {
             if (PhoneNumber::make($booking->phone, config('nexmo.countries'))->isOfType('mobile')) {

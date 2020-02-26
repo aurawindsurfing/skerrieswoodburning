@@ -2,15 +2,15 @@
 
 namespace App\Nova\Actions;
 
-use Illuminate\Bus\Queueable;
-use Laravel\Nova\Actions\Action;
-use Illuminate\Support\Collection;
-use Laravel\Nova\Fields\ActionFields;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Facades\Notification;
 use App\Contact;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Notification;
+use Laravel\Nova\Actions\Action;
+use Laravel\Nova\Fields\ActionFields;
 use Propaganistas\LaravelPhone\PhoneNumber;
 
 class InformAboutVenueChange extends Action
@@ -32,7 +32,7 @@ class InformAboutVenueChange extends Action
         $companies_bookings = $companies_bookings->groupBy('contact_id');
 
         //notify single
-        error_log('Trying to notify ' . $student_bookings->count() . ' students');
+        error_log('Trying to notify '.$student_bookings->count().' students');
 
         foreach ($student_bookings as $booking) {
             if (PhoneNumber::make($booking->phone, config('nexmo.countries'))->isOfType('mobile')) {
@@ -41,7 +41,7 @@ class InformAboutVenueChange extends Action
         }
 
         //notify companies with one notificaion
-        error_log('Trying to notify ' . $companies_bookings->count() . ' company contacts');
+        error_log('Trying to notify '.$companies_bookings->count().' company contacts');
 
         $missing_company_contacts = 0;
 
@@ -52,17 +52,13 @@ class InformAboutVenueChange extends Action
             } else {
                 $missing_company_contacts = $missing_company_contacts + 1;
             }
-            
-        };
+        }
 
         if ($missing_company_contacts > 0) {
-            return Action::danger($missing_company_contacts . ' companies are missing contact details! Failed to notify them about venue change!');
+            return Action::danger($missing_company_contacts.' companies are missing contact details! Failed to notify them about venue change!');
         } else {
             return Action::message('All notifications sent with venue change info');
         }
-
-        
-
     }
 
     /**

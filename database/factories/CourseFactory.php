@@ -12,6 +12,6 @@ $factory->define(App\Course::class, function (Faker $faker) {
         'inhouse' => $faker->boolean,
         'multiday' => $faker->boolean,
         'capacity' => $faker->randomElement([20, 10, 15, 5]),
-        'course_type_id' => App\CourseType::all(['id'])->random()
+        'course_type_id' => App\CourseType::all(['id'])->random(),
     ];
 });

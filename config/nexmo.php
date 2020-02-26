@@ -43,7 +43,7 @@ return [
     'application_id' => function_exists('env') ? env('NEXMO_APPLICATION_ID', '') : '',
 
     'countries' => [
-        'IE', 'UK', 'PL', 'SP', 'PR', 'FR', 'DE', 'IT', 'LT', 'LV', 'RO', 'HU'
-    ], 
+        'IE', 'UK', 'PL', 'SP', 'PR', 'FR', 'DE', 'IT', 'LT', 'LV', 'RO', 'HU',
+    ],
 
 ];

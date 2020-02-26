@@ -4,14 +4,14 @@ namespace App\Nova\Actions;
 
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
-use Laravel\Nova\Actions\Action;
-use Illuminate\Support\Collection;
-use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\ActionFields;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
+use Laravel\Nova\Actions\Action;
+use Laravel\Nova\Fields\ActionFields;
+use Laravel\Nova\Fields\BelongsTo;
 
 class DownloadCourseConfirmation extends Action
 {
@@ -33,23 +33,22 @@ class DownloadCourseConfirmation extends Action
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadView('letters.course_confirmation', $data);
         $id = uniqid();
-        $pdf->save('storage/tmp/confirmations/confirmation_letter_'. $id .'.pdf');
-        
-        return Action::download(
-            url(Storage::url('tmp/confirmations/confirmation_letter_'. $id .'.pdf')),
-            'confirmation_letter_id_' . $id . '.pdf'
-        );
+        $pdf->save('storage/tmp/confirmations/confirmation_letter_'.$id.'.pdf');
 
+        return Action::download(
+            url(Storage::url('tmp/confirmations/confirmation_letter_'.$id.'.pdf')),
+            'confirmation_letter_id_'.$id.'.pdf'
+        );
     }
 
-     /**
+    /**
      * Get the displayable name of the action.
      *
      * @return string
      */
     public function name()
     {
-        return ('Download Confirmation');
+        return 'Download Confirmation';
     }
 
     /**
@@ -60,7 +59,7 @@ class DownloadCourseConfirmation extends Action
     public function fields()
     {
         return [
-            
+
         ];
     }
 }

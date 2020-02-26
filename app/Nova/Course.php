@@ -20,7 +20,7 @@ class Course extends Resource
      *
      * @var string
      */
-    public static $model = 'App\Course';
+    public static $model = \App\Course::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -39,15 +39,15 @@ class Course extends Resource
     ];
 
     /**
-     * title
+     * title.
      *
      * @return void
      */
     public function title()
     {
-        return $this->date->format('Y-m-d') . ' - ' . $this->course_type->name . ' - ' . $this->venue->name;
+        return $this->date->format('Y-m-d').' - '.$this->course_type->name.' - '.$this->venue->name;
     }
-    
+
     /**
      * The columns that should be searched.
      *
@@ -68,11 +68,11 @@ class Course extends Resource
     ];
 
     /**
-     * $group
+     * $group.
      *
      * @var string
      */
-    public static $group = "Resources";
+    public static $group = 'Resources';
 
     public static $group_index = 110;
 
@@ -84,14 +84,14 @@ class Course extends Resource
     public static $with = ['venue', 'tutor'];
 
     /**
-     * label
+     * label.
      *
      * @return void
      */
     // public static function label() { return 'All Courses'; }
 
     /**
-     * softDeletes
+     * softDeletes.
      *
      * @return void
      */
@@ -101,7 +101,7 @@ class Course extends Resource
     }
 
     /**
-     * placesLeft
+     * placesLeft.
      *
      * @return void
      */
@@ -152,7 +152,6 @@ class Course extends Resource
             Text::make('Notes')->exceptOnForms()->hideFromIndex(),
 
             Indicator::make('Status', function () {
-
                 if ($this->placesLeft() > 0 && $this->cancelled == false) {
                     return 'available';
                 } elseif ($this->placesLeft() == 0 && $this->cancelled == false) {
@@ -162,11 +161,10 @@ class Course extends Resource
                 } elseif ($this->cancelled == true) {
                     return 'cancelled';
                 }
-
             })->labels([
-                'available' => $this->placesLeft() . ' Available',
+                'available' => $this->placesLeft().' Available',
                 'full' => 'Full',
-                'overbooked' => $this->placesLeft() . ' Overbooked',
+                'overbooked' => $this->placesLeft().' Overbooked',
                 'cancelled' => 'Cancelled',
             ])->colors([
                 'available' => 'green',
@@ -235,7 +233,7 @@ class Course extends Resource
             (new Actions\DownloadCourseCertificateForWholeCourse),
             (new Actions\InformAboutVenueChange),
             (new Actions\CancelCourse),
-            
+
         ];
     }
 }

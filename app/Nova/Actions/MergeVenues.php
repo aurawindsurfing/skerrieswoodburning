@@ -26,7 +26,6 @@ class MergeVenues extends DestructiveAction
      */
     public function handle(ActionFields $fields, Collection $models)
     {
-
         $old_venues = $models;
         $venue_to_stay = $old_venues->shift();
 
@@ -38,8 +37,7 @@ class MergeVenues extends DestructiveAction
 
         $venue_to_stay->update(['name' => $fields->name]);
 
-        return Action::message('Venues merged to: ' . $venue_to_stay->name);
-
+        return Action::message('Venues merged to: '.$venue_to_stay->name);
     }
 
     /**
@@ -51,7 +49,7 @@ class MergeVenues extends DestructiveAction
     {
         return [
             Text::make('Name')->withMeta(['extraAttributes' => [
-                'placeholder' => 'New venue name']
+                'placeholder' => 'New venue name', ],
             ]),
         ];
     }
