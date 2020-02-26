@@ -16,7 +16,7 @@ class Tutor extends Resource
      *
      * @var string
      */
-    public static $model = 'App\Tutor';
+    public static $model = \App\Tutor::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.

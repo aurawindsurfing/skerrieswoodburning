@@ -17,11 +17,11 @@ class Tutor extends Model
 
     public function courses()
     {
-        return $this->hasMany('App\Course');
+        return $this->hasMany(\App\Course::class);
     }
 
     public function courseTypes()
     {
-        return $this->hasManyThrough('App\CourseType', 'App\Course');
+        return $this->hasManyThrough(\App\CourseType::class, \App\Course::class);
     }
 }

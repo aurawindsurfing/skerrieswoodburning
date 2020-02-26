@@ -18,12 +18,12 @@ class Contact extends Model
 
     public function company()
     {
-        return $this->belongsTo('App\Company');
+        return $this->belongsTo(\App\Company::class);
     }
 
     public function bookings()
     {
-        return $this->hasMany('App\Booking');
+        return $this->hasMany(\App\Booking::class);
     }
 
     /**

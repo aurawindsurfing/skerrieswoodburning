@@ -19,7 +19,7 @@ class CourseType extends Resource
      *
      * @var string
      */
-    public static $model = 'App\CourseType';
+    public static $model = \App\CourseType::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.

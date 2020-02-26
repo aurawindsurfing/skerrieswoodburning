@@ -21,12 +21,12 @@ class Invoice extends Model
 
     public function company()
     {
-        return $this->belongsTo('App\Company');
+        return $this->belongsTo(\App\Company::class);
     }
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(\App\User::class);
     }
 
     public function number()
@@ -36,27 +36,27 @@ class Invoice extends Model
 
     public function payments()
     {
-        return $this->hasMany('App\Payment');
+        return $this->hasMany(\App\Payment::class);
     }
 
     public function payments_completed()
     {
-        return $this->hasMany('App\Payment')->whereStatus('completed');
+        return $this->hasMany(\App\Payment::class)->whereStatus('completed');
     }
 
     public function bookings()
     {
-        return $this->hasMany('App\Booking');
+        return $this->hasMany(\App\Booking::class);
     }
 
     public function credit_notes()
     {
-        return $this->hasMany('App\CreditNote');
+        return $this->hasMany(\App\CreditNote::class);
     }
 
     public function credit_notes_issued()
     {
-        return $this->hasMany('App\CreditNote')->whereStatus('issued');
+        return $this->hasMany(\App\CreditNote::class)->whereStatus('issued');
     }
 
     public function balance_due()
@@ -66,7 +66,7 @@ class Invoice extends Model
 
     public function notification_log()
     {
-        return $this->hasMany('App\NotificationLog');
+        return $this->hasMany(\App\NotificationLog::class);
     }
 
     public function totalForInvoice()

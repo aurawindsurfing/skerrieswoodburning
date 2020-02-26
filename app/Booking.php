@@ -43,37 +43,37 @@ class Booking extends Model
 
     public function course()
     {
-        return $this->belongsTo('App\Course');
+        return $this->belongsTo(\App\Course::class);
     }
 
     public function invoice()
     {
-        return $this->belongsTo('App\Invoice');
+        return $this->belongsTo(\App\Invoice::class);
     }
 
     public function payments()
     {
-        return $this->hasMany('App\Payment');
+        return $this->hasMany(\App\Payment::class);
     }
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(\App\User::class);
     }
 
     public function company()
     {
-        return $this->belongsTo('App\Company');
+        return $this->belongsTo(\App\Company::class);
     }
 
     public function contact()
     {
-        return $this->belongsTo('App\Contact');
+        return $this->belongsTo(\App\Contact::class);
     }
 
     public function notification_log()
     {
-        return $this->hasMany('App\NotificationLog');
+        return $this->hasMany(\App\NotificationLog::class);
     }
 
     public function invoiceDescription()

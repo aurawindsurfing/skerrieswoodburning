@@ -23,7 +23,7 @@ class Payment extends Model
 
     public function invoice()
     {
-        return $this->belongsTo('App\Invoice');
+        return $this->belongsTo(\App\Invoice::class);
     }
 
     public function number()

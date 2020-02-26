@@ -16,11 +16,11 @@ class NotificationLog extends Model
 
     public function booking()
     {
-        return $this->belongsTo('App\Booking');
+        return $this->belongsTo(\App\Booking::class);
     }
 
     public function invoice()
     {
-        return $this->belongsTo('App\Invoice');
+        return $this->belongsTo(\App\Invoice::class);
     }
 }

@@ -17,7 +17,7 @@ class Company extends Resource
      *
      * @var string
      */
-    public static $model = 'App\Company';
+    public static $model = \App\Company::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.

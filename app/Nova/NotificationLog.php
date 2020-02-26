@@ -17,7 +17,7 @@ class NotificationLog extends Resource
      *
      * @var string
      */
-    public static $model = 'App\NotificationLog';
+    public static $model = \App\NotificationLog::class;
 
     /**
      * $displayInNavigation.

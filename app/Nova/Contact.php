@@ -18,7 +18,7 @@ class Contact extends Resource
      *
      * @var string
      */
-    public static $model = 'App\Contact';
+    public static $model = \App\Contact::class;
 
     /**
      * Build an "index" query for the given resource.

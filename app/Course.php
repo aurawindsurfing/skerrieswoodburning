@@ -22,27 +22,27 @@ class Course extends Model
 
     public function tutor()
     {
-        return $this->belongsTo('App\Tutor');
+        return $this->belongsTo(\App\Tutor::class);
     }
 
     public function venue()
     {
-        return $this->belongsTo('App\Venue');
+        return $this->belongsTo(\App\Venue::class);
     }
 
     public function course_type()
     {
-        return $this->belongsTo('App\CourseType');
+        return $this->belongsTo(\App\CourseType::class);
     }
 
     public function bookings()
     {
-        return $this->hasMany('App\Booking');
+        return $this->hasMany(\App\Booking::class);
     }
 
     public function course_dates()
     {
-        return $this->hasMany('App\CourseDate');
+        return $this->hasMany(\App\CourseDate::class);
     }
 
     public function uuid()

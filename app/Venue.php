@@ -17,12 +17,12 @@ class Venue extends Model
 
     public function courses()
     {
-        return $this->hasMany('App\Course');
+        return $this->hasMany(\App\Course::class);
     }
 
     public function course_dates()
     {
-        return $this->hasMany('App\CourseDate');
+        return $this->hasMany(\App\CourseDate::class);
     }
 
     public function fullAddress()

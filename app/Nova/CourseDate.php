@@ -16,7 +16,7 @@ class CourseDate extends Resource
      *
      * @var string
      */
-    public static $model = 'App\CourseDate';
+    public static $model = \App\CourseDate::class;
 
     public function title()
     {

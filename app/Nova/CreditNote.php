@@ -20,7 +20,7 @@ class CreditNote extends Resource
      *
      * @var string
      */
-    public static $model = 'App\CreditNote';
+    public static $model = \App\CreditNote::class;
 
     /**
      * title.

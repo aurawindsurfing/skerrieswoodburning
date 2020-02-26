@@ -17,26 +17,26 @@ class Company extends Model
 
     public function bookings()
     {
-        return $this->hasMany('App\Booking');
+        return $this->hasMany(\App\Booking::class);
     }
 
     public function contacts()
     {
-        return $this->hasMany('App\Contact');
+        return $this->hasMany(\App\Contact::class);
     }
 
     public function accounts_payable()
     {
-        return $this->hasMany('App\Contact');
+        return $this->hasMany(\App\Contact::class);
     }
 
     public function invoices()
     {
-        return $this->hasMany('App\Invoice');
+        return $this->hasMany(\App\Invoice::class);
     }
 
     public function unpaid_invoices()
     {
-        return $this->hasMany('App\Invoice')->where('status', 'unpaid');
+        return $this->hasMany(\App\Invoice::class)->where('status', 'unpaid');
     }
 }
