@@ -38,7 +38,7 @@ class CourseDate extends Resource
      * @var array
      */
     public static $indexDefaultOrder = [
-        'date' => 'dsc',
+        'date' => 'desc',
     ];
 
     /**
