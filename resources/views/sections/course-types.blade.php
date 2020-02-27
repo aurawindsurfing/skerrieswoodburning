@@ -16,7 +16,7 @@
                 <div class="max-w-4xl mx-auto">
                     <div class="rounded-lg bg-white shadow-lg sm:grid sm:grid-cols-3">
                         <div class="border-b border-gray-100 p-6 text-center sm:border-0 sm:border-r">
-                            <p class="text-5xl leading-none font-extrabold text-indigo-600">
+                            <p class="text-5xl leading-none font-extrabold text-blue-600">
                                 100%
                             </p>
                             <p class="mt-2 text-lg leading-6 font-medium text-gray-500">
@@ -24,7 +24,7 @@
                             </p>
                         </div>
                         <div class="border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
-                            <p class="text-5xl leading-none font-extrabold text-indigo-600">
+                            <p class="text-5xl leading-none font-extrabold text-blue-600">
                                 24/7
                             </p>
                             <p class="mt-2 text-lg leading-6 font-medium text-gray-500">
@@ -32,7 +32,7 @@
                             </p>
                         </div>
                         <div class="border-t border-gray-100 p-6 text-center sm:border-0 sm:border-l">
-                            <p class="text-5xl leading-none font-extrabold text-indigo-600">
+                            <p class="text-5xl leading-none font-extrabold text-blue-600">
                                 100k
                             </p>
                             <p class="mt-2 text-lg leading-6 font-medium text-gray-500">
@@ -42,7 +42,7 @@
                     </div>
                     <div class="my-2 rounded-lg bg-white shadow-lg sm:grid sm:grid-cols-3">
                         <div class="border-b border-gray-100 p-6 text-center sm:border-0 sm:border-r">
-                            <p class="text-5xl leading-none font-extrabold text-indigo-600">
+                            <p class="text-5xl leading-none font-extrabold text-blue-600">
                                 100%
                             </p>
                             <p class="mt-2 text-lg leading-6 font-medium text-gray-500">
@@ -50,7 +50,7 @@
                             </p>
                         </div>
                         <div class="border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
-                            <p class="text-5xl leading-none font-extrabold text-indigo-600">
+                            <p class="text-5xl leading-none font-extrabold text-blue-600">
                                 24/7
                             </p>
                             <p class="mt-2 text-lg leading-6 font-medium text-gray-500">
@@ -58,7 +58,7 @@
                             </p>
                         </div>
                         <div class="border-t border-gray-100 p-6 text-center sm:border-0 sm:border-l">
-                            <p class="text-5xl leading-none font-extrabold text-indigo-600">
+                            <p class="text-5xl leading-none font-extrabold text-blue-600">
                                 100k
                             </p>
                             <p class="mt-2 text-lg leading-6 font-medium text-gray-500">
@@ -68,7 +68,7 @@
                     </div>
                     <div class="my-2 rounded-lg bg-white shadow-lg sm:grid sm:grid-cols-3">
                         <div class="border-b border-gray-100 p-6 text-center sm:border-0 sm:border-r">
-                            <p class="text-5xl leading-none font-extrabold text-indigo-600">
+                            <p class="text-5xl leading-none font-extrabold text-blue-600">
                                 100%
                             </p>
                             <p class="mt-2 text-lg leading-6 font-medium text-gray-500">
@@ -76,7 +76,7 @@
                             </p>
                         </div>
                         <div class="border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
-                            <p class="text-5xl leading-none font-extrabold text-indigo-600">
+                            <p class="text-5xl leading-none font-extrabold text-blue-600">
                                 24/7
                             </p>
                             <p class="mt-2 text-lg leading-6 font-medium text-gray-500">
@@ -84,7 +84,7 @@
                             </p>
                         </div>
                         <div class="border-t border-gray-100 p-6 text-center sm:border-0 sm:border-l">
-                            <p class="text-5xl leading-none font-extrabold text-indigo-600">
+                            <p class="text-5xl leading-none font-extrabold text-blue-600">
                                 100k
                             </p>
                             <p class="mt-2 text-lg leading-6 font-medium text-gray-500">
