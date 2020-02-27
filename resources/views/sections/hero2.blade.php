@@ -128,7 +128,7 @@
                     </svg>
                     <div class="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
                         <button class="relative block w-full rounded-lg overflow-hidden focus:outline-none focus:shadow-outline">
-                            <img class="w-full" src="https://images.unsplash.com/photo-1556740758-90de374c12ad?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Woman making a sale" />
+                            <img class="w-full" src="{{ Cloudder::secureShow('cit/pictures/digger-safety', config('settings.cloudinary_optimised_jpg')) }}" alt="Digger Safety" />
                             <div class="absolute inset-0 w-full h-full flex items-center justify-center">
                                 <svg class="h-20 w-20 text-blue-500" fill="currentColor" viewBox="0 0 84 84">
                                     <circle opacity="0.9" cx="42" cy="42" r="42" fill="white" />
