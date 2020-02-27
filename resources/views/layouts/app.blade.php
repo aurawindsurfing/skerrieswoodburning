@@ -45,6 +45,7 @@
 
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 
+{{--    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js" defer></script>--}}
 
     {{--    @include('partials.crisp')--}}
 
