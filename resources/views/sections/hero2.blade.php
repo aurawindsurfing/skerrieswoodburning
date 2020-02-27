@@ -76,16 +76,16 @@
         <div class="mt-8 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-20 xl:mt-24">
             <div class="lg:grid lg:grid-cols-12 lg:gap-8">
                 <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
-{{--                    <div class="text-sm font-semibold uppercase tracking-wide text-gray-500 sm:text-base lg:text-sm xl:text-base">--}}
-{{--                        Coming soon--}}
-{{--                    </div>--}}
+                    <div class="text-sm font-semibold uppercase tracking-wide text-gray-500 sm:text-base lg:text-sm xl:text-base">
+                        Construction Industry Training Ltd
+                    </div>
                     <h2 class="mt-1 text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:leading-none sm:text-6xl lg:text-5xl xl:text-6xl">
                         A safer workplace
                         <br class="hidden md:inline" />
                         <span class="text-blue-600">starts with us</span>
                     </h2>
                     <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
-                        Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua ad ad non deserunt sunt.
+                        We offer a complete service, from providing an initial Training Needs Analysis through to Professional Course Delivery and post delivery Course Feedback.
                     </p>
                     <div class="mt-5 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
                         <p class="text-base font-medium text-gray-900">
