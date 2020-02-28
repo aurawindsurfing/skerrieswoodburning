@@ -6,14 +6,10 @@
 
 @section('body')
 
-{{--    @include('sections.hero')--}}
-{{--    @include('sections.hero1')--}}
 @include('sections.hero2')
 @include('sections.about')
 @include('sections.course-types')
-{{--@include('sections.cta')--}}
 @include('sections.courses-list')
-@include('sections.testimonials')
 @include('sections.logos')
 
 @include('sections.footer')

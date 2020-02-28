@@ -2,31 +2,16 @@
 
 return [
 
-    'cloudinary_hotel' => [
-        'format' => 'jpg',
-        'width'  => 500,
-        'height' => 500,
+    'cloudinary_logo' => [
+        'format'  => 'png',
+        'width'   => 105,
+//        'height' => 48,
+        'crop'    => 'scale',
         'quality' => 'auto',
-        'crop' => 'fill',
-        // 'aspect_ratio' => '1.09'
-    ],
-
-    'cloudinary_gear' => [
-        'format' => 'png',
-        'width'  => 350,
-        'height' => 620,
-        'quality' => 'auto',
-        'crop' => 'mpad',
-        // 'aspect_ratio' => '1.09'
-    ],
-
-    'cloudinary_team' => [
-        'format' => 'jpg',
-        'width'  => 500,
-        'height' => 500,
-        'quality' => 'auto',
-        'crop' => 'fill',
-        // 'aspect_ratio' => '1.09'
+        'effect'  => 'grayscale',
+        'effect'  => 'bgremoval',
+        'opacity' => '80',
+//        'aspect_ratio' => '1.09'
     ],
 
     'cloudinary_optimised_jpg' => [
@@ -37,7 +22,7 @@ return [
         'dpr' => 'auto',
         'effect' => 'sharpen',
         'responsive' => true,
-        'x' => -200,
+//        'x' => -200,
         // 'y' => -500
         // 'width' => 'auto',
         // 'height' => 'auto',

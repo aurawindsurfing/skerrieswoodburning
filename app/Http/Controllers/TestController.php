@@ -5,23 +5,35 @@ namespace App\Http\Controllers;
 use App\Booking;
 use App\Invoice;
 use App\Payment;
-use Carbon\Carbon;
-use Laravel\Nova\Fields\Place;
-use Propaganistas\LaravelPhone\PhoneNumber;
 
 class TestController extends Controller
 {
     public function test()
     {
-        $str = '11 The Tides, South STrand, Skerries, Co. Dublin';
+        \Cloudinary::config([
+            "cloud_name" => env('CLOUDINARY_CLOUD_NAME'),
+            "api_key"    => env('CLOUDINARY_API_KEY'),
+            "api_secret" => env('CLOUDINARY_API_SECRET'),
+            "secure"     => true,
+        ]);
 
-        // $str = explode(',', $str);
+        $c = new \Cloudinary\Api();
+        $response = $c->resources(
+            [
+                "type"        => "upload",
+                "prefix"      => "cit/logos",
+                "max_results" => 50,
+            ]
+        );
 
-        foreach (explode(',', $str) as $key => $value) {
-            echo $value.'</br>';
+        $logos = [];
+
+        foreach ($response['resources'] as $resource)
+        {
+            array_push($logos, $resource['secure_url']);
         }
 
-        // dd($str);
+        return $logos;
     }
 
     public function pdftest1()

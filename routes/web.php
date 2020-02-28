@@ -24,5 +24,5 @@ Route::get('/', 'HomePageController@index');
 // Route::get('pdftest3', 'TestController@pdftest3');
 // Route::get('pdftest4', 'TestController@pdftest4');
 
-//Route::get('test', 'TestController@test');
+Route::get('test', 'TestController@test');
 // Route::get('test2', 'TestController@test2');
