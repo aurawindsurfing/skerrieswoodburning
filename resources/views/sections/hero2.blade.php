@@ -26,29 +26,35 @@
                     </div>
                 </div>
                 <div class="hidden md:block md:ml-10">
-                    <a href="#" class="font-medium text-gray-500 hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out">Courses</a>
-{{--                    <a href="#" class="ml-10 font-medium text-gray-500 hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out">Features</a>--}}
-                    <a href="#" class="ml-10 font-medium text-gray-500 hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out">Company</a>
-                    <a href="#" class="ml-10 font-medium text-gray-500 hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out">Contact</a>
+                    <a href="#"
+                       class="font-medium text-gray-500 hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out">Courses</a>
+                    {{--                    <a href="#" class="ml-10 font-medium text-gray-500 hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out">Features</a>--}}
+                    <a href="#"
+                       class="ml-10 font-medium text-gray-500 hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out">Company</a>
+                    <a href="#"
+                       class="ml-10 font-medium text-gray-500 hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out">Contact</a>
                 </div>
             </div>
             <div class="hidden md:block text-right">
-        <span class="inline-flex rounded-md shadow-md">
-          <span class="inline-flex rounded-md shadow-xs">
-            <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-blue-600 bg-white hover:bg-gray-50 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
-              Log in
-            </a>
-          </span>
-        </span>
+                {{--        <span class="inline-flex rounded-md shadow-md">--}}
+                {{--          <span class="inline-flex rounded-md shadow-xs">--}}
+                {{--            <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-blue-600 bg-white hover:bg-gray-50 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">--}}
+                {{--              Log in--}}
+                {{--            </a>--}}
+                {{--          </span>--}}
+                {{--        </span>--}}
             </div>
         </nav>
 
         <div :class="{'block': open, 'hidden': !open}" class="absolute top-0 inset-x-0 p-2 hidden md:hidden">
-            <div x-show="open" x-transition:enter="duration-150 ease-out" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="duration-100 ease-in" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95" class="rounded-lg shadow-md transition transform origin-top-right">
+            <div x-show="open" x-transition:enter="duration-150 ease-out" x-transition:enter-start="opacity-0 scale-95"
+                 x-transition:enter-end="opacity-100 scale-100" x-transition:leave="duration-100 ease-in"
+                 x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
+                 class="rounded-lg shadow-md transition transform origin-top-right">
                 <div class="rounded-lg bg-white shadow-xs overflow-hidden">
                     <div class="px-5 pt-4 flex items-center justify-between">
                         <div>
-                            <img class="h-8 w-auto" src="/images/cit_logo2.svg" alt="" />
+                            <img class="h-8 w-auto" src="/images/cit_logo2.svg" alt=""/>
                         </div>
                         <div class="-mr-2">
                             <button @click="open = false" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
@@ -85,30 +91,33 @@
                         <span class="text-blue-600">starts with us</span>
                     </h2>
                     <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
-                        We offer a complete service, from providing an initial Training Needs Analysis through to Professional Course Delivery and post delivery Course Feedback.
+                        We offer a complete service, from providing an initial Training Needs Analysis through to
+                        Professional Course Delivery and post delivery Course Feedback.
                     </p>
                     <div class="mt-5 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
                         <p class="text-base font-medium text-gray-900">
                             Book your safepass course right now.
                         </p>
                         <form action="#" method="POST" class="mt-3 sm:flex">
-                            <div class="flex flex-col">
-                                <div>
-                                    <input aria-label="Name" class="appearance-none block w-full px-3 py-3 border border-gray-300 text-base leading-6 rounded-md placeholder-gray-500 shadow-sm focus:outline-none focus:placeholder-gray-400 focus:shadow-outline focus:border-blue-300 transition duration-150 ease-in-out sm:flex-1" placeholder="Enter your name" />
-                                </div>
-                                <div>
-                                    <input aria-label="Phone" class="appearance-none block w-full px-3 py-3 border border-gray-300 text-base leading-6 rounded-md placeholder-gray-500 shadow-sm focus:outline-none focus:placeholder-gray-400 focus:shadow-outline focus:border-blue-300 transition duration-150 ease-in-out sm:flex-1" placeholder="Enter your phone number" />
-                                </div>
-                            </div>
-                            <div class="flex flex-col">
-                                <div class="h-1/2">
-                                </div>
-                                <div class="h-1/2">
-                                    <button type="submit" class="mt-3 w-full px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-gray-800 shadow-sm hover:bg-gray-700 focus:outline-none focus:shadow-outline active:bg-gray-900 transition duration-150 ease-in-out sm:mt-0 sm:ml-3 sm:flex-shrink-0 sm:inline-flex sm:items-center sm:w-auto">
+                            <div class="flex flex-col sm:w-3/4 sm:mx-auto lg:mx-0">
+                                {{--                                <div>--}}
+                                <input aria-label="Name"
+                                       class="appearance-none block w-full px-3 py-3 border border-gray-300 text-base leading-6 rounded-md placeholder-gray-500 shadow-sm focus:outline-none focus:placeholder-gray-400 focus:shadow-outline focus:border-blue-300 transition duration-150 ease-in-out sm:flex-auto"
+                                       placeholder="Enter your name"/>
+                                {{--                                </div>--}}
+                                {{--                                <div>--}}
+                                <input aria-label="Phone"
+                                       class="mt-3 appearance-none block w-full px-3 py-3 border border-gray-300 text-base leading-6 rounded-md placeholder-gray-500 shadow-sm focus:outline-none focus:placeholder-gray-400 focus:shadow-outline focus:border-blue-300 transition duration-150 ease-in-out sm:flex-auto"
+                                       placeholder="Enter your phone number"/>
+                                {{--                                </div>--}}
+                                <div class="mt-3">
+                                    <button type="submit"
+                                            class="mt-3 ml-0 w-full px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-gray-800 shadow-sm hover:bg-gray-700 focus:outline-none focus:shadow-outline active:bg-gray-900 transition duration-150 ease-in-out sm:mt-0 sm:ml-0 sm:flex-shrink-0 sm:inline-flex sm:items-center ">
                                         Call me back
                                     </button>
                                 </div>
                             </div>
+
                         </form>
                         <p class="mt-3 text-sm leading-5 text-gray-500">
                             We care about the protection of your data. Read our
@@ -116,18 +125,23 @@
                         </p>
                     </div>
                 </div>
-                <div class="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center">
-                    <svg class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8 scale-75 origin-top sm:scale-100 lg:hidden" width="640" height="784" fill="none" viewBox="0 0 640 784">
+                <div
+                    class="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center">
+                    <svg
+                        class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8 scale-75 origin-top sm:scale-100 lg:hidden"
+                        width="640" height="784" fill="none" viewBox="0 0 640 784">
                         <defs>
-                            <pattern id="svg-pattern-squares-mobile" x="118" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                                <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
+                            <pattern id="svg-pattern-squares-mobile" x="118" y="0" width="20" height="20"
+                                     patternUnits="userSpaceOnUse">
+                                <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor"/>
                             </pattern>
                         </defs>
-                        <rect y="72" width="640" height="640" class="text-gray-50" fill="currentColor" />
-                        <rect x="118" width="404" height="784" fill="url(#svg-pattern-squares-mobile)" />
+                        <rect y="72" width="640" height="640" class="text-gray-50" fill="currentColor"/>
+                        <rect x="118" width="404" height="784" fill="url(#svg-pattern-squares-mobile)"/>
                     </svg>
-                    <div class="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
-                        <button class="relative block w-full rounded-lg overflow-hidden focus:outline-none focus:shadow-outline">
+                    <div class="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-2xl ">
+                        <button
+                            class="relative block w-full rounded-lg overflow-hidden focus:outline-none focus:shadow-outline">
                             <img class="w-full" src="{{ Cloudder::secureShow('cit/pictures/digger-safety', config('settings.cloudinary_optimised_jpg')) }}" alt="Digger Safety" />
                             <div class="absolute inset-0 w-full h-full flex items-center justify-center">
                                 <svg class="h-20 w-20 text-blue-500" fill="currentColor" viewBox="0 0 84 84">
