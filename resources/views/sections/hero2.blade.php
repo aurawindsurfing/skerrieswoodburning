@@ -6,8 +6,8 @@
                     <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
                 </pattern>
             </defs>
-            <rect y="72" width="640" height="640" class="text-gray-50" fill="currentColor" />
-            <rect x="118" width="404" height="784" fill="url(#svg-pattern-squares-desktop)" />
+            <rect y="72" width="640" height="640" class="text-gray-50" fill="currentColor"/>
+            <rect x="118" width="404" height="784" fill="url(#svg-pattern-squares-desktop)"/>
         </svg>
     </div>
     <div x-data="{ open: false }" class="relative pt-6 pb-16 md:pb-20 lg:pb-24 xl:pb-32">
@@ -15,12 +15,14 @@
             <div class="flex items-center flex-1">
                 <div class="flex items-center justify-between w-full md:w-auto">
                     <a href="#">
-                        <img class="h-8 w-auto sm:h-8" src="/images/cit_logo2.svg" alt="" />
+                        <img class="h-8 w-auto sm:h-8" src="/images/cit_logo.svg" alt=""/>
                     </a>
                     <div class="-mr-2 flex items-center md:hidden">
-                        <button @click="open = true" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+                        <button @click="open = true" type="button"
+                                class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                             <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M4 6h16M4 12h16M4 18h16"/>
                             </svg>
                         </button>
                     </div>
