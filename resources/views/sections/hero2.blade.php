@@ -89,7 +89,7 @@
                     </div>
                     <h2 class="mt-1 text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:leading-none sm:text-6xl lg:text-5xl xl:text-6xl">
                         A safer workplace
-                        <br class="hidden md:inline" />
+                        <br class="hidden md:inline"/>
                         <span class="text-blue-600">starts with us</span>
                     </h2>
                     <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
@@ -97,34 +97,34 @@
                         Professional Course Delivery and post delivery Course Feedback.
                     </p>
                     <div class="mt-5 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
-                        <p class="text-base font-medium text-gray-900">
-                            Book your safepass course right now.
-                        </p>
+                        {{--                        <p class="text-base font-medium text-gray-900">--}}
+                        {{--                            Book your safepass course right now.--}}
+                        {{--                        </p>--}}
                         <form action="#" method="POST" class="mt-3 sm:flex">
                             <div class="flex flex-col sm:w-3/4 sm:mx-auto lg:mx-0">
                                 {{--                                <div>--}}
-                                <input aria-label="Name"
-                                       class="appearance-none block w-full px-3 py-3 border border-gray-300 text-base leading-6 rounded-md placeholder-gray-500 shadow-sm focus:outline-none focus:placeholder-gray-400 focus:shadow-outline focus:border-blue-300 transition duration-150 ease-in-out sm:flex-auto"
-                                       placeholder="Enter your name"/>
+                                {{--                                <input aria-label="Name"--}}
+                                {{--                                       class="appearance-none block w-full px-3 py-3 border border-gray-300 text-base leading-6 rounded-md placeholder-gray-500 shadow-sm focus:outline-none focus:placeholder-gray-400 focus:shadow-outline focus:border-blue-300 transition duration-150 ease-in-out sm:flex-auto"--}}
+                                {{--                                       placeholder="Enter your name"/>--}}
                                 {{--                                </div>--}}
                                 {{--                                <div>--}}
-                                <input aria-label="Phone"
-                                       class="mt-3 appearance-none block w-full px-3 py-3 border border-gray-300 text-base leading-6 rounded-md placeholder-gray-500 shadow-sm focus:outline-none focus:placeholder-gray-400 focus:shadow-outline focus:border-blue-300 transition duration-150 ease-in-out sm:flex-auto"
-                                       placeholder="Enter your phone number"/>
+                                {{--                                <input aria-label="Phone"--}}
+                                {{--                                       class="mt-3 appearance-none block w-full px-3 py-3 border border-gray-300 text-base leading-6 rounded-md placeholder-gray-500 shadow-sm focus:outline-none focus:placeholder-gray-400 focus:shadow-outline focus:border-blue-300 transition duration-150 ease-in-out sm:flex-auto"--}}
+                                {{--                                       placeholder="Enter your phone number"/>--}}
                                 {{--                                </div>--}}
                                 <div class="mt-3">
                                     <button type="submit"
                                             class="mt-3 ml-0 w-full px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-gray-800 shadow-sm hover:bg-gray-700 focus:outline-none focus:shadow-outline active:bg-gray-900 transition duration-150 ease-in-out sm:mt-0 sm:ml-0 sm:flex-shrink-0 sm:inline-flex sm:items-center ">
-                                        Call me back
+                                        Book Safepass Now
                                     </button>
                                 </div>
                             </div>
 
                         </form>
-                        <p class="mt-3 text-sm leading-5 text-gray-500">
-                            We care about the protection of your data. Read our
-                            <a href="#" class="font-medium text-gray-900 underline">Privacy Policy</a>.
-                        </p>
+                        {{--                        <p class="mt-3 text-sm leading-5 text-gray-500">--}}
+                        {{--                            We care about the protection of your data. Read our--}}
+                        {{--                            <a href="#" class="font-medium text-gray-900 underline">Privacy Policy</a>.--}}
+                        {{--                        </p>--}}
                     </div>
                 </div>
                 <div

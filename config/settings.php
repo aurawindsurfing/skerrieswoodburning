@@ -5,7 +5,7 @@ return [
     'cloudinary_logo' => [
         'format'  => 'png',
         'width'   => 105,
-//        'height' => 48,
+        'height'  => 80,
         'crop'    => 'scale',
         'quality' => 'auto',
         'effect'  => 'grayscale',
