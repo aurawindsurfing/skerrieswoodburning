@@ -15,7 +15,7 @@
             <div class="flex items-center flex-1">
                 <div class="flex items-center justify-between w-full md:w-auto">
                     <a href="#">
-                        <img class="h-8 w-auto sm:h-8" src="/images/cit_logo.svg" alt=""/>
+                        <img class="h-8 w-auto sm:h-8" src="/images/cit_logo2.svg" alt=""/>
                     </a>
                     <div class="-mr-2 flex items-center md:hidden">
                         <button @click="open = true" type="button"
