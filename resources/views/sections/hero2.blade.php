@@ -16,7 +16,7 @@
         <nav class="relative max-w-screen-xl mx-auto flex items-center justify-between px-4 sm:px-6">
             <div class="flex items-center flex-1">
                 <div class="flex items-center justify-between w-full md:w-auto">
-                    <a href="#">
+                    <a href="{{route('home')}}">
                         <img class="h-8 w-auto sm:h-8" src="/images/cit_logo2.svg" alt=""/>
                     </a>
                     <div class="-mr-2 flex items-center md:hidden">
@@ -34,8 +34,7 @@
                     {{--                       class="font-medium text-gray-500 hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out">Courses</a>--}}
                     {{--                    <a href="#" class="ml-10 font-medium text-gray-500 hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out">Features</a>--}}
                     <a href="tel: +35318097266"
-                       class="ml-10 font-medium text-gray-500 hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out">01
-                        – 8097266</a>
+                       class="ml-10 font-medium text-gray-500 hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out">01 – 8097266</a>
                     <a href="mailto:info@citltd.ie"
                        class="ml-10 font-medium text-gray-500 hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out">info@citltd.ie</a>
                 </div>
@@ -75,10 +74,9 @@
                     <div class="px-2 pt-2 pb-3">
                         {{--                        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out">Courses</a>--}}
                         {{--                        <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out">Features</a>--}}
-                        <a href="#"
-                           class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out">01
-                            – 8097266</a>
-                        <a href="#"
+                        <a href="tel: +35318097266"
+                           class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out">01 – 8097266</a>
+                        <a href="mailto:info@citltd.ie"
                            class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out">info@citltd.ie</a>
                     </div>
                     <div>

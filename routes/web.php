@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'HomePageController@index');
+Route::get('/', 'HomePageController@index')->name('home');
 
 // Route::redirect('/', '/office', 301);
 
