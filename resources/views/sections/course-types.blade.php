@@ -1,4 +1,4 @@
-<div class="bg-gray-50 pt-12 sm:pt-16">
+<div class="bg-gray-50 pt-12 mt-4 sm:pt-16">
     <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="text-3xl leading-9 font-extrabold text-gray-900 sm:text-4xl sm:leading-10">
