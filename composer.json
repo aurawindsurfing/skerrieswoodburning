@@ -39,6 +39,7 @@
         "propaganistas/laravel-phone": "^4.1",
         "richardkeep/nova-timenow": "^0.0.5",
         "silvanite/nova-field-cloudinary": "^1.0",
+        "spatie/eloquent-sortable": "^3.7",
         "spatie/laravel-activitylog": "^3.8",
         "titasgailius/search-relations": "^1.0",
         "vyuldashev/nova-money-field": "^1.1"

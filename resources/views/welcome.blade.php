@@ -8,7 +8,7 @@
 
 @include('sections.hero2')
 @include('sections.about')
-@include('sections.course-types')
+@include('sections.course-type-groups')
 @include('sections.courses-list')
 @include('sections.logos')
 

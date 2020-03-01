@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Course;
-use App\CourseType;
+use App\CourseTypeGroup;
 use Cloudinary\Api;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -13,12 +13,12 @@ class HomePageController extends Controller {
 
     public function index()
     {
-        $course_type_chunks = CourseType::all()->take(9)->chunk(3);
+        $course_type_groups_chunks = CourseTypeGroup::all()->sortBy('order')->take(9)->chunk(3);
         $upcoming_public_courses = Course::with(['venue', 'course_type'])->where('inhouse', false)->orderByDesc('date')->take(10)->get();
         $logos = $this->cloudinary_resources('logos', 50, 'cloudinary_logo');
         $image = Arr::random($this->cloudinary_resources('pictures', 50, 'cloudinary_optimised_jpg'));
 
-        return view('welcome', compact('course_type_chunks', 'upcoming_public_courses', 'logos', 'image'));
+        return view('welcome', compact('course_type_groups_chunks', 'upcoming_public_courses', 'logos', 'image'));
     }
 
 
