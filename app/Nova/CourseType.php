@@ -4,12 +4,12 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laraning\NovaTimeField\TimeField;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
-use Laravel\Nova\Http\Requests\NovaRequest;
 use Vyuldashev\NovaMoneyField\Money;
 
 class CourseType extends Resource
@@ -80,6 +80,8 @@ class CourseType extends Resource
             Text::make('Name')
                 ->sortable()
                 ->rules('required', 'max:255'),
+
+            BelongsTo::make('CourseTypeGroup'),
 
             Text::make('Title')
                 ->sortable()
