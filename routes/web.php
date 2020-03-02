@@ -11,7 +11,9 @@
 |
 */
 
-Route::get('/', 'HomePageController@index')->name('home');
+Route::get('/', 'PageController@index')->name('home');
+
+Route::get('/course-group/{course_type_group}', 'PageController@course_group')->name('group');
 
 // Route::redirect('/', '/office', 301);
 

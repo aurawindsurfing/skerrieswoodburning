@@ -6,11 +6,11 @@
 
 @section('body')
 
-@include('sections.hero')
-@include('sections.about')
-@include('sections.course-groups')
-@include('sections.courses-list')
-@include('sections.logos')
+@include('sections.header')
+{{--@include('sections.about')--}}
+{{--@include('sections.course-groups')--}}
+{{--@include('sections.courses-list')--}}
+{{--@include('sections.logos')--}}
 
 @include('sections.footer')
 
