@@ -13,7 +13,7 @@
 
 Route::get('/', 'PageController@index')->name('home');
 
-Route::get('/course-group/{course_type_group}', 'PageController@course_group')->name('group');
+Route::get('/course-group/{course_group}', 'PageController@course_group')->name('group');
 
 // Route::redirect('/', '/office', 301);
 

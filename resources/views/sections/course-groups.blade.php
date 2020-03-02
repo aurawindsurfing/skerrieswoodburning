@@ -18,7 +18,7 @@
                     @foreach($course_groups_chunks as $course_groups)
                         <div class="rounded-lg bg-white shadow-lg sm:grid sm:grid-cols-3 m-0">
                             @foreach ($course_groups as $course_group)
-                                <a href="">
+                                <a href="{{route('group', ['course_group' => $course_group->id])}}">
                                     <div class="border-b border-gray-100 p-6 text-center sm:border-0 sm:border-r">
                                         <p class="text-5xl leading-none font-extrabold text-blue-600">
                                             ICONS
