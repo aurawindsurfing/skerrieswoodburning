@@ -23,7 +23,7 @@ class PageController extends Controller {
 
     public function group(CourseTypeGroup $group)
     {
-        return $group->course_type;
+//        dd($group->course_types);
 
         return view('group', compact('group'));
     }

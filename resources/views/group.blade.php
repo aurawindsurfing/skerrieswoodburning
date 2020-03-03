@@ -9,7 +9,7 @@
 @include('sections.header')
 
 {{--@include('sections.courses-list')--}}
-@foreach($group as $type)
+@foreach($group->course_types as $type)
     @include('sections.course-cta')
 @endforeach
 
