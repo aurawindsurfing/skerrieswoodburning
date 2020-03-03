@@ -22,7 +22,7 @@ class CourseType extends Model
         return $this->hasMany(\App\Course::class);
     }
 
-    public function courseTypeGroup()
+    public function course_type_group()
     {
         return $this->belongsTo(\App\CourseTypeGroup::class);
     }

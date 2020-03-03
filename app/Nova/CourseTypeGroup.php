@@ -56,7 +56,7 @@ class CourseTypeGroup extends Resource {
      */
     public static function label()
     {
-        return 'Course Type Groups';
+        return 'Display Groups';
     }
 
     /**

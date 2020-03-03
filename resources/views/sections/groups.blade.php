@@ -15,16 +15,16 @@
             <div class="absolute inset-0 h-1/2 bg-gray-50"></div>
             <div class="relative max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="max-w-4xl mx-auto">
-                    @foreach($course_groups_chunks as $course_groups)
+                    @foreach($groups_chunks as $groups)
                         <div class="rounded-lg bg-white shadow-lg sm:grid sm:grid-cols-3 m-0">
-                            @foreach ($course_groups as $course_group)
-                                <a href="{{route('group', ['course_group' => $course_group->id])}}">
+                            @foreach ($groups as $group)
+                                <a href="{{route('group', ['group' => $group->id])}}">
                                     <div class="border-b border-gray-100 p-6 text-center sm:border-0 sm:border-r">
                                         <p class="text-5xl leading-none font-extrabold text-blue-600">
                                             ICONS
                                         </p>
                                         <p class="mt-2 text-lg leading-6 font-medium text-gray-500">
-                                            {{$course_group->name}}
+                                            {{$group->name}}
                                         </p>
                                     </div>
                                 </a>

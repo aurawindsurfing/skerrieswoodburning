@@ -81,7 +81,7 @@ class CourseType extends Resource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            BelongsTo::make('CourseTypeGroup'),
+            BelongsTo::make('Display Group', 'course_type_group','App\Nova\CourseTypeGroup'),
 
             Text::make('Title')
                 ->sortable()

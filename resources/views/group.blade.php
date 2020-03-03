@@ -7,9 +7,13 @@
 @section('body')
 
 @include('sections.header')
-{{--@include('sections.about')--}}
-{{--@include('sections.course-groups')--}}
+
 {{--@include('sections.courses-list')--}}
+@foreach($group as $type)
+    @include('sections.course-cta')
+@endforeach
+
+{{--@include('sections.course-groups')--}}
 {{--@include('sections.logos')--}}
 
 @include('sections.footer')

@@ -18,8 +18,8 @@ class CourseTypeGroup extends Model implements Sortable
         'sort_when_creating' => true,
     ];
 
-    public function course_type()
+    public function course_types()
     {
-        return $this->hasOne(\App\CourseType::class);
+        return $this->hasMany(\App\CourseType::class);
     }
 }
