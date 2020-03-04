@@ -5,20 +5,10 @@
 @section('keywords', __('Training, Construction, Safepass, Safety'))
 
 @section('body')
-
-@include('sections.header')
-<div x-data="{}">
-    @foreach($group->course_types as $type)
-        @include('sections.course-cta')
-    @endforeach
-
-    @include('sections.courses-list')
-</div>
-
-
-{{--@include('sections.course-groups')--}}
-{{--@include('sections.logos')--}}
-
+    <div x-data="{open: false}">
+        @include('sections.header')
+        @include('sections.courses-list')
+    </div>
 @include('sections.footer')
 
 
