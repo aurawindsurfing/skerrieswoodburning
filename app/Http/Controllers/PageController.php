@@ -23,9 +23,9 @@ class PageController extends Controller {
 
     public function group(CourseTypeGroup $group)
     {
-//        dd($group->course_types);
 
-        return view('group', compact('group'));
+        $courses = Course::with(['venue', 'course_type'])->where('inhouse', false)->orderByDesc('date')->take(10)->get();
+        return view('group', compact('group', 'courses'));
     }
 
 
