@@ -97,47 +97,57 @@ class CourseType extends Resource
             Textarea::make('Objectives')
                 ->rows(5)
                 ->hideFromIndex()
-                ->alwaysShow(),
+                ->alwaysShow()
+                ->rules('required'),
 
             Textarea::make('Who should attend', 'who_should_attend')
                 ->rows(5)
                 ->hideFromIndex()
-                ->alwaysShow(),
+                ->alwaysShow()
+                ->rules('required'),
 
             Textarea::make('Delegates')
                 ->rows(5)
                 ->hideFromIndex()
-                ->alwaysShow(),
+                ->alwaysShow()
+                ->rules('required'),
 
             Markdown::make('Outline')
                 ->hideFromIndex()
-                ->alwaysShow(),
+                ->alwaysShow()
+                ->rules('required'),
 
             Textarea::make('Duration')
                 ->rows(5)
                 ->hideFromIndex()
-                ->alwaysShow(),
+                ->alwaysShow()
+                ->rules('required'),
 
             Textarea::make('Certification')
                 ->rows(5)
                 ->hideFromIndex()
-                ->alwaysShow(),
+                ->alwaysShow()
+                ->rules('required'),
 
             Textarea::make('What to bring', 'what_to_bring')
                 ->rows(5)
                 ->hideFromIndex()
-                ->alwaysShow(),
+                ->alwaysShow()
+                ->rules('required'),
 
-            TimeField::make('Start Time'),
+            TimeField::make('Start Time')
+                ->rules('required'),
 
             Textarea::make('Plan of the day', 'plan_of_the_day')
                 ->rows(5)
                 ->hideFromIndex()
                 ->alwaysShow(),
 
-            Number::make('Valid for years', 'valid_for_years'),
+            Number::make('Valid for years', 'valid_for_years')
+                ->rules('required'),
 
-            Number::make('Capacity'),
+            Number::make('Capacity')
+                ->rules('required'),
 
         ];
     }

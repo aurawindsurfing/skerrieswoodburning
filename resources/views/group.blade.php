@@ -7,12 +7,14 @@
 @section('body')
 
 @include('sections.header')
+<div x-data="{ scroll: false }">
+    @foreach($group->course_types as $type)
+        @include('sections.course-cta')
+    @endforeach
 
-@foreach($group->course_types as $type)
-    @include('sections.course-cta')
-@endforeach
+    @include('sections.courses-list')
+</div>
 
-@include('sections.courses-list')
 
 {{--@include('sections.course-groups')--}}
 {{--@include('sections.logos')--}}

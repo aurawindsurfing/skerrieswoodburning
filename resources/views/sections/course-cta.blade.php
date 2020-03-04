@@ -16,7 +16,7 @@
             <div class="absolute inset-0 h-1/2 bg-gray-100"></div>
             <div class="relative max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="max-w-lg mx-auto rounded-lg shadow-lg overflow-hidden lg:max-w-none lg:flex">
-                    <div class="bg-white px-6 py-8 lg:flex-shrink-1 lg:p-12">
+                    <div class="bg-white px-6 py-8 lg:flex-1 lg:p-12">
                         <h3 class="text-2xl leading-8 font-extrabold text-gray-900 sm:text-3xl sm:leading-9">
                             Who should attend
                         </h3>
@@ -134,9 +134,12 @@
 {{--                            </a>--}}
 {{--                        </p>--}}
                         <div class="mt-6">
-                            <div class="rounded-md shadow">
-                                <a href="#" class="flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
-                                    Book now
+                            <div class="rounded-md shadow"
+                                 @click.prevent="$refs.list.scrollIntoView()"
+                            >
+                                <a href="#"
+                                   class="flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+                                    Find course
                                 </a>
                             </div>
                         </div>
