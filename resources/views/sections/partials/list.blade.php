@@ -22,7 +22,7 @@
                                 <div class="block">
                                     <div>
                                         <div class="text-base leading-5 text-gray-900 pt-2 md:pt-0">
-                                            {{$course->date->format('d F Y (l) hA')}}
+                                            {{$course->date->format('d F Y (l) h A')}}
                                             <span class="md:hidden">, {{$course->venue->city}}</span>
                                         </div>
                                         <div
@@ -41,20 +41,20 @@
                             </div>
 
                         </div>
-                        <div class="flex-grow-0">
+                        <div class="flex-grow-0 hidden sm:block">
                             <div class="rounded-md shadow">
                                 <a href="#" class="flex items-center justify-center px-2 sm:px-5 py-3 border border-transparent text-sm md:text-base text-center leading-6 font-medium rounded-md text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
                                     Book now
                                 </a>
                             </div>
                         </div>
-{{--                        <div>--}}
-{{--                            <svg class="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">--}}
-{{--                                <path fill-rule="evenodd"--}}
-{{--                                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"--}}
-{{--                                      clip-rule="evenodd"/>--}}
-{{--                            </svg>--}}
-{{--                        </div>--}}
+                        <div class="block sm:hidden">
+                            <svg class="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                      clip-rule="evenodd"/>
+                            </svg>
+                        </div>
 
                     </div>
                 </a>
