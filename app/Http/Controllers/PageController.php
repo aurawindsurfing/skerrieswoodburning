@@ -6,6 +6,7 @@ use App\Course;
 use App\CourseTypeGroup;
 use Cloudinary\Api;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use JD\Cloudder\Facades\Cloudder;
 
@@ -13,10 +14,18 @@ class PageController extends Controller {
 
     public function index()
     {
-        $groups_chunks = CourseTypeGroup::all()->sortBy('order')->take(9)->chunk(3);
-        $courses = Course::with(['venue', 'course_type'])->where('inhouse', false)->orderByDesc('date')->take(10)->get();
-        $logos = $this->cloudinary_resources('logos', 50, 'cloudinary_logo');
-        $image = Arr::random($this->cloudinary_resources('pictures', 50, 'cloudinary_optimised_jpg'));
+        $groups_chunks = Cache::remember('group_chunks', 1440, function () {
+            return CourseTypeGroup::all()->sortBy('order')->take(9)->chunk(3);
+        });;
+        $courses = Cache::remember('courses', 1440, function () {
+            return Course::with(['venue', 'course_type'])->where('inhouse', false)->orderByDesc('date')->take(10)->get();
+        });
+        $logos = Cache::remember('logos', 1440, function () {
+            return $this->cloudinary_resources('logos', 50, 'cloudinary_logo');
+        });
+        $image = Cache::remember('image', 1440, function () {
+            return Arr::random($this->cloudinary_resources('pictures', 50, 'cloudinary_optimised_jpg'));
+        });
 
         return view('welcome', compact('groups_chunks', 'courses', 'logos', 'image'));
     }
@@ -24,7 +33,10 @@ class PageController extends Controller {
     public function group(CourseTypeGroup $group)
     {
 
-        $courses = Course::with(['venue', 'course_type'])->where('inhouse', false)->orderByDesc('date')->take(10)->get();
+        $courses = Cache::remember('courses', 1440, function () {
+            return Course::with(['venue', 'course_type'])->where('inhouse', false)->orderByDesc('date')->take(10)->get();
+        });
+
         return view('group', compact('group', 'courses'));
     }
 
