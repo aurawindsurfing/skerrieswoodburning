@@ -5,12 +5,13 @@
 @section('keywords', __('Training, Construction, Safepass, Safety'))
 
 @section('body')
-
-@include('sections.hero')
-@include('sections.about')
-@include('sections.groups')
-@include('sections.public-courses-list')
-@include('sections.logos')
+    <div x-data="{open: false}">
+        @include('sections.hero')
+        @include('sections.about')
+        @include('sections.groups')
+        @include('sections.public-courses-list')
+        @include('sections.logos')
+    </div>
 
 @include('sections.footer')
 

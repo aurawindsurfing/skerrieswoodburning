@@ -12,7 +12,7 @@
             <rect x="118" width="404" height="784" fill="url(#svg-pattern-squares-desktop)"/>
         </svg>
     </div>
-    <div x-data="{ open: false }" class="relative pt-6 pb-16 md:pb-16 lg:pb-20 xl:pb-24">
+    <div class="relative pt-6 pb-16 md:pb-16 lg:pb-20 xl:pb-24">
 
         @include('sections.partials.navbar')
 
@@ -50,8 +50,11 @@
                                 {{--                                       class="mt-3 appearance-none block w-full px-3 py-3 border border-gray-300 text-base leading-6 rounded-md placeholder-gray-500 shadow-sm focus:outline-none focus:placeholder-gray-400 focus:shadow-outline focus:border-blue-300 transition duration-150 ease-in-out sm:flex-auto"--}}
                                 {{--                                       placeholder="Enter your phone number"/>--}}
                                 {{--                                </div>--}}
+
+
                                 <div class="mt-3">
                                     <button type="submit"
+                                            @click.prevent="$refs.list.scrollIntoView()"
                                             class="mt-3 ml-0 w-full px-6 py-3 border border-transparent text-lg leading-6 font-medium rounded-md text-white bg-gray-800 shadow-sm hover:bg-gray-700 focus:outline-none focus:shadow-outline active:bg-gray-900 transition duration-150 ease-in-out sm:mt-0 sm:ml-0 sm:flex-shrink-0  sm:items-center ">
                                         Book Safepass Now
                                     </button>

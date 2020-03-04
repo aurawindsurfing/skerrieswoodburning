@@ -7,7 +7,7 @@
 @section('body')
 
 @include('sections.header')
-<div x-data="{ scroll: false }">
+<div x-data="{}">
     @foreach($group->course_types as $type)
         @include('sections.course-cta')
     @endforeach
