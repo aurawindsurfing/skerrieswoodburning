@@ -15,7 +15,7 @@
         @include('sections.partials.navbar')
         @include('sections.partials.mobile-nav')
 
-        <div class="mt-8 mx-auto w-1/2 px-4 sm:mt-12 sm:px-6 md:mt-20 xl:mt-24">
+        <div class="mt-8 mx-auto w-full lg:w-1/2 px-4 sm:mt-12 sm:px-6 md:mt-20 xl:mt-24">
 {{--            <div class="lg:grid lg:grid-cols-12 lg:gap-8">--}}
 {{--                <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">--}}
                     @include('sections.form')

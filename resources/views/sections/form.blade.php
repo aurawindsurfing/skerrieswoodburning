@@ -78,7 +78,7 @@
 {{--                <p class="block text-sm font-medium leading-5 text-gray-700">--}}
 {{--                    Credit or debit card--}}
 {{--                </p>--}}
-                    <div class="mt-4 p-2 sm:col-span-4 mt-1 rounded-md shadow-md form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" id="card-element">
+                    <div class="mt-4 px-2 py-3 sm:col-span-4 mt-1 rounded-md shadow-md form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" id="card-element">
 {{--                        <div class="">--}}
 {{--                            <input class=""--}}
 {{--                                   placeholder="4242 4242 4242 4242" />--}}
@@ -110,6 +110,7 @@
           </span>
         </div>
     </div>
+</div>
 </form>
 
 <script>
@@ -117,20 +118,20 @@
     var elements = stripe.elements();
     var card = elements.create('card', {
         hidePostalCode: true,
-        // style: {
-        //     base: {
+        style: {
+            base: {
                 // iconColor: '#666EE8',
-                // color: '#31325F',
+                color: '#87919C',
                 // lineHeight: '40px',
                 // fontWeight: 300,
                 // fontFamily: '"Inter", Inter, sans',
                 // fontSize: '15px',
 
-                // '::placeholder': {
-                //     color: '#CFD7E0',
-                // },
-            // },
-        // }
+                '::placeholder': {
+                    color: '#87919C',
+                },
+            },
+        }
     });
 
     // Add an instance of the card UI component into the `card-element` <div>
