@@ -2,7 +2,7 @@
     <ul>
         @foreach($courses as $course)
             <li class="border-t border-gray-200 hover:bg-gray-50 focus:outline-none focus:bg-gray-50">
-                <a href="#" class="">
+                <a href="{{route('create-booking', ['course' => $course->id])}}" class="">
                     <div class="flex items-center justify-between px-4 py-4 sm:px-6">
                         <div class="min-w-0 flex-1 flex items-center">
                             <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
@@ -43,7 +43,7 @@
                         </div>
                         <div class="flex-grow-0 hidden sm:block">
                             <div class="rounded-md shadow">
-                                <a href="#" class="flex items-center justify-center px-2 sm:px-5 py-3 border border-transparent text-sm md:text-base text-center leading-6 font-medium rounded-md text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+                                <a href="{{route('create-booking', ['course' => $course->id])}}" class="flex items-center justify-center px-2 sm:px-5 py-3 border border-transparent text-sm md:text-base text-center leading-6 font-medium rounded-md text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
                                     Book now
                                 </a>
                             </div>

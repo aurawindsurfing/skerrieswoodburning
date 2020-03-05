@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Booking;
+use App\Course;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
@@ -22,9 +23,9 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Course $course)
     {
-        //
+        return view('registration', compact('course'));
     }
 
     /**

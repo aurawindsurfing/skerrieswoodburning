@@ -15,6 +15,8 @@ Route::get('/', 'PageController@index')->name('home');
 
 Route::get('/group/{group}', 'PageController@group')->name('group');
 
+Route::get('/booking/{course}', 'BookingController@create')->name('create-booking');
+
 // Route::redirect('/', '/office', 301);
 
 // Route::redirect('/nova', '/office', 301);
