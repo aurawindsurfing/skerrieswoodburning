@@ -2,11 +2,21 @@
 <div>
         <div>
             <div>
-                <h3 class="text- leading-6 font-medium text-gray-900">
+                <h3 class="text-sm leading-6 text-gray-500">
                     You are now booking:
                 </h3>
-                <p class="mt-1 text-sm leading-5 text-gray-500">
-                    {{$course->course_type->name}} at {{$course->venue->name}} on {{$course->date->format('d F Y (l) h A')}}
+                <p class="mt-1 text-2xl font-medium leading-5 text-gray-900">
+                    {{$course->course_type->name}}
+                </p>
+                <br>
+                <span class="text-sm leading-6 text-gray-500">at</span>
+                <p class="mt-1 text-lg font-medium leading-5 text-gray-900">
+                    {{$course->venue->name}}, {{$course->venue->address_line_1}}, {{$course->venue->postal_code}}, {{$course->venue->city}}
+                </p>
+                <br>
+                <span class="text-sm leading-6 text-gray-500">on</span>
+                <p class="mt-1 text-lg font-medium leading-5 text-gray-900">
+                      {{$course->date->format('(l) d F Y, h A')}}
                 </p>
             </div>
         </div>
@@ -48,22 +58,25 @@
                 </div>
 
                 <div class="sm:col-span-4">
-                    <label for="pps" class="block text-sm font-medium leading-5 text-gray-700">
-                        PPS number
-                    </label>
-                    <div class="mt-1 rounded-md shadow-sm">
-                        <input id="pps" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                    </div>
-                </div>
-
-                <div class="sm:col-span-4">
-                    <label for="pps" class="block text-sm font-medium leading-5 text-gray-700">
+                    <label for="phone_number" class="block text-sm font-medium leading-5 text-gray-700">
                         Phone Number
                     </label>
                     <div class="mt-1 rounded-md shadow-sm">
                         <input id="phone_number" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" placeholder="086 1231234" />
                     </div>
                 </div>
+
+                <div class="sm:col-span-4">
+                    <div class="absolute flex items-center h-5">
+                        <input id="comments" type="checkbox" class="form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out" />
+                    </div>
+                    <div class="pl-7 text-sm leading-5">
+                        <label for="comments" class="font-medium text-gray-700">I have PPS number</label>
+                        <p class="text-gray-500">Let us know if you have valid PPS number.</p>
+                    </div>
+                </div>
+
+
             </div>
         </div>
         <div class="mt-8 border-t border-gray-200 pt-8">
@@ -78,7 +91,7 @@
 {{--                <p class="block text-sm font-medium leading-5 text-gray-700">--}}
 {{--                    Credit or debit card--}}
 {{--                </p>--}}
-                    <div class="block  mt-4 px-2 py-3 sm:col-span-4 mt-1 rounded-md shadow-md form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" id="card-element">
+                    <div class="block mt-4 px-2 py-3 sm:col-span-4 mt-1 rounded-md shadow-md form-input block  w-full sm:w-3/5 transition duration-150 ease-in-out sm:text-sm sm:leading-5" id="card-element">
 {{--                        <div class="">--}}
 {{--                            <input class=""--}}
 {{--                                   placeholder="4242 4242 4242 4242" />--}}
@@ -113,6 +126,7 @@
 </div>
 </form>
 
+
 <script>
     var stripe = Stripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
     var elements = stripe.elements();
@@ -137,3 +151,5 @@
     // Add an instance of the card UI component into the `card-element` <div>
     card.mount('#card-element');
 </script>
+
+
