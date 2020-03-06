@@ -139,7 +139,7 @@
                 // lineHeight: '40px',
                 // fontWeight: 300,
                 // fontFamily: '"Inter", Inter, sans',
-                // fontSize: '15px',
+                fontSize: '16px',
 
                 '::placeholder': {
                     color: '#87919C',
