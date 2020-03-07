@@ -16,6 +16,8 @@ Route::get('/', 'PageController@index')->name('home');
 Route::get('/group/{group}', 'PageController@group')->name('group');
 
 Route::get('/booking/{course}', 'BookingController@create')->name('create-booking');
+Route::post('/booking/store', 'BookingController@store')->name('store-booking');
+
 
 // Route::redirect('/', '/office', 301);
 

@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Booking;
 use App\Course;
+use App\Http\Requests\CreateBooking;
 use Illuminate\Http\Request;
 
+/**
+ * Class BookingController
+ * @package App\Http\Controllers
+ */
 class BookingController extends Controller
 {
     /**
@@ -29,14 +34,13 @@ class BookingController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param CreateBooking $request
      */
-    public function store(Request $request)
+    public function store(CreateBooking $request)
     {
-        //
+        dd($request);
+
+//        $validated = $request->validated();
     }
 
     /**

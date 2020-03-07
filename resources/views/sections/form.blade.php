@@ -1,4 +1,5 @@
-<form action="/charge" method="post" id="payment-form">
+<form action="{{route('store-booking')}}" method="post" id="payment-form">
+    @csrf
 <div>
         <div>
             <div>
@@ -37,6 +38,9 @@
                     <div class="mt-1 rounded-md shadow-sm">
                         <input id="first_name" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                     </div>
+                    @error('first_name')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="sm:col-span-3">
@@ -46,6 +50,9 @@
                     <div class="mt-1 rounded-md shadow-sm">
                         <input id="last_name" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                     </div>
+                    @error('last_name')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="sm:col-span-4">
@@ -55,6 +62,9 @@
                     <div class="mt-1 rounded-md shadow-sm">
                         <input id="email" type="email" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                     </div>
+                    @error('email')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="sm:col-span-4">
@@ -64,14 +74,17 @@
                     <div class="mt-1 rounded-md shadow-sm">
                         <input id="phone_number" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" placeholder="086 1231234" />
                     </div>
+                    @error('phone_number')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="sm:col-span-4">
                     <div class="absolute flex items-center h-5">
-                        <input id="comments" type="checkbox" class="form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out" />
+                        <input id="pps" type="checkbox" class="form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out" />
                     </div>
                     <div class="pl-7 text-sm leading-5">
-                        <label for="comments" class="font-medium text-gray-700">I have PPS number</label>
+                        <label for="pps" class="font-medium text-gray-700">I have PPS number</label>
                         <p class="text-gray-500">Let us know if you have valid PPS number.</p>
                     </div>
                 </div>
@@ -135,7 +148,7 @@
         style: {
             base: {
                 // iconColor: '#666EE8',
-                color: '#87919C',
+                // color: '#87919C',
                 // lineHeight: '40px',
                 // fontWeight: 300,
                 // fontFamily: '"Inter", Inter, sans',
