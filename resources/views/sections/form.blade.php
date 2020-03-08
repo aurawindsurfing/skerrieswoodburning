@@ -36,7 +36,7 @@
                         First name
                     </label>
                     <div class="mt-1 rounded-md shadow-sm">
-                        <input id="first_name" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                        <input name="first_name" value="{{ old('first_name') }}" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                     </div>
                     @error('first_name')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
@@ -48,7 +48,7 @@
                         Last name
                     </label>
                     <div class="mt-1 rounded-md shadow-sm">
-                        <input id="last_name" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                        <input name="last_name" value="{{ old('last_name') }}"  class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                     </div>
                     @error('last_name')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
@@ -60,7 +60,7 @@
                         Email address
                     </label>
                     <div class="mt-1 rounded-md shadow-sm">
-                        <input id="email" type="email" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                        <input name="email" value="{{ old('email') }}"  type="email" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                     </div>
                     @error('email')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
@@ -72,7 +72,7 @@
                         Phone Number
                     </label>
                     <div class="mt-1 rounded-md shadow-sm">
-                        <input id="phone_number" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" placeholder="086 1231234" />
+                        <input name="phone_number" value="{{ old('phone_number') }}"  class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" placeholder="086 1231234" />
                     </div>
                     @error('phone_number')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
@@ -81,7 +81,10 @@
 
                 <div class="sm:col-span-4">
                     <div class="absolute flex items-center h-5">
-                        <input id="pps" type="checkbox" class="form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out" />
+                        <input type="hidden" name="pps" value="0">
+                        <input type="checkbox" name="pps" value="1" {{ old('pps') ? 'checked' : null }} class="form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out">
+
+{{--                        <input name="pps" value="{{ old('pps') }}" type="checkbox" class="form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out" />--}}
                     </div>
                     <div class="pl-7 text-sm leading-5">
                         <label for="pps" class="font-medium text-gray-700">I have PPS number</label>

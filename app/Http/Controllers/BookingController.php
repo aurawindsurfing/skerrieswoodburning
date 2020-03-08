@@ -38,9 +38,7 @@ class BookingController extends Controller
      */
     public function store(CreateBooking $request)
     {
-        dd($request);
-
-//        $validated = $request->validated();
+//        dd($request->input());
     }
 
     /**
