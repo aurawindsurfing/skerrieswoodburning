@@ -15,8 +15,8 @@ class PageController extends Controller {
     public function index()
     {
         $groups_chunks = Cache::remember('group_chunks', 1440, function () {
-            return CourseTypeGroup::all()->sortBy('order')->take(9)->chunk(3);
-        });;
+            return CourseTypeGroup::all()->sortBy('order')->take(16)->chunk(4);
+        });
         $courses = Cache::remember('courses', 1440, function () {
             return Course::with(['venue', 'course_type'])->where('inhouse', false)->orderByDesc('date')->take(10)->get();
         });
