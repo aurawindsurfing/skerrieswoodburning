@@ -16,7 +16,7 @@
             <div class="relative max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="max-w-4xl mx-auto">
                     @foreach($groups_chunks as $groups)
-                        <div class="rounded-lg bg-white shadow-lg sm:grid sm:grid-cols-3 m-0">
+                        <div class="rounded-lg bg-white shadow-lg sm:grid sm:grid-cols-4 m-0">
                             @foreach ($groups as $group)
                                 <a href="{{route('group', ['group' => $group->id])}}">
                                     <div class="border-b border-gray-100 p-6 text-center sm:border-0 sm:border-r">
