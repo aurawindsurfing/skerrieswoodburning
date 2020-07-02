@@ -87,8 +87,8 @@
 {{--                        <input name="pps" value="{{ old('pps') }}" type="checkbox" class="form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out" />--}}
                     </div>
                     <div class="pl-7 text-sm leading-5">
-                        <label for="pps" class="font-medium text-gray-700">I have PPS number</label>
-                        <p class="text-gray-500">Let us know if you have valid PPS number.</p>
+                        <label for="pps" class="font-medium text-gray-700">I confirm I hold a valid Irish PPS number</label>
+{{--                        <p class="text-gray-500">Let us know if you have valid PPS number.</p>--}}
                     </div>
                 </div>
 
