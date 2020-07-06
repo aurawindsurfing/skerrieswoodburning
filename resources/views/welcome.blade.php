@@ -7,7 +7,7 @@
 @section('body')
     <div x-data="{open: false}">
         @include('sections.hero')
-        @include('sections.about')
+        @include('sections.our_principles')
         @include('sections.groups')
         @include('sections.public-courses-list')
         @include('sections.logos')

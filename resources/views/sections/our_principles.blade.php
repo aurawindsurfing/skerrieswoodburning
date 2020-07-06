@@ -81,10 +81,10 @@
                             </div>
                         </div>
                         <div class="ml-4">
-                            <h5 class="text-lg leading-6 font-medium text-gray-900">More blah blah blah</h5>
+                            <h5 class="text-lg leading-6 font-medium text-gray-900">Detailed records of client qualifications</h5>
                             <p class="mt-2 text-base leading-6 text-gray-500">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis
-                                suscipit eaque, iste dolor cupiditate blanditiis ratione.
+                                We maintain detailed records of all training provided and our clients can access our
+                                database at any time for details of all training provided on their behalf.
                             </p>
                         </div>
                     </div>
