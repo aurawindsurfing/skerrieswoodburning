@@ -2,7 +2,7 @@
     <div class="flex items-center flex-1">
         <div class="flex items-center justify-between w-full md:w-auto">
             <a href="{{route('home')}}">
-                <img class="h-8 w-auto sm:h-8" src="/images/cit_logo.svg" alt=""/>
+                <img class="h-8 w-auto sm:h-8" src="/images/cit_logo2.svg" alt=""/>
             </a>
             <div class="-mr-2 flex items-center md:hidden">
                 <button @click="open = true" type="button"
@@ -29,7 +29,7 @@
                   <span class="inline-flex rounded-md shadow-xs">
                     <a href="{{route('home')}}"
                        class="inline-flex items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-blue-600 bg-white hover:bg-gray-50 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
-                     Book different course
+                     Course bookings
                     </a>
                   </span>
                 </span>
