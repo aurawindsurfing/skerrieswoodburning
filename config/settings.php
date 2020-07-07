@@ -30,6 +30,19 @@ return [
         // 'aspect_ratio' => '1.09'
     ],
 
+    'cloudinary_course_group' => [
+        'format' => 'jpg',
+//        'width'  => 400,
+//        'height' => 400,
+        'quality' => 'auto',
+        'responsive' => true,
+        'dpr' => 'auto',
+
+
+//        'gravity' => 'auto',
+//        'crop' => 'fit',
+    ],
+
     'cloudinary_png' => [
         'format' => 'png',
         'quality' => 'auto',

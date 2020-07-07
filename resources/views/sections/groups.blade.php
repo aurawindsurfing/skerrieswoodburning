@@ -20,9 +20,10 @@
                             @foreach ($groups as $group)
                                 <a href="{{route('group', ['group' => $group->id])}}">
                                     <div class="border-b border-gray-100 p-6 text-center sm:border-0 sm:border-r">
-                                        <p class="text-5xl leading-none font-extrabold text-blue-600">
-                                            ICONS
-                                        </p>
+{{--                                        <p class="text-5xl leading-none font-extrabold text-blue-600">--}}
+{{--                                            ICONS--}}
+{{--                                        </p>--}}
+                                        <img class="w-32 h-32 flex-shrink-0 mx-auto bg-black rounded-full" src="{{ $group->image_url() }}" alt="">
                                         <p class="mt-2 text-lg leading-6 font-medium text-gray-500">
                                             {{$group->name}}
                                         </p>
