@@ -22,6 +22,7 @@
         "inspheric/nova-url-field": "^1.1",
         "jrm2k6/cloudder": "^0.6.0",
         "laraning/nova-time-field": "^0.2.4",
+        "laravel/cashier": "11.0",
         "laravel/framework": "^6.13",
         "laravel/nexmo-notification-channel": "^2.3",
         "laravel/nova": "^2.3",

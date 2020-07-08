@@ -4,7 +4,7 @@
 @section('description', __('Quality Training, Excellent Service, Experienced Team, Attention to detail'))
 @section('keywords', __('Training, Construction, Safepass, Safety'))
 
-<script src="https://js.stripe.com/v3/"></script>
+{{--<script src="https://js.stripe.com/v3/"></script>--}}
 
 @section('body')
 {{--    <div x-data="{open: false}">--}}

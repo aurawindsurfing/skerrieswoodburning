@@ -107,7 +107,8 @@
 {{--                <p class="block text-sm font-medium leading-5 text-gray-700">--}}
 {{--                    Credit or debit card--}}
 {{--                </p>--}}
-                    <div class="block mt-4 px-2 py-3 sm:col-span-4 mt-1 rounded-md shadow-md form-input block  w-full sm:w-3/5 transition duration-150 ease-in-out sm:text-sm sm:leading-5" id="card-element">
+                <input id="card-holder-name" type="text">
+                    <div id="card-element" class="block mt-4 px-2 py-3 sm:col-span-4 mt-1 rounded-md shadow-md form-input block  w-full sm:w-3/5 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
 {{--                        <div class="">--}}
 {{--                            <input class=""--}}
 {{--                                   placeholder="4242 4242 4242 4242" />--}}
@@ -131,72 +132,46 @@
                 </span>
             </a>
             <span class="ml-3 inline-flex rounded-md shadow-sm">
-            <button type="submit"
-                    class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition duration-150 ease-in-out"
-{{--                    value="Pay and book now"--}}
-            >Pay and book now
-            </button>
+            <div class="card-button">
+                <button type="submit"
+                        class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition duration-150 ease-in-out"
+    {{--                    value="Pay and book now"--}}
+                >Pay and book now
+                </button>
+            </div>
           </span>
         </div>
     </div>
 </div>
 </form>
 
+<script src="https://js.stripe.com/v3/"></script>
 
 <script>
-    var stripe = Stripe('pk_test_UEmwMv2ufjAkZ3qP5dYyCI6U');
-    var elements = stripe.elements();
-    var card = elements.create('card', {
-        hidePostalCode: true,
-        style: {
-            base: {
-                // iconColor: '#666EE8',
-                // color: '#87919C',
-                // lineHeight: '40px',
-                // fontWeight: 300,
-                // fontFamily: '"Inter", Inter, sans',
-                fontSize: '16px',
+    const stripe = Stripe('stripe-public-key');
 
-                '::placeholder': {
-                    color: '#87919C',
-                },
-            },
-        }
-    });
+    const elements = stripe.elements();
+    const cardElement = elements.create('card');
 
-    // Add an instance of the card UI component into the `card-element` <div>
-    card.mount('#card-element');
+    cardElement.mount('#card-element');
 
-    // Handle real-time validation errors from the card Element.
-    card.addEventListener('change', function(event) {
-        var displayError = document.getElementById('card-errors');
-        if (event.error) {
-            displayError.textContent = event.error.message;
-        } else {
-            displayError.textContent = '';
-        }
-    });
+    const cardHolderName = document.getElementById('card-holder-name');
+    const cardButton = document.getElementById('card-button');
 
-    // Handle form submission.
-    var form = document.getElementById('payment-form');
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        stripe.createToken(card).then(function(result) {
-            if (result.error) {
-                // Inform the user if there was an error.
-                var errorElement = document.getElementById('card-errors');
-                errorElement.textContent = result.error.message;
-            } else {
-                // Send the token to your server.
-                stripeTokenHandler(result.token);
+    cardButton.addEventListener('click', async (e) => {
+        const { paymentMethod, error } = await stripe.createPaymentMethod(
+            'card', cardElement, {
+                billing_details: { name: cardHolderName.value }
             }
-        }
-        )
-    });
+        );
 
+        if (error) {
+            // Display "error.message" to the user...
+        } else {
+            // The card has been verified successfully...
+        }
+    });
 
 
 </script>
-
 

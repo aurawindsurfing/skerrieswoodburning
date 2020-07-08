@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Cashier\Billable;
 use Propaganistas\LaravelPhone\PhoneNumber;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Booking extends Model
 {
-    use SoftDeletes, LogsActivity, Notifiable;
+    use SoftDeletes, LogsActivity, Notifiable, Billable;
 
     protected $guarded = [];
 
