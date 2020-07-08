@@ -32,15 +32,14 @@ return [
 
     'cloudinary_course_group' => [
         'format' => 'jpg',
-//        'width'  => 400,
-//        'height' => 400,
+        'width'  => 256,
+        'height' => 256,
         'quality' => 'auto',
         'responsive' => true,
         'dpr' => 'auto',
-
-
 //        'gravity' => 'auto',
-//        'crop' => 'fit',
+        'crop' => 'fill',
+//        'aspect_ratio' => '1.09'
     ],
 
     'cloudinary_png' => [

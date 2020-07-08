@@ -32,7 +32,6 @@ class PageController extends Controller {
 
     public function group(CourseTypeGroup $group)
     {
-
         $courses = Cache::remember('courses', 1440, function () {
             return Course::with(['venue', 'course_type'])->where('inhouse', false)->orderByDesc('date')->take(10)->get();
         });
@@ -48,7 +47,7 @@ class PageController extends Controller {
      * @return array
      * @throws Api\GeneralError
      */
-    private function cloudinary_resources(String $path, Int $take, String $preset)
+    private function cloudinary_resources(string $path, int $take, string $preset)
     {
         \Cloudinary::config([
             "cloud_name" => env('CLOUDINARY_CLOUD_NAME'),
@@ -74,6 +73,16 @@ class PageController extends Controller {
             $url = Str::after(Str::beforeLast($resource['secure_url'], '.'), 'cit');
             $url = Str::replaceFirst('e_bgremoval', 'e_bgremoval/e_grayscale', Cloudder::secureShow('cit/' . $url, config('settings.' . $preset)));
             array_push($items, $url);
+        }
+
+        $course_types = CourseTypeGroup::all();
+
+        foreach ($course_types as $course)
+        {
+            if ($course->icon)
+            {
+                array_push($items, Str::beforeLast(Cloudder::secureShow('' . $course->icon, config('settings.' . $preset)), '.'));
+            }
         }
 
         return $items;
