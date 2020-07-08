@@ -75,13 +75,16 @@ class PageController extends Controller {
             array_push($items, $url);
         }
 
-        $course_types = CourseTypeGroup::all();
-
-        foreach ($course_types as $course)
+        if ($path !== 'logos')
         {
-            if ($course->icon)
+            $course_types = CourseTypeGroup::all();
+
+            foreach ($course_types as $course)
             {
-                array_push($items, Str::beforeLast(Cloudder::secureShow('' . $course->icon, config('settings.' . $preset)), '.'));
+                if ($course->icon)
+                {
+                    array_push($items, Str::beforeLast(Cloudder::secureShow('' . $course->icon, config('settings.' . $preset)), '.'));
+                }
             }
         }
 
