@@ -32,25 +32,25 @@
             </div>
             <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
                 <div class="sm:col-span-3">
-                    <label for="first_name" class="block text-sm font-medium leading-5 text-gray-700">
+                    <label for="name" class="block text-sm font-medium leading-5 text-gray-700">
                         First name
                     </label>
                     <div class="mt-1 rounded-md shadow-sm">
-                        <input name="first_name" value="{{ old('first_name') }}" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                        <input name="name" value="{{ old('name') }}" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                     </div>
-                    @error('first_name')
+                    @error('name')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <div class="sm:col-span-3">
-                    <label for="last_name" class="block text-sm font-medium leading-5 text-gray-700">
+                    <label for="surname" class="block text-sm font-medium leading-5 text-gray-700">
                         Last name
                     </label>
                     <div class="mt-1 rounded-md shadow-sm">
-                        <input name="last_name" value="{{ old('last_name') }}"  class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                        <input name="surname" value="{{ old('surname') }}"  class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                     </div>
-                    @error('last_name')
+                    @error('surname')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror
                 </div>
@@ -68,13 +68,13 @@
                 </div>
 
                 <div class="sm:col-span-4">
-                    <label for="phone_number" class="block text-sm font-medium leading-5 text-gray-700">
+                    <label for="phone" class="block text-sm font-medium leading-5 text-gray-700">
                         Phone Number
                     </label>
                     <div class="mt-1 rounded-md shadow-sm">
-                        <input name="phone_number" value="{{ old('phone_number') }}"  class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" placeholder="086 1231234" />
+                        <input name="phone" value="{{ old('phone') }}"  class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" placeholder="086 1231234" />
                     </div>
-                    @error('phone_number')
+                    @error('phone')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror
                 </div>

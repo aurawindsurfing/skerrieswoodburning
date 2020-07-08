@@ -6,8 +6,6 @@ use App\Booking;
 use App\Course;
 use App\Http\Requests\CreateBooking;
 use Illuminate\Http\Request;
-use Stripe\Charge;
-use Stripe\Stripe;
 
 /**
  * Class BookingController
@@ -40,13 +38,22 @@ class BookingController extends Controller
      */
     public function store(CreateBooking $request)
     {
-        Stripe::setApiKey(env('STRIPE_SECRET'));
-        Charge::create ([
-            "amount" => 100 * 100,
-            "currency" => "usd",
-            "source" => request('stripeToken'),
-            "description" => "Test payment from sqwsqw"
-        ]);
+        $booking = Booking::firstOrNew($request->validated());
+
+        dd($booking);
+
+
+//        Stripe::setApiKey(env('STRIPE_SECRET'));
+
+        $paymentMethod = $request->input('stripePaymentMethod.id');
+        $user = auth()->user();
+        $user->addPaymentMethod($paymentMethod);
+
+        try {
+            $payment = $user->charge(100, $paymentMethod);
+        } catch (Exception $e) {
+            //
+        }
 
         Session::flash('success', 'Payment successful!');
 

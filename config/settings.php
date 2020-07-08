@@ -38,8 +38,7 @@ return [
         'responsive' => true,
         'dpr' => 'auto',
 //        'gravity' => 'auto',
-        'crop' => 'fill',
-//        'aspect_ratio' => '1.09'
+//        'crop' => 'fit',
     ],
 
     'cloudinary_png' => [
