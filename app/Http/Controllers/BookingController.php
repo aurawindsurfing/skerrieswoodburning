@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Booking;
 use App\Course;
 use App\Http\Requests\CreateBooking;
+use App\StripeCustomer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 /**
  * Class BookingController
@@ -35,24 +37,39 @@ class BookingController extends Controller
 
     /**
      * @param CreateBooking $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Laravel\Cashier\Exceptions\CustomerAlreadyCreated
+     * @throws \Laravel\Cashier\Exceptions\PaymentActionRequired
+     * @throws \Laravel\Cashier\Exceptions\PaymentFailure
      */
     public function store(CreateBooking $request)
     {
-        $booking = Booking::firstOrNew($request->validated());
+        $course = Course::find($request->input('courseId'));
 
-        dd($booking);
+        $stripePaymentMethodId = $request->input('stripePaymentMethodId');
 
-
-//        Stripe::setApiKey(env('STRIPE_SECRET'));
-
-        $paymentMethod = $request->input('stripePaymentMethod.id');
-        $user = auth()->user();
-        $user->addPaymentMethod($paymentMethod);
+        $data = array_merge(
+            $request->validated(),
+            [
+                'date' => now(),
+                'rate' => $course->price,
+                'course_id'  => $course->id,
+                'payment_type' => 'cc'
+            ]
+        );
 
         try {
-            $payment = $user->charge(100, $paymentMethod);
+            $booking = new Booking($data);
+
+            $payment = ($booking)->charge(($course->price * 100), $stripePaymentMethodId, [
+                'metadata' => $data,
+            ]);
+
+            $booking->stripe_payment_intent = $payment->id;
+            $booking->save();
+
         } catch (Exception $e) {
-            //
+            Session::flash('error', $e);
         }
 
         Session::flash('success', 'Payment successful!');

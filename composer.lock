@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d317a231b4c03bc244d5ccdb59030ae9",
+    "content-hash": "0ae8f8ae98448f33348758333bc4097a",
     "packages": [
         {
             "name": "64robots/nova-fields",
@@ -4945,22 +4945,22 @@
         },
         {
             "name": "propaganistas/laravel-phone",
-            "version": "4.2.2",
+            "version": "4.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Propaganistas/Laravel-Phone.git",
-                "reference": "2dc21369a03ab6a9eb80874d6959d293e9a1b9ba"
+                "reference": "e207b24c3d51623aaceda784c6ba0a7b9d9de2f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Propaganistas/Laravel-Phone/zipball/2dc21369a03ab6a9eb80874d6959d293e9a1b9ba",
-                "reference": "2dc21369a03ab6a9eb80874d6959d293e9a1b9ba",
+                "url": "https://api.github.com/repos/Propaganistas/Laravel-Phone/zipball/e207b24c3d51623aaceda784c6ba0a7b9d9de2f9",
+                "reference": "e207b24c3d51623aaceda784c6ba0a7b9d9de2f9",
                 "shasum": ""
             },
             "require": {
                 "giggsey/libphonenumber-for-php": "^7.0|^8.0",
-                "illuminate/support": "^5.5|^6.0",
-                "illuminate/validation": "^5.5|^6.0",
+                "illuminate/support": "^6.0|^7.0",
+                "illuminate/validation": "^6.0|^7.0",
                 "league/iso3166": "^2.0",
                 "php": ">=7.1"
             },
@@ -5002,7 +5002,7 @@
                 "phone",
                 "validation"
             ],
-            "time": "2019-09-04T18:45:21+00:00"
+            "time": "2020-06-22T06:43:41+00:00"
         },
         {
             "name": "psr/container",
