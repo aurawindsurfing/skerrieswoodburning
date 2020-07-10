@@ -35,10 +35,10 @@ class BookingController extends Controller
         return view('registration', compact('course'));
     }
 
+
     /**
      * @param CreateBooking $request
      * @return \Illuminate\Http\RedirectResponse
-     * @throws \Laravel\Cashier\Exceptions\CustomerAlreadyCreated
      * @throws \Laravel\Cashier\Exceptions\PaymentActionRequired
      * @throws \Laravel\Cashier\Exceptions\PaymentFailure
      */
