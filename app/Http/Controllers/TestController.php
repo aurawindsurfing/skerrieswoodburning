@@ -81,11 +81,33 @@ class TestController extends Controller
 
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadView('letters.course_confirmation_manual_handling', compact('bookings'));
-        $pdf->setOptions(['defaultMediaType' => 'all', 'isFontSubsettingEnabled' => true]);
+        $pdf->setOptions([
+            'defaultMediaType' => 'all',
+            'isFontSubsettingEnabled' => true,
+            'isRemoteEnabled' => true
+        ]);
         $id = 'xxx';
 
         return $pdf->stream('storage/tmp/invoices/N-'.$id.'.pdf');
 
         return view('letters.course_confirmation_manual_handling', compact('bookings'));
+    }
+
+    public function pdftest5()
+    {
+        $bookings = Booking::take(2)->get();
+
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadView('letters.course_booking_confirmation', compact('bookings'));
+        $pdf->setOptions([
+            'defaultMediaType' => 'all',
+            'isFontSubsettingEnabled' => true,
+            'isRemoteEnabled' => true,
+        ]);
+        $id = 'xxx';
+
+        return $pdf->stream('storage/tmp/invoices/N-'.$id.'.pdf');
+
+        return view('letters.course_booking_confirmation', compact('bookings'));
     }
 }

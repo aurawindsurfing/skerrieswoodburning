@@ -6,17 +6,17 @@
 
 <style type="text/css">
 
-    @font-face {    font-family: NanumMyeongjo; 
+    @font-face {    font-family: NanumMyeongjo;
                     src: url('{{ public_path("fonts/NanumMyeongjo-Bold.ttf")}}');
                     /* format("truetype"); */
                     /* font-weight: 500;  */
                     /* font-style: normal; */
-                    
-                 } 
-    @font-face { font-family: Zapfino; 
+
+                 }
+    @font-face { font-family: Zapfino;
                     src: url('{{ public_path("fonts/Zapfino.ttf")}}');
                     format("truetype");
-                    font-weight: 400; 
+                    font-weight: 400;
                     font-style: normal;
                 }
 
@@ -32,7 +32,7 @@
     .cetrificate {
         font-family: NanumMyeongjo, sans-serif;
         font-size: 70px;
-        font-weight:500; 
+        font-weight:500;
         /* font-style: ; */
     }
 
@@ -65,7 +65,7 @@
     }
 
     .center {
-        z-index: 1; 
+        z-index: 1;
         margin-left: 58px;
         margin-top: 60px;
         width: 660px;
@@ -76,17 +76,17 @@
     .bottom {
         position: absolute;
         bottom: 68px;
-        z-index: 1; 
+        z-index: 1;
         text-align: center;
     }
 
-    
+
 </style>
 
 </head>
 <body>
-    @foreach ($bookings as $booking)  
-        <div> 
+    @foreach ($bookings as $booking)
+        <div>
             <img class="backdrop" src="{{ public_path('images/ManualCertA4.svg') }}">
             <div class="center">
                 <div class="cetrificate" style="margin-top: 126px;">
@@ -126,32 +126,32 @@
                 <div class="small" style="margin-top: 15px;">
                     EXPIRY ON: {{ strtoupper( Carbon\Carbon::parse($booking->course->date)->addYears($booking->course->course_type->valid_for_years)->format('F Y'))}}
                 </div>
-                
+
 
             </div>
 
             <div class="bottom">
-                <div style="">
+                <div>
                     <img src="{{ public_path('images/cit_logo.png') }}" alt="" width="120px" />
                 </div>
 
                 <div style="margin-top:5px">
                     <table width="100%" style="z-index: 1;">
-                        <tr bgcolor="" style="border: 1px solid black">
+                        <tr style="border: 1px solid black">
                             <td style="width:3%;"></td>
                             <td style="width:20%;" class="signature">{{ $booking->course->tutor->name}}</td>
                             <td style="width:10%;"></td>
                             <td style="width:20%; text-align: center; vertical-align: bottom;">WWW.CITLTD.IE</td>
                             <td style="width:3%;"></td>
                         </tr>
-                        <tr bgcolor="">
+                        <tr>
                             <td height="1px"></td>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
                         </tr>
-                        <tr bgcolor="">
+                        <tr>
                             <td style=""></td>
                             <td style="text-align: center; vertical-align: top;">TUTOR: {{ strtoupper($booking->course->tutor->name)}}</td>
                             <td style=""></td>
@@ -164,8 +164,8 @@
 
             @if (!$loop->last)
                 <div style="page-break-after:always;"></div>
-            @endif 
-        </div>      
+            @endif
+        </div>
     @endforeach
 </body>
 </html>

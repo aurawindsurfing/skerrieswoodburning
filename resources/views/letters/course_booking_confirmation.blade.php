@@ -53,7 +53,7 @@
 </head>
 <body>
     @foreach ($bookings as $booking)
-        
+
      {{-- multiple pages --}}
         <div style="margin: 50px;">
             <div><img src="{{public_path('images/cit_logo.png')}}" alt="" width="180"/></div>
