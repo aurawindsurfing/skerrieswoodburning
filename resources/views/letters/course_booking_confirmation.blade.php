@@ -60,7 +60,7 @@
             <div style="height: 40px; background-color: white; border-width:2px; border-bottom-style:solid;"></div>
             <div style="height: 2px; background-color: white; border-width:1px; border-bottom-style:solid;"></div>
             <div style="padding: 3px; font-weight: bold; font-size: xx-small; background-color: white;">
-                <div>CIT Ltd., Block 8, Blanchardstown Corporate Park, Blanchardstown, Dublin 15</div>
+                <div>CIT Ltd., Unit C3, Dunshaughlin Business Park, Dunshaughlin, Co Meath A85 YV58</div>
                 <div>Tel : 01 809 7266	Fax:  01 809 7520	 e-mail: info@citltd.ie www.citltd.ie</div>
             </div>
             <div style="height: 60px; background-color: white;"></div>
