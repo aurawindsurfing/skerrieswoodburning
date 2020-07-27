@@ -64,7 +64,7 @@
                 <div>Tel : 01 809 7266	Fax:  01 809 7520	 e-mail: info@citltd.ie www.citltd.ie</div>
             </div>
             <div style="height: 60px; background-color: white;"></div>
-            <div style="height: 40px; background-color: white; text-align: center; font-size: large;">COURSE RECEIPT / VERIFICATION CERTIFICATE</div>
+            <div style="height: 40px; background-color: white; text-align: center; font-size: large;">COURSE BOOKING CONFIRMATION</div>
             <div style="height: 40px; background-color: white;"></div>
 
             <table class="table1" width="100%">
@@ -94,7 +94,7 @@
                 </tbody>
             </table>
             <div style="margin-top: 20px;">
-                Please Note:  This document will serve as evidence of having completed the {{$booking->course->course_type->name}} course on the above date until the candidate receives their {{$booking->course->course_type->name}} card.
+                Please Note:  This document will serve as evidence of booking {{$booking->course->course_type->name}} course on the above date.
                 If further verification is needed, please contact C.I.T. Ltd. on the number above.</div>
             <div style="margin-top: 80px;"></div>
 
