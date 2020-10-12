@@ -17,6 +17,8 @@ Route::get('/group/{group}', 'PageController@group')->name('group');
 
 Route::get('/booking/create/{course}', 'BookingController@create')->name('create-booking');
 Route::post('/booking', 'BookingController@store')->name('store-booking');
+Route::get('/booking/show/{booking}', 'BookingController@show')->name('show-booking')->middleware('signed');
+
 
 
 // Route::redirect('/', '/office', 301);

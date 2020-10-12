@@ -4,8 +4,6 @@ namespace App\Notifications;
 
 use App\NotificationLog;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\NexmoMessage;
 use Illuminate\Notifications\Notification;
 
@@ -55,6 +53,20 @@ class StudentConfirmation extends Notification
         return (new NexmoMessage)
                     ->content($message);
     }
+
+//    public function toMail($notifiable)
+//    {
+//        $message = view('emails.company_confirmation', ['bookings' => $this->bookings])->render();
+//
+//        foreach ($this->bookings as $booking) {
+//            $this->updateNotificationLog('email booking confirmation', $booking, $message);
+//        }
+//
+//        return (new MailMessage)
+//            ->subject('Booking Confirmation')
+//            ->from('alec@citltd.ie')
+//            ->view('emails.company_confirmation', ['bookings' => $this->bookings]);
+//    }
 
     public function updateNotificationLog($type, $booking, $message)
     {

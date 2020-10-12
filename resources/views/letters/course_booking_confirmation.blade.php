@@ -55,7 +55,7 @@
     @foreach ($bookings as $booking)
 
      {{-- multiple pages --}}
-        <div style="margin: 50px;">
+        <div style="margin-left: 60px;">
             <div><img src="{{public_path('images/cit_logo.png')}}" alt="" width="180"/></div>
             <div style="height: 40px; background-color: white; border-width:2px; border-bottom-style:solid;"></div>
             <div style="height: 2px; background-color: white; border-width:1px; border-bottom-style:solid;"></div>
@@ -63,18 +63,40 @@
                 <div>CIT Ltd., Unit C3, Dunshaughlin Business Park, Dunshaughlin, Co Meath A85 YV58</div>
                 <div>Tel : 01 809 7266	Fax:  01 809 7520	 e-mail: info@citltd.ie www.citltd.ie</div>
             </div>
-            <div style="height: 60px; background-color: white;"></div>
-            <div style="height: 40px; background-color: white; text-align: center; font-size: large;">COURSE BOOKING CONFIRMATION</div>
-            <div style="height: 40px; background-color: white;"></div>
+            <div style="height: 30px; background-color: white;"></div>
+            <div style="height: 20px; background-color: white; text-align: center; font-size: large;">COURSE BOOKING CONFIRMATION</div>
+            <div style="height: 20px; background-color: white;"></div>
 
             <table class="table1" width="100%">
                 <tbody>
+{{--                    <tr>--}}
+{{--                        <td>Candidate Name:</td>--}}
+{{--                        <td>{{$booking->name .' '. $booking->surname}}</td>--}}
+{{--                    </tr>--}}
+{{--                    @if (!isset($booking->company))--}}
+{{--                        <tr>--}}
+{{--                            <td>Amount:</td>--}}
+{{--                            <td>{{$booking->rate}} &euro;</td>--}}
+{{--                        </tr>--}}
+{{--                    @endif--}}
                     <tr>
                         <td width="20%">Course:</td>
                         <td>{{$booking->course->course_type->name}}</td>
                     </tr>
                     <tr>
+                        <td width="20%">Spaces:</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
                         <td>Course Date:</td>
+                        <td>{{$booking->course->date->format('l jS F Y')}}</td>
+                    </tr>
+                    <tr>
+                        <td>Start Time:</td>
+                        <td>{{$booking->course->date->format('l jS F Y')}}</td>
+                    </tr>
+                    <tr>
+                        <td>Finish Time:</td>
                         <td>{{$booking->course->date->format('l jS F Y')}}</td>
                     </tr>
                     <tr>
@@ -82,15 +104,30 @@
                         <td>{{$booking->course->venue->name .' '. $booking->course->venue->fullAddress() }}</td>
                     </tr>
                     <tr>
-                        <td>Candidate Name:</td>
-                        <td>{{$booking->name .' '. $booking->surname}}</td>
+                        <td>Map:</td>
+                        <td><a href="{{ isset($notifiable->course->venue->google_maps) ? $notifiable->course->venue->google_maps : '' }}">{{ isset($notifiable->course->venue->google_maps) ? $notifiable->course->venue->google_maps : '' }}</a><br>
+                        </td>
                     </tr>
-                    @if (!isset($booking->company))
                     <tr>
-                        <td>Amount:</td>
-                        <td>{{$booking->rate}} &euro;</td>
+                        <td>Cost:</td>
+                        <td>&euro; {{$booking->course->price}} per person</td>
                     </tr>
-                    @endif
+                    <tr>
+                        <td>Requirements:</td>
+                        <td>All candidates must have an Irish PPS Number (if a candidiate does not have an Irish PPS number they must contact us at least three days in advance of the course date. Each candidate must bring proof of identification on the day of the course.</td>
+                    </tr>
+                    <tr>
+                        <td>COVID-19:</td>
+                        <td>All candidates must complete and return the form in this link no later than three days prior to the course date
+                            <a href="https://form.jotform.com/201684563050350">https://form.jotform.com/201684563050350</a></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><b>Any candidates that do not give 24 hours notice of non-attendance will be charged a €150 cancellation fee.</b></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><b>Any candidates that arrive after the course start time may be refused entry and will be charged a €150 cancellation fee.</b></td>
+                    </tr>
+
                 </tbody>
             </table>
             <div style="margin-top: 20px;">
