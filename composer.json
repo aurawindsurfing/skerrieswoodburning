@@ -16,7 +16,7 @@
         "fideloper/proxy": "^4.0",
         "gregoriohc/laravel-nova-theme-responsive": "^0.6.1",
         "grimzy/laravel-mysql-spatial": "^2.1",
-        "guzzlehttp/guzzle": "^6.3",
+        "guzzlehttp/guzzle": "^7.2",
         "inspheric/nova-email-field": "^1.3",
         "inspheric/nova-indicator-field": "^1.2",
         "inspheric/nova-url-field": "^1.1",
@@ -32,6 +32,7 @@
         "maatwebsite/laravel-nova-excel": "^1.1",
         "michielkempen/nova-order-field": "^2.0",
         "mpdf/mpdf": "^7.1",
+        "nexmo/laravel": "^2.3",
         "orlyapps/nova-belongsto-depend": "^0.0.6",
         "outhebox/nova-hidden-field": "^1.0",
         "peterbrinck/nova-laravel-news": "^0.4.0",
@@ -44,7 +45,8 @@
         "spatie/laravel-activitylog": "^3.8",
         "stripe/stripe-php": "^7.27",
         "titasgailius/search-relations": "^1.0",
-        "vyuldashev/nova-money-field": "^1.1"
+        "vyuldashev/nova-money-field": "^1.1",
+        "wildbit/swiftmailer-postmark": "^3.3"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

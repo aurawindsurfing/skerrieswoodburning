@@ -55,7 +55,7 @@
     @foreach ($bookings as $booking)
 
      {{-- multiple pages --}}
-        <div style="margin-left: 60px;">
+        <div style="margin: 20px;">
             <div><img src="{{public_path('images/cit_logo.png')}}" alt="" width="180"/></div>
             <div style="height: 40px; background-color: white; border-width:2px; border-bottom-style:solid;"></div>
             <div style="height: 2px; background-color: white; border-width:1px; border-bottom-style:solid;"></div>
@@ -64,7 +64,7 @@
                 <div>Tel : 01 809 7266	Fax:  01 809 7520	 e-mail: info@citltd.ie www.citltd.ie</div>
             </div>
             <div style="height: 30px; background-color: white;"></div>
-            <div style="height: 20px; background-color: white; text-align: center; font-size: large;">COURSE BOOKING CONFIRMATION</div>
+            <div style="height: 40px; background-color: white; text-align: center; font-size: large;">COURSE BOOKING CONFIRMATION</div>
             <div style="height: 20px; background-color: white;"></div>
 
             <table class="table1" width="100%">
@@ -133,30 +133,30 @@
             <div style="margin-top: 20px;">
                 Please Note:  This document will serve as evidence of booking {{$booking->course->course_type->name}} course on the above date.
                 If further verification is needed, please contact C.I.T. Ltd. on the number above.</div>
-            <div style="margin-top: 80px;"></div>
+            <div style="margin-top: 160px;"></div>
 
-            <table class="table2" style="padding: 15px; width: 100%; margin-bottom: 60px; ">
-                <tbody>
-                    <tr>
-                        <td style="height: 2px; background-color: white; border-width:1px; border-bottom-style:solid;"></td>
-                        <td style="width: 30%;"></td>
-                        <td style="height: 2px; background-color: white; border-width:1px; border-bottom-style:solid;">{{$booking->course->date->format('jS F Y')}}</td>
-                    </tr>
-                    <tr>
-                    <td>{{$booking->course->tutor->name}}</td>
-                        <td></td>
-                        <td>Date</td>
-                    </tr>
-                    <tr>
-                        <td>{{$booking->course->course_type->tutor_title}}</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
+{{--            <table class="table2" style="padding: 15px; width: 100%; margin-bottom: 60px; ">--}}
+{{--                <tbody>--}}
+{{--                    <tr>--}}
+{{--                        <td style="height: 2px; background-color: white; border-width:1px; border-bottom-style:solid;"></td>--}}
+{{--                        <td style="width: 30%;"></td>--}}
+{{--                        <td style="height: 2px; background-color: white; border-width:1px; border-bottom-style:solid;">{{$booking->course->date->format('jS F Y')}}</td>--}}
+{{--                    </tr>--}}
+{{--                    <tr>--}}
+{{--                    <td>{{$booking->course->tutor->name}}</td>--}}
+{{--                        <td></td>--}}
+{{--                        <td>Date</td>--}}
+{{--                    </tr>--}}
+{{--                    <tr>--}}
+{{--                        <td>{{$booking->course->course_type->tutor_title}}</td>--}}
+{{--                        <td></td>--}}
+{{--                        <td></td>--}}
+{{--                    </tr>--}}
+{{--                </tbody>--}}
+{{--            </table>--}}
 
-            {{-- <div style="margin-top: 10px;"></div> --}}
-            <div style="margin-left: 10%; margin-right: 10%;">
+{{--            <div style="margin-bottom: 20px;"></div>--}}
+            <div style="margin-top: 20px; margin-left: 10%; margin-right: 10%;">
                 <div style="margin: 10px; border: 1px solid black; padding: 10px">
                         Please see our website for all of our available upcoming Safe Pass courses.
                         www.citltd.ie Also you can contact the office for any queries you may have regarding training 018097266

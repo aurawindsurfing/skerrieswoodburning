@@ -34,4 +34,20 @@ class CreateBooking extends FormRequest
             'phone'       => 'phone:IE,UK,mobile',
         ];
     }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'name.required' => 'A name is required.',
+            'surname.required' => 'A surname is required.',
+            'email.required' => 'An email is required.',
+            'phone.required' => 'A mobile number is required.',
+            'phone' => 'The is an invalid mobile number.'
+        ];
+    }
 }
