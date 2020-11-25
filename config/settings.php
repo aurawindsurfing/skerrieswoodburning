@@ -8,7 +8,7 @@ return [
         'height'  => 80,
         'crop'    => 'scale',
         'quality' => 'auto',
-        'effect'  => 'grayscale',
+        //'effect'  => 'grayscale',
         'effect'  => 'bgremoval',
         'opacity' => '80',
 //        'aspect_ratio' => '1.09'

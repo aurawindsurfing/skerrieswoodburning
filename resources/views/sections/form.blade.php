@@ -33,11 +33,11 @@
                     </div>
                     <div class="mt-3 text-center sm:mt-5">
                         <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-headline">
-                            Booking successful
+                            Thank you for your booking!
                         </h3>
                         <div class="mt-2">
                             <p class="text-sm leading-5 text-gray-500">
-                                Thank you for your payment! You will receive <b>text</b> and <b>email</b> with booking confirmation shortly.
+                                You will receive <b>a text</b> and <b>an email</b> with booking confirmation shortly.
                             </p>
                         </div>
                     </div>
