@@ -39,7 +39,6 @@ class PageController extends Controller {
         return view('group', compact('group', 'courses'));
     }
 
-
     /**
      * @param String $path
      * @param Int $take
