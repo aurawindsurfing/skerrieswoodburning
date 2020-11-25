@@ -18,7 +18,7 @@ class PageController extends Controller {
             return CourseTypeGroup::all()->sortBy('order')->take(16)->chunk(4);
         });
         $courses = Cache::remember('courses', 1440, function () {
-            return Course::with(['venue', 'course_type'])->where('inhouse', false)->orderByDesc('date')->take(10)->get();
+            return Course::with(['venue', 'course_type'])->where('inhouse', false)->orderByDesc('date')->take(4)->get();
         });
         $logos = Cache::remember('logos', 1440, function () {
             return $this->cloudinary_resources('logos', 50, 'cloudinary_logo');
@@ -71,7 +71,7 @@ class PageController extends Controller {
         foreach ($response['resources'] as $resource)
         {
             $url = Str::after(Str::beforeLast($resource['secure_url'], '.'), 'cit');
-            $url = Str::replaceFirst('e_bgremoval', 'e_bgremoval/e_grayscale', Cloudder::secureShow('cit/' . $url, config('settings.' . $preset)));
+            $url = Str::replaceFirst('e_bgremoval', 'e_bgremoval', Cloudder::secureShow('cit/' . $url, config('settings.' . $preset)));
             array_push($items, $url);
         }
 
