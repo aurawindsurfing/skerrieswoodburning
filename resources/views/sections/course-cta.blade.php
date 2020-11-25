@@ -120,7 +120,7 @@
 {{--                        <p class="text-lg leading-6 font-medium text-gray-900">--}}
 {{--                            Valid for {{$type->valid_for_years}} years--}}
 {{--                        </p>--}}
-                        <div class="mt-4 flex items-center justify-center text-5xl leading-none font-extrabold text-gray-900">
+                        <div class="mt-4 flex items-center justify-center text-4xl leading-none font-extrabold text-gray-900">
               <span>
                 €{{$type->default_rate}}
               </span>
