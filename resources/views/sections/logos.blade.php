@@ -3,7 +3,7 @@
         <p class="text-center text-base leading-6 font-semibold uppercase text-gray-600 tracking-wider">
             Trusted by leading Irish companies
         </p>
-        <div class="mt-6 grid grid-cols-3 gap-0.5 md:grid-cols-5 lg:mt-8">
+        <div class="mt-6 grid grid-cols-4 md:grid-cols-7 lg:mt-8">
             @foreach($logos as $logo)
                 <div class="col-span-1 flex justify-center py-2 px-2 ">
                     <img src="{{ $logo }}"/>
