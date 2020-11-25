@@ -121,7 +121,7 @@ class AccountsPayable extends Resource
 
             HiddenField::make('Accounts Payable', 'accounts_payable')
                 ->onlyOnForms()
-                ->default(true),
+                ->defaultValue(true),
 
         ];
     }

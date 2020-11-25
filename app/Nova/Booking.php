@@ -6,13 +6,10 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Date;
-use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\HasOne;
-use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Http\Requests\NovaRequest;
 use Outhebox\NovaHiddenField\HiddenField;
 use Vyuldashev\NovaMoneyField\Money;
 
@@ -223,7 +220,7 @@ class Booking extends Resource
 
             HiddenField::make('Date', 'date')
                 ->onlyOnForms()
-                ->default(now()),
+                ->defaultValue(now()),
 
             HasMany::make('Notification Log')->sortable(),
 

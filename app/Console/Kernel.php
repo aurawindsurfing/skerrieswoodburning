@@ -36,6 +36,7 @@ class Kernel extends ConsoleKernel
     {
         // student
         $schedule->command('notify:newbookings_student')->timezone('Europe/Dublin')->everyMinute();
+        $schedule->command('notify:missing_pps')->timezone('Europe/Dublin')->everyMinute();
         // $schedule->command('notify:booking_reminder_student')->timezone('Europe/Dublin')->dailyAt('14:00');
 
         // company

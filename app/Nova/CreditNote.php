@@ -6,10 +6,7 @@ use Illuminate\Http\Request;
 use Inspheric\Fields\Indicator;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Date;
-use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
-use Money\Number;
 use Outhebox\NovaHiddenField\HiddenField;
 use Vyuldashev\NovaMoneyField\Money;
 
@@ -122,15 +119,15 @@ class CreditNote extends Resource
 
             HiddenField::make('Status')
             ->onlyOnForms()
-            ->default('issued'),
+            ->defaultValue('issued'),
 
             HiddenField::make('Prefix')
             ->onlyOnForms()
-            ->default('CN-'),
+            ->defaultValue('CN-'),
 
             HiddenField::make('User Id')
             ->onlyOnForms()
-            ->default(auth()->user()->id),
+            ->defaultValue(auth()->user()->id),
 
         ];
     }

@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use App\Booking;
 use App\Notifications\MissingPPSConfirmation;
-use App\Notifications\StudentConfirmation;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Propaganistas\LaravelPhone\PhoneNumber;
@@ -16,7 +15,7 @@ class CheckForMissingPPS extends Command
      *
      * @var string
      */
-    protected $signature = 'notify:missingpps';
+    protected $signature = 'notify:missing_pps';
 
     /**
      * The console command description.

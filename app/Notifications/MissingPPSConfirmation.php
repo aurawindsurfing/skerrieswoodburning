@@ -4,10 +4,10 @@ namespace App\Notifications;
 
 use App\NotificationLog;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\NexmoMessage;
 use Illuminate\Notifications\Notification;
+use Nexmo\Laravel\Facade\Nexmo;
 
 class MissingPPSConfirmation extends Notification
 {
@@ -42,6 +42,17 @@ class MissingPPSConfirmation extends Notification
      */
     public function toNexmo($notifiable)
     {
+
+        $alec_messege = 'Missing PPS number for '.$notifiable->name.' '.$notifiable->surname.
+                        ' Give him a call at: '. $notifiable->phone;
+
+        Nexmo::message()->send([
+            'to'   => $notifiable->phone,
+            'from' => '+353868065966',
+            'text' => $alec_messege
+        ]);
+
+
         $message = (isset($notifiable->name) ? $notifiable->name.', we' : 'We').' are missing your PPS number. It is required to take part in  '.
                     $notifiable->course->course_type->name.' course. '.
                     ' Please call CIT at 018097266 and provide it asap.';
@@ -61,6 +72,7 @@ class MissingPPSConfirmation extends Notification
         return (new MailMessage)
             ->subject('We are missing your PPS number')
             ->from('alec@citltd.ie')
+            ->bcc('alec@citltd.ie')
             ->view('emails.missingPPS', compact('notifiable'));
     }
 

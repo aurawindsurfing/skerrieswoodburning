@@ -6,11 +6,7 @@ use Illuminate\Http\Request;
 use Inspheric\Fields\Indicator;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Date;
-use Laravel\Nova\Fields\HasOne;
-use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Select;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Http\Requests\NovaRequest;
 use Outhebox\NovaHiddenField\HiddenField;
 use Vyuldashev\NovaMoneyField\Money;
 
@@ -104,7 +100,7 @@ class Payment extends Resource
 
             HiddenField::make('Status')
             ->onlyOnForms()
-            ->default('completed'),
+            ->defaultValue('completed'),
 
         ];
     }
