@@ -16,6 +16,13 @@ class CreateBooking extends FormRequest
         return true;
     }
 
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'phone' => preg_replace("/[^0-9]/", "", $this->phone)
+        ]);
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *

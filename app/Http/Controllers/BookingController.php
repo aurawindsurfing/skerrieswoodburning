@@ -74,15 +74,14 @@ class BookingController extends Controller
                 $booking->notify(new StudentConfirmation($booking));
             }
 
-        } catch (InvalidRequestException $e){
+
+
+        } catch (InvalidRequestException $e) {
             return back()->withInput()->with('card-error', 'Please fill in the form again. Do not refresh the form!');
-        } catch (CardException $e){
+        } catch (CardException $e) {
             return back()->withInput()->with('card-error', $e->getMessage());
         } catch (PaymentActionRequired $e) {
-            return redirect()->route(
-                'cashier.payment',
-                [$e->payment->id, 'redirect' => route('home')]
-            );
+            return redirect()->route('cashier.payment', [$e->payment->id, 'redirect' => route('home')]);
         } catch (Exception $e) {
             return back()->withInput()->with('card-error', $e->getMessage());
         }
