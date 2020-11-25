@@ -38,7 +38,7 @@
                         {{--                        <p class="text-base font-medium text-gray-900">--}}
                         {{--                            Book your safepass course right now.--}}
                         {{--                        </p>--}}
-                        <form action="#" method="POST" class="mt-3 sm:flex">
+{{--                        <form action="#" method="POST" class="mt-3 sm:flex">--}}
                             <div class="flex flex-col sm:w-3/4 sm:mx-auto lg:mx-0">
                                 {{--                                <div>--}}
                                 {{--                                <input aria-label="Name"--}}
@@ -53,15 +53,30 @@
 
 
                                 <div class="mt-3">
-                                    <button type="submit"
-                                            @click.prevent="$refs.list.scrollIntoView()"
+                                    <a href="{{route('group', ['group' => 3])}}">
+                                        <button
+                                            {{--                                        type="submit"--}}
+                                            {{--                                            @click.prevent="$refs.list.scrollIntoView()"--}}
                                             class="mt-3 ml-0 w-full px-6 py-3 border border-transparent text-lg leading-6 font-medium rounded-md text-white bg-gray-800 shadow-sm hover:bg-gray-700 focus:outline-none focus:shadow-outline active:bg-gray-900 transition duration-150 ease-in-out sm:mt-0 sm:ml-0 sm:flex-shrink-0  sm:items-center ">
-                                        Book Safepass Now
-                                    </button>
+                                            Book Safepass Now
+                                        </button>
+                                    </a>
                                 </div>
+
+                                <div class="mt-3">
+                                    <a href="">
+                                        <button
+                                            {{--                                        type="submit"--}}
+                                            {{--                                            @click.prevent="$refs.list.scrollIntoView()"--}}
+                                            class="mt-3 ml-0 w-full px-6 py-3 border text-lg leading-6 font-medium rounded-md text-blue-600 bg-gray-50 hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:bg-gray-100 focus:text-blue-700 transition duration-150 ease-in-out">
+                                            Book different course
+                                        </button>
+                                    </a>
+                                </div>
+
                             </div>
 
-                        </form>
+{{--                        </form>--}}
                         {{--                        <p class="mt-3 text-sm leading-5 text-gray-500">--}}
                         {{--                            We care about the protection of your data. Read our--}}
                         {{--                            <a href="#" class="font-medium text-gray-900 underline">Privacy Policy</a>.--}}

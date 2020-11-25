@@ -24,14 +24,14 @@
                class="ml-10 font-medium text-gray-500 hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out">info@citltd.ie</a>
         </div>
     </div>
-    <div class="hidden md:block text-right">
-                <span class="inline-flex rounded-md shadow-md">
-                  <span class="inline-flex rounded-md shadow-xs">
-                    <a href="{{route('home')}}"
-                       class="inline-flex items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-blue-600 bg-white hover:bg-gray-50 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
-                     Course bookings
-                    </a>
-                  </span>
-                </span>
-    </div>
+{{--    <div class="hidden md:block text-right">--}}
+{{--                <span class="inline-flex rounded-md shadow-md">--}}
+{{--                  <span class="inline-flex rounded-md shadow-xs">--}}
+{{--                    <a href="{{route('home')}}"--}}
+{{--                       class="inline-flex items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-blue-600 bg-white hover:bg-gray-50 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">--}}
+{{--                     Course bookings--}}
+{{--                    </a>--}}
+{{--                  </span>--}}
+{{--                </span>--}}
+{{--    </div>--}}
 </nav>
