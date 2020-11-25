@@ -5,12 +5,10 @@ namespace App\Http\Controllers;
 use App\Booking;
 use App\Course;
 use App\Http\Requests\CreateBooking;
-use App\Notifications\StudentConfirmation;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Laravel\Cashier\Exceptions\PaymentActionRequired;
-use Propaganistas\LaravelPhone\PhoneNumber;
 use Stripe\Exception\CardException;
 use Stripe\Exception\InvalidRequestException;
 
@@ -70,9 +68,10 @@ class BookingController extends Controller
 
             Session::flash('success', 'Payment successful!');
 
-            if (PhoneNumber::make($booking->phone, config('nexmo.countries'))->isOfType('mobile')) {
-                $booking->notify(new StudentConfirmation($booking));
-            }
+            // not needed there is a check running in kernel and sending notifications
+            //if (PhoneNumber::make($booking->phone, config('nexmo.countries'))->isOfType('mobile')) {
+            //    $booking->notify(new StudentConfirmation($booking));
+            //}
 
 
 
