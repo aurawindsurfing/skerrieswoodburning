@@ -17,7 +17,7 @@ class MissingPPSConfirmation extends Notification
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct()
     {
         //
     }
@@ -42,13 +42,7 @@ class MissingPPSConfirmation extends Notification
     public function toNexmo($notifiable)
     {
 
-        //Nexmo::message()->send([
-        //    'to'   => $notifiable->phone,
-        //    'from' => '+353868065966',
-        //    'text' => 'Missing PPS number for '.$notifiable->name.' '.$notifiable->surname.' Give him a call at: '.$notifiable->phone,
-        //]);
-
-        $message = (isset($notifiable->name) ? $notifiable->name.', we' : 'We').' are missing your PPS number. It is required to take part in  '.$notifiable->course->course_type->name.' course. '.' Please call CIT at 018097266 and provide it asap.';
+        $message = (isset($notifiable->name) ? $notifiable->name.', we' : 'We').' are missing your PPS number. It is required to take part in  '.$notifiable->course->course_type->name.' course. '.'Please call CIT at 018097266 and provide it asap.';
 
         $this->updateNotificationLog('sms pps reminder', $notifiable, $message);
 
@@ -61,7 +55,10 @@ class MissingPPSConfirmation extends Notification
 
         $this->updateNotificationLog('email pps reminder', $notifiable, $message);
 
-        return (new MailMessage)->subject('We are missing your PPS number')->from('alec@citltd.ie')->cc('alec@citltd.ie')->view('emails.missingPPS', compact('notifiable'));
+        return (new MailMessage)
+            ->subject('We are missing your PPS number')
+            ->from('alec@citltd.ie')
+            ->view('emails.missingPPS', compact('notifiable'));
     }
 
     public function updateNotificationLog($type, $booking, $message)

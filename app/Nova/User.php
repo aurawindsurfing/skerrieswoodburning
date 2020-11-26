@@ -74,6 +74,12 @@ class User extends Resource
                 ->creationRules('unique:users,email')
                 ->updateRules('unique:users,email,{{resourceId}}'),
 
+            Text::make('Phone')
+                ->rules('nullable')
+                ->withMeta(['extraAttributes' => [
+                    'placeholder' => '08x', ],
+                ]),
+
             Select::make('Role')
                 ->options([
                     'admin' => 'Admin',

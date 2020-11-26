@@ -2,10 +2,10 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Propaganistas\LaravelPhone\PhoneNumber;
 
 class User extends Authenticatable
 {
@@ -35,5 +35,18 @@ class User extends Authenticatable
     public function booking()
     {
         return $this->hasMany(\App\Booking::class);
+    }
+
+    /**
+     * Route notifications for the Nexmo channel.
+     *
+     * @param  \Illuminate\Notifications\Notification  $notification
+     * @return string
+     */
+    public function routeNotificationForNexmo($notification)
+    {
+        $phone = PhoneNumber::make($this->phone, config('nexmo.countries'))->formatE164();
+
+        return ltrim($phone, '+');
     }
 }
