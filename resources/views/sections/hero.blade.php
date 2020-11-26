@@ -26,9 +26,9 @@
 {{--                        Construction Industry Training Ltd--}}
 {{--                    </div>--}}
                     <h2 class="mt-1 text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:leading-none sm:text-6xl lg:text-5xl xl:text-6xl">
-                        A safer workplace
+                        Your Workplace Safety
                         <br class="hidden md:inline"/>
-                        <span class="text-blue-600">starts with us</span>
+                        <span class="text-blue-600">Starts With Us</span>
                     </h2>
                     <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
                         We offer a complete service, from providing an initial Training Needs Analysis through to
