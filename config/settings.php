@@ -6,11 +6,11 @@ return [
         'format'  => 'png',
         'width'   => 105,
         'height'  => 80,
-        'crop'    => 'scale',
+        'crop'    => 'fit',
         'quality' => 'auto',
         //'effect'  => 'grayscale',
         'effect'  => 'bgremoval',
-        'opacity' => '80',
+        //'opacity' => '80',
 //        'aspect_ratio' => '1.09'
     ],
 
