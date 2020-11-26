@@ -25,7 +25,7 @@
 {{--                        class="text-sm font-semibold uppercase tracking-wide text-gray-500 sm:text-base lg:text-sm xl:text-base">--}}
 {{--                        Construction Industry Training Ltd--}}
 {{--                    </div>--}}
-                    <h2 class="mt-1 text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:leading-none sm:text-6xl lg:text-5xl xl:text-6xl">
+                    <h2 class="mt-1 text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:leading-none sm:text-6xl lg:text-5xl xl:text-5xl">
                         Your Workplace Safety
                         <br class="hidden md:inline"/>
                         <span class="text-blue-600">Starts With Us</span>
