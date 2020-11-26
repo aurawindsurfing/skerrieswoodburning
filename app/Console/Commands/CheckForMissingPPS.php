@@ -55,12 +55,9 @@ class CheckForMissingPPS extends Command
                 if (PhoneNumber::make($booking->phone, config('nexmo.countries'))->isOfType('mobile')) {
                     $booking->notify(new MissingPPSConfirmation);
                     User::find(1)->notify(new MissingPPSCIT($booking));
-
-                    $booking->pps_reminder_sent = true;
-                    $booking->save();
+                    $booking->update(['pps_reminder_sent' => true]);
                 }
             }
-
         }
     }
 }
