@@ -18,7 +18,7 @@ class PageController extends Controller {
             return CourseTypeGroup::where('id', '<>', 14)->get()->sortBy('order')->take(16)->chunk(4);
         });
         $courses = Cache::remember('courses', 1440, function () {
-            return Course::with(['venue', 'course_type'])->where('inhouse', false)->orderByDesc('date')->take(4)->get();
+            return Course::with(['venue', 'course_type'])->where('inhouse', false)->orderByDesc('date')->take(7)->get();
         });
         $logos = Cache::remember('logos', 1440, function () {
             return $this->cloudinary_resources('logos', 50, 'cloudinary_logo');

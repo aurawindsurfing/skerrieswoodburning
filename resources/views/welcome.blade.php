@@ -9,7 +9,7 @@
         @include('sections.hero')
         @include('sections.our_principles')
         @include('sections.groups')
-{{--        @include('sections.public-courses-list')--}}
+        @include('sections.public-courses-list')
         @include('sections.logos')
     </div>
 

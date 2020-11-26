@@ -21,7 +21,7 @@
 
                                     </div>
                                 </div>
-                                <div class="block ml-0 pt-4 lg:ml-6">
+                                <div class="block ml-0 lg:ml-6">
                                     <div class="text-base leading-5 text-gray-900 pt-2 md:pt-0">
                                         {{$course->date->format('d F Y (l)') .' '. Carbon\Carbon::parse($course->time)->format('H:i')}}
                                         <span class="md:hidden">, {{$course->venue->address_line_1}}, {{$course->venue->city}}</span>
