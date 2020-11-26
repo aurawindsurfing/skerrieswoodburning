@@ -17,7 +17,7 @@ class MissingPPSConfirmation extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data)
     {
         //
     }
