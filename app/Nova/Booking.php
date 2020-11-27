@@ -136,7 +136,7 @@ class Booking extends Resource
 
             Text::make('Email')->sortable(),
 
-            Boolean::make('Holds Irish PPS number', 'pps')->hideFromIndex(),
+            Boolean::make('PPS', 'pps'),
 
             Money::make('Rate', 'EUR')->exceptOnForms(),
             Money::make('Rate', 'EUR')->onlyOnForms()

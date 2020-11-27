@@ -20,6 +20,15 @@ class Course extends Model
         'date',
     ];
 
+    public static function boot() {
+        parent::boot();
+
+        static::deleting(function($course) { // before delete() method call this
+            $course->bookings()->delete();
+            // do the rest of the cleanup...
+        });
+    }
+
     public function tutor()
     {
         return $this->belongsTo(\App\Tutor::class);
