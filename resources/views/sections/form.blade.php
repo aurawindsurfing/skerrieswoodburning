@@ -138,7 +138,7 @@
                         <br>
                         <span class="text-sm leading-6 text-gray-500">on</span>
                         <p class="mt-1 text-lg font-medium leading-5 text-gray-900">
-                            {{$course->date->format('(l) d F Y, h A')}}
+                            {{$course->date->format('(l) d F Y').', '.Carbon\Carbon::parse($course->time)->format('H:i')}}
                         </p>
                     </div>
                 </div>
