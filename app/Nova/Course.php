@@ -4,13 +4,12 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Inspheric\Fields\Indicator;
-use Laraning\NovaTimeField\TimeField;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\HasMany;
-use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
+use Michielfb\Time\Time;
 use Vyuldashev\NovaMoneyField\Money;
 
 class Course extends Resource
@@ -113,7 +112,7 @@ class Course extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function fields(Request $request)
@@ -125,21 +124,11 @@ class Course extends Resource
 
             BelongsTo::make('Course Type', 'course_type')->rules('required'),
 
-            Money::make('Price', 'EUR')
-                ->withMeta([
-                    'value' => 115,
-                ])
-                ->hideFromIndex()
-                ->sortable()
-                ->rules('required'),
+            Money::make('Price', 'EUR')->hideFromIndex()->sortable()->rules('required'),
 
             Date::make('Date')->sortable()->rules('required'),
 
-            TimeField::make('Time')
-                ->withMeta([
-                    'value' => '08:00',
-                ])
-                ->rules('required'),
+            Time::make('Time')->format('HH:mm')->rules('required'),
 
             BelongsTo::make('Venue')->searchable()->rules('required'),
 
@@ -162,19 +151,18 @@ class Course extends Resource
                     return 'cancelled';
                 }
             })->labels([
-                'available' => $this->placesLeft().' Available',
-                'full' => 'Full',
+                'available'  => $this->placesLeft().' Available',
+                'full'       => 'Full',
                 'overbooked' => $this->placesLeft().' Overbooked',
-                'cancelled' => 'Cancelled',
+                'cancelled'  => 'Cancelled',
             ])->colors([
-                'available' => 'green',
-                'full' => 'purple',
+                'available'  => 'green',
+                'full'       => 'purple',
                 'overbooked' => 'red',
-                'cancelled' => 'red',
+                'cancelled'  => 'red',
             ]),
 
-            HasMany::make('Course Dates')->sortable()
-                ->canSee(function () {
+            HasMany::make('Course Dates')->sortable()->canSee(function () {
                     return $this->multiday;
                 }),
 
@@ -185,7 +173,7 @@ class Course extends Resource
     /**
      * Get the cards available for the request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function cards(Request $request)
@@ -196,7 +184,7 @@ class Course extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function filters(Request $request)
@@ -209,20 +197,19 @@ class Course extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function lenses(Request $request)
     {
-        return [
-            // new Lenses\UpcomingOnly,
+        return [// new Lenses\UpcomingOnly,
         ];
     }
 
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function actions(Request $request)

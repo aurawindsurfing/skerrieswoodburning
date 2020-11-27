@@ -3,13 +3,13 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laraning\NovaTimeField\TimeField;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
+use Michielfb\Time\Time;
 use Vyuldashev\NovaMoneyField\Money;
 
 class CourseType extends Resource
@@ -69,7 +69,7 @@ class CourseType extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function fields(Request $request)
@@ -77,63 +77,33 @@ class CourseType extends Resource
         return [
             ID::make()->sortable(),
 
-            Text::make('Name')
-                ->sortable()
-                ->rules('required', 'max:255'),
+            Text::make('Name')->sortable()->rules('required', 'max:255'),
 
-            BelongsTo::make('Display Group', 'course_type_group','App\Nova\CourseTypeGroup'),
+            BelongsTo::make('Display Group', 'course_type_group', 'App\Nova\CourseTypeGroup'),
 
-            Text::make('Title')
-                ->sortable()
-                ->hideFromIndex(),
+            Text::make('Title')->sortable()->hideFromIndex(),
 
-            Text::make('Tutor title')
-                ->sortable()
-                ->hideFromIndex(),
+            Text::make('Tutor title')->sortable()->hideFromIndex(),
 
-            Money::make('Default Rate', 'EUR')
-                ->rules('required', 'max:255'),
+            Money::make('Default Rate', 'EUR')->rules('required', 'max:255'),
 
-            Textarea::make('Objectives')
-                ->rows(5)
-                ->hideFromIndex()
-                ->alwaysShow(),
+            Textarea::make('Objectives')->rows(5)->hideFromIndex()->alwaysShow(),
 
-            Textarea::make('Who should attend', 'who_should_attend')
-                ->rows(5)
-                ->hideFromIndex()
-                ->alwaysShow(),
+            Textarea::make('Who should attend', 'who_should_attend')->rows(5)->hideFromIndex()->alwaysShow(),
 
-            Textarea::make('Delegates')
-                ->rows(5)
-                ->hideFromIndex()
-                ->alwaysShow(),
+            Textarea::make('Delegates')->rows(5)->hideFromIndex()->alwaysShow(),
 
-            Markdown::make('Outline')
-                ->hideFromIndex()
-                ->alwaysShow(),
+            Markdown::make('Outline')->hideFromIndex()->alwaysShow(),
 
-            Textarea::make('Duration')
-                ->rows(5)
-                ->hideFromIndex()
-                ->alwaysShow(),
+            Textarea::make('Duration')->rows(5)->hideFromIndex()->alwaysShow(),
 
-            Textarea::make('Certification')
-                ->rows(5)
-                ->hideFromIndex()
-                ->alwaysShow(),
+            Textarea::make('Certification')->rows(5)->hideFromIndex()->alwaysShow(),
 
-            Textarea::make('What to bring', 'what_to_bring')
-                ->rows(5)
-                ->hideFromIndex()
-                ->alwaysShow(),
+            Textarea::make('What to bring', 'what_to_bring')->rows(5)->hideFromIndex()->alwaysShow(),
 
-            TimeField::make('Start Time'),
+            Time::make('Start Time')->format('HH:mm'),
 
-            Textarea::make('Plan of the day', 'plan_of_the_day')
-                ->rows(5)
-                ->hideFromIndex()
-                ->alwaysShow(),
+            Textarea::make('Plan of the day', 'plan_of_the_day')->rows(5)->hideFromIndex()->alwaysShow(),
 
             Number::make('Valid for years', 'valid_for_years'),
 
@@ -145,7 +115,7 @@ class CourseType extends Resource
     /**
      * Get the cards available for the request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function cards(Request $request)
@@ -156,7 +126,7 @@ class CourseType extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function filters(Request $request)
@@ -167,7 +137,7 @@ class CourseType extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function lenses(Request $request)
@@ -178,7 +148,7 @@ class CourseType extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function actions(Request $request)

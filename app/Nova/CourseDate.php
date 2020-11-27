@@ -3,11 +3,9 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laraning\NovaTimeField\TimeField;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Date;
-use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Http\Requests\NovaRequest;
+use Michielfb\Time\Time;
 
 class CourseDate extends Resource
 {
@@ -60,7 +58,7 @@ class CourseDate extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function fields(Request $request)
@@ -69,7 +67,7 @@ class CourseDate extends Resource
 
             Date::make('Date')->sortable(),
 
-            TimeField::make('Time')->rules('required'),
+            Time::make('Time')->format('HH:mm')->rules('required'),
 
             BelongsTo::make('Venue')->sortable()->searchable()->rules('required'),
         ];
@@ -78,7 +76,7 @@ class CourseDate extends Resource
     /**
      * Get the cards available for the request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function cards(Request $request)
@@ -89,7 +87,7 @@ class CourseDate extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function filters(Request $request)
@@ -100,7 +98,7 @@ class CourseDate extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function lenses(Request $request)
@@ -111,7 +109,7 @@ class CourseDate extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function actions(Request $request)

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "708ecb0bdcdcc86e4070235f5a82da51",
+    "content-hash": "a2ba07bb7c46fc23e5382c3f4e524d4d",
     "packages": [
         {
             "name": "64robots/nova-fields",
@@ -3798,6 +3798,47 @@
                 "vector"
             ],
             "time": "2020-08-28T17:11:00+00:00"
+        },
+        {
+            "name": "michielfb/laravel-nova-time-field",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/michielfb/laravel-nova-time-field.git",
+                "reference": "c641a7b74dfa9208ecf907779de5576d076b514a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/michielfb/laravel-nova-time-field/zipball/c641a7b74dfa9208ecf907779de5576d076b514a",
+                "reference": "c641a7b74dfa9208ecf907779de5576d076b514a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Michielfb\\Time\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Michielfb\\Time\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2020-03-24T21:12:00+00:00"
         },
         {
             "name": "michielkempen/nova-order-field",
