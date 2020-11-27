@@ -47,12 +47,15 @@ class PageController extends Controller {
         return view('group', compact('group', 'courses'));
     }
 
-    public function list(CourseType $type)
+    public function list(CourseType $type = null)
     {
         $courses = Cache::remember('courses', 1440, function () use ($type) {
             return Course::query()
-                ->when($type, function ($query) use ($type) {
+                ->when(isset($type), function ($query) use ($type) {
                     return $query->where('course_type_id', $type->id);
+                })
+                ->when(!isset($type), function ($query) use ($type) {
+                    return $query->whereNotIn('course_type_id', [1]);
                 })
                 ->with(['venue', 'course_type'])
                 ->where('inhouse', false)
