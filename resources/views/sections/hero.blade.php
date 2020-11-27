@@ -53,7 +53,7 @@
 
 
                                 <div class="mt-3">
-                                    <a href="{{route('group', ['group' => 3])}}">
+                                    <a href="{{route('list', ['type' => 1])}}">
                                         <button
                                             {{--                                        type="submit"--}}
                                             {{--                                            @click.prevent="$refs.list.scrollIntoView()"--}}
@@ -64,12 +64,12 @@
                                 </div>
 
                                 <div class="mt-3">
-                                    <a href="">
+                                    <a href="{{route('list')}}">
                                         <button
                                             {{--                                        type="submit"--}}
                                             {{--                                            @click.prevent="$refs.list.scrollIntoView()"--}}
                                             class="mt-3 ml-0 w-full px-6 py-3 border text-lg leading-6 font-medium rounded-md text-blue-600 bg-gray-50 hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:bg-gray-100 focus:text-blue-700 transition duration-150 ease-in-out">
-                                            Book different course
+                                            Book Other Course Now
                                         </button>
                                     </a>
                                 </div>

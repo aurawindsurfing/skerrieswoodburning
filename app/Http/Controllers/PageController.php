@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Course;
+use App\CourseType;
 use App\CourseTypeGroup;
 use Cloudinary\Api;
 use Illuminate\Support\Arr;
@@ -15,10 +16,10 @@ class PageController extends Controller {
     public function index()
     {
         $groups_chunks = Cache::remember('group_chunks', 1440, function () {
-            return CourseTypeGroup::where('id', '<>', 14)->get()->sortBy('order')->take(16)->chunk(4);
+            return CourseTypeGroup::where('id', '<>', 14)->get()->sortBy('order')->chunk(4);
         });
         $courses = Cache::remember('courses', 1440, function () {
-            return Course::with(['venue', 'course_type'])->where('course_type_id', 1)->where('inhouse', false)->orderByDesc('date')->take(7)->get();
+            return Course::with(['venue', 'course_type'])->where('course_type_id', 1)->where('inhouse', false)->where('date', '>=', today())->orderByDesc('date')->take(7)->get();
         });
         $logos = Cache::remember('logos', 1440, function () {
             return $this->cloudinary_resources('logos', 50, 'cloudinary_logo');
@@ -32,29 +33,37 @@ class PageController extends Controller {
 
     public function group(CourseTypeGroup $group)
     {
-        $course_type_group = Cache::remember('course_type_group', 1440, function () use ($group) {
-            //return Course::with(['venue', 'course_type'])->where('inhouse', false)->orderByDesc('date')->take(30)->get();
-            return $group
-                ->with('course_type')
-                //->whereHas('coursetype', function ($q) {
-                //    $q->where('inhouse', false);
-                //})
+        $course_types = CourseType::where('course_type_group_id', $group->id)->pluck('id');
+
+        $courses = Cache::remember('group_courses', 1440, function () use ($course_types) {
+            return Course::with(['venue', 'course_type'])
+                ->whereIn('course_type_id', $course_types)
+                ->where('date', '>=', today())
+                ->where('inhouse', false)
                 ->orderByDesc('date')
-                ->take(30)
                 ->get();
-
-        });
-
-        return view('group', compact('group', 'course_type_group'));
-    }
-
-    public function list(CourseTypeGroup $group)
-    {
-        $courses = Cache::remember('courses', 1440, function () {
-            return Course::with(['venue', 'course_type'])->where('inhouse', false)->orderByDesc('date')->take(30)->get();
         });
 
         return view('group', compact('group', 'courses'));
+    }
+
+    public function list(CourseType $type)
+    {
+        $courses = Cache::remember('courses', 1440, function () use ($type) {
+            return Course::query()
+                ->when($type, function ($query) use ($type) {
+                    return $query->where('course_type_id', $type->id);
+                })
+                ->with(['venue', 'course_type'])
+                ->where('inhouse', false)
+                ->where('date', '>=', today())
+                ->orderByDesc('date')
+                ->get();
+        });
+
+        $course_type = $type;
+
+        return view('list', compact('courses', 'course_type'));
     }
 
     /**

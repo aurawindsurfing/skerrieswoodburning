@@ -14,7 +14,7 @@
 Route::get('/', 'PageController@index')->name('home');
 
 Route::get('/group/{group}', 'PageController@group')->name('group');
-Route::get('/list/{group?}', 'PageController@list')->name('list');
+Route::get('/list/{type?}', 'PageController@list')->name('list');
 
 Route::get('/booking/create/{course}', 'BookingController@create')->name('create-booking');
 Route::post('/booking', 'BookingController@store')->name('store-booking');
