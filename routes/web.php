@@ -14,6 +14,7 @@
 Route::get('/', 'PageController@index')->name('home');
 
 Route::get('/group/{group}', 'PageController@group')->name('group');
+Route::get('/list/{group?}', 'PageController@list')->name('list');
 
 Route::get('/booking/create/{course}', 'BookingController@create')->name('create-booking');
 Route::post('/booking', 'BookingController@store')->name('store-booking');
@@ -30,9 +31,9 @@ Route::get('/booking/show/{booking}', 'BookingController@show')->name('show-book
 // Route::get('pdftest1', 'TestController@pdftest1');
 // Route::get('pdftest2', 'TestController@pdftest2');
 // Route::get('pdftest3', 'TestController@pdftest3');
- Route::get('pdftest4', 'TestController@pdftest4');
- Route::get('pdftest5', 'TestController@pdftest5');
+// Route::get('pdftest4', 'TestController@pdftest4');
+// Route::get('pdftest5', 'TestController@pdftest5');
 
 
-Route::get('test', 'TestController@test');
+//Route::get('test', 'TestController@test');
 // Route::get('test2', 'TestController@test2');

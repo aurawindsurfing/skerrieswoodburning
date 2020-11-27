@@ -6,7 +6,7 @@
         <div class="grid grid-cols-4 md:grid-cols-7 mt-6 lg:mt-8">
             @foreach($logos as $logo)
                 <div class="justify-center m-auto py-2 px-2">
-                    <img class="" src="{{ $logo }}"/>
+                    <img src="{{ $logo }}"/>
                 </div>
             @endforeach
         </div>

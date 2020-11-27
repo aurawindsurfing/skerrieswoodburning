@@ -18,7 +18,7 @@ class PageController extends Controller {
             return CourseTypeGroup::where('id', '<>', 14)->get()->sortBy('order')->take(16)->chunk(4);
         });
         $courses = Cache::remember('courses', 1440, function () {
-            return Course::with(['venue', 'course_type'])->where('inhouse', false)->orderByDesc('date')->take(7)->get();
+            return Course::with(['venue', 'course_type'])->where('course_type_id', 1)->where('inhouse', false)->orderByDesc('date')->take(7)->get();
         });
         $logos = Cache::remember('logos', 1440, function () {
             return $this->cloudinary_resources('logos', 50, 'cloudinary_logo');
@@ -31,6 +31,24 @@ class PageController extends Controller {
     }
 
     public function group(CourseTypeGroup $group)
+    {
+        $course_type_group = Cache::remember('course_type_group', 1440, function () use ($group) {
+            //return Course::with(['venue', 'course_type'])->where('inhouse', false)->orderByDesc('date')->take(30)->get();
+            return $group
+                ->with('course_type')
+                //->whereHas('coursetype', function ($q) {
+                //    $q->where('inhouse', false);
+                //})
+                ->orderByDesc('date')
+                ->take(30)
+                ->get();
+
+        });
+
+        return view('group', compact('group', 'course_type_group'));
+    }
+
+    public function list(CourseTypeGroup $group)
     {
         $courses = Cache::remember('courses', 1440, function () {
             return Course::with(['venue', 'course_type'])->where('inhouse', false)->orderByDesc('date')->take(30)->get();
@@ -78,11 +96,11 @@ class PageController extends Controller {
         {
             $course_types = CourseTypeGroup::all();
 
-            foreach ($course_types as $course)
+            foreach ($course_types as $course_type)
             {
-                if ($course->icon)
+                if ($course_type->icon)
                 {
-                    array_push($items, Str::beforeLast(Cloudder::secureShow('' . $course->icon, config('settings.' . $preset)), '.'));
+                    array_push($items, Str::beforeLast(Cloudder::secureShow('' . $course_type->icon, config('settings.' . $preset)), '.'));
                 }
             }
         }
