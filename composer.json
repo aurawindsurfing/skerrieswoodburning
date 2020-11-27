@@ -50,7 +50,7 @@
         "wildbit/swiftmailer-postmark": "^3.3"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.2",
+        "barryvdh/laravel-debugbar": "^3.5",
         "barryvdh/laravel-ide-helper": "^2.6",
         "fzaninotto/faker": "^1.4",
         "mockery/mockery": "^1.0",

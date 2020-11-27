@@ -205,22 +205,55 @@
                             @enderror
                         </div>
 
-                        <div class="sm:col-span-4 flex flex-wrap">
-                            <div class="flex items-center h-5">
-                                <input type="hidden" name="pps" value="0">
-                                <div>
-                                    <input type="checkbox" name="pps" value="1"
-                                           class="form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out"
-                                        {{ old('pps') ? 'checked' : null }}
-                                    >
+                        <div class="sm:col-span-6">
+                            <div class="bg-white rounded-md -space-y-px">
+                                <!-- On: "bg-indigo-50 border-indigo-200 z-10", Off: "border-gray-200" -->
+                                <div class=" border rounded-tl-md rounded-tr-md p-4 flex">
+                                    <div class="flex items-center h-5">
+                                        <input
+                                            name="pps"
+                                            value="1"
+                                            {{ old('pps') == true ? 'checked' : '' }}
+                                            id="settings-option-0"
+                                            type="radio"
+                                            class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out cursor-pointer">
+                                    </div>
+                                    <label for="settings-option-0" class="ml-3 flex flex-col cursor-pointer">
+                                        <!-- On: "text-indigo-900", Off: "text-gray-900" -->
+                                        <span class="block text-sm leading-5 font-medium">
+                                          I have Irish PPS number
+                                        </span>
+                                        <!-- On: "text-indigo-700", Off: "text-gray-500" -->
+{{--                                        <span class="block text-sm leading-5"></span>--}}
+                                    </label>
                                 </div>
-                            </div>
-                            <div class="pl-7 text-sm leading-5">
-                                <label for="pps" class="font-medium text-gray-700">I confirm I hold a valid Irish PPS
-                                    number</label>
+
+                                <!-- On: "bg-indigo-50 border-indigo-200 z-10", Off: "border-gray-200" -->
+                                <div class=" border border-gray-200 rounded-bl-md rounded-br-md p-4 flex">
+                                    <div class="flex items-center h-5">
+                                        <input
+                                            name="pps"
+                                            value="0"
+                                            {{ old('pps') !== null &&  old('pps') == false ? 'checked' : '' }}
+                                            id="settings-option-1"
+                                            type="radio"
+                                            class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out cursor-pointer">
+                                    </div>
+                                    <label for="settings-option-1" class="ml-3 flex flex-col cursor-pointer">
+                                        <!-- On: "text-indigo-900", Off: "text-gray-900" -->
+                                        <span class="block text-sm leading-5 font-medium">
+                                          I do not have an Irish PPS number
+                                        </span>
+                                        <!-- On: "text-indigo-700", Off: "text-gray-500" -->
+{{--                                        <span class="block text-sm leading-5"></span>--}}
+                                    </label>
+                                </div>
+
                             </div>
                         </div>
-
+                        @error('pps')
+                        <p class="text-red-500 text-xs italic sm:col-span-6">{{ $message }}</p>
+                        @enderror
 
                     </div>
                 </div>

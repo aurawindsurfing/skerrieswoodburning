@@ -68,12 +68,6 @@ class BookingController extends Controller
 
             Session::flash('success', 'Payment successful!');
 
-            // not needed there is a check running in kernel and sending notifications
-            //if (PhoneNumber::make($booking->phone, config('nexmo.countries'))->isOfType('mobile')) {
-            //    $booking->notify(new StudentConfirmation($booking));
-            //}
-
-
 
         } catch (InvalidRequestException $e) {
             return back()->withInput()->with('card-error', 'Please fill in the form again. Do not refresh the form!');
