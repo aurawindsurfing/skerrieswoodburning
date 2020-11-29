@@ -49,8 +49,7 @@ class PageController extends Controller {
 
     public function list(CourseType $type = null)
     {
-        $courses = Cache::remember('courses', 1440, function () use ($type) {
-            return Course::query()
+        $courses = Course::query()
                 ->when(isset($type), function ($query) use ($type) {
                     return $query->where('course_type_id', $type->id);
                 })
@@ -62,7 +61,6 @@ class PageController extends Controller {
                 ->where('date', '>=', today())
                 ->orderByDesc('date')
                 ->get();
-        });
 
         $course_type = $type;
 
