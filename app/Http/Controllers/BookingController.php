@@ -56,26 +56,52 @@ class BookingController extends Controller
             'payment_type' => 'cc',
         ]);
 
+        $booking = new Booking($data);
+        $booking->stripe_status = 'incomplete';
+        $booking->save();
+
+        $data = array_merge($data, ['booking_id' => $booking->id]);
+
         try {
-            $booking = new Booking($data);
 
             $payment = ($booking)->charge(($course->price * 100), $stripePaymentMethodId, [
                 'metadata' => $data,
             ]);
 
             $booking->stripe_payment_intent = $payment->id;
+            $booking->stripe_status = 'succeeded';
             $booking->save();
 
             Session::flash('success', 'Payment successful!');
 
-
         } catch (InvalidRequestException $e) {
-            return back()->withInput()->with('card-error', 'Please fill in the form again. Do not refresh the form!');
+
+            return back()->withInput()->with('card-error', 'Please fill in the form again. Do not refresh the page!');
+
         } catch (CardException $e) {
+
+            $booking->stripe_payment_intent = $e->getError()->payment_intent->id;
+            $booking->stripe_status = 'failed';
+            $booking->save();
             return back()->withInput()->with('card-error', $e->getMessage());
+
         } catch (PaymentActionRequired $e) {
-            return redirect()->route('cashier.payment', [$e->payment->id, 'redirect' => route('home')]);
+
+            // fills in the form again for visual reference
+            $request->flash();
+            $booking->stripe_payment_intent = $e->payment->id;
+            $booking->save();
+
+            return redirect()->route('cashier.payment', [
+                $e->payment->id,
+                'redirect' => route('create-booking', ['course' => $course->id]),
+            ]);
+
         } catch (Exception $e) {
+
+            $booking->stripe_payment_intent = $e->payment->id;
+            $booking->stripe_status = 'failed';
+            $booking->save();
             return back()->withInput()->with('card-error', $e->getMessage());
         }
 
