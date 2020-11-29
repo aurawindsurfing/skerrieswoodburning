@@ -2,8 +2,8 @@
 
 namespace App;
 
+use App\Scopes\StripePaymentOk;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
@@ -32,10 +32,7 @@ class Booking extends Model
     {
         parent::boot();
 
-        static::addGlobalScope('stripe_payment_ok', function (Builder $builder) {
-            $builder->where('stripe_status', 'succeeded')
-                ->orWhereNull('stripe_status'); // other statuses are failed and incomplete
-        });
+        static::addGlobalScope(new StripePaymentOk);
 
         static::saving(function ($booking) {
             isset($booking->contact) ? $booking->company_id = $booking->contact->company->id : null;
@@ -126,7 +123,7 @@ class Booking extends Model
     /**
      * Route notifications for the Nexmo channel.
      *
-     * @param  \Illuminate\Notifications\Notification  $notification
+     * @param \Illuminate\Notifications\Notification $notification
      * @return string
      */
     public function routeNotificationForNexmo($notification)

@@ -36,6 +36,11 @@ class BookingController extends Controller
      */
     public function create(Course $course)
     {
+        // this comes from laravel cashier after SCA second authorization
+        if (\request()->query('success') == true){
+            Session::flash('success', 'Payment successful!');
+        }
+
         return view('registration', compact('course'));
     }
 
@@ -89,6 +94,7 @@ class BookingController extends Controller
 
             // fills in the form again for visual reference
             $request->flash();
+
             $booking->stripe_payment_intent = $e->payment->id;
             $booking->save();
 
@@ -99,7 +105,6 @@ class BookingController extends Controller
 
         } catch (Exception $e) {
 
-            $booking->stripe_payment_intent = $e->payment->id;
             $booking->stripe_status = 'failed';
             $booking->save();
             return back()->withInput()->with('card-error', $e->getMessage());

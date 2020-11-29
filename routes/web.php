@@ -18,10 +18,8 @@ Route::get('/list/{type?}', 'PageController@list')->name('list');
 
 Route::get('/booking/create/{course}', 'BookingController@create')->name('create-booking');
 Route::post('/booking', 'BookingController@store')->name('store-booking');
-Route::get('/booking/show/{booking}', 'BookingController@show')->name('show-booking');
-    //->middleware('signed');
 
-
+Route::post('stripe/webhook', 'WebhookController@handleWebhook');
 
 // Route::redirect('/', '/office', 301);
 
