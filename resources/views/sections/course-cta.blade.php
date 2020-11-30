@@ -1,4 +1,60 @@
-<div class="bg-gray-100">
+<div x-data="{ open: false }">
+    <div x-show="open == true"
+         class="fixed bottom-0 inset-x-0 px-4 pb-6 sm:inset-0 sm:p-0 sm:flex sm:items-center sm:justify-center">
+        <div
+{{--            x-show="open == true"--}}
+             class="fixed inset-0 transition-opacity"
+             x-transition:enter="ease-out duration-300"
+             x-transition:enter-start="opacity-0"
+             x-transition:enter-end="opacity-100"
+             x-transition:leave="ease-in duration-200"
+             x-transition:leave-start="opacity-100"
+             x-transition:leave-end="opacity-0"
+        >
+            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+        </div>
+        <div
+{{--            x-show="open == true"--}}
+            class="bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-sm sm:w-full sm:p-6" role="dialog" aria-modal="true" aria-labelledby="modal-headline"
+             @click.away="open = false"
+             x-transition:enter="ease-out duration-300"
+             x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+             x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+             x-transition:leave="ease-in duration-200"
+             x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+             x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+        >
+            <div>
+                <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
+                    <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                </div>
+                <div class="mt-3 text-center sm:mt-5">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-headline">
+                        Thank you for your booking!
+                    </h3>
+                    <div class="mt-2">
+                        <p class="text-sm leading-5 text-gray-500">
+                            You will receive <b>a text</b> and <b>an email</b> with booking confirmation shortly.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-5 sm:mt-6">
+      <span class="flex w-full rounded-md shadow-sm">
+{{--        <a href="{{route('home')}}" class="justify-center w-full">--}}
+            <button
+                @click="open = false"
+                type="button" class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-indigo-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+          I understand
+        </button>
+{{--        </a>--}}
+      </span>
+            </div>
+        </div>
+</div>
+    <div class="bg-gray-100">
     <div class="pt-12 sm:pt-16 lg:pt-20">
         <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
@@ -117,43 +173,55 @@
                         </div>
                     </div>
                     <div class="py-8 px-6 text-center bg-gray-50 lg:flex-shrink-0 lg:flex lg:flex-col lg:justify-center lg:p-12">
-{{--                        <p class="text-lg leading-6 font-medium text-gray-900">--}}
-{{--                            Valid for {{$type->valid_for_years}} years--}}
-{{--                        </p>--}}
-                        <div class="mt-4 flex items-center justify-center text-4xl leading-none font-extrabold text-gray-900">
-              <span>
-                €{{$type->default_rate}}
-              </span>
-                            <span class="ml-3 text-xl leading-7 font-medium text-gray-500">
-                EUR
-              </span>
-                        </div>
-{{--                        <p class="mt-4 text-sm leading-5">--}}
-{{--                            <a href="#" class="font-medium text-gray-500 underline">--}}
-{{--                                Start time: {{$type->start_time}}--}}
-{{--                            </a>--}}
-{{--                        </p>--}}
-                        <div class="mt-6">
-                            <div class="rounded-md shadow"
-{{--                                 @click.prevent="$refs.list.scrollIntoView()"--}}
-                            >
-                                <a href="{{ route('list', ['type' => $type->id]) }}"
-                                   class="flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
-                                    Book course
-                                </a>
+                        @if ($type->default_rate > 0)
+                            <div class="mt-4 flex items-center justify-center text-4xl leading-none font-extrabold text-gray-900">
+                              <span>
+                                €{{$type->default_rate}}
+                              </span>
+                                <span class="ml-3 text-xl leading-7 font-medium text-gray-500">
+                                EUR
+                              </span>
                             </div>
-                        </div>
-{{--                        <div class="mt-4 text-sm leading-5">--}}
-{{--                            <a href="#" class="font-medium text-gray-900">--}}
-{{--                                Capacity--}}
-{{--                                <span class="font-normal text-gray-500">--}}
-{{--                  ({{$type->capacity}} seats)--}}
-{{--                </span>--}}
-{{--                            </a>--}}
-{{--                        </div>--}}
+
+                            <div class="mt-6">
+                                <div class="rounded-md shadow"
+                                    {{--  @click.prevent="$refs.list.scrollIntoView()"--}}
+                                >
+                                    <a href="{{ route('list', ['type' => $type->id]) }}"
+                                       class="flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+                                        Book course
+                                    </a>
+                                </div>
+                            </div>
+                        @else
+                            <p class="text-lg leading-6 font-medium text-gray-900">
+                                Bespoke solution
+                            </p>
+                            <div class="mt-4 text-sm leading-5 max-w-8">
+                                <div class="font-medium text-gray-500">
+                                    This course is company specific
+                                </div>
+                                <div class="font-medium text-gray-500">
+                                    This is tailroded solution
+                                </div>
+                            </div>
+                            <div class="mt-6">
+                                <div class="rounded-md shadow"
+                                    {{--  @click.prevent="$refs.list.scrollIntoView()"--}}
+                                >
+                                    <button @click="open = true"
+                                            type="button"
+                                            class="flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+                                        Find out more
+                                    </button>
+                                </div>
+                            </div>
+                        @endif
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
