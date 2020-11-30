@@ -85,7 +85,7 @@ class CourseType extends Resource
 
             Text::make('Tutor title')->sortable()->hideFromIndex(),
 
-            Money::make('Default Rate', 'EUR')->rules('required', 'max:255'),
+            Money::make('Default Rate', 'EUR'),
 
             Textarea::make('Objectives')->rows(5)->hideFromIndex()->alwaysShow(),
 
@@ -107,7 +107,7 @@ class CourseType extends Resource
 
             Number::make('Valid for years', 'valid_for_years'),
 
-            Number::make('Capacity'),
+            Number::make('Capacity')->rules('required'),
 
         ];
     }
