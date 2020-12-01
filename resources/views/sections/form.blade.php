@@ -221,7 +221,7 @@
                                     <label for="settings-option-0" class="ml-3 flex flex-col cursor-pointer">
                                         <!-- On: "text-indigo-900", Off: "text-gray-900" -->
                                         <span class="block text-sm leading-5 font-medium">
-                                          I have Irish PPS number
+                                          I have an Irish PPS number
                                         </span>
                                         <!-- On: "text-indigo-700", Off: "text-gray-500" -->
 {{--                                        <span class="block text-sm leading-5"></span>--}}
