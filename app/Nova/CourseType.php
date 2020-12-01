@@ -87,23 +87,23 @@ class CourseType extends Resource
 
             Money::make('Default Rate', 'EUR'),
 
-            Textarea::make('Objectives')->rows(5)->hideFromIndex()->alwaysShow(),
+            Textarea::make('Objectives')->hideFromIndex()->alwaysShow(),
 
-            Textarea::make('Who should attend', 'who_should_attend')->rows(5)->hideFromIndex()->alwaysShow(),
+            Textarea::make('Who should attend', 'who_should_attend')->hideFromIndex()->alwaysShow(),
 
-            Textarea::make('Delegates')->rows(5)->hideFromIndex()->alwaysShow(),
+            Textarea::make('Delegates')->rows(1)->hideFromIndex()->alwaysShow(),
 
             Markdown::make('Outline')->hideFromIndex()->alwaysShow(),
 
-            Textarea::make('Duration')->rows(5)->hideFromIndex()->alwaysShow(),
+            Textarea::make('Duration')->rows(1)->hideFromIndex()->alwaysShow(),
 
-            Textarea::make('Certification')->rows(5)->hideFromIndex()->alwaysShow(),
+            Textarea::make('Certification')->rows(2)->hideFromIndex()->alwaysShow(),
 
-            Textarea::make('What to bring', 'what_to_bring')->rows(5)->hideFromIndex()->alwaysShow(),
+            Markdown::make('What to bring', 'what_to_bring')->hideFromIndex()->alwaysShow(),
 
             Time::make('Start Time')->format('HH:mm'),
 
-            Textarea::make('Plan of the day', 'plan_of_the_day')->rows(5)->hideFromIndex()->alwaysShow(),
+            Markdown::make('Plan of the day', 'plan_of_the_day')->hideFromIndex()->alwaysShow(),
 
             Number::make('Valid for years', 'valid_for_years'),
 
