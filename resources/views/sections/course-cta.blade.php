@@ -170,9 +170,9 @@
                             </span>
                             <div class="flex justify-center mt-6">
                                 <button class="rounded-md shadow w-full">
-                                    <div class="flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+                                    <a href="{{ route('bespoke', ['type' => $type->id]) }}" class="flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
                                         Find out more
-                                    </div>
+                                    </a>
                                 </button>
                             </div>
                         @endif

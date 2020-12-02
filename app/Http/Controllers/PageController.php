@@ -67,6 +67,11 @@ class PageController extends Controller {
         return view('list', compact('courses', 'course_type'));
     }
 
+    public function bespoke(CourseType $type = null)
+    {
+        return view('bespoke', compact('type'));
+    }
+
     /**
      * @param String $path
      * @param Int $take

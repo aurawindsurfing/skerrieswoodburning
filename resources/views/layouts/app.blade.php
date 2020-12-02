@@ -53,7 +53,7 @@
 </head>
 <body>
 
-<div class="max-w-screen-xl mx-auto">
+<div class="">
     @yield('body')
 </div>
 

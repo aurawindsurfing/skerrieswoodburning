@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'PageController@index')->name('home');
+Route::get('/bespoke_solution/{type?}', 'PageController@bespoke')->name('bespoke');
 
 Route::get('/group/{group}', 'PageController@group')->name('group');
 Route::get('/list/{type?}', 'PageController@list')->name('list');

@@ -5,7 +5,7 @@
 @section('keywords', __('Training, Construction, Safepass, Safety'))
 
 @section('body')
-    <div x-data="{open: false}">
+    <div class="max-w-screen-xl mx-auto" x-data="{open: false}">
         @include('sections.hero')
         @include('sections.our_principles')
         @include('sections.groups')
