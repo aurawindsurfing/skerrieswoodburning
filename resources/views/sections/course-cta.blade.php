@@ -161,14 +161,14 @@
                                 Bespoke solution
                             </p>
                             <span class="mt-4 text-sm leading-5 max-w-8">
-                                <p class="font-medium text-gray-500">
-                                    This course is company specific
-                                </p>
-                                <p class="font-medium text-gray-500">
-                                    This is tailroded solution
-                                </p>
+{{--                                <p class="font-medium text-gray-500">--}}
+{{--                                    This course is company specific--}}
+{{--                                </p>--}}
+{{--                                <p class="font-medium text-gray-500">--}}
+{{--                                    This is tailroded solution--}}
+{{--                                </p>--}}
                             </span>
-                            <div class="flex justify-center mt-6">
+                            <div class="flex justify-center mt-1">
                                 <button class="rounded-md shadow w-full">
                                     <a href="{{ route('bespoke', ['type' => $type->id]) }}" class="flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
                                         Find out more

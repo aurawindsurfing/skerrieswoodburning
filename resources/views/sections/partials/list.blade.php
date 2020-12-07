@@ -41,7 +41,7 @@
                         </div>
                         <div class="flex-grow-0 hidden sm:block">
                             <div class="rounded-md shadow">
-                                <a href="{{route('create-booking', ['course' => $course->id])}}" class="flex items-center justify-center px-2 sm:px-5 py-3 border border-transparent text-sm md:text-base text-center leading-6 font-medium rounded-md text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+                                <a href="{{route('create-booking', ['course' => $course->id])}}" class="mt-3 ml-0 w-full px-6 py-3 border border-transparent text-lg leading-6 font-medium rounded-md text-white bg-gray-800 shadow-sm hover:bg-gray-700 focus:outline-none focus:shadow-outline active:bg-gray-900 transition duration-150 ease-in-out sm:mt-0 sm:ml-0 sm:flex-shrink-0  sm:items-center">
                                     Book now
                                 </a>
                             </div>
