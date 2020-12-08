@@ -16,7 +16,7 @@
         New website enquiry was just made on the website.<br>
         <br>
         Name: {{$form_data->name}}<br>
-        Phone: {{$form_data->phone}}<br>
+        Phone: {{'+'.$form_data->phone}}<br>
         Email: {{$form_data->email}}<br>
         Company: {{(isset($form_data->company) ? $form_data->company : '')}}<br>
         <br>

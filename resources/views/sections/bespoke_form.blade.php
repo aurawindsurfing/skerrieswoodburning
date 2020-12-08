@@ -156,7 +156,7 @@
                                 </defs>
                                 <rect class="hidden lg:block" width="404" height="384" fill="url(#bedc54bc-7371-44a2-a2bc-dc68d819ae60)" />
                             </svg>
-                            <blockquote class="relative bg-white rounded-lg shadow-lg">
+                            <blockquote class="relative bg-gray-50 rounded-lg shadow-lg">
                                 <div class="rounded-t-lg px-6 py-6 sm:px-10 sm:pb-8">
                                     <img src="https://res.cloudinary.com/gazeta-ireland-limited/image/upload/v1607103904/cit/logos/roadbridge.png"
                                          alt="Roadbridge"

@@ -45,7 +45,7 @@ class WebsiteEnquiryCIT extends Notification
             .(isset($this->form_data->enquiry) ? ', message: '.$this->form_data->enquiry.' ' : '');
 
         return (new NexmoMessage)
-            ->from($this->form_data->phone)
+            ->from('+'.$this->form_data->phone)
             ->content($text);
     }
 
