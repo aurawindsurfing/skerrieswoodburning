@@ -85,7 +85,7 @@
                                 {{--                        <p>Tincidunt integer commodo, cursus etiam aliquam neque, et. Consectetur pretium in volutpat, diam. Montes, magna cursus nulla feugiat dignissim id lobortis amet. Laoreet sem est phasellus eu proin massa, lectus. Diam rutrum posuere donec ultricies non morbi. Mi a platea auctor mi.</p>--}}
                             </div>
 
-                            <h1 class="mt-2 mb-8 text-2xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-3xl sm:leading-10">Get in touch</h1>
+                            <h1 class="mt-2 mb-8 text-2xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-3xl sm:leading-10">Your enquiry</h1>
                             <div>
                                 <form action="{{ route('send_enquiry') }}" method="POST" class="grid grid-cols-1 gap-y-6 sm:grid-cols-1 sm:gap-x-8">
                                     @csrf
@@ -139,7 +139,7 @@
                                   <span class="w-full inline-flex rounded-md shadow-sm">
                                     <button type="submit"
                                             class="mt-3 ml-0 w-full px-6 py-3 border border-transparent text-lg leading-6 font-medium rounded-md text-white bg-gray-800 shadow-sm hover:bg-gray-700 focus:outline-none focus:shadow-outline active:bg-gray-900 transition duration-150 ease-in-out sm:mt-0 sm:ml-0 sm:flex-shrink-0  sm:items-center">
-                                      Submit query
+                                      Send
                                     </button>
                                   </span>
                                     </div>

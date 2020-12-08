@@ -171,9 +171,19 @@
                             <div class="flex justify-center mt-1">
                                 <button class="rounded-md shadow w-full">
                                     <a href="{{ route('bespoke', ['type' => $type->id]) }}" class="flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
-                                        Find out more
+                                        Make enquiry
                                     </a>
                                 </button>
+                            </div>
+                            <p class="font-medium text-gray-500 pt-2">
+                                or
+                            </p>
+                            <div class="flex justify-center">
+                                <a href="tel: +35318097266">
+                                    <button class="mt-2 ml-0 w-full px-6 py-3 border text-lg leading-6 font-medium rounded-md text-blue-600 bg-gray-50 hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:bg-gray-100 focus:text-blue-700 transition duration-150 ease-in-out">
+                                        Call us now
+                                    </button>
+                                </a>
                             </div>
                         @endif
 
