@@ -13,6 +13,7 @@
 
 Route::get('/', 'PageController@index')->name('home');
 Route::get('/bespoke_solution/{type?}', 'PageController@bespoke')->name('bespoke');
+Route::post('/contact', 'ContactFormController@send')->name('send_enquiry');
 
 Route::get('/group/{group}', 'PageController@group')->name('group');
 Route::get('/list/{type?}', 'PageController@list')->name('list');
@@ -21,6 +22,12 @@ Route::get('/booking/create/{course}', 'BookingController@create')->name('create
 Route::post('/booking', 'BookingController@store')->name('store-booking');
 
 Route::post('stripe/webhook', 'WebhookController@handleWebhook');
+
+
+
+
+
+
 
 // Route::redirect('/', '/office', 301);
 
