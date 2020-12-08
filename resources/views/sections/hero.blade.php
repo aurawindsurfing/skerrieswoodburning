@@ -54,10 +54,7 @@
 
                                 <div class="mt-3">
                                     <a href="{{route('list', ['type' => 1])}}">
-                                        <button
-                                            {{--                                        type="submit"--}}
-                                            {{--                                            @click.prevent="$refs.list.scrollIntoView()"--}}
-                                            class="mt-3 ml-0 w-full px-6 py-3 border border-transparent text-lg leading-6 font-medium rounded-md text-white bg-gray-800 shadow-sm hover:bg-gray-700 focus:outline-none focus:shadow-outline active:bg-gray-900 transition duration-150 ease-in-out sm:mt-0 sm:ml-0 sm:flex-shrink-0  sm:items-center ">
+                                        <button class="mt-3 ml-0 w-full px-6 py-3 border border-transparent text-lg leading-6 font-medium rounded-md text-white bg-gray-800 shadow-sm hover:bg-gray-700 focus:outline-none focus:shadow-outline active:bg-gray-900 transition duration-150 ease-in-out sm:mt-0 sm:ml-0 sm:flex-shrink-0  sm:items-center ">
                                             Book Safepass Now
                                         </button>
                                     </a>
@@ -65,10 +62,7 @@
 
                                 <div class="mt-3">
                                     <a href="{{route('list')}}">
-                                        <button
-                                            {{--                                        type="submit"--}}
-                                            {{--                                            @click.prevent="$refs.list.scrollIntoView()"--}}
-                                            class="mt-3 ml-0 w-full px-6 py-3 border text-lg leading-6 font-medium rounded-md text-blue-600 bg-gray-50 hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:bg-gray-100 focus:text-blue-700 transition duration-150 ease-in-out">
+                                        <button class="mt-3 ml-0 w-full px-6 py-3 border text-lg leading-6 font-medium rounded-md text-blue-600 bg-gray-50 hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:bg-gray-100 focus:text-blue-700 transition duration-150 ease-in-out">
                                             Book Other Course Now
                                         </button>
                                     </a>

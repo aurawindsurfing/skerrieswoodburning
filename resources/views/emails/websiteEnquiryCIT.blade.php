@@ -13,22 +13,22 @@
 
     <div class="container ml-6 mt-12 max-w-sm">
 
-        New website enquiry was just made on the website.
+        New website enquiry was just made on the website.<br>
         <br>
-        Name: {{$form_data->name}}
-        Phone: {{$form_data->phone}}
-        Email: {{$form_data->email}}
-        Company: {{(isset($form_data->company) ? $form_data->company : '')}}
+        Name: {{$form_data->name}}<br>
+        Phone: {{$form_data->phone}}<br>
+        Email: {{$form_data->email}}<br>
+        Company: {{(isset($form_data->company) ? $form_data->company : '')}}<br>
         <br>
-        Course type: {{(isset($form_data->type) ? $form_data->type : ' --missing course type--.')}}
+        Course type: {{(isset($form_data->type) ? $form_data->type : ' --missing course type--.')}}<br>
         <br>
-        Enquiry: {{(isset($form_data->enquiry) ? $form_data->enquiry.' ' : '--missing message--')}}
+        Enquiry: {{(isset($form_data->enquiry) ? $form_data->enquiry.' ' : '--missing message--')}}<br>
 
     </div>
 
-    @component('emails.partials.footer')
-        <div class="font-bold">   </div>
-    @endcomponent
+{{--    @component('emails.partials.footer')--}}
+{{--        <div class="font-bold">   </div>--}}
+{{--    @endcomponent--}}
 
 </body>
 </html>

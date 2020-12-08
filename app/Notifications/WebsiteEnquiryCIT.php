@@ -59,6 +59,7 @@ class WebsiteEnquiryCIT extends Notification
     {
         $form_data = $this->form_data;
         return (new MailMessage)
+            ->from($this->form_data->email)
             ->subject('New website enquiry from '.(isset($this->form_data->name) ? $this->form_data->name : ' --missing name-- '))
             ->view('emails.websiteEnquiryCIT', compact('form_data'));
     }

@@ -136,7 +136,7 @@
                                         @enderror
                                     </div>
                                     <div class="sm:col-span-2">
-                                  <span class="w-full inline-flex rounded-md shadow-sm">
+                                  <span class="w-full lg:w-1/2 inline-flex rounded-md shadow-sm">
                                     <button type="submit"
                                             class="mt-3 ml-0 w-full px-6 py-3 border border-transparent text-lg leading-6 font-medium rounded-md text-white bg-gray-800 shadow-sm hover:bg-gray-700 focus:outline-none focus:shadow-outline active:bg-gray-900 transition duration-150 ease-in-out sm:mt-0 sm:ml-0 sm:flex-shrink-0  sm:items-center">
                                       Send
@@ -154,7 +154,7 @@
                                         <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
                                     </pattern>
                                 </defs>
-                                <rect width="404" height="384" fill="url(#bedc54bc-7371-44a2-a2bc-dc68d819ae60)" />
+                                <rect class="hidden lg:block" width="404" height="384" fill="url(#bedc54bc-7371-44a2-a2bc-dc68d819ae60)" />
                             </svg>
                             <blockquote class="relative bg-white rounded-lg shadow-lg">
                                 <div class="rounded-t-lg px-6 py-6 sm:px-10 sm:pb-8">

@@ -19,8 +19,6 @@ class ContactFormController extends Controller
         User::find(4)->notify(new WebsiteEnquiryCIT($request));
         User::find(1)->notify(new WebsiteEnquiryCIT($request));
 
-        User::find(3)->notify(new WebsiteEnquiryCIT($request));
-
         return back()->with('email-success', 'message');
 
     }
