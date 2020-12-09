@@ -43,7 +43,7 @@ class StudentConfirmation extends Notification
     {
         $message = (isset($notifiable->name) ? $notifiable->name.', thank you for booking ' : 'Thank you for booking ')
                     .$notifiable->course->course_type->name.' at: '
-                    .$notifiable->course->venue->name.' on: '
+                    .$notifiable->course->venue_name().' on: '
                     .$notifiable->course->date->format('Y-m-d').' '
                     .date('H:i', strtotime($notifiable->course->time)).' '
                     .(isset($notifiable->course->venue->google_maps) ? ' Directions: '.$notifiable->course->venue->google_maps : '')
