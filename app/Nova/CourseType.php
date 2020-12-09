@@ -10,10 +10,14 @@ use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Michielfb\Time\Time;
+use MichielKempen\NovaOrderField\Orderable;
+use MichielKempen\NovaOrderField\OrderField;
 use Vyuldashev\NovaMoneyField\Money;
 
 class CourseType extends Resource
 {
+    use Orderable;
+
     /**
      * The model the resource corresponds to.
      *
@@ -36,6 +40,8 @@ class CourseType extends Resource
     public static $search = [
         'name',
     ];
+
+    public static $defaultOrderField = 'order';
 
     /**
      * $group.
@@ -108,6 +114,8 @@ class CourseType extends Resource
             Number::make('Valid for years', 'valid_for_years'),
 
             Number::make('Capacity')->rules('required'),
+
+            OrderField::make('Order'),
 
         ];
     }

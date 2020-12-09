@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use MichielKempen\NovaOrderField\Orderable;
@@ -87,6 +88,8 @@ class CourseTypeGroup extends Resource {
             CloudinaryImage::make('Icon'),
 
             OrderField::make('Order'),
+
+            HasMany::make('Course Types', 'course_types')
 
         ];
     }
