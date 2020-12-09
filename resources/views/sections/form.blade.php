@@ -132,8 +132,7 @@
                         <br>
                         <span class="text-sm leading-6 text-gray-500">at</span>
                         <p class="mt-1 text-lg font-medium leading-5 text-gray-900">
-                            {{$course->venue->name}}, {{$course->venue->address_line_1}}, {{$course->venue->postal_code}}
-                            , {{$course->venue->city}}
+                            {{$course->venue_name()}}
                         </p>
                         <br>
                         <span class="text-sm leading-6 text-gray-500">on</span>

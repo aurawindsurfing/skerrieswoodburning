@@ -39,6 +39,11 @@ class Course extends Model
         return $this->belongsTo(\App\Venue::class);
     }
 
+    public function venue_name()
+    {
+        return $this->venue->name.', '.$this->venue->address_line_1.', '.$this->venue->city.', '.$this->venue->postal_code;
+    }
+
     public function course_type()
     {
         return $this->belongsTo(\App\CourseType::class);

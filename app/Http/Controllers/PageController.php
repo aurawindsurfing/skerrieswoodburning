@@ -19,7 +19,7 @@ class PageController extends Controller {
             return CourseTypeGroup::where('id', '<>', 14)->get()->sortBy('order')->chunk(4);
         });
         $courses = Cache::remember('courses', 1440, function () {
-            return Course::with(['venue', 'course_type'])->where('course_type_id', 1)->where('inhouse', false)->where('date', '>=', today())->orderByDesc('date')->take(7)->get();
+            return Course::with(['venue', 'course_type'])->where('course_type_id', 1)->where('inhouse', false)->where('date', '>', today())->orderBy('date')->take(7)->get();
         });
         $logos = Cache::remember('logos', 1440, function () {
             return $this->cloudinary_resources('logos', 50, 'cloudinary_logo');
@@ -33,14 +33,14 @@ class PageController extends Controller {
 
     public function group(CourseTypeGroup $group)
     {
-        $course_types = CourseType::where('course_type_group_id', $group->id)->pluck('id');
+        $course_type_ids = CourseType::where('course_type_group_id', $group->id)->pluck('id');
 
-        $courses = Cache::remember('group_courses', 1440, function () use ($course_types) {
+        $courses = Cache::remember('group_courses', 1440, function () use ($course_type_ids) {
             return Course::with(['venue', 'course_type'])
-                ->whereIn('course_type_id', $course_types)
-                ->where('date', '>=', today())
+                ->whereIn('course_type_id', $course_type_ids)
+                ->where('date', '>', today())
                 ->where('inhouse', false)
-                ->orderByDesc('date')
+                ->orderBy('date')
                 ->get();
         });
 
@@ -58,8 +58,8 @@ class PageController extends Controller {
                 })
                 ->with(['venue', 'course_type'])
                 ->where('inhouse', false)
-                ->where('date', '>=', today())
-                ->orderByDesc('date')
+                ->where('date', '>', today())
+                ->orderBy('date')
                 ->get();
 
         $course_type = $type;

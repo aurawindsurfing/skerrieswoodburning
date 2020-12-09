@@ -155,9 +155,9 @@
                                 </a>
                             </div>
                         @else
-                            <p class="text-lg leading-6 font-medium text-gray-900">
-                                Bespoke solution
-                            </p>
+{{--                            <p class="text-lg leading-6 font-medium text-gray-900">--}}
+{{--                                Bespoke solution--}}
+{{--                            </p>--}}
                             <div class="flex justify-center pt-4">
 
                                     <a href="{{ route('bespoke', ['type' => $type->id]) }}"

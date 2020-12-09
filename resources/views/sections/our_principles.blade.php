@@ -23,7 +23,7 @@
                             </div>
                         </div>
                         <div class="ml-4">
-                            <h5 class="text-lg leading-6 font-medium text-gray-900">Proffesionalism is everything</h5>
+                            <h5 class="text-lg leading-6 font-medium text-gray-900">Professionalism is everything</h5>
                             <p class="mt-2 text-base leading-6 text-gray-500">
                                 All of our professional training solutions are taught by fully qualified tutors with
                                 relevant industry experience to ensure you get the very best training.
