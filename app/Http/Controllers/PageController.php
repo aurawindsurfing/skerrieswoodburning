@@ -15,16 +15,16 @@ class PageController extends Controller {
 
     public function index()
     {
-        $groups_chunks = Cache::remember('group_chunks', 1440, function () {
+        $groups_chunks = Cache::remember('group_chunks', 86400, function () {
             return CourseTypeGroup::where('id', '<>', 14)->get()->sortBy('order')->chunk(4);
         });
-        $courses = Cache::remember('courses', 1440, function () {
+        $courses = Cache::remember('courses', 86400, function () {
             return Course::with(['venue', 'course_type'])->where('course_type_id', 1)->where('inhouse', false)->where('date', '>', today())->orderBy('date')->take(7)->get();
         });
-        $logos = Cache::remember('logos', 1440, function () {
+        $logos = Cache::remember('logos', 86400, function () {
             return $this->cloudinary_resources('logos', 50, 'cloudinary_logo');
         });
-        $image = Cache::remember('image', 1440, function () {
+        $image = Cache::remember('image', 86400, function () {
             return Arr::random($this->cloudinary_resources('pictures', 50, 'cloudinary_optimised_jpg'));
         });
 
@@ -35,7 +35,7 @@ class PageController extends Controller {
     {
         $course_type_ids = CourseType::where('course_type_group_id', $group->id)->pluck('id');
 
-        $courses = Cache::remember('group_courses', 1440, function () use ($course_type_ids) {
+        $courses = Cache::remember('group_courses'.$group->id, 86400, function () use ($course_type_ids) {
             return Course::with(['venue', 'course_type'])
                 ->whereIn('course_type_id', $course_type_ids)
                 ->where('date', '>', today())
