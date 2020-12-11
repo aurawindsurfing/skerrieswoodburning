@@ -1,4 +1,4 @@
-<nav class="relative max-w-screen-xl mx-auto flex items-center justify-between px-4 sm:px-6">
+<nav class=" max-w-screen-xl mx-auto flex items-center justify-between px-4 sm:px-6">
     <div class="flex items-center flex-1">
         <div class="flex items-center justify-between w-full md:w-auto">
             <a href="{{route('home')}}">

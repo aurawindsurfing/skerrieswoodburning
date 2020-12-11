@@ -68,4 +68,9 @@ class Course extends Model
     {
         return $this->date >= now() ? true : false;
     }
+
+    public function placesLeft()
+    {
+        return $this->capacity - $this->bookings->count();
+    }
 }

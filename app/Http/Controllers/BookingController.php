@@ -32,10 +32,14 @@ class BookingController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function create(Course $course)
     {
+        if ($course->placesLeft() <= 0){
+            return redirect()->route('home')->with('overbooked', 'We are sorry but this course is fully booked!');
+        }
+
         // this comes from laravel cashier after SCA second authorization
         if (\request()->query('success') == true){
             Session::flash('success', 'Payment successful!');

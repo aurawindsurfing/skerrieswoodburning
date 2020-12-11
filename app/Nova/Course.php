@@ -99,15 +99,18 @@ class Course extends Resource
         return false;
     }
 
-    /**
-     * placesLeft.
-     *
-     * @return void
-     */
-    public function placesLeft()
-    {
-        return $this->capacity - $this->bookings->count();
-    }
+
+    // moved to model
+    ///**
+    // * placesLeft.
+    // *
+    // * @return void
+    // */
+    //public function placesLeft()
+    //{
+    //    return $this->capacity - $this->bookings->count();
+    //}
+
 
     /**
      * Get the fields displayed by the resource.

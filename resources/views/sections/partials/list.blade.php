@@ -38,13 +38,37 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="flex-grow-0 hidden sm:block">
-                            <div class="rounded-md shadow">
-                                <a href="{{route('create-booking', ['course' => $course->id])}}" class="mt-3 ml-0 w-full px-6 py-3 border border-transparent text-lg leading-6 font-medium rounded-md text-white bg-gray-800 shadow-sm hover:bg-gray-700 focus:outline-none focus:shadow-outline active:bg-gray-900 transition duration-150 ease-in-out sm:mt-0 sm:ml-0 sm:flex-shrink-0  sm:items-center">
-                                    Book now
-                                </a>
+{{--                        <div class="flex flex-col">--}}
+                            <div class="flex-grow-0 hidden sm:block">
+                                <div class="">
+                                    <a href="{{route('create-booking', ['course' => $course->id])}}"
+                                       class="text-base leading-5 text-gray-900 pt-2 md:pt-0">
+                                        Only {{$course->placesLeft()}} places left
+                                    </a>
+                                </div>
                             </div>
-                        </div>
+                            @if ($course->placesLeft() > 0)
+                            <div class="flex-grow-0 hidden sm:block">
+                                <div class="rounded-md shadow">
+                                    <a href="{{route('create-booking', ['course' => $course->id])}}" class="mt-3 ml-0 w-full px-6 py-3 border border-transparent text-lg leading-6 font-medium rounded-md text-white bg-gray-800 shadow-sm hover:bg-gray-700 focus:outline-none focus:shadow-outline active:bg-gray-900 transition duration-150 ease-in-out sm:mt-0 sm:ml-0 sm:flex-shrink-0  sm:items-center">
+                                        Book now
+                                    </a>
+                                </div>
+                            </div>
+                            @else
+                            <div class="flex-grow-0 hidden sm:block">
+                                <div class="rounded-md shadow">
+                                    <a href="{{route('create-booking', ['course' => $course->id])}}" class="mt-3 ml-0 w-full px-6 py-3 border border-transparent text-lg leading-6 font-medium rounded-md text-white bg-gray-800 shadow-sm hover:bg-gray-700 focus:outline-none focus:shadow-outline active:bg-gray-900 transition duration-150 ease-in-out sm:mt-0 sm:ml-0 sm:flex-shrink-0  sm:items-center">
+                                        Book
+                                    </a>
+
+{{--                                    <button  class="mt-3 ml-0 w-full px-6 py-3 border border-transparent text-lg leading-6 font-medium rounded-md text-white bg-gray-800 shadow-sm hover:bg-gray-700 focus:outline-none focus:shadow-outline active:bg-gray-900 transition duration-150 ease-in-out sm:mt-0 sm:ml-0 sm:flex-shrink-0  sm:items-center">--}}
+{{--                                        Fully booked--}}
+{{--                                    </button>--}}
+                                </div>
+                            </div>
+                            @endif
+{{--                        </div>--}}
                         <div class="block sm:hidden">
                             <svg class="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd"

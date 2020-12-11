@@ -1,6 +1,6 @@
 <div class="bg-gray-50 pt-12 mt-4 sm:pt-16">
-    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl mx-auto text-center">
+    <div class=" max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class=" max-w-4xl mx-auto text-center">
             <h2 class="text-3xl leading-9 font-extrabold text-gray-900 sm:text-4xl sm:leading-10">
                 Training courses
             </h2>
@@ -10,10 +10,9 @@
             </p>
         </div>
     </div>
-    <div class="mt-10 pb-12 bg-white sm:pb-16">
-        <div class="relative">
-            <div class="absolute inset-0 h-1/2 bg-gray-50"></div>
-            <div class="relative max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class=" mt-10 pb-12 bg-white sm:pb-16">
+{{--            <div class=" inset-0 h-1/2 bg-gray-50"></div>--}}
+            <div class=" max-w-screen-xl bg-gray-50 mx-auto px-4 sm:px-6 lg:px-8 pb-16">
                 <div class="max-w-4xl mx-auto">
                     @foreach($groups_chunks as $groups)
                         <div class="rounded-lg bg-white shadow-lg grid grid-cols-2 sm:grid-cols-4 m-0">
@@ -34,6 +33,5 @@
                     @endforeach
                 </div>
             </div>
-        </div>
     </div>
 </div>
