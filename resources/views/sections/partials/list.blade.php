@@ -43,28 +43,35 @@
                                 <div class="">
                                     <a href="{{route('create-booking', ['course' => $course->id])}}"
                                        class="text-base leading-5 text-gray-900 pt-2 md:pt-0">
-                                        Only {{$course->placesLeft()}} places left
+                                        @if ($course->placesLeft() > 0)
+                                            {{ $course->placesLeft() > 1 ? 'Only '. $course->placesLeft() .' places left' : 'Last '.$course->placesLeft(). ' remaining' }}
+                                        @else
+{{--                                             0 places left--}}
+                                        @endif
                                     </a>
                                 </div>
                             </div>
                             @if ($course->placesLeft() > 0)
-                            <div class="flex-grow-0 hidden sm:block">
+                            <div class="flex w-48 hidden sm:block">
                                 <div class="rounded-md shadow">
-                                    <a href="{{route('create-booking', ['course' => $course->id])}}" class="mt-3 ml-0 w-full px-6 py-3 border border-transparent text-lg leading-6 font-medium rounded-md text-white bg-gray-800 shadow-sm hover:bg-gray-700 focus:outline-none focus:shadow-outline active:bg-gray-900 transition duration-150 ease-in-out sm:mt-0 sm:ml-0 sm:flex-shrink-0  sm:items-center">
-                                        Book now
-                                    </a>
+                                    <button class="w-48 mt-3 ml-0 px-6 py-3 border border-transparent text-lg leading-6 font-medium rounded-md text-white bg-gray-800 shadow-sm hover:bg-gray-700 focus:outline-none focus:shadow-outline active:bg-gray-900 transition duration-150 ease-in-out sm:mt-0 sm:ml-0 sm:flex-shrink-0  sm:items-center">
+                                        <a href="{{route('create-booking', ['course' => $course->id])}}">
+                                            Book now
+                                        </a>
+                                    </button>
+
                                 </div>
                             </div>
                             @else
-                            <div class="flex-grow-0 hidden sm:block">
+                            <div class="flex w-48 hidden sm:block">
                                 <div class="rounded-md shadow">
-                                    <a href="{{route('create-booking', ['course' => $course->id])}}" class="mt-3 ml-0 w-full px-6 py-3 border border-transparent text-lg leading-6 font-medium rounded-md text-white bg-gray-800 shadow-sm hover:bg-gray-700 focus:outline-none focus:shadow-outline active:bg-gray-900 transition duration-150 ease-in-out sm:mt-0 sm:ml-0 sm:flex-shrink-0  sm:items-center">
-                                        Book
-                                    </a>
+{{--                                    <a href="{{route('create-booking', ['course' => $course->id])}}" class="mt-3 ml-0 px-6 py-3 border border-transparent text-lg leading-6 font-medium rounded-md text-white bg-gray-800 shadow-sm hover:bg-gray-700 focus:outline-none focus:shadow-outline active:bg-gray-900 transition duration-150 ease-in-out sm:mt-0 sm:ml-0 sm:flex-shrink-0  sm:items-center">--}}
+{{--                                        Book--}}
+{{--                                    </a>--}}
 
-{{--                                    <button  class="mt-3 ml-0 w-full px-6 py-3 border border-transparent text-lg leading-6 font-medium rounded-md text-white bg-gray-800 shadow-sm hover:bg-gray-700 focus:outline-none focus:shadow-outline active:bg-gray-900 transition duration-150 ease-in-out sm:mt-0 sm:ml-0 sm:flex-shrink-0  sm:items-center">--}}
-{{--                                        Fully booked--}}
-{{--                                    </button>--}}
+                                    <button class="w-48 mt-3 ml-0 px-6 py-3 border border-transparent text-lg leading-6 font-medium rounded-md text-white bg-gray-800 shadow-sm hover:bg-gray-700 focus:outline-none focus:shadow-outline active:bg-gray-900 transition duration-150 ease-in-out sm:mt-0 sm:ml-0 sm:flex-shrink-0  sm:items-center">
+                                        Fully booked
+                                    </button>
                                 </div>
                             </div>
                             @endif
