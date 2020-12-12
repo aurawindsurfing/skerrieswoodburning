@@ -1,4 +1,4 @@
-<div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pt-10" x-ref="list">
+<div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pt-2" x-ref="list">
     <div class="lg:text-center">
         @if ($courses->count() > 0)
             <h3 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">

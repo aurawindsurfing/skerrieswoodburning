@@ -5,7 +5,7 @@
 @section('keywords', __('Training, Construction, Safepass, Safety'))
 
 @section('body')
-    <div class=" max-w-screen-xl mx-auto" x-data="{open: false}">
+    <div class="max-w-screen-xl mx-auto" x-data="{open: false}">
         @if (session('overbooked'))
             <div x-data="{ open2: true }" x-show="open2 == true"
                  class="fixed bottom-0 inset-x-0 px-4 pb-6 sm:inset-0 sm:p-0 sm:flex sm:items-center sm:justify-center">

@@ -9,7 +9,7 @@
 
         <div class="relative bg-white overflow-hidden">
 
-            <div class="relative pt-6 pb-16 md:pb-16 lg:pb-20 xl:pb-24">
+            <div class="relative pt-6 md:pb-16 lg:pb-20 xl:pb-24">
 
                 @include('sections.partials.navbar')
                 @include('sections.partials.mobile-nav')
