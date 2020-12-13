@@ -5,6 +5,7 @@
 @section('keywords', __('Training, Construction, Safepass, Safety'))
 
 @section('body')
+    <div class="relative min-h-screen">
     <div x-data="{ open_navbar: false, show_modal: false }"
         x-init="show_modal = @json(Session::has('overbooked'))"
          class="max-w-screen-xl mx-auto">
@@ -70,4 +71,5 @@
     </div>
 
     @include('sections.footer')
+    </div>
 @endsection
