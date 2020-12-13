@@ -5,30 +5,31 @@
 @section('keywords', __('Training, Construction, Safepass, Safety'))
 
 @section('body')
-    <div class="max-w-screen-xl mx-auto" x-data="{open: false}">
+    <div x-data="{ open_navbar: false, show_modal: false }"
+        x-init="show_modal = @json(Session::has('overbooked'))"
+         class="max-w-screen-xl mx-auto">
         @if (session('overbooked'))
-            <div x-data="{ open2: true }" x-show="open2 == true"
-                 class="fixed bottom-0 inset-x-0 px-4 pb-6 sm:inset-0 sm:p-0 sm:flex sm:items-center sm:justify-center">
-                <div x-show="open2 == true"
-                     class="fixed inset-0 transition-opacity"
-                     x-transition:enter="ease-out duration-300"
-                     x-transition:enter-start="opacity-0"
-                     x-transition:enter-end="opacity-100"
-                     x-transition:leave="ease-in duration-200"
-                     x-transition:leave-start="opacity-100"
-                     x-transition:leave-end="opacity-0"
+        <div class="fixed bottom-0 inset-x-0 px-4 pb-6 sm:inset-0 sm:p-0 sm:flex sm:items-center sm:justify-center">
+                <div class="fixed inset-0 transition-opacity"
+                     x-show="show_modal == true"
+{{--                     x-transition:enter="ease-out duration-300"--}}
+{{--                     x-transition:enter-start="opacity-0"--}}
+{{--                     x-transition:enter-end="opacity-100"--}}
+{{--                     x-transition:leave="ease-in duration-200"--}}
+{{--                     x-transition:leave-start="opacity-100"--}}
+{{--                     x-transition:leave-end="opacity-0"--}}
                 >
                     <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
                 </div>
 
                 <div class="bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-sm sm:w-full sm:p-6" role="dialog" aria-modal="true" aria-labelledby="modal-headline"
-                     x-show="open2 == true"
-                     x-transition:enter="ease-out duration-300"
-                     x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                     x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-                     x-transition:leave="ease-in duration-200"
-                     x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-                     x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                     x-show="show_modal == true"
+{{--                     x-transition:enter="ease-out duration-300"--}}
+{{--                     x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"--}}
+{{--                     x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"--}}
+{{--                     x-transition:leave="ease-in duration-200"--}}
+{{--                     x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"--}}
+{{--                     x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"--}}
                 >
                     <div class="sm:flex sm:items-start">
                         <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
@@ -48,7 +49,7 @@
                         </div>
                     </div>
                     <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
-                        <button @click="open2 = false" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+                        <button @click="show_modal = false" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
                             I understand
                         </button>
                         <a href="tel: +35318097266">

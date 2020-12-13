@@ -5,7 +5,7 @@
             <li class="border-t border-gray-200 hover:bg-gray-50 focus:outline-none focus:bg-gray-50">
                 <a href="{{route('create-booking', ['course' => $course->id])}}">
             @else
-            <li class="opacity-50 cursor-not-allowed border-t border-gray-200 hover:bg-gray-50 focus:outline-none focus:bg-gray-50">
+            <li x-bind:class="{ 'opacity-50 cursor-not-allowed': !show_modal }" class="border-t border-gray-200 hover:bg-gray-50 focus:outline-none focus:bg-gray-50">
             @endif
                     <div class="flex items-center justify-between px-4 py-4 sm:px-6">
                         <div class="flex items-center">
@@ -105,7 +105,7 @@
                             @else
                             <div class="flex w-48 hidden sm:block">
                                 <div class="rounded-md shadow">
-                                    <button class="cursor-not-allowed w-48 mt-3 ml-0 px-6 py-3 border border-transparent text-lg leading-6 font-medium rounded-md text-white bg-gray-800 shadow-sm hover:bg-gray-700 focus:outline-none focus:shadow-outline active:bg-gray-900 transition duration-150 ease-in-out sm:mt-0 sm:ml-0 sm:flex-shrink-0 sm:items-center">
+                                    <button x-bind:class="{'cursor-not-allowed': !show_modal }" class="w-48 mt-3 ml-0 px-6 py-3 border border-transparent text-lg leading-6 font-medium rounded-md text-white bg-gray-800 shadow-sm hover:bg-gray-700 focus:outline-none focus:shadow-outline active:bg-gray-900 transition duration-150 ease-in-out sm:mt-0 sm:ml-0 sm:flex-shrink-0 sm:items-center">
                                         Fully booked
                                     </button>
                                 </div>

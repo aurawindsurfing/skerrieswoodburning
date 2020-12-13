@@ -5,7 +5,7 @@
 @section('keywords', __('Training, Construction, Safepass, Safety'))
 
 @section('body')
-    <div x-data="{open: false}">
+    <div x-data="{open_navbar: false, show_modal: false}">
 
         <div class="relative bg-white overflow-hidden">
 
