@@ -7,10 +7,9 @@
 @section('body')
     <div class="relative min-h-screen">
     <div x-data="{ open_navbar: false, show_modal: false }"
-        x-init="show_modal = @json(Session::has('overbooked'))"
-         class="max-w-screen-xl mx-auto">
+        x-init="show_modal = @json(Session::has('overbooked'))" class="max-w-screen-xl mx-auto">
         @if (session('overbooked'))
-        <div class="fixed bottom-0 inset-x-0 px-4 pb-6 sm:inset-0 sm:p-0 sm:flex sm:items-center sm:justify-center">
+            <div class="fixed bottom-0 inset-x-0 px-4 pb-6 sm:inset-0 sm:p-0 sm:flex sm:items-center sm:justify-center">
                 <div class="fixed inset-0 transition-opacity"
                      x-show="show_modal == true"
 {{--                     x-transition:enter="ease-out duration-300"--}}
