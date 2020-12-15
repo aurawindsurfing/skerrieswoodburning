@@ -18,7 +18,7 @@ class PageController extends Controller {
         $groups_chunks = Cache::remember('group_chunks', 86400, function () {
             return CourseTypeGroup::where('id', '<>', 14)->get()->sortBy('order')->chunk(4);
         });
-        $courses = Cache::remember('courses', 86400, function () {
+        $courses = Cache::remember('courses', 900, function () {
             return Course::with(['venue', 'course_type'])->where('course_type_id', 1)->where('inhouse', false)->where('date', '>', today())->orderBy('date')->take(7)->get();
         });
         $logos = Cache::remember('logos', 86400, function () {
