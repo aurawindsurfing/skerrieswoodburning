@@ -45,6 +45,7 @@
         "silvanite/nova-field-cloudinary": "^1.0",
         "spatie/eloquent-sortable": "^3.7",
         "spatie/laravel-activitylog": "^3.8",
+        "spatie/laravel-sitemap": "^5.8",
         "stripe/stripe-php": "^7.27",
         "titasgailius/search-relations": "^1.0",
         "vyuldashev/nova-money-field": "^1.1",

@@ -24,6 +24,7 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\ImportAll::class,
         \App\Console\Commands\InvoicePaymentReminder::class,
         \App\Console\Commands\ClearTemporaryFiles::class,
+        \App\Console\Commands\GenerateSitemap::class,
     ];
 
     /**
