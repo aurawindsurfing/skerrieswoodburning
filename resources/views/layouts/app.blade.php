@@ -3,8 +3,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ env('APP_NAME') }} - @yield('title')</title>
@@ -43,11 +41,9 @@
     <meta name="theme-color" content="#ffffff">
 
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 
     {{--    @include('partials.crisp')--}}
-
     {{-- @include('partials.cookieconsent') --}}
 
 </head>

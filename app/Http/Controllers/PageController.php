@@ -24,7 +24,7 @@ class PageController extends Controller {
         $logos = Cache::remember('logos', 86400, function () {
             return $this->cloudinary_resources('logos', 50, 'cloudinary_logo');
         });
-        $image = Cache::remember('image', 86400, function () {
+        $image = Cache::remember('image', 60, function () {
             return Arr::random($this->cloudinary_resources('pictures', 50, 'cloudinary_optimised_jpg'));
         });
 
@@ -37,7 +37,7 @@ class PageController extends Controller {
 
         $course_type_ids = CourseType::where('course_type_group_id', $group->id)->pluck('id');
 
-        $courses = Cache::remember('group_courses'.$group->id, 86400, function () use ($course_type_ids) {
+        $courses = Cache::remember('group_courses'.$group->id, 900, function () use ($course_type_ids) {
             return Course::with(['venue', 'course_type'])
                 ->whereIn('course_type_id', $course_type_ids)
                 ->where('date', '>', today())
