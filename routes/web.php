@@ -10,24 +10,26 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//$redirect_array = [
+//    '/en/doctor/1/dr-monika-antepowicz-specialist-in-womens-health-gyneacologist'      => '/en/doctor/11/dr-monika-antepowicz-specialist-in-womens-health-gyneacologist',
+//];
+//
+//foreach ($redirect_array as $key => $value){
+//    Route::redirect($key, $value, 301);
+//}
+
 
 Route::get('/', 'PageController@index')->name('home');
 Route::get('/bespoke_solution/{type?}', 'PageController@bespoke')->name('bespoke');
 Route::post('/contact', 'ContactFormController@send')->name('send_enquiry');
 
-Route::get('/group/{group}', 'PageController@group')->name('group');
-Route::get('/list/{type?}', 'PageController@list')->name('list');
+Route::get('/group/{group}/{slug?}', 'PageController@group')->name('group');
+Route::get('/list/{type?}/{slug?}', 'PageController@list')->name('list');
 
-Route::get('/booking/create/{course}', 'BookingController@create')->name('create-booking');
+Route::get('/booking/create/{course}/{slug?}', 'BookingController@create')->name('create-booking');
 Route::post('/booking', 'BookingController@store')->name('store-booking');
 
 Route::post('stripe/webhook', 'WebhookController@handleWebhook');
-
-
-
-
-
-
 
 // Route::redirect('/', '/office', 301);
 

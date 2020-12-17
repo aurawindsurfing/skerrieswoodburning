@@ -12,7 +12,6 @@ use Illuminate\Support\Str;
 use JD\Cloudder\Facades\Cloudder;
 
 class PageController extends Controller {
-
     public function index()
     {
         $groups_chunks = Cache::remember('group_chunks', 86400, function () {

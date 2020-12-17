@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use MichielKempen\NovaOrderField\Orderable;
@@ -15,6 +16,7 @@ class CourseType extends Model implements Sortable
     use LogsActivity;
     use Orderable;
     use SortableTrait;
+    use Sluggable;
 
     protected $guarded = [];
 
@@ -31,6 +33,15 @@ class CourseType extends Model implements Sortable
     public function buildSortQuery()
     {
         return static::query()->where('course_type_group_id', $this->course_type_group_id);
+    }
+
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => ['name']
+            ]
+        ];
     }
 
     public function courses()

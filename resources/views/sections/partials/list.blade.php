@@ -3,7 +3,7 @@
         @foreach($courses as $course)
             @if ($course->placesLeft() > 0)
             <li class="border-t border-gray-200 hover:bg-gray-50 focus:outline-none focus:bg-gray-50">
-                <a href="{{route('create-booking', ['course' => $course->id])}}">
+                <a href="{{route('create-booking', ['course' => $course->id, 'slug' => $course->slug])}}">
             @else
             <li x-bind:class="{ 'opacity-50 cursor-not-allowed': !show_modal }" class="border-t border-gray-200 hover:bg-gray-50 focus:outline-none focus:bg-gray-50">
             @endif
@@ -59,7 +59,7 @@
                             <div class="flex-grow-0 hidden sm:block">
                                 <div class="text-base leading-5 text-gray-900 pt-2 md:pt-0">
                                     @if ($course->placesLeft() > 0)
-                                    <a href="{{route('create-booking', ['course' => $course->id])}}">
+                                    <a href="{{route('create-booking', ['course' => $course->id, 'slug' => $course->slug])}}">
                                     @endif
                                         @if ($course->placesLeft() > 5)
                                             <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800">
@@ -95,7 +95,7 @@
                             <div class="flex w-48 hidden sm:block">
                                 <div class="rounded-md shadow">
                                     <button class="w-48 mt-3 ml-0 px-6 py-3 border border-transparent text-lg leading-6 font-medium rounded-md text-white bg-gray-800 shadow-sm hover:bg-gray-700 focus:outline-none focus:shadow-outline active:bg-gray-900 transition duration-150 ease-in-out sm:mt-0 sm:ml-0 sm:flex-shrink-0  sm:items-center">
-                                        <a href="{{route('create-booking', ['course' => $course->id])}}">
+                                        <a href="{{route('create-booking', ['course' => $course->id, 'slug' => $course->slug])}}">
                                             Book now
                                         </a>
                                     </button>

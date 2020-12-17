@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Scopes\UpcomingOnlyScope;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -11,6 +12,7 @@ class Course extends Model
 {
     use SoftDeletes;
     use LogsActivity;
+    use Sluggable;
 
     protected $guarded = [];
 
@@ -27,6 +29,15 @@ class Course extends Model
             $course->bookings()->delete();
             // do the rest of the cleanup...
         });
+    }
+
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => ['course_type.name', 'venue.name', 'date']
+            ]
+        ];
     }
 
     public function tutor()

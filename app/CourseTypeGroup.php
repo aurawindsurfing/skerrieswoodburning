@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use JD\Cloudder\Facades\Cloudder;
@@ -11,6 +12,7 @@ use Spatie\EloquentSortable\SortableTrait;
 class CourseTypeGroup extends Model implements Sortable
 {
     use SortableTrait;
+    use Sluggable;
 
     /**
      * @var array
@@ -20,6 +22,14 @@ class CourseTypeGroup extends Model implements Sortable
         'sort_when_creating' => true,
     ];
 
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => ['name']
+            ]
+        ];
+    }
 
     public function course_types()
     {
