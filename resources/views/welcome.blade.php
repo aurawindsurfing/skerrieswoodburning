@@ -2,7 +2,7 @@
 
 @section('title', __('Construction Training Provider'))
 @section('description', __('Quality Training, Excellent Service, Experienced Team, Attention to detail'))
-@section('keywords', __('Training, Construction, Safepass, Safety'))
+@section('keywords', __('Training, Construction, Safepass, Safety, safe pass, course, dublin 15, solas safe pass, dublin, blanchardstown, meath, north dublin,  trade school ireland'))
 
 @section('body')
     <div class="relative min-h-screen">
