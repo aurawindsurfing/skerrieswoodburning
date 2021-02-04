@@ -33,9 +33,7 @@ class PageController extends Controller {
     public function group(CourseTypeGroup $group)
     {
         $course_types = $group->course_types()->orderBy('order')->get();
-
         $course_type_ids = CourseType::where('course_type_group_id', $group->id)->pluck('id');
-
         $courses = Cache::remember('group_courses'.$group->id, 900, function () use ($course_type_ids) {
             return Course::with(['venue', 'course_type'])
                 ->whereIn('course_type_id', $course_type_ids)
@@ -63,9 +61,7 @@ class PageController extends Controller {
                 ->orderBy('date')
                 ->get();
 
-        $course_type = $type;
-
-        return view('list', compact('courses', 'course_type'));
+        return view('list', compact('courses', 'type'));
     }
 
     public function bespoke(CourseType $type = null)

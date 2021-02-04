@@ -104,7 +104,7 @@ class BookingController extends Controller
 
             return redirect()->route('cashier.payment', [
                 $e->payment->id,
-                'redirect' => route('create-booking', ['course' => $course->id, 'slug' => $course->slug]),
+                'redirect' => route('create-booking', ['course' => $course->slug]),
             ]);
 
         } catch (Exception $e) {

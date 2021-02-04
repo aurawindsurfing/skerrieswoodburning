@@ -1,13 +1,13 @@
 <div class="bg-gray-50 pt-12 mt-4 sm:pt-16">
     <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-3xl leading-9 font-extrabold text-gray-900 sm:text-4xl sm:leading-10">
-                Training courses
+            <h1 class="text-3xl leading-9 font-extrabold text-gray-900 sm:text-4xl sm:leading-10">
+                Safety courses in Dublin
+            </h1>
+            <h2 class="mt-3 text-xl leading-7 text-gray-500 sm:mt-4">
+                Safepass course Dublin, First Aid Course or MEWP courses in Blanchardstown, Dublin 15. We have over 100 quick safe pass courses and safety courses online as well as available in  vanues across Dublin such as Parslickstown House, Carlton Hotel, Grasshoper Inn, Wynns Hotel or Red Cow Morans Hotel.
+                Please enquire for any course not listed below, and we will help you find a solution to make. Safe ireland is our priotity.
             </h2>
-            <p class="mt-3 text-xl leading-7 text-gray-500 sm:mt-4">
-                We have over 100 safety courses available, please enquire for any course not listed below, and we will
-                help you find a solution.
-            </p>
         </div>
     </div>
     <div x-bind:class="{ 'relative': !show_modal }" class="mt-10 pb-12 bg-white sm:pb-16">
@@ -17,7 +17,7 @@
                     @foreach($groups_chunks as $groups)
                         <div class="rounded-lg bg-white shadow-lg grid grid-cols-2 sm:grid-cols-4 m-0">
                             @foreach ($groups as $group)
-                                <a href="{{route('group', ['slug' => $group->slug])}}">
+                                <a href="{{route('group', ['group' => $group->slug])}}">
                                     <div class="min-h-full border-b border-gray-100 p-6 text-center sm:border-0 sm:border-r">
 {{--                                        <p class="text-5xl leading-none font-extrabold text-blue-600">--}}
 {{--                                            ICONS--}}

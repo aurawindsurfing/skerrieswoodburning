@@ -40,6 +40,11 @@ class Course extends Model
         ];
     }
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function tutor()
     {
         return $this->belongsTo(\App\Tutor::class);

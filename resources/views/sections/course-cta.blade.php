@@ -147,7 +147,7 @@
                             </div>
 
                             <div class="mt-6">
-                                <a href="{{ route('list', ['type' => $type->id, 'slug' => $type->slug]) }}"
+                                <a href="{{ route('list', ['type' => $type->slug]) }}"
                                    class="flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
                                     <button class="rounded-md shadow w-full">
                                         Book course
@@ -160,7 +160,7 @@
 {{--                            </p>--}}
                             <div class="flex justify-center pt-4">
 
-                                    <a href="{{ route('bespoke', ['type' => $type->id]) }}"
+                                    <a href="{{ route('bespoke', ['type' => $type->slug]) }}"
                                        class="w-full flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
                                         <button class="rounded-md shadow w-full">
                                         Make enquiry

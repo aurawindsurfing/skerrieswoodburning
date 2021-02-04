@@ -12,13 +12,13 @@
 */
 
 Route::get('/', 'PageController@index')->name('home');
-Route::get('/bespoke_solution/{type?}', 'PageController@bespoke')->name('bespoke');
+Route::get('/enquiry_about/{type?}', 'PageController@bespoke')->name('bespoke');
 Route::post('/contact', 'ContactFormController@send')->name('send_enquiry');
 
-Route::get('/group/{slug}', 'PageController@group')->name('group');
-Route::get('/list/{type?}/{slug?}', 'PageController@list')->name('list');
+Route::get('/find/{group}', 'PageController@group')->name('group');
+Route::get('/upcoming-courses/{type?}', 'PageController@list')->name('list');
 
-Route::get('/booking/create/{course}/{slug?}', 'BookingController@create')->name('create-booking');
+Route::get('/book/{course}', 'BookingController@create')->name('create-booking');
 Route::post('/booking', 'BookingController@store')->name('store-booking');
 
 Route::post('stripe/webhook', 'WebhookController@handleWebhook');

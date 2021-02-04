@@ -44,6 +44,12 @@ class CourseType extends Model implements Sortable
         ];
     }
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+
     public function courses()
     {
         return $this->hasMany(\App\Course::class);

@@ -64,28 +64,28 @@
             <div class="overflow-hidden">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 ">
                     <div class="text-base max-w-prose mx-auto lg:max-w-none">
-                        {{--                <p class="text-base leading-6 text-indigo-600 font-semibold tracking-wide uppercase">CONSTRUCTION INDUSTRY TRAINING LTD</p>--}}
+{{--                        <p class="text-base leading-6 text-indigo-600 font-semibold tracking-wide uppercase">CONSTRUCTION INDUSTRY TRAINING LTD</p>--}}
                         <h1 class="mt-2 mb-8 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">What makes us different</h1>
                     </div>
                     <div class="relative text-base max-w-prose mx-auto mb-8 lg:max-w-5xl lg:mx-0 lg:pr-72">
-                        <p class="text-lg text-gray-500 leading-7">Thank you for your interest in this course. CIT have been providing training solutions for the past 25 years to a wide variety of companies and State bodies. We have a proven track record of listening to our client and delivering to them exactly what is needed.</p>
+                        <h2 class="text-lg text-gray-500 leading-7">Thank you for your interest in this course. CIT have been providing training solutions for the past 25 years to a wide variety of companies and State bodies. We have a proven track record of listening to our client and delivering to them exactly what is needed.</h2>
                     </div>
                     <div class="lg:grid lg:grid-cols-2 lg:gap-24 lg:items-start">
 
                         <div class="relative mb-12 lg:mb-0">
                             <div class="mb-10 prose text-gray-500 mx-auto lg:max-w-none">
-                                {{--                        <p>We offer a complete service including:</p>--}}
-                                {{--                        <ul>--}}
-                                {{--                            <li>Initial Training Needs Analysis</li>--}}
-                                {{--                            <li>Professional Course Delivery</li>--}}
-                                {{--                            <li>Post Delivery Course Feedback</li>--}}
-                                {{--                        </ul>--}}
-                                {{--                        <p>Rhoncus nisl, libero egestas diam fermentum dui. At quis tincidunt vel ultricies. Vulputate aliquet velit faucibus semper. Pellentesque in venenatis vestibulum consectetur nibh id. In id ut tempus egestas. Enim sit aliquam nec, a. Morbi enim fermentum lacus in. Viverra.</p>--}}
-                                {{--                        <h2>We’re here to help</h2>--}}
-                                {{--                        <p>Tincidunt integer commodo, cursus etiam aliquam neque, et. Consectetur pretium in volutpat, diam. Montes, magna cursus nulla feugiat dignissim id lobortis amet. Laoreet sem est phasellus eu proin massa, lectus. Diam rutrum posuere donec ultricies non morbi. Mi a platea auctor mi.</p>--}}
+{{--                                                        <p>We offer a complete service including:</p>--}}
+{{--                                                        <ul>--}}
+{{--                                                            <li>Initial Training Needs Analysis</li>--}}
+{{--                                                            <li>Professional Course Delivery</li>--}}
+{{--                                                            <li>Post Delivery Course Feedback</li>--}}
+{{--                                                        </ul>--}}
+{{--                                                        <p>Rhoncus nisl, libero egestas diam fermentum dui. At quis tincidunt vel ultricies. Vulputate aliquet velit faucibus semper. Pellentesque in venenatis vestibulum consectetur nibh id. In id ut tempus egestas. Enim sit aliquam nec, a. Morbi enim fermentum lacus in. Viverra.</p>--}}
+{{--                                                        <h2>We’re here to help</h2>--}}
+{{--                                                        <p>Tincidunt integer commodo, cursus etiam aliquam neque, et. Consectetur pretium in volutpat, diam. Montes, magna cursus nulla feugiat dignissim id lobortis amet. Laoreet sem est phasellus eu proin massa, lectus. Diam rutrum posuere donec ultricies non morbi. Mi a platea auctor mi.</p>--}}
                             </div>
 
-                            <h1 class="mt-2 mb-8 text-2xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-3xl sm:leading-10">Your enquiry</h1>
+                            <h3 class="mt-2 mb-8 text-2xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-3xl sm:leading-10">Your enquiry</h3>
                             <div>
                                 <form action="{{ route('send_enquiry') }}" method="POST" class="grid grid-cols-1 gap-y-6 sm:grid-cols-1 sm:gap-x-8">
                                     @csrf

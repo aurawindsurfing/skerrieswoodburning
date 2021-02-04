@@ -126,19 +126,19 @@
                         <h3 class="text-sm leading-6 text-gray-500">
                             You are now booking:
                         </h3>
-                        <p class="mt-1 text-2xl font-medium leading-5 text-gray-900">
+                        <h1 class="mt-1 text-2xl font-medium leading-5 text-gray-900">
                             {{$course->course_type->name}}
-                        </p>
+                        </h1>
                         <br>
                         <span class="text-sm leading-6 text-gray-500">at</span>
-                        <p class="mt-1 text-lg font-medium leading-5 text-gray-900">
+                        <h2 class="mt-1 text-lg font-medium leading-5 text-gray-900">
                             {{$course->venue_name()}}
-                        </p>
+                        </h2>
                         <br>
                         <span class="text-sm leading-6 text-gray-500">on</span>
-                        <p class="mt-1 text-lg font-medium leading-5 text-gray-900">
+                        <h2 class="mt-1 text-lg font-medium leading-5 text-gray-900">
                             {{$course->date->format('(l) d F Y').', '.Carbon\Carbon::parse($course->time)->format('H:i')}}
-                        </p>
+                        </h2>
                     </div>
                 </div>
                 <div class="mt-8 border-t border-gray-200 pt-8">

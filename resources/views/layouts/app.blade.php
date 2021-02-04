@@ -5,13 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ env('APP_NAME') }} - @yield('title')</title>
-
-    <meta name='description' itemprop='description' content="@yield('description')" />
-    <meta name='keywords' content="@yield('keywords')" />
+    <title>@yield('title') Safe Pass Course Dublin</title>
+    <meta name='description' itemprop='description' content="@yield('description'){{'Quick SOLAS Safe Pass in Dublin! Courses available daily. Trusted safepass dublin provider with years of experience.'}}" />
+    <meta name='keywords' content="safepass dublin, safe pass dublin" />
     <meta name="robots" content="index, follow" />
-    <meta property="og:description" content="@yield('description')"/>
-    <meta property="og:title" content="{{ env('APP_NAME') }} - @yield('title')"/>
+    <meta property="og:description" content="@yield('description'){{'Quick SOLAS Safe Pass in Dublin! Courses available daily. Trusted safepass dublin provider with years of experience.'}}"/>
+    <meta property="og:title" content="@yield('title'){{'Safe Pass Course Dublin'}}"/>
     <meta property="og:url" content="{{ url()->current() }}"/>
     <meta property="og:type" content="article"/>
 
@@ -24,8 +23,8 @@
           content="{{ Cloudder::secureShow('/cit/pictures/manual-handling', config('settings.cloudinary_optimised_jpg')) }}"/>
     <meta property="og:image:size" content="300"/>
 
-    <meta name="twitter:card" content="@yield('description')"/>
-    <meta name="twitter:title" content="{{ env('APP_NAME') }} - @yield('title')"/>
+    <meta name="twitter:title" content="@yield('title'){{'Safe Pass Course Dublin'}}"/>
+    <meta name="twitter:card" content="@yield('description'){{'Quick SOLAS Safe Pass in Dublin! Courses available daily. Trusted safepass dublin provider with years of experience.'}}"/>
     {{--    <meta name="twitter:site"content="@MedicusMedical" />--}}
 
     {{--    @foreach(localization()->getSupportedLocales() as $key => $locale)--}}

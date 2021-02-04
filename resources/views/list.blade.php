@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
-@section('title', __('Construction Training Provider'))
-@section('description', __('Quality Training, Excellent Service, Experienced Team, Attention to detail'))
-@section('keywords', __('Training, Construction, Safepass, Safety'))
+@section('title', (optional($type)->name.' BOOK NOW - '))
+@section('description', ($type ? 'Book now '.optional($type)->name.', as well as ' : ''))
 
 @section('body')
     <div class="relative min-h-screen">
