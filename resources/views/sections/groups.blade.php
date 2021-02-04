@@ -9,7 +9,7 @@
                 <a href="{{route('venue', ['venue' => 'parslickstown-house-base-enterprise-centre-ladyswell-road-mulhuddart-dublin-15-dublin-d15-x2vw'])}}" class="text-gray-500 hover:text-gray-900">
                     Parslickstown House,
                 </a>
-                <a href="{{route('venue', ['venue' => 'carlton-hotel'])}}" class="text-gray-500 hover:text-gray-900">
+                <a href="{{route('venue', ['venue' => 'carlton-hotel-tyrrelstown-dublin-15'])}}" class="text-gray-500 hover:text-gray-900">
                     Carlton Hotel,
                 </a>
                 <a href="{{route('venue', ['venue' => 'the-grasshopper-inn-main-street-clonee-meath'])}}" class="text-gray-500 hover:text-gray-900">

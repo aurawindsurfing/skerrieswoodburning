@@ -60,7 +60,7 @@
                             </li>
 
                             <li>
-                                <a href="{{route('venue', ['venue' => 'carlton-hotel'])}}" class="text-base text-gray-500 hover:text-gray-900">
+                                <a href="{{route('venue', ['venue' => 'carlton-hotel-tyrrelstown-dublin-15'])}}" class="text-base text-gray-500 hover:text-gray-900">
                                     Carlton Hotel
                                 </a>
                             </li>
