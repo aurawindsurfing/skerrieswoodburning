@@ -89,7 +89,7 @@
                             <div>
                                 <form action="{{ route('send_enquiry') }}" method="POST" class="grid grid-cols-1 gap-y-6 sm:grid-cols-1 sm:gap-x-8">
                                     @csrf
-                                    <input type="hidden" name="type" value="{{$type->title}}">
+                                    <input type="hidden" name="type" value="{{optional($type)->title}}">
                                     <div class="sm:col-span-2">
                                         <label for="name" class="block text-sm font-medium leading-5 text-gray-700">Name</label>
                                         <div class="mt-1 relative rounded-md shadow-sm">

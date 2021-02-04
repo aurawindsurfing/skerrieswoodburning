@@ -21,7 +21,11 @@
                 <a href="{{route('venue', ['venue' => 'red-cow-moran-hotel'])}}" class="text-gray-500 hover:text-gray-900">
                     Red Cow Moran Hotel.
                 </a>
-                Please enquire for any course not listed below, and we will help you find a solution to make. Safe ireland is our priotity.
+                Please
+                <a href="{{route('bespoke')}}" class="text-gray-500 hover:text-gray-900">
+                    enquire
+                </a>
+                for any course not listed below, and we will help you find a solution to make. Safe ireland is our priotity.
             </h2>
         </div>
     </div>

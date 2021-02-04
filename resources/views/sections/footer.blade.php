@@ -88,32 +88,27 @@
                 <div class="md:grid md:grid-cols-2 md:gap-8">
                     <div>
                         <h4 class="text-sm leading-5 font-semibold text-gray-400 tracking-wider uppercase">
-                            Company
+                            FAQ
                         </h4>
                         <ul class="mt-4 space-y-4">
                             <li>
                                 <a href="#" class="text-base leading-6 text-gray-500 hover:text-gray-900">
-                                    About
+                                    How much is safe pass in Ireland
                                 </a>
                             </li>
                             <li>
                                 <a href="#" class="text-base leading-6 text-gray-500 hover:text-gray-900">
-                                    Blog
+                                    Can you do Safe Pass course online
                                 </a>
                             </li>
                             <li>
                                 <a href="#" class="text-base leading-6 text-gray-500 hover:text-gray-900">
-                                    Jobs
+                                    Where can you get safe pass
                                 </a>
                             </li>
                             <li>
                                 <a href="#" class="text-base leading-6 text-gray-500 hover:text-gray-900">
-                                    Press
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-base leading-6 text-gray-500 hover:text-gray-900">
-                                    Partners
+                                    What is SOLAS Safe Pass
                                 </a>
                             </li>
                         </ul>
@@ -145,6 +140,11 @@
                                 <a href="#" class="text-base text-gray-500 hover:text-gray-900">
                                     Refund Policy
                                 </a>
+                            <li>
+                                <a href="{{route('bespoke')}}" class="text-gray-500 hover:text-gray-900">
+                                    Contact Us
+                                </a>
+                            </li>
                             </li>
                         </ul>
                     </div>

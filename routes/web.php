@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'PageController@index')->name('home');
-Route::get('/enquiry_about/{type?}', 'PageController@bespoke')->name('bespoke');
+Route::get('/enquiry/{type?}', 'PageController@bespoke')->name('bespoke');
 Route::post('/contact', 'ContactFormController@send')->name('send_enquiry');
 
 Route::get('/find/{group}', 'PageController@group')->name('group');
