@@ -6,10 +6,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title') Safe Pass Course Dublin</title>
-    <meta name='description' itemprop='description' content="@yield('description'){{'Quick SOLAS Safe Pass in Dublin! Courses available daily. Trusted safepass dublin provider with years of experience.'}}" />
+    <meta name='description' itemprop='description' content="@yield('description'){{'SOLAS Safe Pass in Dublin! Courses available daily. Trusted safepass dublin provider with years of experience.'}}" />
     <meta name='keywords' content="safepass dublin, safe pass dublin" />
     <meta name="robots" content="index, follow" />
-    <meta property="og:description" content="@yield('description'){{'Quick SOLAS Safe Pass in Dublin! Courses available daily. Trusted safepass dublin provider with years of experience.'}}"/>
+    <meta property="og:description" content="@yield('description'){{'SOLAS Safe Pass in Dublin! Courses available daily. Trusted safepass dublin provider with years of experience.'}}"/>
     <meta property="og:title" content="@yield('title'){{'Safe Pass Course Dublin'}}"/>
     <meta property="og:url" content="{{ url()->current() }}"/>
     <meta property="og:type" content="article"/>
@@ -24,7 +24,7 @@
     <meta property="og:image:size" content="300"/>
 
     <meta name="twitter:title" content="@yield('title'){{'Safe Pass Course Dublin'}}"/>
-    <meta name="twitter:card" content="@yield('description'){{'Quick SOLAS Safe Pass in Dublin! Courses available daily. Trusted safepass dublin provider with years of experience.'}}"/>
+    <meta name="twitter:card" content="@yield('description'){{'SOLAS Safe Pass in Dublin! Courses available daily. Trusted safepass dublin provider with years of experience.'}}"/>
     {{--    <meta name="twitter:site"content="@MedicusMedical" />--}}
 
     {{--    @foreach(localization()->getSupportedLocales() as $key => $locale)--}}
@@ -42,7 +42,7 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 
-    {{--    @include('partials.crisp')--}}
+    @include('sections.partials.google_analitycs')
     {{-- @include('partials.cookieconsent') --}}
 
 </head>

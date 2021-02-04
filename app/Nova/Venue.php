@@ -2,17 +2,14 @@
 
 namespace App\Nova;
 
+use DinandMentink\Markdown\Markdown;
 use Illuminate\Http\Request;
 use Inspheric\Fields\Url;
-use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Country;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Place;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Textarea;
-use Laravel\Nova\Http\Requests\NovaRequest;
 use Silvanite\NovaFieldCloudinary\Fields\CloudinaryImage;
 
 class Venue extends Resource
@@ -65,7 +62,7 @@ class Venue extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function fields(Request $request)
@@ -73,9 +70,7 @@ class Venue extends Resource
         return [
             ID::make()->sortable(),
 
-            Text::make('Name')
-            ->sortable()
-            ->rules('required', 'max:255'),
+            Text::make('Name')->sortable()->rules('required', 'max:255'),
 
             $this->addressFields(),
 
@@ -84,6 +79,8 @@ class Venue extends Resource
             Url::make('Google Maps')->hideFromIndex()->rules('url')->clickable(),
 
             CloudinaryImage::make('Photo'),
+
+            Markdown::make("Description")->onlyOnForms(),
 
             HasMany::make('Courses'),
 
@@ -98,8 +95,11 @@ class Venue extends Resource
     protected function addressFields()
     {
         return $this->merge([
-            Place::make('Address', 'address_line_1')
-                ->rules('required', 'max:255')->countries(['IE', 'NI', 'GB'])->hideFromIndex(),
+            Place::make('Address', 'address_line_1')->rules('required', 'max:255')->countries([
+                    'IE',
+                    'NI',
+                    'GB',
+                ])->hideFromIndex(),
             // Text::make('Address Line 2')->hideFromIndex(),
             Text::make('City'),
             Text::make('Postal Code')->hideFromIndex(),
@@ -110,7 +110,7 @@ class Venue extends Resource
     /**
      * Get the cards available for the request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function cards(Request $request)
@@ -121,7 +121,7 @@ class Venue extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function filters(Request $request)
@@ -132,7 +132,7 @@ class Venue extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function lenses(Request $request)
@@ -143,7 +143,7 @@ class Venue extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function actions(Request $request)

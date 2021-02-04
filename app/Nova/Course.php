@@ -8,6 +8,7 @@ use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Michielfb\Time\Time;
 use Vyuldashev\NovaMoneyField\Money;
@@ -99,19 +100,6 @@ class Course extends Resource
         return false;
     }
 
-
-    // moved to model
-    ///**
-    // * placesLeft.
-    // *
-    // * @return void
-    // */
-    //public function placesLeft()
-    //{
-    //    return $this->capacity - $this->bookings->count();
-    //}
-
-
     /**
      * Get the fields displayed by the resource.
      *
@@ -132,6 +120,8 @@ class Course extends Resource
             Date::make('Date')->sortable()->rules('required'),
 
             Time::make('Time')->format('HH:mm')->rules('required'),
+
+            Number::make('Capacity')->rules('required'),
 
             BelongsTo::make('Venue')->searchable()->rules('required'),
 

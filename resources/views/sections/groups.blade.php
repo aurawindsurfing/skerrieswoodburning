@@ -1,11 +1,26 @@
 <div class="bg-gray-50 pt-12 mt-4 sm:pt-16">
     <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl mx-auto text-center">
+        <div class="max-w-4xl mx-auto lg:text-center">
             <h1 class="text-3xl leading-9 font-extrabold text-gray-900 sm:text-4xl sm:leading-10">
                 Safety courses in Dublin
             </h1>
             <h2 class="mt-3 text-xl leading-7 text-gray-500 sm:mt-4">
-                Safepass course Dublin, First Aid Course or MEWP courses in Blanchardstown, Dublin 15. We have over 100 quick safe pass courses and safety courses online as well as available in  vanues across Dublin such as Parslickstown House, Carlton Hotel, Grasshoper Inn, Wynns Hotel or Red Cow Morans Hotel.
+                Safepass course Dublin, First Aid Course or MEWP courses in Blanchardstown, Dublin 15. We have over 100 quick safe pass courses and safety courses online as well as available in  vanues across Dublin such as
+                <a href="{{route('venue', ['venue' => 'parslickstown-house-base-enterprise-centre-ladyswell-road-mulhuddart-dublin-15-dublin-d15-x2vw'])}}" class="text-gray-500 hover:text-gray-900">
+                    Parslickstown House,
+                </a>
+                <a href="{{route('venue', ['venue' => 'carlton-hotel'])}}" class="text-gray-500 hover:text-gray-900">
+                    Carlton Hotel,
+                </a>
+                <a href="{{route('venue', ['venue' => 'the-grasshopper-inn-main-street-clonee-meath'])}}" class="text-gray-500 hover:text-gray-900">
+                    Grasshopper Inn,
+                </a>
+                <a href="{{route('venue', ['venue' => 'wynn-s-hotel'])}}" class="text-gray-500 hover:text-gray-900">
+                    Wynn's Hotel
+                </a> or
+                <a href="{{route('venue', ['venue' => 'red-cow-moran-hotel'])}}" class="text-gray-500 hover:text-gray-900">
+                    Red Cow Moran Hotel.
+                </a>
                 Please enquire for any course not listed below, and we will help you find a solution to make. Safe ireland is our priotity.
             </h2>
         </div>

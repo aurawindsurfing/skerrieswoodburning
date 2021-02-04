@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "044d363a3b911a5bd126aff7994a8ee7",
+    "content-hash": "4547aac2083b95f216b27b9dfa24e1b9",
     "packages": [
         {
             "name": "64robots/nova-fields",
@@ -782,6 +782,53 @@
                 "source": "https://github.com/davidpiesse/nova-audio/tree/master"
             },
             "time": "2018-08-30T20:12:06+00:00"
+        },
+        {
+            "name": "dinandmentink/nova-markdown",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dinandmentink/nova-markdown.git",
+                "reference": "851d0366177f7c11f55821317740d29c6b5f40d4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dinandmentink/nova-markdown/zipball/851d0366177f7c11f55821317740d29c6b5f40d4",
+                "reference": "851d0366177f7c11f55821317740d29c6b5f40d4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "DinandMentink\\Markdown\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DinandMentink\\Markdown\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova Markdown Field.",
+            "keywords": [
+                "field",
+                "laravel",
+                "markdown",
+                "nova"
+            ],
+            "support": {
+                "issues": "https://github.com/dinandmentink/nova-markdown/issues",
+                "source": "https://github.com/dinandmentink/nova-markdown/tree/v1.1.0"
+            },
+            "time": "2020-12-18T19:48:25+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",

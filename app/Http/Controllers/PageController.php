@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Course;
 use App\CourseType;
 use App\CourseTypeGroup;
+use App\Venue;
 use Cloudinary\Api;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
@@ -67,6 +68,23 @@ class PageController extends Controller {
     public function bespoke(CourseType $type = null)
     {
         return view('bespoke', compact('type'));
+    }
+
+    public function venue(Venue $venue)
+    {
+        $courses = Course::query()
+            ->where('venue_id', $venue->id)
+            ->with(['venue', 'course_type'])
+            ->where('inhouse', false)
+            ->where('date', '>', today())
+            ->orderBy('date')
+            ->get();
+
+        $image = Cache::remember('image'.$venue->slug, 3600, function () {
+            return Arr::random($this->cloudinary_resources('pictures', 50, 'cloudinary_optimised_jpg'));
+        });
+
+        return view('venue', compact('venue', 'courses'));
     }
 
     /**

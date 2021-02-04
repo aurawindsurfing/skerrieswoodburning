@@ -17,6 +17,7 @@ Route::post('/contact', 'ContactFormController@send')->name('send_enquiry');
 
 Route::get('/find/{group}', 'PageController@group')->name('group');
 Route::get('/upcoming-courses/{type?}', 'PageController@list')->name('list');
+Route::get('/venue/{venue}', 'PageController@venue')->name('venue');
 
 Route::get('/book/{course}', 'BookingController@create')->name('create-booking');
 Route::post('/booking', 'BookingController@store')->name('store-booking');

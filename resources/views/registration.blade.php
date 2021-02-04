@@ -2,7 +2,6 @@
 
 @section('body')
 <div x-data="{open_navbar: false}" class="relative min-h-screen">
-@include('sections.footer')
     <div class="relative bg-white overflow-hidden">
         <div class="relative pt-6 pb-16 md:pb-16 lg:pb-20 xl:pb-24">
             @include('sections.partials.navbar')
@@ -12,6 +11,7 @@
             </div>
         </div>
     </div>
+    @include('sections.footer')
 </div>
 
 @endsection
