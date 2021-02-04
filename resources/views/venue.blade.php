@@ -44,9 +44,9 @@
                 </div>
                 <div class="relative px-4 sm:px-6 lg:px-8">
                     <div class="text-lg mx-auto mb-6">
-                        <p class="text-base text-center leading-6 text-blue-600 font-semibold tracking-wide uppercase">Introducing</p>
-                        <h1 class="mt-2 mb-8 text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">{{$venue->name}}</h1>
-                        <div class="max-w-3xl mx-auto text-center prose prose-lg text-gray-500 leading-8">@markdown($venue->description)</div>
+                        <h1 class="text-base text-center leading-6 text-blue-600 font-semibold tracking-wide uppercase">Safe Pass Course Dublin at</h1>
+                        <div class="mt-2 mb-8 text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">{{$venue->name}}</div>
+                        <h2 class="max-w-3xl mx-auto text-center prose prose-lg text-gray-500 leading-8">@markdown($venue->description)</h2>
                     </div>
                     <div class="prose prose-lg text-gray-500 mx-auto">
                       <figure>
