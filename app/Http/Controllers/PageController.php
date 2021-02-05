@@ -73,7 +73,11 @@ class PageController extends Controller {
 
     public function blogpost(BlogPost $blogpost)
     {
-        return view('blog', compact('blogpost'));
+        $courses = Cache::remember('courses', 900, function () {
+            return Course::with(['venue', 'course_type'])->where('course_type_id', 1)->where('inhouse', false)->where('date', '>', today())->orderBy('date')->take(7)->get();
+        });
+
+        return view('blog', compact('blogpost', 'courses'));
     }
 
     public function venue(Venue $venue)

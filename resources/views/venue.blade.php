@@ -4,7 +4,7 @@
 @section('description', ($venue ? 'Book now '.optional($venue)->name.', as well as ' : ''))
 
 @section('body')
-    <div class="relative min-h-screen">
+    <div class="relative">
         <div x-data="{open_navbar: false, show_modal: false}">
             <div class="bg-white overflow-hidden">
                 <div class="pt-6 pb-4 md:pb-16 lg:pb-20 xl:pb-24">

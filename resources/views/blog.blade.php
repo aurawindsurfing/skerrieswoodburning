@@ -4,7 +4,7 @@
 @section('description', (optional($blogpost)->header))
 
 @section('body')
-    <div class="relative min-h-screen">
+    <div class="relative">
         <div x-data="{open_navbar: false, show_modal: false}">
             <div class="bg-white overflow-hidden">
                 <div class="pt-6 pb-4 md:pb-16 lg:pb-20 xl:pb-24">
@@ -63,9 +63,7 @@
     </div>
 
 
-    {{--        <div class="max-w-3xl text-center prose prose-lg text-gray-500 mx-auto mb-12">--}}
-    {{--            @markdown($venue->description)--}}
-    {{--        </div>--}}
+    @include('sections.public-courses-list')
 
     @include('sections.footer')
 
