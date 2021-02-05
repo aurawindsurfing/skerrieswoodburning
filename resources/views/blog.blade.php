@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', ($blogpost->title.' - BOOK NOW - '))
-@section('description', (optional($blogpost)->header))
+@section('description', (optional($blogpost)->description_above_image))
 
 @section('body')
     <div class="relative">
