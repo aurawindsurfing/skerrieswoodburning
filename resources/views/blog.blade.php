@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', ($blogpost->tile.' - BOOK NOW - '))
-@section('description', (optional($blogpost)->subtitle))
+@section('title', ($blogpost->title.' - BOOK NOW - '))
+@section('description', (optional($blogpost)->header))
 
 @section('body')
     <div class="relative min-h-screen">
