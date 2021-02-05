@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\BlogPost;
 use App\Course;
 use App\CourseType;
 use App\CourseTypeGroup;
@@ -68,6 +69,11 @@ class PageController extends Controller {
     public function bespoke(CourseType $type = null)
     {
         return view('bespoke', compact('type'));
+    }
+
+    public function blogpost(BlogPost $blogpost)
+    {
+        return view('blog', compact('blogpost'));
     }
 
     public function venue(Venue $venue)

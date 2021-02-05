@@ -92,8 +92,8 @@
                         </h4>
                         <ul class="mt-4 space-y-4">
                             <li>
-                                <a href="#" class="text-base leading-6 text-gray-500 hover:text-gray-900">
-                                    How much is safe pass in Ireland
+                                <a href="{{route('blog', ['blogpost' => 'how-much-is-safe-pass-in-ireland'])}}" class="text-base text-gray-500 hover:text-gray-900">
+                                    How much is Safe Pass in Ireland
                                 </a>
                             </li>
                             <li>
