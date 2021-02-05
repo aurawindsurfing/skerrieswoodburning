@@ -48,12 +48,14 @@
                         <h1 class="mt-2 mb-8 text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">{{$blogpost->title}}</h1>
                         <h2 class="max-w-3xl mx-auto text-center prose prose-lg text-gray-500 leading-8">@markdown($blogpost->description_above_image)</h2>
                     </div>
-                    <div class="prose prose-lg text-gray-500 mx-auto">
-                      <figure>
-                            <img class="w-full rounded-lg" src="{{$blogpost->image_url()}}" alt="{{$blogpost->title}}" width="1310" height="873">
-{{--                            <figcaption>Photo credit: Venue Owner's Website</figcaption>--}}
-                        </figure>
-                    </div>
+                    @if ($blogpost->image)
+                        <div class="prose prose-lg text-gray-500 mx-auto">
+                            <figure>
+                                <img class="w-full rounded-lg" src="{{$blogpost->image_url()}}" alt="{{$blogpost->title}}" width="1310" height="873">
+{{--                                <figcaption>Photo credit: Venue Owner's Website</figcaption>--}}
+                            </figure>
+                        </div>
+                    @endif
                     <h2 class="max-w-3xl mx-auto text-center prose prose-lg text-gray-500 leading-8 mt-8">@markdown($blogpost->description_below_image)</h2>
                 </div>
             </div>
