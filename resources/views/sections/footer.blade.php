@@ -97,17 +97,17 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="text-base leading-6 text-gray-500 hover:text-gray-900">
+                                <a href="{{route('blog', ['blogpost' => 'can-you-do-safe-pass-course-online'])}}" class="text-base leading-6 text-gray-500 hover:text-gray-900">
                                     Can you do Safe Pass course online
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="text-base leading-6 text-gray-500 hover:text-gray-900">
+                                <a href="{{route('blog', ['blogpost' => 'where-can-you-get-safe-pass'])}}" class="text-base leading-6 text-gray-500 hover:text-gray-900">
                                     Where can you get safe pass
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="text-base leading-6 text-gray-500 hover:text-gray-900">
+                                <a href="{{route('blog', ['blogpost' => 'what-is-solas-safe-pass'])}}" class="text-base leading-6 text-gray-500 hover:text-gray-900">
                                     What is SOLAS Safe Pass
                                 </a>
                             </li>
@@ -119,32 +119,31 @@
                         </h3>
                         <ul class="mt-4 space-y-4">
                             <li>
-                                <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                                <a href="{{route('blog', ['blogpost' => 'privacy-policy'])}}" class="text-base text-gray-500 hover:text-gray-900">
                                     Privacy Policy
                                 </a>
                             </li>
 
                             <li>
-                                <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                                <a href="{{route('blog', ['blogpost' => 'cookies-policy'])}}" class="text-base text-gray-500 hover:text-gray-900">
                                     Cookies Policy
                                 </a>
                             </li>
 
                             <li>
-                                <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                                <a href="{{route('blog', ['blogpost' => 'cancellation-policy'])}}" class="text-base text-gray-500 hover:text-gray-900">
                                     Cancellation Policy
                                 </a>
                             </li>
 
                             <li>
-                                <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                                <a href="{{route('blog', ['blogpost' => 'refund-policy'])}}" class="text-base text-gray-500 hover:text-gray-900">
                                     Refund Policy
                                 </a>
                             <li>
                                 <a href="{{route('bespoke')}}" class="text-gray-500 hover:text-gray-900">
                                     Contact Us
                                 </a>
-                            </li>
                             </li>
                         </ul>
                     </div>
