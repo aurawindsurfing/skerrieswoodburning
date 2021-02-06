@@ -25,11 +25,11 @@
 {{--                        class="text-sm font-semibold uppercase tracking-wide text-gray-500 sm:text-base lg:text-sm xl:text-base">--}}
 {{--                        Construction Industry Training Ltd--}}
 {{--                    </div>--}}
-                    <h2 class="mt-1 text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:leading-none sm:text-6xl lg:text-5xl xl:text-5xl">
+                    <div class="mt-1 text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:leading-none sm:text-6xl lg:text-5xl xl:text-5xl">
                         Your Workplace Safety
                         <br class="hidden md:inline"/>
                         <span class="text-blue-600">Starts With Us</span>
-                    </h2>
+                    </div>
                     <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
                         We offer a complete service, from providing an initial Training Needs Analysis through to
                         Professional Course Delivery and post delivery Course Feedback.
@@ -94,7 +94,7 @@
                     <div class=" mx-auto w-full rounded-lg shadow-lg lg:max-w-2xl ">
                         <button
                             class="block w-full rounded-lg overflow-hidden focus:outline-none focus:shadow-outline">
-                            <img class="w-full" src="{{ $image }}" alt=""/>
+                            <img class="w-full" src="{{ $image }}" alt="Safe Pass Dublin"/>
 {{--                            <div class="absolute inset-0 w-full h-full flex items-center justify-center">--}}
 {{--                                <svg class="h-20 w-20 text-blue-500" fill="currentColor" viewBox="0 0 84 84">--}}
 {{--                                    <circle opacity="0.9" cx="42" cy="42" r="42" fill="white"/>--}}

@@ -123,29 +123,30 @@
             <div>
                 <div>
                     <div>
-                        <h3 class="text-sm leading-6 text-gray-500">
+                        <div class="text-sm leading-6 text-gray-500">
                             You are now booking:
-                        </h3>
-                        <h1 class="mt-1 text-2xl font-medium leading-5 text-gray-900">
-                            {{$course->course_type->name}}
+                        </div>
+                        <h1 class="mt-1 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
+                            {{$course->course_type->title}}
                         </h1>
-                        <br>
-                        <span class="text-sm leading-6 text-gray-500">at</span>
-                        <h2 class="mt-1 text-lg font-medium leading-5 text-gray-900">
-                            {{$course->venue_name()}}
-                        </h2>
-                        <br>
-                        <span class="text-sm leading-6 text-gray-500">on</span>
-                        <h2 class="mt-1 text-lg font-medium leading-5 text-gray-900">
+                        {{--                        <br>--}}
+
+                        <h2 class="mt-1 text-xl leading-7 text-gray-500">
+                            <span class="text-sm leading-6 text-gray-500">on</span>
                             {{$course->date->format('(l) d F Y').', '.Carbon\Carbon::parse($course->time)->format('H:i')}}
+                        </h2>
+{{--                        <br>--}}
+                        <h2 class="mt-1 text-xl leading-7 text-gray-500">
+                            <span class="text-sm leading-6 text-gray-500">at</span>
+                            {{$course->venue_name()}}
                         </h2>
                     </div>
                 </div>
                 <div class="mt-8 border-t border-gray-200 pt-8">
                     <div>
-                        <h3 class="text-lg leading-6 font-medium text-gray-900">
+                        <div class="text-lg leading-6 font-medium text-gray-900">
                             Personal Information
-                        </h3>
+                        </div>
                         <p class="mt-1 text-sm leading-5 text-gray-500">
                             Remember that if you do not have PPS you can still attend the course.
                         </p>
@@ -258,9 +259,9 @@
                 </div>
                 <div class="mt-8 border-t border-gray-200 pt-8">
                     <div>
-                        <h3 class="text-lg leading-6 font-medium text-gray-900">
+                        <div class="text-lg leading-6 font-medium text-gray-900">
                             Payment
-                        </h3>
+                        </div>
                         <p class="mt-1 text-sm leading-5 text-gray-500">
                             You will be charged {{$course->price}} euro
                         </p>
@@ -277,26 +278,30 @@
                     </div>
                 </div>
                 <div class="mt-8 pt-5">
-                    <div class="flex justify-end">
+                    <div class="flex">
+
                         <a href="{{route('home')}}">
-                <span class="inline-flex rounded-md shadow-sm">
-                    <button type="button"
-                            class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out">
-                      Cancel
-                    </button>
-                </span>
+                            <span class="inline-flex rounded-md shadow-sm">
+                                <button type="button"
+                                        class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out">
+                                  Cancel
+                                </button>
+                            </span>
                         </a>
+
                         <span class="ml-3 inline-flex rounded-md shadow-sm">
-            <div class="card-button">
-                <button type="submit"
-                        id="card-button"
-                        class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition duration-150 ease-in-out"
-                >Pay and book now
-                </button>
-            </div>
-          </span>
+                            <div class="card-button">
+                                <button type="submit"
+                                        id="card-button"
+                                        class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition duration-150 ease-in-out"
+                                >Pay and book now
+                                </button>
+                            </div>
+                      </span>
+
                     </div>
                 </div>
+                <div class="mt-8 border-t border-gray-200 pt-8">
             </div>
         </form>
     </div>

@@ -41,7 +41,7 @@
 {{--                                        <p class="text-5xl leading-none font-extrabold text-blue-600">--}}
 {{--                                            ICONS--}}
 {{--                                        </p>--}}
-                                        <img class="w-32 h-32 flex-shrink-0 mx-auto bg-black rounded-full" src="{{ $group->image_url() }}" alt="">
+                                        <img class="w-32 h-32 flex-shrink-0 mx-auto bg-black rounded-full" src="{{ $group->image_url() }}" alt="{{$group->name}} in Dublin">
                                         <p class="mt-2 text-lg leading-6 font-medium text-gray-500">
                                             {{$group->name}}
                                         </p>

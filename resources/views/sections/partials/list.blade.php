@@ -11,16 +11,16 @@
                         <div class="flex items-center">
                             <div class="px-4 flex flex-wrap lg:flex-no-wrap">
                                 <div>
-                                    <div class="text-xl leading-5 font-medium text-blue-600 truncate">{{$course->course_type->name}}</div>
+                                    <h2 class="text-xl leading-5 font-medium text-blue-600 truncate">{{$course->course_type->name}}</h2>
                                     <div class="hidden md:flex mt-2 flex items-center text-sm leading-5 text-gray-500">
                                         <span>Duration: {{$course->course_type->duration}} - valid for {{$course->course_type->valid_for_years}} years</span>
                                     </div>
                                 </div>
                                 <div class="block ml-0 lg:ml-6">
-                                    <div class="text-base leading-5 text-gray-900 pt-2 md:pt-0">
+                                    <h2 class="text-base leading-5 text-gray-900 pt-2 md:pt-0">
                                         {{$course->date->format('d F Y (l)') .' '. Carbon\Carbon::parse($course->time)->format('H:i')}}
-                                        <span class="md:hidden">, {{$course->venue->address_line_1}}, {{$course->venue->city}}</span>
-                                    </div>
+                                        <h3 class="md:hidden">, {{$course->venue->address_line_1}}, {{$course->venue->city}}</h3>
+                                    </h2>
                                     <div class="hidden md:flex mt-2 flex items-center text-sm leading-5 text-gray-500">
                                         <span class="">{{$course->venue_name()}}</span>
                                     </div>

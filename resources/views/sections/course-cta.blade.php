@@ -3,12 +3,12 @@
     <div class="pt-12 sm:pt-16 lg:pt-20">
         <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
-                <h2 class="text-3xl leading-9 font-extrabold text-gray-900 sm:text-4xl sm:leading-10 lg:text-5xl lg:leading-none">
+                <h1 class="text-3xl leading-9 font-extrabold text-gray-900 sm:text-4xl sm:leading-10 lg:text-5xl lg:leading-none">
                     {{$type->name}}
-                </h2>
-                <p class="mt-4 text-xl leading-7 text-gray-500">
+                </h1>
+                <h2 class="mt-4 text-xl leading-7 text-gray-500">
                     {{$type->objectives}}
-                </p>
+                </h2>
             </div>
         </div>
     </div>
