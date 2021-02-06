@@ -48,6 +48,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('notify:attendeelist')->timezone('Europe/Dublin')->dailyAt('18:00');
         // $schedule->command('notify:unpaid_invoices')->timezone('Europe/Dublin')->weekly()->mondays()->at('10:00');
         $schedule->command('housekeeping:clear_tmp_files')->timezone('Europe/Dublin')->daily();
+
+        $schedule->command('sitemap:generate')->timezone('Europe/Dublin')->daily();
     }
 
     /**
