@@ -11,7 +11,11 @@
         @endif
         <p class="mt-4 max-w-4xl text-xl leading-7 text-gray-500 lg:mx-auto">
             All courses are also available for private group bookings on any given date. If you do not see the course or
-            date you require, please enquire as we may still be able to help you.
+            date you require, please
+            <a href="{{route('bespoke')}}" class="text-gray-500 hover:text-gray-900">
+                enquire
+            </a>
+            as we may still be able to help you.
         </p>
     </div>
 
