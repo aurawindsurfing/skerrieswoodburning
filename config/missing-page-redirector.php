@@ -141,6 +141,7 @@ return [
         '/fetac'                                                     => '/',
         '/home'                                                      => '/',
         '/insulation-installation'                                   => '/find/working-at-heights-courses-dublin',
+        'index.php'                                                  => '/',
         '/locations/cit-ltd'                                         => '/',
         '/locations/cit-training-room-10'                            => '/',
         '/locations/cit-training-room-11'                            => '/',
