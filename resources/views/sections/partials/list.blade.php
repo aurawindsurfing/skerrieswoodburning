@@ -19,14 +19,18 @@
                                 <div class="block ml-0 lg:ml-6">
                                     <h2 class="text-base leading-5 text-gray-900 pt-2 md:pt-0">
                                         {{$course->date->format('d F Y (l)') .' '. Carbon\Carbon::parse($course->time)->format('H:i')}}
-                                        <h3 class="md:hidden">, {{$course->venue->address_line_1}}, {{$course->venue->city}}</h3>
+{{--                                        <h3 class="md:hidden"> {{$course->venue->address_line_1}}, {{$course->venue->city}}</h3>--}}
+                                        <h3 class="md:hidden"> {{$course->venue->name.', '.$course->venue->city}}</h3>
+
                                     </h2>
                                     <div class="hidden md:flex mt-2 flex items-center text-sm leading-5 text-gray-500">
-                                        <span class="">{{$course->venue_name()}}</span>
+{{--                                        <span class="">{{$course->venue->name.', '.$course->venue->address_line_1.', '.$course->venue->city}}</span>--}}
+                                        <span class="">{{$course->venue->name.', '.$course->venue->city}}</span>
+
                                     </div>
                                 </div>
                                 <div class="flex-grow-0 block sm:hidden">
-                                    <div class="block sm:hidden text-base leading-5 text-gray-900 pt-2 md:pt-0">
+                                    <div class="block sm:hidden text-base leading-5 text-gray-900 pt-2 md:pt-0 md:pl-4">
                                         @if ($course->placesLeft() > 5)
                                             <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800">
                                                 {{ $course->placesLeft() }} places left
