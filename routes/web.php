@@ -15,7 +15,7 @@ Route::get('/', 'PageController@index')->name('home');
 Route::get('/enquiry/{type?}', 'PageController@bespoke')->name('bespoke');
 Route::post('/contact', 'ContactFormController@send')->name('send_enquiry');
 
-Route::get('/find/{group}', 'PageController@group')->name('group');
+Route::get('/courses/{group}', 'PageController@group')->name('group');
 Route::get('/upcoming-courses/{type?}', 'PageController@list')->name('list');
 Route::get('/venue/{venue}', 'PageController@venue')->name('venue');
 Route::get('/blog/{blogpost}', 'PageController@blogpost')->name('blog');
