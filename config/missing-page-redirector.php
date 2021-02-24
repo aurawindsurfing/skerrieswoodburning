@@ -185,6 +185,10 @@ return [
         '/find/mewp-courses-dublin'                                  => '/courses/mewp-courses-dublin',
         '/find/wellness-vdu-dse-assessment-courses-dublin'           => '/courses/wellness-vdu-dse-assessment-courses-dublin',
         '/find/other-courses'                                        => '/courses/other-courses',
+        '/blog/how-much-is-safe-pass-in-ireland'                     => '/faq/how-much-is-safe-pass-in-ireland',
+        '/blog/can-you-do-safe-pass-course-online'                   => '/faq/can-you-do-safe-pass-course-online',
+        '/blog/where-can-you-get-safe-pass'                          => '/faq/where-can-you-get-safe-pass',
+        '/blog/what-is-solas-safe-pass'                              => '/faq/what-is-solas-safe-pass',
     ],
 
 ];

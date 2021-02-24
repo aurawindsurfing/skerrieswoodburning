@@ -93,22 +93,22 @@
                         <ul class="mt-4 space-y-4">
                             <li>
                                 <a href="{{route('blog', ['blogpost' => 'how-much-is-safe-pass-in-ireland'])}}" class="text-base text-gray-500 hover:text-gray-900">
-                                    How much is Safe Pass in Ireland
+                                    How much is Safe Pass in Ireland?
                                 </a>
                             </li>
                             <li>
                                 <a href="{{route('blog', ['blogpost' => 'can-you-do-safe-pass-course-online'])}}" class="text-base leading-6 text-gray-500 hover:text-gray-900">
-                                    Can you do Safe Pass course online
+                                    Can you do Safe Pass course online?
                                 </a>
                             </li>
                             <li>
                                 <a href="{{route('blog', ['blogpost' => 'where-can-you-get-safe-pass'])}}" class="text-base leading-6 text-gray-500 hover:text-gray-900">
-                                    Where can you get safe pass
+                                    Where can you get safe pass?
                                 </a>
                             </li>
                             <li>
                                 <a href="{{route('blog', ['blogpost' => 'what-is-solas-safe-pass'])}}" class="text-base leading-6 text-gray-500 hover:text-gray-900">
-                                    What is SOLAS Safe Pass
+                                    What is SOLAS Safe Pass?
                                 </a>
                             </li>
                         </ul>
