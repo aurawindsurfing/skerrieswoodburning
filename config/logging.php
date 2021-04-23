@@ -103,7 +103,6 @@ return [
         'flare' => [
             'driver' => 'flare',
         ],
-
     ],
 
 ];
