@@ -41,7 +41,6 @@ class MissingPPSConfirmation extends Notification
      */
     public function toNexmo($notifiable)
     {
-
         $message = (isset($notifiable->name) ? $notifiable->name.', we' : 'We').' are missing your PPS number. It is required to take part in  '.$notifiable->course->course_type->name.' course. '.'Please call CIT at 018097266 and provide it asap.';
 
         $this->updateNotificationLog('sms pps reminder', $notifiable, $message);

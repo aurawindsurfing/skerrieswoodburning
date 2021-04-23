@@ -17,5 +17,4 @@ class AddMarkdownFieldsToVenuesTable extends Migration
             $table->text('description')->nullable();
         });
     }
-
 }

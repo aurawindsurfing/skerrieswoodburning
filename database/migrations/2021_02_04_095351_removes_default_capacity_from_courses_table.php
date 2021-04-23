@@ -17,5 +17,4 @@ class RemovesDefaultCapacityFromCoursesTable extends Migration
             $table->integer('capacity')->unsigned()->default(null)->change();
         });
     }
-
 }

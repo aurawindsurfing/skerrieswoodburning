@@ -19,6 +19,6 @@ class BlogPost extends Model
     {
         return empty($this->image)
             ? Cloudder::secureShow('gazeta/ogloszenia/user-avatar', config('settings.cloudinary_optimised_jpg'))
-            : Cloudder::secureShow('' . Str::beforeLast($this->image, '.'), config('settings.cloudinary_optimised_jpg'));
+            : Cloudder::secureShow(''.Str::beforeLast($this->image, '.'), config('settings.cloudinary_optimised_jpg'));
     }
 }

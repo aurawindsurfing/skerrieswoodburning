@@ -17,5 +17,4 @@ class AddSlugToCourseTypesTable extends Migration
             $table->text('slug')->nullable();
         });
     }
-
 }

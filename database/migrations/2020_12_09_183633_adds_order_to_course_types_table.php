@@ -17,5 +17,4 @@ class AddsOrderToCourseTypesTable extends Migration
             $table->integer('order')->unsigned()->nullable()->after('course_type_group_id');
         });
     }
-
 }

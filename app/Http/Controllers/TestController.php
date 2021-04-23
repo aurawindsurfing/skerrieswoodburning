@@ -11,25 +11,24 @@ class TestController extends Controller
     public function test()
     {
         \Cloudinary::config([
-            "cloud_name" => env('CLOUDINARY_CLOUD_NAME'),
-            "api_key"    => env('CLOUDINARY_API_KEY'),
-            "api_secret" => env('CLOUDINARY_API_SECRET'),
-            "secure"     => true,
+            'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
+            'api_key'    => env('CLOUDINARY_API_KEY'),
+            'api_secret' => env('CLOUDINARY_API_SECRET'),
+            'secure'     => true,
         ]);
 
         $c = new \Cloudinary\Api();
         $response = $c->resources(
             [
-                "type"        => "upload",
-                "prefix"      => "cit/logos",
-                "max_results" => 50,
+                'type'        => 'upload',
+                'prefix'      => 'cit/logos',
+                'max_results' => 50,
             ]
         );
 
         $logos = [];
 
-        foreach ($response['resources'] as $resource)
-        {
+        foreach ($response['resources'] as $resource) {
             array_push($logos, $resource['secure_url']);
         }
 
@@ -84,7 +83,7 @@ class TestController extends Controller
         $pdf->setOptions([
             'defaultMediaType' => 'all',
             'isFontSubsettingEnabled' => true,
-            'isRemoteEnabled' => true
+            'isRemoteEnabled' => true,
         ]);
         $id = 'xxx';
 

@@ -22,10 +22,11 @@ class Course extends Model
         'date',
     ];
 
-    public static function boot() {
+    public static function boot()
+    {
         parent::boot();
 
-        static::deleting(function($course) { // before delete() method call this
+        static::deleting(function ($course) { // before delete() method call this
             $course->bookings()->delete();
             // do the rest of the cleanup...
         });
@@ -35,8 +36,8 @@ class Course extends Model
     {
         return [
             'slug' => [
-                'source' => ['course_type.name', 'venue.name', 'date']
-            ]
+                'source' => ['course_type.name', 'venue.name', 'date'],
+            ],
         ];
     }
 

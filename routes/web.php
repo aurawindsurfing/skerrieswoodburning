@@ -37,6 +37,5 @@ Route::post('stripe/webhook', 'WebhookController@handleWebhook');
 // Route::get('pdftest4', 'TestController@pdftest4');
 // Route::get('pdftest5', 'TestController@pdftest5');
 
-
 //Route::get('test', 'TestController@test');
 // Route::get('test2', 'TestController@test2');

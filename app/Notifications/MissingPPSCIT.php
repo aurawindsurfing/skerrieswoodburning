@@ -36,7 +36,6 @@ class MissingPPSCIT extends Notification
 
     public function toNexmo($notifiable)
     {
-
         $text = 'Missing PPS number for '.(isset($this->booking->name) ? $this->booking->name.' ' : ' --missing name-- ')
         .$this->booking->course->course_type->name.' at: '
         .$this->booking->course->venue->name.' on: '
@@ -56,6 +55,7 @@ class MissingPPSCIT extends Notification
     public function toMail($notifiable)
     {
         $booking = $this->booking;
+
         return (new MailMessage)
             ->subject('Missing PPS number for: '.(isset($this->booking->name) ? $this->booking->name : ' --missing name-- ').(isset($this->booking->surname) ? $this->booking->surname : ' --missing surname-- '))
             ->view('emails.missingPPSCIT', compact('booking'));

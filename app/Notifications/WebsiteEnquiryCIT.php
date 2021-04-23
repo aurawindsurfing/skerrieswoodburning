@@ -36,7 +36,6 @@ class WebsiteEnquiryCIT extends Notification
 
     public function toNexmo($notifiable)
     {
-
         $text = $this->form_data->name
             .(isset($this->form_data->company) ? ' from '.$this->form_data->company.' ' : '')
             .(isset($this->form_data->type) ? ' made enquiry about '.$this->form_data->type.' course.' : ' did not ask for specific course type.')
@@ -58,6 +57,7 @@ class WebsiteEnquiryCIT extends Notification
     public function toMail($notifiable)
     {
         $form_data = $this->form_data;
+
         return (new MailMessage)
             ->from($this->form_data->email)
             ->subject('New website enquiry from '.(isset($this->form_data->name) ? $this->form_data->name : ' --missing name-- '))

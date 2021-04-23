@@ -24,5 +24,4 @@ class CreateBlogPostsTable extends Migration
             $table->timestamps();
         });
     }
-
 }

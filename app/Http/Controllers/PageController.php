@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use JD\Cloudder\Facades\Cloudder;
 
-class PageController extends Controller {
-
+class PageController extends Controller
+{
     public function index()
     {
         $groups_chunks = Cache::remember('group_chunks', 86400, function () {
@@ -55,7 +55,7 @@ class PageController extends Controller {
                 ->when(isset($type), function ($query) use ($type) {
                     return $query->where('course_type_id', $type->id);
                 })
-                ->when(!isset($type), function ($query) use ($type) {
+                ->when(! isset($type), function ($query) use ($type) {
                     return $query->whereNotIn('course_type_id', [1]);
                 })
                 ->with(['venue', 'course_type'])
@@ -99,49 +99,45 @@ class PageController extends Controller {
     }
 
     /**
-     * @param String $path
-     * @param Int $take
-     * @param String $preset
+     * @param string $path
+     * @param int $take
+     * @param string $preset
      * @return array
      * @throws Api\GeneralError
      */
     private function cloudinary_resources(string $path, int $take, string $preset)
     {
         \Cloudinary::config([
-            "cloud_name" => env('CLOUDINARY_CLOUD_NAME'),
-            "api_key"    => env('CLOUDINARY_API_KEY'),
-            "api_secret" => env('CLOUDINARY_API_SECRET'),
-            "secure"     => true,
+            'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
+            'api_key'    => env('CLOUDINARY_API_KEY'),
+            'api_secret' => env('CLOUDINARY_API_SECRET'),
+            'secure'     => true,
         ]);
 
         $c = new Api();
 
         $response = $c->resources(
             [
-                "type"        => "upload",
-                "prefix"      => "cit/" . $path,
-                "max_results" => $take,
+                'type'        => 'upload',
+                'prefix'      => 'cit/'.$path,
+                'max_results' => $take,
             ]
         );
 
         $items = [];
 
-        foreach ($response['resources'] as $resource)
-        {
+        foreach ($response['resources'] as $resource) {
             $url = Str::after(Str::beforeLast($resource['secure_url'], '.'), 'cit');
-            $url = Str::replaceFirst('e_bgremoval', 'e_bgremoval', Cloudder::secureShow('cit/' . $url, config('settings.' . $preset)));
+            $url = Str::replaceFirst('e_bgremoval', 'e_bgremoval', Cloudder::secureShow('cit/'.$url, config('settings.'.$preset)));
             array_push($items, $url);
         }
 
-        if ($path !== 'logos')
-        {
+        if ($path !== 'logos') {
             $course_types = CourseTypeGroup::all();
 
-            foreach ($course_types as $course_type)
-            {
-                if ($course_type->icon)
-                {
-                    array_push($items, Str::beforeLast(Cloudder::secureShow('' . $course_type->icon, config('settings.' . $preset)), '.'));
+            foreach ($course_types as $course_type) {
+                if ($course_type->icon) {
+                    array_push($items, Str::beforeLast(Cloudder::secureShow(''.$course_type->icon, config('settings.'.$preset)), '.'));
                 }
             }
         }

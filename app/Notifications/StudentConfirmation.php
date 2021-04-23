@@ -57,14 +57,14 @@ class StudentConfirmation extends Notification
 
     public function toMail($notifiable)
     {
-        $message = view('emails.company_confirmation', ['bookings' => array($notifiable)])->render();
+        $message = view('emails.company_confirmation', ['bookings' => [$notifiable]])->render();
 
         $this->updateNotificationLog('email booking confirmation', $notifiable, $message);
 
         return (new MailMessage)
             ->subject('Booking Confirmation')
             ->from('alec@citltd.ie')
-            ->view('emails.company_confirmation', ['bookings' => array($notifiable)]);
+            ->view('emails.company_confirmation', ['bookings' => [$notifiable]]);
     }
 
     public function updateNotificationLog($type, $booking, $message)

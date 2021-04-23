@@ -17,5 +17,4 @@ class AddSlugToVenuesTable extends Migration
             $table->text('slug')->nullable();
         });
     }
-
 }

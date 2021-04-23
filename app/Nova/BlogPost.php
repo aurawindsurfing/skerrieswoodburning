@@ -64,9 +64,9 @@ class BlogPost extends Resource
             ID::make()->sortable(),
             Text::make('Header'),
             Text::make('Title')->rules('required'),
-            Markdown::make("Description Above Image")->onlyOnForms()->required(),
+            Markdown::make('Description Above Image')->onlyOnForms()->required(),
             CloudinaryImage::make('Image'),
-            Markdown::make("Description Below Image")->onlyOnForms(),
+            Markdown::make('Description Below Image')->onlyOnForms(),
             Text::make('Slug')->required(),
 
         ];

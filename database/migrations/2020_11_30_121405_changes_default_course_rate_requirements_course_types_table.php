@@ -17,5 +17,4 @@ class ChangesDefaultCourseRateRequirementsCourseTypesTable extends Migration
             $table->integer('default_rate')->unsigned()->default(0)->change();
         });
     }
-
 }

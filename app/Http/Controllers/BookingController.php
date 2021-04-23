@@ -14,8 +14,6 @@ use Stripe\Exception\InvalidRequestException;
 
 /**
  * Class BookingController
- *
- * @package App\Http\Controllers
  */
 class BookingController extends Controller
 {
@@ -36,12 +34,12 @@ class BookingController extends Controller
      */
     public function create(Course $course)
     {
-        if ($course->placesLeft() <= 0){
+        if ($course->placesLeft() <= 0) {
             return redirect()->route('home')->with('overbooked', 'We are sorry but this course is fully booked!');
         }
 
         // this comes from laravel cashier after SCA second authorization
-        if (\request()->query('success') == true){
+        if (\request()->query('success') == true) {
             Session::flash('success', 'Payment successful!');
         }
 
@@ -72,7 +70,6 @@ class BookingController extends Controller
         $data = array_merge($data, ['booking_id' => $booking->id]);
 
         try {
-
             $payment = ($booking)->charge(($course->price * 100), $stripePaymentMethodId, [
                 'metadata' => $data,
             ]);
@@ -82,18 +79,14 @@ class BookingController extends Controller
             $booking->save();
 
             Session::flash('success', 'Payment successful!');
-
         } catch (InvalidRequestException $e) {
-
             return back()->withInput()->with('card-error', 'Please fill in the form again. Do not refresh the page!');
-
         } catch (CardException $e) {
-
             $booking->stripe_payment_intent = $e->getError()->payment_intent->id;
             $booking->stripe_status = 'failed';
             $booking->save();
-            return back()->withInput()->with('card-error', $e->getMessage());
 
+            return back()->withInput()->with('card-error', $e->getMessage());
         } catch (PaymentActionRequired $e) {
 
             // fills in the form again for visual reference
@@ -106,11 +99,10 @@ class BookingController extends Controller
                 $e->payment->id,
                 'redirect' => route('create-booking', ['course' => $course->slug]),
             ]);
-
         } catch (Exception $e) {
-
             $booking->stripe_status = 'failed';
             $booking->save();
+
             return back()->withInput()->with('card-error', $e->getMessage());
         }
 

@@ -157,8 +157,8 @@ class Course extends Resource
             ]),
 
             HasMany::make('Course Dates')->sortable()->canSee(function () {
-                    return $this->multiday;
-                }),
+                return $this->multiday;
+            }),
 
             HasMany::make('Bookings')->sortable(),
         ];

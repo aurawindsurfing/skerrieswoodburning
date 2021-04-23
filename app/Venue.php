@@ -23,8 +23,8 @@ class Venue extends Model
     {
         return [
             'slug' => [
-                'source' => ['name', 'address_line_1', 'city', 'postal_code']
-            ]
+                'source' => ['name', 'address_line_1', 'city', 'postal_code'],
+            ],
         ];
     }
 
@@ -52,6 +52,6 @@ class Venue extends Model
     {
         return empty($this->photo)
             ? Cloudder::secureShow('gazeta/ogloszenia/user-avatar', config('settings.cloudinary_optimised_jpg'))
-            : Cloudder::secureShow('' . Str::beforeLast($this->photo, '.'), config('settings.cloudinary_optimised_jpg'));
+            : Cloudder::secureShow(''.Str::beforeLast($this->photo, '.'), config('settings.cloudinary_optimised_jpg'));
     }
 }

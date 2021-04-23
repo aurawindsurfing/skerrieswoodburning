@@ -26,8 +26,8 @@ class CourseTypeGroup extends Model implements Sortable
     {
         return [
             'slug' => [
-                'source' => ['name']
-            ]
+                'source' => ['name'],
+            ],
         ];
     }
 
@@ -45,7 +45,6 @@ class CourseTypeGroup extends Model implements Sortable
     {
         return empty($this->icon)
             ? Cloudder::secureShow('gazeta/ogloszenia/user-avatar', config('settings.cloudinary_course_group'))
-            : Cloudder::secureShow('' . Str::beforeLast($this->icon, '.'), config('settings.cloudinary_course_group'));
+            : Cloudder::secureShow(''.Str::beforeLast($this->icon, '.'), config('settings.cloudinary_course_group'));
     }
-
 }

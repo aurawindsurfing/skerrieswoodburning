@@ -80,7 +80,7 @@ class Venue extends Resource
 
             CloudinaryImage::make('Photo'),
 
-            Markdown::make("Description")->onlyOnForms(),
+            Markdown::make('Description')->onlyOnForms(),
 
             HasMany::make('Courses'),
 

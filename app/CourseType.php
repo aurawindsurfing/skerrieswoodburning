@@ -39,8 +39,8 @@ class CourseType extends Model implements Sortable
     {
         return [
             'slug' => [
-                'source' => ['name']
-            ]
+                'source' => ['name'],
+            ],
         ];
     }
 
@@ -48,7 +48,6 @@ class CourseType extends Model implements Sortable
     {
         return 'slug';
     }
-
 
     public function courses()
     {

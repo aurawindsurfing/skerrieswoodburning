@@ -10,8 +10,8 @@ use MichielKempen\NovaOrderField\Orderable;
 use MichielKempen\NovaOrderField\OrderField;
 use Silvanite\NovaFieldCloudinary\Fields\CloudinaryImage;
 
-class CourseTypeGroup extends Resource {
-
+class CourseTypeGroup extends Resource
+{
     use Orderable;
     /**
      * The model the resource corresponds to.
@@ -89,7 +89,7 @@ class CourseTypeGroup extends Resource {
 
             OrderField::make('Order'),
 
-            HasMany::make('Course Types', 'course_types')
+            HasMany::make('Course Types', 'course_types'),
 
         ];
     }
