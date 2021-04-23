@@ -89,4 +89,9 @@ class Course extends Model
     {
         return $this->capacity - $this->bookings->count();
     }
+
+    //public function title()
+    //{
+    //    return $this->date->format('Y-m-d').' - '.$this->course_type->name.' - '.$this->venue->name;
+    //}
 }

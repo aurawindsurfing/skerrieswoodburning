@@ -101,27 +101,29 @@ class Booking extends Resource
     {
         return [
 
+            //BelongsTo::make('Course')->searchable(),
+
             BelongsTo::make('Course')
-                ->sortable()
+                //->sortable()
                 ->searchable()
                 ->onlyOnForms()
                 ->hideWhenUpdating()
                 ->withMeta([
                     'belongsToId' => session('booking.course_id'),
                 ])
-                ->displayUsing(function ($course) {
-                    return $course->course_type->name;
-                })
+                //->displayUsing(function ($course) {
+                //    return $course->course_type->name;
+                //})
                 ->rules('required'),
 
             BelongsTo::make('Course')
-                ->sortable()
+                //->sortable()
                 ->searchable()
                 ->onlyOnForms()
                 ->hideWhenCreating()
-                ->displayUsing(function ($course) {
-                    return $course->course_type->name;
-                })
+                //->displayUsing(function ($course) {
+                //    return $course->course_type->name;
+                //})
                 ->rules('required'),
 
             Text::make('Name')->sortable(),
@@ -174,6 +176,7 @@ class Booking extends Resource
                 ->searchable(),
 
             BelongsTo::make('Contact')
+                ->searchable()
                 ->onlyOnForms()
                 ->hideFromIndex()
                 ->hideWhenUpdating()

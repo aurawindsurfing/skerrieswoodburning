@@ -3,9 +3,9 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laraning\NovaTimeField\TimeField;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Date;
-use Michielfb\Time\Time;
 
 class CourseDate extends Resource
 {
@@ -67,7 +67,8 @@ class CourseDate extends Resource
 
             Date::make('Date')->sortable(),
 
-            Time::make('Time')->format('HH:mm')->rules('required'),
+            //Time::make('Time')->format('HH:mm')->rules('required'),
+            TimeField::make('Time')->rules('required'),
 
             BelongsTo::make('Venue')->sortable()->searchable()->rules('required'),
         ];

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4547aac2083b95f216b27b9dfa24e1b9",
+    "content-hash": "9afd82cc6aca564dc90459062505c45d",
     "packages": [
         {
             "name": "64robots/nova-fields",
@@ -10511,16 +10511,16 @@
         },
         {
             "name": "titasgailius/search-relations",
-            "version": "1.0.6",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TitasGailius/nova-search-relations.git",
-                "reference": "ac999c8d3230573fe5bb81f50cbabfaa62da26c0"
+                "reference": "1e7408a678b9258537cb15ceb58a56016501243a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TitasGailius/nova-search-relations/zipball/ac999c8d3230573fe5bb81f50cbabfaa62da26c0",
-                "reference": "ac999c8d3230573fe5bb81f50cbabfaa62da26c0",
+                "url": "https://api.github.com/repos/TitasGailius/nova-search-relations/zipball/1e7408a678b9258537cb15ceb58a56016501243a",
+                "reference": "1e7408a678b9258537cb15ceb58a56016501243a",
                 "shasum": ""
             },
             "require": {
@@ -10545,9 +10545,9 @@
             ],
             "support": {
                 "issues": "https://github.com/TitasGailius/nova-search-relations/issues",
-                "source": "https://github.com/TitasGailius/nova-search-relations/tree/1.0.6"
+                "source": "https://github.com/TitasGailius/nova-search-relations/tree/master"
             },
-            "time": "2020-10-09T09:25:10+00:00"
+            "time": "2018-12-18T18:06:27+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

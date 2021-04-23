@@ -3,13 +3,13 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laraning\NovaTimeField\TimeField;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
-use Michielfb\Time\Time;
 use MichielKempen\NovaOrderField\Orderable;
 use MichielKempen\NovaOrderField\OrderField;
 use Vyuldashev\NovaMoneyField\Money;
@@ -107,7 +107,8 @@ class CourseType extends Resource
 
             Markdown::make('What to bring', 'what_to_bring')->hideFromIndex()->alwaysShow(),
 
-            Time::make('Start Time')->format('HH:mm'),
+            //Time::make('Start Time')->format('HH:mm'),
+            TimeField::make('Start Time'),
 
             Markdown::make('Plan of the day', 'plan_of_the_day')->hideFromIndex()->alwaysShow(),
 

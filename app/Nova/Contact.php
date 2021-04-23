@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\HasMany;
-use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -58,6 +57,10 @@ class Contact extends Resource
     public static $search = [
         'name',
         'phone',
+    ];
+
+    public static $searchRelations = [
+        'company' => ['name'],
     ];
 
     /**

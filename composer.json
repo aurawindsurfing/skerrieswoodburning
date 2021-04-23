@@ -51,7 +51,7 @@
         "spatie/laravel-missing-page-redirector": "^2.7",
         "spatie/laravel-sitemap": "^5.8",
         "stripe/stripe-php": "^7.27",
-        "titasgailius/search-relations": "^1.0",
+        "titasgailius/search-relations": "1.0.4",
         "vyuldashev/nova-money-field": "^1.1",
         "wildbit/swiftmailer-postmark": "^3.3"
     },

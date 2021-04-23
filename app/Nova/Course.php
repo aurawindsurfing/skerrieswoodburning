@@ -4,13 +4,13 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Inspheric\Fields\Indicator;
+use Laraning\NovaTimeField\TimeField;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
-use Michielfb\Time\Time;
 use Vyuldashev\NovaMoneyField\Money;
 
 class Course extends Resource
@@ -113,13 +113,14 @@ class Course extends Resource
                 return isset($this->date) ? $this->uuid() : '';
             })->exceptOnForms(),
 
-            BelongsTo::make('Course Type', 'course_type')->rules('required'),
+            BelongsTo::make('Course Type', 'course_type')->rules('required')->searchable(),
 
             Money::make('Price', 'EUR')->hideFromIndex()->sortable()->rules('required'),
 
             Date::make('Date')->sortable()->rules('required'),
 
-            Time::make('Time')->format('HH:mm')->rules('required'),
+            //Time::make('Time')->format('HH:mm')->rules('required'),
+            TimeField::make('Time')->rules('required'),
 
             Number::make('Capacity')->rules('required'),
 
