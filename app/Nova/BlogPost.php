@@ -15,7 +15,7 @@ class BlogPost extends Resource
      *
      * @var string
      */
-    public static $model = 'App\BlogPost';
+    public static $model = \App\BlogPost::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.

@@ -85,7 +85,7 @@ class CourseType extends Resource
 
             Text::make('Name')->sortable()->rules('required', 'max:255'),
 
-            BelongsTo::make('Display Group', 'course_type_group', 'App\Nova\CourseTypeGroup'),
+            BelongsTo::make('Display Group', 'course_type_group', \App\Nova\CourseTypeGroup::class),
 
             Text::make('Title')->sortable()->hideFromIndex(),
 
