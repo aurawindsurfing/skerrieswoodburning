@@ -141,7 +141,7 @@ class Booking extends Resource
             Money::make('Rate', 'EUR')->exceptOnForms(),
             Money::make('Rate', 'EUR')->onlyOnForms()
                 ->withMeta([
-                    'value' => session()->has('booking.rate') ? session('booking.rate') : 115,
+                    'value' => session()->has('booking.rate') ? session('booking.rate') : 190,
                 ]),
 
             Select::make('Payment Type')
