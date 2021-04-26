@@ -5,6 +5,7 @@ namespace App;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 use MichielKempen\NovaOrderField\Orderable;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\EloquentSortable\Sortable;
@@ -52,6 +53,11 @@ class CourseType extends Model implements Sortable
     public function courses()
     {
         return $this->hasMany(\App\Course::class);
+    }
+
+    public function shortName()
+    {
+        return Str::replaceFirst($this->name, 'Safepass','SOLAS Safe Pass Dublin');
     }
 
     public function course_type_group()

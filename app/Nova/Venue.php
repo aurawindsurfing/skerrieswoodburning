@@ -22,11 +22,14 @@ class Venue extends Resource
     public static $model = \App\Venue::class;
 
     /**
-     * The single value that should be used to represent the resource when being displayed.
+     * title.
      *
-     * @var string
+     * @return void
      */
-    public static $title = 'name';
+    public function title()
+    {
+        return $this->shortName();
+    }
 
     /**
      * The columns that should be searched.
@@ -48,6 +51,8 @@ class Venue extends Resource
     public static $group = 'Resources';
 
     public static $group_index = 120;
+
+    public static $tableStyle = 'tight';
 
     /**
      * softDeletes.

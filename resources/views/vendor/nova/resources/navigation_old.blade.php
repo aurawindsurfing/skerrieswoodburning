@@ -1,5 +1,5 @@
 @if (count(Nova::availableResources(request())))
-    
+
 
     <?php
         $resources_ordered = collect(Nova::availableResources(request()))

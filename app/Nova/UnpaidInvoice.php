@@ -2,19 +2,13 @@
 
 namespace App\Nova;
 
-use Illuminate\Http\Request;
-use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\Date;
-use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Select;
-use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Money\Number;
-use Vyuldashev\NovaMoneyField\Money;
 
 class UnpaidInvoice extends Invoice
 {
     public static $group_index = 350;
+
+    public static $tableStyle = 'tight';
 
     /**
      * Build an "index" query for the given resource.

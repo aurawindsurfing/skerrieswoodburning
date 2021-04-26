@@ -8,7 +8,9 @@ use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\HasOne;
+use Laravel\Nova\Fields\Line;
 use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\Stack;
 use Laravel\Nova\Fields\Text;
 use Outhebox\NovaHiddenField\HiddenField;
 use Vyuldashev\NovaMoneyField\Money;
@@ -73,6 +75,13 @@ class Booking extends Resource
     ];
 
     /**
+     * The relationships that should be eager loaded on index queries.
+     *
+     * @var array
+     */
+    public static $with = ['course'];
+
+    /**
      * $group.
      *
      * @var string
@@ -80,6 +89,12 @@ class Booking extends Resource
     public static $group = 'Customers';
 
     public static $group_index = 200;
+
+    public static $tableStyle = 'tight';
+
+    public static $polling = true;
+
+    public static $pollingInterval = 120;
 
     /**
      * softDeletes.
@@ -99,9 +114,7 @@ class Booking extends Resource
      */
     public function fields(Request $request)
     {
-        return [
-
-            //BelongsTo::make('Course')->searchable(),
+        return [  //BelongsTo::make('Course')->searchable(),
 
             BelongsTo::make('Course')
                 //->sortable()
@@ -126,8 +139,15 @@ class Booking extends Resource
                 //})
                 ->rules('required'),
 
-            Text::make('Name')->sortable(),
-            Text::make('Surname')->sortable(),
+            Stack::make('Name', [
+                Line::make('Name', function () {
+                    return $this->name.' '.$this->surname;
+                })->asHeading(),
+                Line::make('Email')->asSmall()
+            ]),
+
+            //Text::make('Name')->sortable(),
+            //Text::make('Surname')->sortable(),
 
             Text::make('Phone')
                 ->rules('nullable')
@@ -136,7 +156,7 @@ class Booking extends Resource
                     'placeholder' => '08x', ],
                 ]),
 
-            Text::make('Email')->sortable(),
+            Text::make('Email')->sortable()->onlyOnForms(),
 
             Boolean::make('PPS', 'pps'),
 
@@ -157,15 +177,38 @@ class Booking extends Resource
             ])->displayUsingLabels()
             ->hideFromIndex(),
 
-            BelongsTo::make('Course')
-                ->searchable()
+
+            Stack::make('Date', [
+                Line::make('Booking')->displayUsing(function (){
+                    return $this->course->date->format('Y-m-d');
+                })->asHeading()
+            ])->sortable()
                 ->exceptOnForms(),
-            //     ->displayUsing(function ($course) {
-            //         return $course->course_type->name;
-            //     }
-            // ),
+
+            Stack::make('Course', [
+                Line::make('Booking')->displayUsing(function (){
+                    return str_replace('SOLAS Safe Pass Dublin', 'Safe Pass', $this->course->course_type->name);
+                })->asSubTitle(),
+                Line::make('Booking')->displayUsing(function (){
+                    return str_replace('SOLAS Safe Pass Dublin', 'Safe Pass', $this->course->venue->shortName());
+                })->asSubTitle(),
+            ])
+                ->exceptOnForms(),
+
+
+
+            //BelongsTo::make('Course')
+            //    ->searchable()
+            //    ->exceptOnForms(),
+            ////     ->displayUsing(function ($course) {
+            ////         return $course->course_type->name;
+            ////     }
+            //// ),
 
             BelongsTo::make('Invoice')
+                 //->displayUsing(function ($invoice) {
+                 //    return str_replace(' ', '', $invoice->number());
+                 //})
                 ->onlyOnIndex(),
 
             HasOne::make('Invoice'),

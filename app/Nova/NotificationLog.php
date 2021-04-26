@@ -8,7 +8,6 @@ use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Trix;
-use Laravel\Nova\Http\Requests\NovaRequest;
 
 class NotificationLog extends Resource
 {
@@ -34,6 +33,8 @@ class NotificationLog extends Resource
     public static $group = 'Customers';
 
     public static $group_index = 210;
+
+    public static $tableStyle = 'tight';
 
     /**
      * label.

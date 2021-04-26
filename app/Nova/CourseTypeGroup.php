@@ -50,6 +50,8 @@ class CourseTypeGroup extends Resource
 
     public static $group_index = 410;
 
+    public static $tableStyle = 'tight';
+
     /**
      * label.
      *

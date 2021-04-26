@@ -45,7 +45,7 @@ class Course extends Resource
      */
     public function title()
     {
-        return $this->date->format('Y-m-d').' - '.$this->course_type->name.' - '.$this->venue->name;
+        return $this->date->format('Y-m-d').' - '.$this->course_type->shortName().' - '.$this->venue->shortName();
     }
 
     /**
@@ -75,6 +75,8 @@ class Course extends Resource
     public static $group = 'Resources';
 
     public static $group_index = 110;
+
+    public static $tableStyle = 'tight';
 
     /**
      * The relationships that should be eager loaded on index queries.

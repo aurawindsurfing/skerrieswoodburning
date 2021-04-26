@@ -7,11 +7,7 @@ use Inspheric\Fields\Indicator;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\HasMany;
-use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Http\Requests\NovaRequest;
-use Money\Number;
 use Vyuldashev\NovaMoneyField\Money;
 
 class Invoice extends Resource
@@ -72,6 +68,8 @@ class Invoice extends Resource
     public static $group = 'Accounting';
 
     public static $group_index = 330;
+
+    public static $tableStyle = 'tight';
 
     /**
      * Get the fields displayed by the resource.

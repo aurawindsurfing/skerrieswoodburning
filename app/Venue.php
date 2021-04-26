@@ -48,6 +48,11 @@ class Venue extends Model
         return $this->address_line_1.' '.$this->city.' '.$this->postal_code;
     }
 
+    public function shortName()
+    {
+        return Str::before($this->name, '- Safe Pass');
+    }
+
     public function image_url()
     {
         return empty($this->photo)

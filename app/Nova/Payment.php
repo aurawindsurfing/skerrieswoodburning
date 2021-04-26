@@ -54,6 +54,8 @@ class Payment extends Resource
 
     public static $group_index = 300;
 
+    public static $tableStyle = 'tight';
+
     /**
      * softDeletes.
      *

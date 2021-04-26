@@ -7,7 +7,6 @@ use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Tutor extends Resource
 {
@@ -53,6 +52,8 @@ class Tutor extends Resource
     public static $group = 'Resources';
 
     public static $group_index = 140;
+
+    public static $tableStyle = 'tight';
 
     /**
      * Get the fields displayed by the resource.
