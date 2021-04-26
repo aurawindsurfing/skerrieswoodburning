@@ -94,7 +94,7 @@ class TestController extends Controller
 
     public function pdftest5()
     {
-        $bookings = Booking::take(2)->get();
+        $bookings = Booking::orderByDesc('id')->take(2)->get();
 
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadView('letters.course_booking_confirmation', compact('bookings'));

@@ -87,7 +87,8 @@
 <body>
     @foreach ($bookings as $booking)
         <div>
-            <img class="backdrop" src="{{ public_path('images/ManualCertA4.svg') }}">
+{{--            <img class="backdrop" src="{{ asset('images/ManualCertA4.svg')--}}
+            <img class="backdrop" src="{{'data:image/svg+xml;base64,'.base64_encode(file_get_contents(public_path('images/ManualCertA4.svg')))}}"/>
             <div class="center">
                 <div class="cetrificate" style="margin-top: 126px;">
                     CERTIFICATE
@@ -132,7 +133,7 @@
 
             <div class="bottom">
                 <div>
-                    <img src="{{ public_path('images/cit_logo.png') }}" alt="" width="120px" />
+                    <img src="{{'data:image/png;base64,'.base64_encode(file_get_contents(public_path('images/cit_logo.png')))}}" width="120px"/>
                 </div>
 
                 <div style="margin-top:5px">

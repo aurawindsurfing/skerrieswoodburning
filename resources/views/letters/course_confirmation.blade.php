@@ -56,7 +56,9 @@
 
      {{-- multiple pages --}}
         <div style="margin: 50px;">
-            <div><img src="{{public_path('images/cit_logo.png')}}" alt="" width="180"/></div>
+            <div>
+                <img src="{{'data:image/png;base64,'.base64_encode(file_get_contents(public_path('images/cit_logo.png')))}}" width="180"/>
+            </div>
             <div style="height: 40px; background-color: white; border-width:2px; border-bottom-style:solid;"></div>
             <div style="height: 2px; background-color: white; border-width:1px; border-bottom-style:solid;"></div>
             <div style="padding: 3px; font-weight: bold; font-size: xx-small; background-color: white;">

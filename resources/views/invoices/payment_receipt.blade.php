@@ -102,7 +102,8 @@
 
     <div style="clear:both; position:relative;">
         <div style="position:absolute; left:0%; top:35pt width:250pt;">
-            <img src="{{asset(config('invoice_details.logo'))}}" alt="" width="{{ config('invoice_details.logo_width') }}" />
+{{--            <img src="{{asset(config('invoice_details.logo'))}}" alt="" width="{{ config('invoice_details.logo_width') }}" />--}}
+            <img src="{{'data:image/png;base64,'.base64_encode(file_get_contents(public_path('images/cit_logo.png')))}}" width="120px"/>
         </div>
 
         <div style="position:absolute; left:25%; top:15pt; width:250pt; font-size: 20px;">
@@ -154,7 +155,7 @@
                                 <td style="border-bottom: 1px solid #ddd;"><b><font size="2">{{ $receipt->payment_method }}</font></b></td>
                             </tr>
                         </tbody>
-                    </table>                    
+                    </table>
             </div>
         </div>
 
@@ -172,7 +173,7 @@
                 </div>
             </div>
         {{-- @endif --}}
-       
+
 
 
         <div style="position:absolute; left:0%; top:550pt width:250pt;">
@@ -205,7 +206,7 @@
 
         <div style="position:absolute; left:0%; top:570pt; width:250pt; font-size: 20px;">
             <div>
-                
+
             </div>
         </div>
 

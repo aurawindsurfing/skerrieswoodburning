@@ -97,7 +97,8 @@
     @foreach ($credit_notes as $credit_note)
     <div style="clear:both; position:relative;">
         <div style="position:absolute; left:0pt; width:250pt;">
-            <img src="{{asset(config('invoice_details.logo'))}}" alt="" width="{{ config('invoice_details.logo_width') }}" />
+{{--            <img src="{{asset(config('invoice_details.logo'))}}" alt="" width="{{ config('invoice_details.logo_width') }}" />--}}
+            <img src="{{'data:image/png;base64,'.base64_encode(file_get_contents(public_path('images/cit_logo.png')))}}" width="120px"/>
         </div>
         <div style="margin-left:300pt;">
             <b>Credit Note #: </b> {{ $credit_note->number() }}<br />
@@ -157,7 +158,7 @@
                 <td></td>
                 <td>Credits Used</td>
                 <td><font color="red">{{ '(-) ' . $credit_note->totalForInvoice() }}</font></td>
-            </tr>     
+            </tr>
             <tr>
                 <td></td>
                 <td></td>

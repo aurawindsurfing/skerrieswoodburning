@@ -76,7 +76,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         return [
             new NewBookings,
-            (new \Richardkeep\NovaTimenow\NovaTimenow)->width('2/3'),
+            (new \Richardkeep\NovaTimenow\NovaTimenow)->width('1/3'),
             // (new \Llaski\NovaScheduledJobs\NovaScheduledJobsCard)->width('full'),
             // (new NovaLaravelNews)->width('full'),
         ];

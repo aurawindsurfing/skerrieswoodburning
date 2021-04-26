@@ -96,17 +96,18 @@
     @foreach ($invoices as $invoice)
     <div style="clear:both; position:relative;">
         <div style="position:absolute; left:0pt; width:250pt;">
-            <img src="{{asset(config('invoice_details.logo'))}}" alt="" width="{{ config('invoice_details.logo_width') }}" />
+            <img src="{{'data:image/png;base64,'.base64_encode(file_get_contents(public_path('images/cit_logo.png')))}}" width="120px"/>
+{{--            <img src="{{asset(config('invoice_details.logo'))}}" alt="" width="{{ config('invoice_details.logo_width') }}" />--}}
         </div>
         <div style="margin-left:300pt;">
             <b>Invoice #: </b> {{ $invoice->number() }}<br />
             <b>Date: </b> {{ $invoice->date->formatLocalized('%A %d %B %Y') }}<br />
-            <b>Due Date: </b> {{ 
+            <b>Due Date: </b> {{
 
-            isset($invoice->company->payment_terms) ? 
+            isset($invoice->company->payment_terms) ?
             Carbon\Carbon::now()->addDays($invoice->company->payment_terms)->format('Y-m-d') :
-            now()->formatLocalized('%A %d %B %Y') 
-            
+            now()->formatLocalized('%A %d %B %Y')
+
             }}<br />
         </div>
     </div>
@@ -194,7 +195,7 @@
                     <td>Credits Issued</td>
                     <td><font color="red">{{ $invoice->creaditNotesIssuedForInvoice() > 0 ? '(-) ' . $invoice->creaditNotesIssuedForInvoice() : '0.00' }}</font></td>
                 </tr>
-            @endif       
+            @endif
             <tr>
                 <td></td>
                 <td></td>
@@ -230,7 +231,8 @@
     </div> --}}
     @if ($invoice->status == 'paid')
                 <div style="text-align: center;">
-                    <img src="{{asset('images/paid.png')}}" alt="" width="150px"/>
+{{--                    <img src="{{asset('images/paid.png')}}" alt="" width="150px"/>--}}
+                    <img src="{{'data:image/png;base64,'.base64_encode(file_get_contents(public_path('images/paid.png')))}}" width="150px"/>
                 </div>
             @endif
     <div style="position: absolute;bottom: 0;width: 100%;">
@@ -243,8 +245,8 @@
             </div>
         </div>
         <div class="well">
-            {{ isset($invoice->company->payment_terms) ? 
-            ('Terms and Conditions: ' . $invoice->company->payment_terms . ' days from receipt of this invoice.') : 
+            {{ isset($invoice->company->payment_terms) ?
+            ('Terms and Conditions: ' . $invoice->company->payment_terms . ' days from receipt of this invoice.') :
             ('Terms and Conditions: Payment due on the day of the receipt of this invoice.') }}
         </div>
     </div>
