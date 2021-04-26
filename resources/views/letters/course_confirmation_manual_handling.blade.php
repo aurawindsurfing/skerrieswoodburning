@@ -96,7 +96,7 @@
                 <div class="attendance" style="margin-top: 13px;">
                     OF ATTENDANCE
                 </div>
-                <div class="small" style="margin-top: 45px;">
+                <div class="small" style="margin-top: 85px;">
                     THIS IS TO CERTIFY THAT
                 </div>
                 <div class="big" style="margin-top: 40px;">
