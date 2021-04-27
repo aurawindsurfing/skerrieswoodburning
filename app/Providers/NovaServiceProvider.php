@@ -119,7 +119,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                                 'icon' => null,
                                 'target' => '_blank',
                                 'url' => 'https://app.serpwatcher.com/report?token=zDUX3FoHm3MODfE4aIzpR8Pa20m7wXBqPcgIAmwHviMg7k5Gs3CsePvj9bj1nMIy&id=601825e1f4c7d61875941223'
-                            ])
+                            ]),
                         ],
                         'icon' => '<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="far" data-icon="clipboard-list" class="svg-inline--fa fa-clipboard-list fa-w-12" role="img" viewBox="0 0 384 512"><path fill="currentColor" d="M280 240H168c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h112c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8zm0 96H168c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h112c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8zM112 232c-13.3 0-24 10.7-24 24s10.7 24 24 24 24-10.7 24-24-10.7-24-24-24zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24 24-10.7 24-24-10.7-24-24-24zM336 64h-80c0-35.3-28.7-64-64-64s-64 28.7-64 64H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48zM192 48c8.8 0 16 7.2 16 16s-7.2 16-16 16-16-7.2-16-16 7.2-16 16-16zm144 408c0 4.4-3.6 8-8 8H56c-4.4 0-8-3.6-8-8V120c0-4.4 3.6-8 8-8h40v32c0 8.8 7.2 16 16 16h160c8.8 0 16-7.2 16-16v-32h40c4.4 0 8 3.6 8 8v336z"/></svg>'
                     ]),
@@ -129,6 +129,13 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                             Payment::class,
                             Invoice::class,
                             UnpaidInvoice::class,
+                            ExternalLink::make([
+                                'label' => 'Stripe',
+                                'badge' => null,
+                                'icon' => null,
+                                'target' => '_blank',
+                                'url' => 'https://dashboard.stripe.com/dashboard'
+                            ])
                         ],
                         'icon' => '<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="far" data-icon="calculator-alt" class="svg-inline--fa fa-calculator-alt fa-w-16" role="img" viewBox="0 0 512 512"><path fill="currentColor" d="M477.71 0H34.29C15.35 0 0 15.35 0 34.29v443.43C0 496.65 15.35 512 34.29 512h443.43c18.94 0 34.29-15.35 34.29-34.29V34.29C512 15.35 496.65 0 477.71 0zM232 464H48V280h184v184zm0-232H48V48h184v184zm232 232H280V280h184v184zm0-232H280V48h184v184zm-360-72h80c4.42 0 8-3.58 8-8v-16c0-4.42-3.58-8-8-8h-80c-4.42 0-8 3.58-8 8v16c0 4.42 3.58 8 8 8zm224 248h80c4.42 0 8-3.58 8-8v-16c0-4.42-3.58-8-8-8h-80c-4.42 0-8 3.58-8 8v16c0 4.42 3.58 8 8 8zm0-48h80c4.42 0 8-3.58 8-8v-16c0-4.42-3.58-8-8-8h-80c-4.42 0-8 3.58-8 8v16c0 4.42 3.58 8 8 8zm0-200h24v24c0 4.42 3.58 8 8 8h16c4.42 0 8-3.58 8-8v-24h24c4.42 0 8-3.58 8-8v-16c0-4.42-3.58-8-8-8h-24v-24c0-4.42-3.58-8-8-8h-16c-4.42 0-8 3.58-8 8v24h-24c-4.42 0-8 3.58-8 8v16c0 4.42 3.58 8 8 8zM104.4 396.28l11.31 11.31c3.12 3.12 8.19 3.12 11.31 0L144 390.63l16.97 16.97c3.12 3.12 8.19 3.12 11.31 0l11.31-11.31c3.12-3.12 3.12-8.19 0-11.31L166.63 368l16.97-16.97c3.12-3.12 3.12-8.19 0-11.31l-11.31-11.31c-3.12-3.12-8.19-3.12-11.31 0L144 345.37l-16.97-16.97c-3.12-3.12-8.19-3.12-11.31 0l-11.31 11.31c-3.12 3.12-3.12 8.19 0 11.31L121.37 368l-16.97 16.97c-3.12 3.12-3.12 8.19 0 11.31z"/></svg>'
                     ]),
