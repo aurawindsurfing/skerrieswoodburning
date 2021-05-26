@@ -20,14 +20,22 @@ class PageController extends Controller
         $groups_chunks = Cache::remember('group_chunks', 86400, function () {
             return CourseTypeGroup::where('id', '<>', 14)->get()->sortBy('order')->chunk(4);
         });
-        $courses = Cache::remember('courses', 900, function () {
-            return Course::with(['venue', 'course_type'])->where('course_type_id', 1)->where('inhouse', false)->where('date', '>', today())->orderBy('date')->take(7)->get();
-        });
         $logos = Cache::remember('logos', 86400, function () {
             return $this->cloudinary_resources('logos', 50, 'cloudinary_logo');
         });
         $image = Cache::remember('image', 60, function () {
             return Arr::random($this->cloudinary_resources('pictures', 50, 'cloudinary_optimised_jpg'));
+        });
+
+        $courses = Cache::remember('courses', 900, function () {
+            return $this->filterOutSomeFullyBookedCourses(
+                Course::with(['venue', 'course_type'])
+                    ->where('course_type_id', 1)
+                    ->where('inhouse', false)
+                    ->where('date', '>', today())
+                    ->orderBy('date')
+                    ->get()
+                , 7);
         });
 
         return view('welcome', compact('groups_chunks', 'courses', 'logos', 'image'));
@@ -38,12 +46,14 @@ class PageController extends Controller
         $course_types = $group->course_types()->orderBy('order')->get();
         $course_type_ids = CourseType::where('course_type_group_id', $group->id)->pluck('id');
         $courses = Cache::remember('group_courses'.$group->id, 900, function () use ($course_type_ids) {
-            return Course::with(['venue', 'course_type'])
+            return $this->filterOutSomeFullyBookedCourses(
+                Course::with(['venue', 'course_type'])
                 ->whereIn('course_type_id', $course_type_ids)
                 ->where('date', '>', today())
                 ->where('inhouse', false)
                 ->orderBy('date')
-                ->get();
+                ->get()
+                , 10);
         });
 
         return view('group', compact('group', 'course_types', 'courses'));
@@ -51,7 +61,9 @@ class PageController extends Controller
 
     public function list(CourseType $type = null)
     {
-        $courses = Course::query()
+
+        $courses = $this->filterOutSomeFullyBookedCourses(
+            Course::query()
                 ->when(isset($type), function ($query) use ($type) {
                     return $query->where('course_type_id', $type->id);
                 })
@@ -62,7 +74,9 @@ class PageController extends Controller
                 ->where('inhouse', false)
                 ->where('date', '>', today())
                 ->orderBy('date')
-                ->get();
+                ->get()
+            , 10
+        );
 
         return view('list', compact('courses', 'type'));
     }
@@ -75,7 +89,16 @@ class PageController extends Controller
     public function blogpost(BlogPost $blogpost)
     {
         $courses = Cache::remember('courses', 900, function () {
-            return Course::with(['venue', 'course_type'])->where('course_type_id', 1)->where('inhouse', false)->where('date', '>', today())->orderBy('date')->take(7)->get();
+            return $this->filterOutSomeFullyBookedCourses(
+                Course::query()
+                ->with(['venue', 'course_type',])
+                ->where('course_type_id', 1)
+                ->where('inhouse', false)
+                ->where('date', '>', today())
+                ->orderBy('date')
+                ->get()
+                , 10
+            );
         });
 
         return view('blog', compact('blogpost', 'courses'));
@@ -83,13 +106,16 @@ class PageController extends Controller
 
     public function venue(Venue $venue)
     {
-        $courses = Course::query()
+        $courses = $this->filterOutSomeFullyBookedCourses(
+            Course::query()
             ->where('venue_id', $venue->id)
             ->with(['venue', 'course_type'])
             ->where('inhouse', false)
             ->where('date', '>', today())
             ->orderBy('date')
-            ->get();
+            ->get()
+            , 10
+        );
 
         $image = Cache::remember('image'.$venue->slug, 3600, function () {
             return Arr::random($this->cloudinary_resources('pictures', 50, 'cloudinary_optimised_jpg'));
@@ -143,5 +169,28 @@ class PageController extends Controller
         }
 
         return $items;
+    }
+
+    public function filterOutSomeFullyBookedCourses($c, $take)
+    {
+        $fully_booked = $c->filter(function ($item) {
+            return $item->placesLeft() <= 0;
+        });
+
+        $fullyBookedSubset = collect([]);
+
+        $i = 0;
+        while ($i < $fully_booked->count()) {
+            $fullyBookedSubset->push($fully_booked->skip($i)->first());
+            $i = $i + 7;
+        }
+
+        $fullyBookedSubset = $fullyBookedSubset->take(-3);
+
+        $stillAvailableSubset = $c->filter(function ($item) {
+            return $item->placesLeft() > 0;
+        });
+
+        return $fullyBookedSubset->merge($stillAvailableSubset)->take($take);
     }
 }
