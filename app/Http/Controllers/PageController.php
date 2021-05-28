@@ -177,15 +177,7 @@ class PageController extends Controller
             return $item->placesLeft() <= 0;
         });
 
-        $fullyBookedSubset = collect([]);
-
-        $i = 0;
-        while ($i < $fully_booked->count()) {
-            $fullyBookedSubset->push($fully_booked->skip($i)->first());
-            $i = $i + 7;
-        }
-
-        $fullyBookedSubset = $fullyBookedSubset->take(-3);
+        $fullyBookedSubset = $fully_booked->nth(7)->take(-3);
 
         $stillAvailableSubset = $c->filter(function ($item) {
             return $item->placesLeft() > 0;
