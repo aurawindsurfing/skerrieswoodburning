@@ -75,7 +75,7 @@ class PageController extends Controller
                 ->where('date', '>', today())
                 ->orderBy('date')
                 ->get()
-            , 10
+            , 20
         );
 
         return view('list', compact('courses', 'type'));
