@@ -57,7 +57,7 @@ class EmailAttendeeList extends Command
 
                 Mail::to('alec@citltd.ie')
                 // ->cc('tom@gazeta.ie')
-                    ->cc('tomcentrumpl@gmail.com')
+                //    ->cc('tomcentrumpl@gmail.com')
                     ->send(new \App\Mail\CourseAttendeeList($data));
             }
         }

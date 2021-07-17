@@ -5,34 +5,31 @@ namespace App\Http\Controllers;
 use App\Booking;
 use App\Invoice;
 use App\Payment;
+use Vonage\SMS\Message\SMS;
 
 class TestController extends Controller
 {
     public function test()
     {
-        \Cloudinary::config([
-            'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
-            'api_key'    => env('CLOUDINARY_API_KEY'),
-            'api_secret' => env('CLOUDINARY_API_SECRET'),
-            'secure'     => true,
-        ]);
 
-        $c = new \Cloudinary\Api();
-        $response = $c->resources(
-            [
-                'type'        => 'upload',
-                'prefix'      => 'cit/logos',
-                'max_results' => 50,
-            ]
+        $basic_auth = new \Vonage\Client\Credentials\Basic(env('NEXMO_KEY'), env('NEXMO_SECRET'));
+        $client = new \Vonage\Client($basic_auth);
+
+        $response = $client->sms()->send(
+            new SMS('353862194744', 'CIT', 'Testujemy czy wysyla nam nexmo smsy')
         );
 
-        $logos = [];
+        $message = $response->current();
 
-        foreach ($response['resources'] as $resource) {
-            array_push($logos, $resource['secure_url']);
+        if ($message->getStatus() == 0)
+        {
+            ray("The message was sent successfully");
+
+        } else
+        {
+            ray("The message failed with status: " . $message->getStatus());
         }
 
-        return $logos;
     }
 
     public function pdftest1()

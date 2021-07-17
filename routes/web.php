@@ -42,5 +42,6 @@ Route::middleware(['auth'])->group(function () {
     //Route::get('pdftest5', 'TestController@pdftest5');
 
 //Route::get('test', 'TestController@test');
-// Route::get('test2', 'TestController@test2');
+//Route::get('test2', 'TestController@test2');
+
 });
