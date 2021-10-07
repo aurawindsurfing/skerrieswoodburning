@@ -67,7 +67,7 @@ class Booking extends Resource
         'name',
         'surname',
         'email',
-        'date',
+        //'date',
         'phone',
         // 'course',
         // 'company',
@@ -294,7 +294,9 @@ class Booking extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+            new Filters\BookingDateFilter,
+        ];
     }
 
     /**

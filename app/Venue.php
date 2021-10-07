@@ -19,7 +19,7 @@ class Venue extends Model
 
     protected static $logUnguarded = true;
 
-    public function sluggable()
+    public function sluggable(): array
     {
         return [
             'slug' => [

@@ -22,7 +22,7 @@ class CourseTypeGroup extends Model implements Sortable
         'sort_when_creating' => true,
     ];
 
-    public function sluggable()
+    public function sluggable(): array
     {
         return [
             'slug' => [

@@ -36,7 +36,7 @@ class CourseType extends Model implements Sortable
         return static::query()->where('course_type_group_id', $this->course_type_group_id);
     }
 
-    public function sluggable()
+    public function sluggable(): array
     {
         return [
             'slug' => [
