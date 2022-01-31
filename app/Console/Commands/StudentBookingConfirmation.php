@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Booking;
 use App\Notifications\StudentConfirmation;
+use App\Notifications\StudentCovidFormLink;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Propaganistas\LaravelPhone\PhoneNumber;
@@ -55,6 +56,7 @@ class StudentBookingConfirmation extends Command
 
         foreach ($student_bookings as $booking) {
             if (PhoneNumber::make($booking->phone, config('nexmo.countries'))->isOfType('mobile')) {
+                $booking->notify(new StudentCovidFormLink($booking));
                 $booking->notify(new StudentConfirmation($booking));
             }
         }
