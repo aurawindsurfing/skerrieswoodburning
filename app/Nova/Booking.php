@@ -54,7 +54,7 @@ class Booking extends Resource
      */
     public function title()
     {
-        return $this->name.' '.$this->surname.' - '.($this->course ? $this->course->course_type->name.' - '.$this->course->date->format('Y-m-d') : 'Course deleted');
+        return $this->name.' '.$this->surname.' - '.($this->course ? ($this->course->course_type->name ?? '').' - '.$this->course->date->format('Y-m-d') : 'Course deleted');
     }
 
     /**
@@ -187,7 +187,7 @@ class Booking extends Resource
 
             Stack::make('Course', [
                 Line::make('Booking')->displayUsing(function (){
-                    return str_replace('SOLAS Safe Pass Dublin', 'Safe Pass', $this->course->course_type->name);
+                    return str_replace('SOLAS Safe Pass Dublin', 'Safe Pass', ($this->course->course_type->name ?? ''));
                 })->asSubTitle(),
                 Line::make('Booking')->displayUsing(function (){
                     return str_replace('SOLAS Safe Pass Dublin', 'Safe Pass', $this->course->venue->shortName());
