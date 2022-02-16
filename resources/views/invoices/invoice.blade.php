@@ -121,7 +121,7 @@
                         <h3>Customer Address:</h3>
                         {{ $invoice->company->name ?? $invoice->bookings->first()->name .' '.$invoice->bookings->first()->surname }}<br/>
                         {{-- {{ $invoice->company->address ? str_replace(',', '</br>', $invoice->company->address) : '' }}<br/> --}}
-                        @foreach (explode(',', $invoice->company->address) as $address_line)
+                        @foreach (explode(',', ($invoice->company->address ?? '')) as $address_line)
                             {{ $address_line }} <br/>
                         @endforeach
                         {{-- {{ $invoice->company->phone ?? $invoice->bookings->first()->phone}}<br/> --}}
