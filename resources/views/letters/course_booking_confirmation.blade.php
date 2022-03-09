@@ -121,7 +121,7 @@
                     <tr>
                         <td>COVID-19:</td>
                         <td>All candidates must complete and return the form in this link no later than three days prior to the course date
-                            <a href="https://form.jotform.com/201684563050350">https://form.jotform.com/201684563050350</a></td>
+                            <a href="https://form.jotform.com/220656520766054">https://form.jotform.com/220656520766054</a></td>
                     </tr>
                     <tr>
                         <td colspan="2"><b>Any candidates that do not give 24 hours notice of non-attendance will be charged a €150 cancellation fee.</b></td>

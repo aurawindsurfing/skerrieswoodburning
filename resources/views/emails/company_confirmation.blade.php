@@ -14,7 +14,7 @@
     <div class="container ml-6 max-w-sm">
         {{ isset($bookings->first->company->contact->name) ? $bookings->first->company->contact->name . ', thank you for your booking, details of which are below. ' : 'Thank you for your booking, details of which are below. '}}<br><br>
         Please complete and submit this Covid-19 form today<br><br>
-        <a href="https://form.jotform.com/201684563050350">https://form.jotform.com/201684563050350</a><br><br>
+        <a href="https://form.jotform.com/220656520766054">https://form.jotform.com/220656520766054</a><br><br>
         BOOKING DETAILS:<br><br>
     </div>
 

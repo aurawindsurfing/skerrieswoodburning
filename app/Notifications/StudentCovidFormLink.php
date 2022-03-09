@@ -41,7 +41,7 @@ class StudentCovidFormLink extends Notification
     public function toNexmo($notifiable)
     {
         $message = (isset($notifiable->name) ? $notifiable->name.', thank you for booking. ' : 'Thank you for booking. ')
-                    .'To finish your registration, please complete and submit this Covid-19 form today: https://form.jotform.com/201684563050350'
+                    .'To finish your registration, please complete and submit this Covid-19 form today: https://form.jotform.com/220656520766054'
                     .'. CIT';
 
         $this->updateNotificationLog('sms covid form request', $notifiable, $message);
