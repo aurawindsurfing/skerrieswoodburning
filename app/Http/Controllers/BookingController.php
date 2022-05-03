@@ -34,7 +34,7 @@ class BookingController extends Controller
      */
     public function create(Course $course)
     {
-        if ($course->placesLeft() <= 0) {
+        if ($course->placesLeft() < 0) {
             return redirect()->route('home')->with('overbooked', 'We are sorry but this course is fully booked!');
         }
 
