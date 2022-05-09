@@ -118,11 +118,11 @@
                         <td>Requirements:</td>
                         <td>All candidates must have an Irish PPS Number (if a candidiate does not have an Irish PPS number they must contact us at least three days in advance of the course date. Each candidate must bring proof of identification on the day of the course.</td>
                     </tr>
-                    <tr>
-                        <td>COVID-19:</td>
-                        <td>All candidates must complete and return the form in this link no later than three days prior to the course date
-                            <a href="https://form.jotform.com/220656520766054">https://form.jotform.com/220656520766054</a></td>
-                    </tr>
+{{--                    <tr>--}}
+{{--                        <td>COVID-19:</td>--}}
+{{--                        <td>All candidates must complete and return the form in this link no later than three days prior to the course date--}}
+{{--                            <a href="https://form.jotform.com/220656520766054">https://form.jotform.com/220656520766054</a></td>--}}
+{{--                    </tr>--}}
                     <tr>
                         <td colspan="2"><b>Any candidates that do not give 24 hours notice of non-attendance will be charged a €150 cancellation fee.</b></td>
                     </tr>
