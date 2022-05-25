@@ -6,7 +6,8 @@
 @section('body')
     <div class="relative min-h-screen">
     <div x-data="{ open_navbar: false, show_modal: false }"
-        x-init="show_modal = @json(Session::has('overbooked'))" class="max-w-screen-xl mx-auto">
+        x-init="show_modal = @json(Session::has('overbooked')) || @json(Session::has('success'))"
+         class="max-w-screen-xl mx-auto">
         @if (session('overbooked'))
             <div class="fixed bottom-0 inset-x-0 px-4 pb-6 sm:inset-0 sm:p-0 sm:flex sm:items-center sm:justify-center">
                 <div class="fixed inset-0 transition-opacity"
@@ -61,6 +62,62 @@
 
             </div>
         @endif
+        @if (session('success'))
+                <div x-data="{ show_modal: true }" x-show="show_modal == true"
+                     class="fixed bottom-0 inset-x-0 px-4 pb-6 sm:inset-0 sm:p-0 sm:flex sm:items-center sm:justify-center">
+                    <div x-show="show_modal == true"
+                         class="fixed inset-0 transition-opacity"
+                         x-transition:enter="ease-out duration-300"
+                         x-transition:enter-start="opacity-0"
+                         x-transition:enter-end="opacity-100"
+                         x-transition:leave="ease-in duration-200"
+                         x-transition:leave-start="opacity-100"
+                         x-transition:leave-end="opacity-0"
+                    >
+                        <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                    </div>
+
+                    <div class="bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-sm sm:w-full sm:p-6" role="dialog" aria-modal="true" aria-labelledby="modal-headline"
+                         x-show="show_modal == true"
+                         {{--             @click.away="show_modal = false"--}}
+                         x-transition:enter="ease-out duration-300"
+                         x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                         x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                         x-transition:leave="ease-in duration-200"
+                         x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                         x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    >
+                        <div>
+                            <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
+                                <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div class="mt-3 text-center sm:mt-5">
+                                <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-headline">
+                                    Thank you for your booking!
+                                </h3>
+                                <div class="mt-2">
+                                    <p class="text-sm leading-5 text-gray-500">
+                                        You will receive <b>a text</b> and <b>an email</b> with booking confirmation shortly.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-5 sm:mt-6">
+      <span class="flex w-full rounded-md shadow-sm">
+        <a href="{{route('home')}}" class="justify-center w-full">
+            <button
+                {{--                @click="show_modal = false"--}}
+                type="button" class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-indigo-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+          I understand
+        </button>
+        </a>
+      </span>
+                        </div>
+                    </div>
+                </div>
+            @endif
         @include('sections.hero')
         @include('sections.our_principles')
         @include('sections.groups')

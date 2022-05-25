@@ -7,7 +7,6 @@ use App\Course;
 use App\Http\Requests\CreateBooking;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use Laravel\Cashier\Exceptions\PaymentActionRequired;
 use Stripe\Exception\CardException;
 use Stripe\Exception\InvalidRequestException;
@@ -34,13 +33,13 @@ class BookingController extends Controller
      */
     public function create(Course $course)
     {
-        if ($course->placesLeft() < 0) {
-            return redirect()->route('home')->with('overbooked', 'We are sorry but this course is fully booked!');
+        // this comes from laravel cashier after SCA second authorization and its hardly ever used
+        if (\request()->query('success') == true) {
+            return redirect()->route('home')->with('success', 'Payment successful!');
         }
 
-        // this comes from laravel cashier after SCA second authorization
-        if (\request()->query('success') == true) {
-            Session::flash('success', 'Payment successful!');
+        if ($course->placesLeft() <= 0) {
+            return redirect()->route('home')->with('overbooked', 'We are sorry but this course is fully booked!');
         }
 
         return view('registration', compact('course'));
@@ -78,7 +77,8 @@ class BookingController extends Controller
             $booking->stripe_status = 'succeeded';
             $booking->save();
 
-            Session::flash('success', 'Payment successful!');
+            return redirect()->route('home')->with('success', 'Payment successful!');
+
         } catch (InvalidRequestException $e) {
             return back()->withInput()->with('card-error', 'Please fill in the form again. Do not refresh the page!');
         } catch (CardException $e) {
@@ -106,7 +106,8 @@ class BookingController extends Controller
             return back()->withInput()->with('card-error', $e->getMessage());
         }
 
-        return back();
+        // never reaches this point
+        //return back();
     }
 
     /**
