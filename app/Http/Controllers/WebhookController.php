@@ -18,7 +18,7 @@ class WebhookController extends CashierController
     {
         $booking = Booking::withoutGlobalScope(StripePaymentOk::class)->where('stripe_payment_intent', $payload['data']['object']['id'])->first();
 
-        // sometimes booking is not find as we can have manual transaction in stripe and payment intenet does not match any bookings
+        // sometimes booking is not find as we can have manual transaction in stripe and payment intent does not match any bookings
         if (isset($booking)){
             $booking->stripe_status = 'succeeded';
             $booking->save();
