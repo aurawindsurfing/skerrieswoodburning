@@ -76,7 +76,7 @@
                                                         <rect y="72" width="640" height="640" class="text-gray-50" fill="currentColor"/>
                                                         <rect x="118" width="404" height="784" fill="url(#svg-pattern-squares-mobile)"/>
                                                     </svg>
-                                <div class=" mx-auto w-full rounded-lg shadow-lg lg:max-w-2xl ">
+                                <div class="mx-auto w-full rounded-lg shadow-lg lg:max-w-2xl">
                                     <button
                                         class="block w-full rounded-lg overflow-hidden focus:outline-none focus:shadow-outline">
                                         <img class="w-full" src="https://res.cloudinary.com/gazeta-ireland-limited/image/upload/c_fit,dpr_auto,e_sharpen,h_1080,q_auto,w_1920/1CnIy2xeNEDVMDoS3YsfMpA5GWrSUMm6Qo65mlPo.jpeg" alt="Safe Pass Dublin"/>
@@ -91,7 +91,7 @@
 
 
     </div>
-    <div class="absolute inset-x-0 bottom-0">
+    <div class="inset-x-0 bottom-0">
         @include('sections.footer')
     </div>
     </div>
