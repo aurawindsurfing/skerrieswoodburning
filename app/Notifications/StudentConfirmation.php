@@ -63,7 +63,7 @@ class StudentConfirmation extends Notification
 
         return (new MailMessage)
             ->subject('Booking Confirmation')
-            ->from('alec@citltd.ie')
+            ->from(config('settings.admin_email'))
             ->view('emails.company_confirmation', ['bookings' => [$notifiable]]);
     }
 

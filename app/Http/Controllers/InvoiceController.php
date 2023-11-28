@@ -8,7 +8,6 @@ use App\Mail\NewInvoice;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Storage;
 
 class InvoiceController extends Controller
 {
@@ -274,14 +273,12 @@ class InvoiceController extends Controller
             foreach ($invoice->bookings as $booking) {
                 if (isset($booking->email)) {
                     Mail::to($booking->email)
-                        // ->cc('alec@citltd.ie')
                         ->queue(new NewInvoice($data));
                 }
 
                 if (isset($booking->accounts_payable)) {
                     if (isset($booking->company->accounts_payable->first()->email)) {
                         Mail::to($booking->company->accounts_payable->first()->email)
-                            // ->cc('alec@citltd.ie')
                             ->queue(new NewInvoice($data));
                     }
                 }

@@ -4,7 +4,6 @@ namespace App\Notifications;
 
 use App\NotificationLog;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -51,7 +50,7 @@ class CompanyCourseCancelled extends Notification
 
         return (new MailMessage)
             ->subject('Course Cancellation Notice!!!')
-            ->from('alec@citltd.ie')
+            ->from(config('settings.admin_email'))
             ->view('emails.company_course_cancelled', ['bookings' => $this->bookings]);
     }
 

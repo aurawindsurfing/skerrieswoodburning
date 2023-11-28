@@ -2,7 +2,6 @@
 
 namespace App\Mail;
 
-use App\Http\Controllers\InvoiceController;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -35,7 +34,7 @@ class NewInvoice extends Mailable
      */
     public function build()
     {
-        return $this->from('alec@citltd.ie')
+        return $this->from(config('settings.admin_email'))
             ->subject('New invoice number: '.$this->data['invoice_number'].' from CIT')
             ->attach(url($this->data['path']))
             ->view('emails.newinvoice');

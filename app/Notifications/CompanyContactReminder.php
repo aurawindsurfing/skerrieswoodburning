@@ -4,11 +4,8 @@ namespace App\Notifications;
 
 use App\NotificationLog;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Messages\NexmoMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\View\View;
 
 class CompanyContactReminder extends Notification
 {
@@ -47,7 +44,7 @@ class CompanyContactReminder extends Notification
 
         return (new MailMessage)
             ->subject('Booking Reminder')
-            ->from('alec@citltd.ie')
+            ->from(config('settings.admin_email'))
             ->view('emails.company_booking_reminder', ['bookings' => $this->bookings]);
     }
 

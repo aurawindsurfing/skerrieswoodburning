@@ -55,9 +55,7 @@ class EmailAttendeeList extends Command
 
                 Excel::store(new \App\Exports\AttendeeExport($course), 'public/'.$filepath);
 
-                Mail::to('alec@citltd.ie')
-                // ->cc('tom@gazeta.ie')
-                //    ->cc('tomcentrumpl@gmail.com')
+                Mail::to(config('settings.admin_email'))
                     ->send(new \App\Mail\CourseAttendeeList($data));
             }
         }

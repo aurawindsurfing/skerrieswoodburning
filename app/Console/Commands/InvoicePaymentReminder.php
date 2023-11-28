@@ -9,7 +9,6 @@ use App\Notifications\CompanyInvoiceReminder;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Storage;
 
 class InvoicePaymentReminder extends Command
 {
@@ -73,7 +72,6 @@ class InvoicePaymentReminder extends Command
             ];
 
             Mail::to($contact->email)
-            // ->cc('alec@citltd.ie')
             ->send(new CompanyInvoicePaymentReminder($data));
         }
 

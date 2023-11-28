@@ -31,7 +31,7 @@ return [
     ],
 
     'nexmo' => [
-        'sms_from' => 'CIT',
+        'sms_from' => env('ADMIN_PHONE'),
     ],
 
 ];

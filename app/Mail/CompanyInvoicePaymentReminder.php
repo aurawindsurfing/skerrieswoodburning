@@ -4,7 +4,6 @@ namespace App\Mail;
 
 use App\NotificationLog;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
@@ -47,7 +46,7 @@ class CompanyInvoicePaymentReminder extends Mailable
 
         error_log('Notified company about '.$this->invoices->count().' unpaid invoices');
 
-        return $this->from('alec@citltd.ie')
+        return $this->from(config('settings.admin_email'))
             ->subject('Invoice Payment Reminder')
             ->attach(url($this->path))
             ->view('emails.company_invoice_reminder', ['invoices' => $this->invoices]);
