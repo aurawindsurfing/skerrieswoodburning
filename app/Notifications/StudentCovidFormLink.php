@@ -4,10 +4,11 @@ namespace App\Notifications;
 
 use App\NotificationLog;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\NexmoMessage;
 use Illuminate\Notifications\Notification;
 
-class StudentCovidFormLink extends Notification
+class StudentCovidFormLink extends Notification implements ShouldQueue
 {
     use Queueable;
 

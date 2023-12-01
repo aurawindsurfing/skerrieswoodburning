@@ -5,11 +5,10 @@ namespace App\Notifications;
 use App\NotificationLog;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\NexmoMessage;
 use Illuminate\Notifications\Notification;
 
-class VenueChange extends Notification
+class VenueChange extends Notification implements ShouldQueue
 {
     use Queueable;
 

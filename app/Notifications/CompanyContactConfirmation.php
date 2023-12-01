@@ -4,10 +4,11 @@ namespace App\Notifications;
 
 use App\NotificationLog;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class CompanyContactConfirmation extends Notification
+class CompanyContactConfirmation extends Notification implements ShouldQueue
 {
     use Queueable;
 
