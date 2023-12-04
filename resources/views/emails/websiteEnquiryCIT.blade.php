@@ -16,8 +16,8 @@
         New website enquiry was just made on the website.<br>
         <br>
         Name: {{$data['name']}}<br>
-        Phone: {{'+'.$data['phone']}}<br>
-        Email: {{$data->email}}<br>
+        Phone: {{'+'.$data['phone'] ?? ''}}<br>
+        Email: {{$data['email'] ?? ''}}<br>
         Company: {{$data['company'] ?? ''}}<br>
         <br>
         Course type: {{$data['type'] ?? ' --missing course type--.'}}<br>
