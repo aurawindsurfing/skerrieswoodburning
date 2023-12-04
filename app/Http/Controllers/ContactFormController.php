@@ -16,8 +16,16 @@ class ContactFormController extends Controller
      */
     public function send(ContactRequest $request)
     {
-        User::find(4)->notify(new WebsiteEnquiryCIT($request));
-        User::find(1)->notify(new WebsiteEnquiryCIT($request));
+        $data = [
+            'name' => $request->name,
+            'company' => $request->company,
+            'type' => $request->type,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'enquiry' => $request->enquiry,
+        ];
+
+        User::find(4)->notify(new WebsiteEnquiryCIT($data));
 
         return back()->with('email-success', 'message');
     }

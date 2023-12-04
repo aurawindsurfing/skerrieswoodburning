@@ -15,14 +15,14 @@
 
         New website enquiry was just made on the website.<br>
         <br>
-        Name: {{$form_data->name}}<br>
-        Phone: {{'+'.$form_data->phone}}<br>
-        Email: {{$form_data->email}}<br>
-        Company: {{(isset($form_data->company) ? $form_data->company : '')}}<br>
+        Name: {{$data['name']}}<br>
+        Phone: {{'+'.$data['phone']}}<br>
+        Email: {{$data->email}}<br>
+        Company: {{$data['company'] ?? ''}}<br>
         <br>
-        Course type: {{(isset($form_data->type) ? $form_data->type : ' --missing course type--.')}}<br>
+        Course type: {{$data['type'] ?? ' --missing course type--.'}}<br>
         <br>
-        Enquiry: {{(isset($form_data->enquiry) ? $form_data->enquiry.' ' : '--missing message--')}}<br>
+        Enquiry: {{ $data['enquiry'] ?? '--missing message--'}}<br>
 
     </div>
 

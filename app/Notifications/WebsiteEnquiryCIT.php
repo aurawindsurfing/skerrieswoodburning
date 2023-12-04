@@ -12,16 +12,16 @@ class WebsiteEnquiryCIT extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    private $form_data;
+    private $data;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($form_data)
+    public function __construct($data)
     {
-        $this->form_data = $form_data;
+        $this->data = $data;
     }
 
     /**
@@ -37,15 +37,15 @@ class WebsiteEnquiryCIT extends Notification implements ShouldQueue
 
     public function toNexmo($notifiable)
     {
-        $text = $this->form_data->name
-            .(isset($this->form_data->company) ? ' from '.$this->form_data->company.' ' : '')
-            .(isset($this->form_data->type) ? ' made enquiry about '.$this->form_data->type.' course.' : ' did not ask for specific course type.')
-            .' Phone: '.$this->form_data->phone
-            .', email: '.$this->form_data->email
-            .(isset($this->form_data->enquiry) ? ', message: '.$this->form_data->enquiry.' ' : '');
+        $text = $this->data['name']
+            .(isset($this->data['company']) ? ' from '.$this->data['company'].' ' : '')
+            .(isset($this->data['type']) ? ' made enquiry about '.$this->data['type'].' course.' : ' did not ask for specific course type.')
+            .' Phone: '.$this->data['phone']
+            .', email: '.$this->data['email']
+            .(isset($this->data['enquiry']) ? ', message: '.$this->data['enquiry'].' ' : '');
 
         return (new NexmoMessage)
-            ->from('+'.$this->form_data->phone)
+            ->from('+'.$this->data['phone'])
             ->content($text);
     }
 
@@ -57,11 +57,11 @@ class WebsiteEnquiryCIT extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        $form_data = $this->form_data;
+        $data = $this->data;
 
         return (new MailMessage)
-            ->from($this->form_data->email)
-            ->subject('New website enquiry from '.(isset($this->form_data->name) ? $this->form_data->name : ' --missing name-- '))
-            ->view('emails.websiteEnquiryCIT', compact('form_data'));
+            ->from($this->data['email'])
+            ->subject('New website enquiry from '.($this->data['name'] ?? ' --missing name-- '))
+            ->view('emails.websiteEnquiryCIT', compact('data'));
     }
 }
