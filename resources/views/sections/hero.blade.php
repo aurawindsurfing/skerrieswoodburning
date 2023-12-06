@@ -26,20 +26,20 @@
 {{--                        Construction Industry Training Ltd--}}
 {{--                    </div>--}}
                     <div class="mt-1 text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:leading-none sm:text-6xl lg:text-5xl xl:text-5xl">
-                        Your Workplace Safety
+                        Skerries Wood Burning
                         <br class="hidden md:inline"/>
-                        <span class="text-blue-600">Starts With Us</span>
+                        <span class="text-blue-600">Led By 6th</span>
                     </div>
                     <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
-                        We offer a complete service, from providing an initial Training Needs Analysis through to
-                        Professional Course Delivery and post delivery Course Feedback.
+                        Skerries Wood Burning can be found in many places such as Eurospar Skerries, Bradly's Pharmacy
+                        and St'Vincents. We sell colored ornament Chrismas Coasters and Pecil Cases.
                     </p>
                     <div class="mt-5 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
                         {{--                        <p class="text-base font-medium text-gray-900">--}}
                         {{--                            Book your safepass course right now.--}}
                         {{--                        </p>--}}
 {{--                        <form action="#" method="POST" class="mt-3 sm:flex">--}}
-                            <div class="flex flex-col sm:w-3/4 sm:mx-auto lg:mx-0">
+{{--                            <div class="flex flex-col sm:w-3/4 sm:mx-auto lg:mx-0">--}}
                                 {{--                                <div>--}}
                                 {{--                                <input aria-label="Name"--}}
                                 {{--                                       class="appearance-none block w-full px-3 py-3 border border-gray-300 text-base leading-6 rounded-md placeholder-gray-500 shadow-sm focus:outline-none focus:placeholder-gray-400 focus:shadow-outline focus:border-blue-300 transition duration-150 ease-in-out sm:flex-auto"--}}
@@ -52,23 +52,23 @@
                                 {{--                                </div>--}}
 
 
-                                <div class="mt-3">
-                                    <a href="">
-                                        <button class="mt-3 ml-0 w-full px-6 py-3 border border-transparent text-lg leading-6 font-medium rounded-md text-white bg-gray-800 shadow-sm hover:bg-gray-700 focus:outline-none focus:shadow-outline active:bg-gray-900 transition duration-150 ease-in-out sm:mt-0 sm:ml-0 sm:flex-shrink-0  sm:items-center ">
-                                            Book Safepass Now
-                                        </button>
-                                    </a>
-                                </div>
+{{--                                <div class="mt-3">--}}
+{{--                                    <a href="">--}}
+{{--                                        <button class="mt-3 ml-0 w-full px-6 py-3 border border-transparent text-lg leading-6 font-medium rounded-md text-white bg-gray-800 shadow-sm hover:bg-gray-700 focus:outline-none focus:shadow-outline active:bg-gray-900 transition duration-150 ease-in-out sm:mt-0 sm:ml-0 sm:flex-shrink-0  sm:items-center ">--}}
+{{--                                            Book Safepass Now--}}
+{{--                                        </button>--}}
+{{--                                    </a>--}}
+{{--                                </div>--}}
 
-                                <div class="mt-3">
-                                    <a href="">
-                                        <button class="mt-3 ml-0 w-full px-6 py-3 border text-lg leading-6 font-medium rounded-md text-blue-600 bg-gray-50 hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:bg-gray-100 focus:text-blue-700 transition duration-150 ease-in-out">
-                                            Book Other Course Now
-                                        </button>
-                                    </a>
-                                </div>
+{{--                                <div class="mt-3">--}}
+{{--                                    <a href="">--}}
+{{--                                        <button class="mt-3 ml-0 w-full px-6 py-3 border text-lg leading-6 font-medium rounded-md text-blue-600 bg-gray-50 hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:bg-gray-100 focus:text-blue-700 transition duration-150 ease-in-out">--}}
+{{--                                            Book Other Course Now--}}
+{{--                                        </button>--}}
+{{--                                    </a>--}}
+{{--                                </div>--}}
 
-                            </div>
+{{--                            </div>--}}
 
 {{--                        </form>--}}
                         {{--                        <p class="mt-3 text-sm leading-5 text-gray-500">--}}

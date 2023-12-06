@@ -135,51 +135,6 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="py-8 px-6 text-center bg-gray-50 lg:flex-shrink-0 lg:flex lg:flex-col lg:justify-center lg:p-12">
-                        @if ($type->default_rate > 0)
-                            <div class="mt-4 flex items-center justify-center text-4xl leading-none font-extrabold text-gray-900">
-                              <span>
-                                €{{$type->default_rate}}
-                              </span>
-                                <span class="ml-3 text-xl leading-7 font-medium text-gray-500">
-                                EUR
-                              </span>
-                            </div>
-
-                            <div class="mt-6">
-                                <a href="{{ route('list', ['type' => $type->slug]) }}"
-                                   class="flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
-                                    <button class="rounded-md shadow w-full">
-                                        Book course
-                                    </button>
-                                </a>
-                            </div>
-                        @else
-{{--                            <p class="text-lg leading-6 font-medium text-gray-900">--}}
-{{--                                Bespoke solution--}}
-{{--                            </p>--}}
-                            <div class="flex justify-center pt-4">
-
-                                    <a href="{{ route('bespoke', ['type' => $type->slug]) }}"
-                                       class="w-full flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
-                                        <button class="rounded-md shadow w-full">
-                                        Make enquiry
-                                        </button>
-                                    </a>
-                            </div>
-                            <p class="font-medium text-gray-500 pt-2">
-                                or
-                            </p>
-                            <div class="flex justify-center w-full">
-                                    <a href="tel: +35318097266" class="w-full">
-                                        <button class="mt-2 ml-0 w-full px-6 py-3 border text-lg leading-6 font-medium rounded-md text-blue-600 bg-gray-50 hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:bg-gray-100 focus:text-blue-700 transition duration-150 ease-in-out">
-                                        Call us now
-                                        </button>
-                                    </a>
-                            </div>
-                        @endif
-
-                    </div>
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'BOOK NOW! ')
+@section('title', 'Skerries Wood Burning ')
 {{--@section('description', '')--}}
 
 @section('body')

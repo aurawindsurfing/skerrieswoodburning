@@ -3,10 +3,10 @@
         <div class="lg:text-center">
 {{--            <p class="text-base leading-6 text-blue-600 font-semibold tracking-wide uppercase">ABOUT US</p>--}}
             <h3 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
-                Our principles
+                Our Jobs
             </h3>
             <p class="mt-4 text-xl leading-7 text-gray-500 lg:mx-auto">
-                The success of CIT is based on our commitment to the following principles
+                The Jobs Of The class insure that all the class take part
             </p>
         </div>
 
@@ -23,10 +23,10 @@
                             </div>
                         </div>
                         <div class="ml-4">
-                            <h5 class="text-lg leading-6 font-medium text-gray-900">Professionalism is everything</h5>
+                            <h5 class="text-lg leading-6 font-medium text-gray-900">Design And Production</h5>
                             <p class="mt-2 text-base leading-6 text-gray-500">
-                                All of our professional training solutions are taught by fully qualified tutors with
-                                relevant industry experience to ensure you get the very best training.
+                                - Name 1
+                                - Name 2
                             </p>
                         </div>
                     </div>
