@@ -11,7 +11,6 @@ class ContactFormController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \App\Http\Requests\ContactRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function send(ContactRequest $request)

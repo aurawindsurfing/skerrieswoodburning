@@ -31,13 +31,13 @@ class ContactRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'    => 'required',
+            'name' => 'required',
             'company' => 'nullable',
-            'email'   => [
+            'email' => [
                 'required',
                 'regex:/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/',
             ],
-            'phone'   => 'required|phone:IE,UK,mobile',
+            'phone' => 'required|phone:IE,UK,mobile',
             'enquiry' => 'nullable',
         ];
     }
@@ -45,10 +45,10 @@ class ContactRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required'    => 'A name is required.',
-            'email.required'   => 'An email is required.',
-            'phone.required'   => 'A mobile number is required.',
-            'phone'            => 'The is an invalid mobile number.',
+            'name.required' => 'A name is required.',
+            'email.required' => 'An email is required.',
+            'phone.required' => 'A mobile number is required.',
+            'phone' => 'The is an invalid mobile number.',
         ];
     }
 }
