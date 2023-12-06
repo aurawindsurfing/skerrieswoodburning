@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Scopes\UpcomingOnlyScope;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BookingFactory extends Factory
 {

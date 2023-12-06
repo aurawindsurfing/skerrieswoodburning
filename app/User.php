@@ -11,7 +11,6 @@ use Propaganistas\LaravelPhone\PhoneNumber;
 class User extends Authenticatable
 {
     use HasFactory;
-
     use SoftDeletes;
     use Notifiable;
 
