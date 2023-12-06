@@ -11,7 +11,9 @@
 |
 */
 
+use App\Http\Controllers\ContactFormController;
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', 'PageController@index')->name('home');
-Route::post('/contact', 'ContactFormController@send')->name('send_enquiry');
+Route::get('/', [PageController::class, 'index'])->name('home');
+Route::post('/contact', [ContactFormController::class, 'send'])->name('send_enquiry');
