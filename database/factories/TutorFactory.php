@@ -1,11 +1,22 @@
 <?php
 
-use Faker\Generator as Faker;
+namespace Database\Factories;
 
-$factory->define(App\Tutor::class, function (Faker $faker) {
-    return [
-        'name' => $faker->name,
-        'phone' => $faker->e164PhoneNumber,
-        'email' => $faker->unique()->safeEmail,
-    ];
-});
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class TutorFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'name' => $this->faker->name,
+            'phone' => $this->faker->e164PhoneNumber,
+            'email' => $this->faker->unique()->safeEmail,
+        ];
+    }
+}

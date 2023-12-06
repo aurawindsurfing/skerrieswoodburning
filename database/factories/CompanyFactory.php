@@ -1,14 +1,25 @@
 <?php
 
-use Faker\Generator as Faker;
+namespace Database\Factories;
 
-$factory->define(App\Company::class, function (Faker $faker) {
-    return [
-        'name' => $faker->company,
-        'address' => $faker->streetAddress,
-        'phone' => $faker->randomElement(['0862194744', '0868065966']),
-        'email' => $faker->randomElement(['tomcentrumpl@gmail.com', 'alec@citltd.ie', 'hank@citltd.ie']),
-        'tax' => $faker->randomNumber($nbDigits = 7, $strict = true).$faker->randomElement(['Q', 'W', 'E', 'R', 'T', 'Y']),
-        'payment_method' => $faker->randomElement(['CC', 'EFT', 'Cash', 'Cheque']),
-    ];
-});
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class CompanyFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'name' => $this->faker->company,
+            'address' => $this->faker->streetAddress,
+            'phone' => $this->faker->randomElement(['0862194744', '0868065966']),
+            'email' => $this->faker->randomElement(['tomcentrumpl@gmail.com', 'alec@citltd.ie', 'hank@citltd.ie']),
+            'tax' => $this->faker->randomNumber($nbDigits = 7, $strict = true).$this->faker->randomElement(['Q', 'W', 'E', 'R', 'T', 'Y']),
+            'payment_method' => $this->faker->randomElement(['CC', 'EFT', 'Cash', 'Cheque']),
+        ];
+    }
+}
