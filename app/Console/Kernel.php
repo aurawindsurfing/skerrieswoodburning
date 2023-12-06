@@ -13,18 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        \App\Console\Commands\CompanyBookingConfirmation::class,
-        \App\Console\Commands\CompanyBookingReminder::class,
-        \App\Console\Commands\StudentBookingConfirmation::class,
-        \App\Console\Commands\StudentBookingReminder::class,
-        \App\Console\Commands\EmailAttendeeList::class,
-        \App\Console\Commands\CheckForMissingPPS::class,
-        \App\Console\Commands\ImportSafepassBookings::class,
-        \App\Console\Commands\ImportOtherBookings::class,
-        \App\Console\Commands\ImportAll::class,
-        \App\Console\Commands\InvoicePaymentReminder::class,
-        \App\Console\Commands\ClearTemporaryFiles::class,
-        \App\Console\Commands\GenerateSitemap::class,
+        //
     ];
 
     /**
@@ -35,21 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // student
-        $schedule->command('notify:newbookings_student')->timezone('Europe/Dublin')->everyMinute();
-        // $schedule->command('notify:booking_reminder_student')->timezone('Europe/Dublin')->dailyAt('14:00');
-
-        // company
-        $schedule->command('notify:newbookings_company')->timezone('Europe/Dublin')->everyMinute();
-        $schedule->command('notify:missing_pps')->timezone('Europe/Dublin')->everyMinute();
-        // $schedule->command('notify:booking_reminder_company')->timezone('Europe/Dublin')->weekdays()->at('9:30');
-
-        // cit
-        $schedule->command('notify:attendeelist')->timezone('Europe/Dublin')->dailyAt('18:00');
-        // $schedule->command('notify:unpaid_invoices')->timezone('Europe/Dublin')->weekly()->mondays()->at('10:00');
-        $schedule->command('housekeeping:clear_tmp_files')->timezone('Europe/Dublin')->daily();
-
-        $schedule->command('sitemap:generate')->timezone('Europe/Dublin')->daily();
+        //
     }
 
     /**
