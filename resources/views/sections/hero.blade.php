@@ -26,13 +26,13 @@
 {{--                        Construction Industry Training Ltd--}}
 {{--                    </div>--}}
                     <div class="mt-1 text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:leading-none sm:text-6xl lg:text-5xl xl:text-5xl">
-                        Your Workplace Safety
+                        Skerries Wood Burning
                         <br class="hidden md:inline"/>
-                        <span class="text-blue-600">Starts With Us</span>
+                        <span class="text-blue-600">Led By 6th</span>
                     </div>
                     <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
-                        We offer a complete service, from providing an initial Training Needs Analysis through to
-                        Professional Course Delivery and post delivery Course Feedback.
+                        Skerries Wood Burning can be found in many places such as Eurospar Skerries, Bradly's Pharmacy
+                        and St'Vincents. We sell colored ornament Chrismas Coasters and Pecil Cases.
                     </p>
                     <div class="mt-5 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
                         {{--                        <p class="text-base font-medium text-gray-900">--}}
@@ -52,21 +52,21 @@
                                 {{--                                </div>--}}
 
 
-                                <div class="mt-3">
-                                    <a href="">
-                                        <button class="mt-3 ml-0 w-full px-6 py-3 border border-transparent text-lg leading-6 font-medium rounded-md text-white bg-gray-800 shadow-sm hover:bg-gray-700 focus:outline-none focus:shadow-outline active:bg-gray-900 transition duration-150 ease-in-out sm:mt-0 sm:ml-0 sm:flex-shrink-0  sm:items-center ">
-                                            Book Safepass Now
-                                        </button>
-                                    </a>
-                                </div>
+{{--                                <div class="mt-3">--}}
+{{--                                    <a href="">--}}
+{{--                                        <button class="mt-3 ml-0 w-full px-6 py-3 border border-transparent text-lg leading-6 font-medium rounded-md text-white bg-gray-800 shadow-sm hover:bg-gray-700 focus:outline-none focus:shadow-outline active:bg-gray-900 transition duration-150 ease-in-out sm:mt-0 sm:ml-0 sm:flex-shrink-0  sm:items-center ">--}}
+{{--                                            Book Safepass Now--}}
+{{--                                        </button>--}}
+{{--                                    </a>--}}
+{{--                                </div>--}}
 
-                                <div class="mt-3">
-                                    <a href="">
-                                        <button class="mt-3 ml-0 w-full px-6 py-3 border text-lg leading-6 font-medium rounded-md text-blue-600 bg-gray-50 hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:bg-gray-100 focus:text-blue-700 transition duration-150 ease-in-out">
-                                            Book Other Course Now
-                                        </button>
-                                    </a>
-                                </div>
+{{--                                <div class="mt-3">--}}
+{{--                                    <a href="">--}}
+{{--                                        <button class="mt-3 ml-0 w-full px-6 py-3 border text-lg leading-6 font-medium rounded-md text-blue-600 bg-gray-50 hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:bg-gray-100 focus:text-blue-700 transition duration-150 ease-in-out">--}}
+{{--                                            Book Other Course Now--}}
+{{--                                        </button>--}}
+{{--                                    </a>--}}
+{{--                                </div>--}}
 
                             </div>
 
@@ -94,14 +94,7 @@
                     <div class=" mx-auto w-full rounded-lg shadow-lg lg:max-w-2xl ">
                         <button
                             class="block w-full rounded-lg overflow-hidden focus:outline-none focus:shadow-outline">
-                            <img class="w-full" src="" alt="Safe Pass Dublin"/>
-{{--                            <div class="absolute inset-0 w-full h-full flex items-center justify-center">--}}
-{{--                                <svg class="h-20 w-20 text-blue-500" fill="currentColor" viewBox="0 0 84 84">--}}
-{{--                                    <circle opacity="0.9" cx="42" cy="42" r="42" fill="white"/>--}}
-{{--                                    <path--}}
-{{--                                        d="M55.5039 40.3359L37.1094 28.0729C35.7803 27.1869 34 28.1396 34 29.737V54.263C34 55.8604 35.7803 56.8131 37.1094 55.9271L55.5038 43.6641C56.6913 42.8725 56.6913 41.1275 55.5039 40.3359Z"/>--}}
-{{--                                </svg>--}}
-{{--                            </div>--}}
+                            <img class="w-full" src="{{'/images/colorful-ornament.jpg'}}" alt="Safe Pass Dublin"/>
                         </button>
                     </div>
                 </div>

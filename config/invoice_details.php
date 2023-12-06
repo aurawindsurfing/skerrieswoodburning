@@ -80,23 +80,6 @@ return [
   | the customer model.
   */
 
-    'business_details' => [
-        'name' => 'Contruction Industry Training Ltd',
-        'id' => '8220493A',
-        'phone' => '01 809 7266',
-        'location' => 'Unit C3, Dunshaughlin Business Park ',
-        'zip' => 'A85 YV58',
-        'city' => 'Dunshaughlin, Co. Meath',
-        'country' => 'Ireland',
-    ],
-
-    'bank_details' => [
-        'name' => 'Construction Industry Training Ltd',
-        'number' => '78384868',
-        'sort' => '90-04-20',
-        'iban' => 'IE92BOFI90042078384868',
-        'swift' => 'BOFIIE2D',
-    ],
 
     /*
   |--------------------------------------------------------------------------

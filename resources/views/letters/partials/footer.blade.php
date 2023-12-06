@@ -1,6 +1,6 @@
 <div class="container ml-6 mt-12 max-w-sm">
 
-    {{ $slot }} 
+    {{ $slot }}
     <div>Construction Industry Training Ltd</div>
     <div>Unit 10, Block 8</div>
     <div>Blanchardstown Corporate Park</div>
@@ -8,7 +8,7 @@
     <div>Dublin</div>
 
     <br>
-    
+
     <div class="flex flex-col w-48">
         <div class="flex flex-row justify-between">
             <div>Tel: 01 8097266</div>
