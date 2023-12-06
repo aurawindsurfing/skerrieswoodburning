@@ -53,7 +53,7 @@
 
 
                                 <div class="mt-3">
-                                    <a href="{{route('list', ['type' => 'solas-safe-pass'])}}">
+                                    <a href="">
                                         <button class="mt-3 ml-0 w-full px-6 py-3 border border-transparent text-lg leading-6 font-medium rounded-md text-white bg-gray-800 shadow-sm hover:bg-gray-700 focus:outline-none focus:shadow-outline active:bg-gray-900 transition duration-150 ease-in-out sm:mt-0 sm:ml-0 sm:flex-shrink-0  sm:items-center ">
                                             Book Safepass Now
                                         </button>
@@ -61,7 +61,7 @@
                                 </div>
 
                                 <div class="mt-3">
-                                    <a href="{{route('list')}}">
+                                    <a href="">
                                         <button class="mt-3 ml-0 w-full px-6 py-3 border text-lg leading-6 font-medium rounded-md text-blue-600 bg-gray-50 hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:bg-gray-100 focus:text-blue-700 transition duration-150 ease-in-out">
                                             Book Other Course Now
                                         </button>
@@ -94,7 +94,7 @@
                     <div class=" mx-auto w-full rounded-lg shadow-lg lg:max-w-2xl ">
                         <button
                             class="block w-full rounded-lg overflow-hidden focus:outline-none focus:shadow-outline">
-                            <img class="w-full" src="{{ $image }}" alt="Safe Pass Dublin"/>
+                            <img class="w-full" src="" alt="Safe Pass Dublin"/>
 {{--                            <div class="absolute inset-0 w-full h-full flex items-center justify-center">--}}
 {{--                                <svg class="h-20 w-20 text-blue-500" fill="currentColor" viewBox="0 0 84 84">--}}
 {{--                                    <circle opacity="0.9" cx="42" cy="42" r="42" fill="white"/>--}}

@@ -17,5 +17,4 @@ mix.js('resources/js/app.js', 'public/js')
         require('tailwindcss')('tailwind.config.js')
     ])
     .purgeCss()
-    .browserSync({ proxy: 'cit.test', notify: false})
     .version();

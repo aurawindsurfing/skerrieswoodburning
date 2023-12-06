@@ -4,11 +4,11 @@
             Trusted by leading Irish companies
         </p>
         <div class="flex flex-wrap mt-6 lg:mt-8">
-        @foreach($logos as $logo)
-                <div class="justify-center m-auto py-2 px-2">
-                    <img src="{{ $logo }}"/>
-                </div>
-            @endforeach
+{{--        @foreach($logos as $logo)--}}
+{{--                <div class="justify-center m-auto py-2 px-2">--}}
+{{--                    <img src="{{ $logo }}"/>--}}
+{{--                </div>--}}
+{{--            @endforeach--}}
         </div>
     </div>
 </div>

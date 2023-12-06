@@ -20,7 +20,7 @@
     {{--    @endforeach--}}
     <meta property="og:site_name" content="{{ env('APP_NAME') }}"/>
     <meta property="og:image:url"
-          content="{{ Cloudder::secureShow('/cit/pictures/manual-handling', config('settings.cloudinary_optimised_jpg')) }}"/>
+          content=" "/>
     <meta property="og:image:size" content="300"/>
 
     <meta name="twitter:title" content="@yield('title'){{'Safe Pass Course Dublin'}}"/>

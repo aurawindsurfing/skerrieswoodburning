@@ -17,27 +17,8 @@ class PageController extends Controller
 {
     public function index()
     {
-        $groups_chunks = Cache::remember('group_chunks', 86400, function () {
-            return CourseTypeGroup::where('id', '<>', 14)->get()->sortBy('order')->chunk(4);
-        });
-        $logos = Cache::remember('logos', 86400, function () {
-            return $this->cloudinary_resources('logos', 50, 'cloudinary_logo');
-        });
-        $image = Cache::remember('image', 60, function () {
-            return Arr::random($this->cloudinary_resources('pictures', 50, 'cloudinary_optimised_jpg'));
-        });
 
-        $courses = Cache::remember('courses', 900, function () {
-            return $this->filterOutSomeFullyBookedCourses(
-                Course::with(['venue', 'course_type'])
-                    ->where('course_type_id', 1)
-                    ->where('inhouse', false)
-                    ->where('date', '>', today())
-                    ->orderBy('date')
-                    ->get(), 7);
-        });
-
-        return view('welcome', compact('groups_chunks', 'courses', 'logos', 'image'));
+        return view('welcome');
     }
 
     public function group(CourseTypeGroup $group)

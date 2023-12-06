@@ -8,25 +8,20 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": "^7.3|^8.0",
-        "laravel/framework": "^8.83",
-        "laravel/nexmo-notification-channel": "^2.4",
-        "laravel/nova": "^3.10",
-        "laravel/slack-notification-channel": "^2.3",
-        "laravel/tinker": "^2.5",
-        "laravel/ui": "^3.0",
+        "php": "^8.0",
         "fruitcake/laravel-cors": "^2.0",
-        "guzzlehttp/guzzle": "^7.0.1"
+        "guzzlehttp/guzzle": "^7.0.1",
+        "laravel/framework": "^8.75",
+        "laravel/sanctum": "^2.11",
+        "laravel/tinker": "^2.5"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.5",
-        "barryvdh/laravel-ide-helper": "^2.8",
+        "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
+        "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^5.10",
-        "phpunit/phpunit": "^9.5.10",
-        "spatie/laravel-ray": "^1.17",
-        "facade/ignition": "^2.5"
+        "phpunit/phpunit": "^9.5.10"
     },
     "autoload": {
         "psr-4": {
