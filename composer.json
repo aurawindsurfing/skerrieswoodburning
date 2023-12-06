@@ -9,52 +9,12 @@
     "type": "project",
     "require": {
         "php": "^7.2.5|^8.0",
-        "64robots/nova-fields": "^0.6.7",
-        "aurawindsurfing/slashremovemiddleware": "^1.0",
-        "barryvdh/laravel-dompdf": "0.9.0",
-        "consoletvs/invoices": "^1.8",
-        "cviebrock/eloquent-sluggable": "^7.0",
-        "digital-creative/collapsible-resource-manager": "^1.3",
-        "dinandmentink/nova-markdown": "^1.1.0",
-        "facade/ignition": "^2.0",
-        "fideloper/proxy": "^4.4",
-        "fruitcake/laravel-cors": "^2.0",
-        "graham-campbell/markdown": "^13.1",
-        "gregoriohc/laravel-nova-theme-responsive": "^0.6.1",
-        "grimzy/laravel-mysql-spatial": "^2.1",
-        "guzzlehttp/guzzle": "^7.2",
-        "inspheric/nova-email-field": "^1.3",
-        "inspheric/nova-indicator-field": "^1.2",
-        "inspheric/nova-url-field": "^1.1",
-        "jrm2k6/cloudder": "^0.7.0",
-        "laraning/nova-time-field": "^0.2.4",
-        "laravel/cashier": "^12.12",
         "laravel/framework": "^7.29",
         "laravel/nexmo-notification-channel": "^2.3",
         "laravel/nova": "^3.8",
         "laravel/slack-notification-channel": "^2.3",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "^2.5",
-        "maatwebsite/laravel-nova-excel": "^1.2",
-        "michielfb/laravel-nova-time-field": "^1.1",
-        "michielkempen/nova-order-field": "^2.0",
-        "mpdf/mpdf": "^8.0.4",
-        "nexmo/laravel": "^2.3",
-        "orlyapps/nova-belongsto-depend": "^0.0.6",
-        "outhebox/nova-hidden-field": "^1.0",
-        "peterbrinck/nova-laravel-news": "^0.4.0",
-        "phpoffice/phpspreadsheet": "^1.17",
-        "predis/predis": "^1.1",
-        "propaganistas/laravel-phone": "^4.2",
-        "silvanite/nova-field-cloudinary": "^1.0",
-        "spatie/eloquent-sortable": "^3.0",
-        "spatie/laravel-activitylog": "^3.17",
-        "spatie/laravel-missing-page-redirector": "^2.7",
-        "spatie/laravel-sitemap": "^5.8",
-        "stripe/stripe-php": "^7.77",
-        "titasgailius/search-relations": "1.0.4",
-        "vyuldashev/nova-money-field": "^1.1",
-        "wildbit/swiftmailer-postmark": "^3.3"
+        "laravel/ui": "^2.5"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",
@@ -84,12 +44,6 @@
             "dont-discover": []
         }
     },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://nova.laravel.com"
-        }
-    ],
     "scripts": {
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
