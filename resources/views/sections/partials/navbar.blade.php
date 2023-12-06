@@ -2,7 +2,8 @@
     <div class="flex items-center flex-1">
         <div class="flex items-center justify-between w-full md:w-auto">
             <a href="{{route('home')}}">
-                <img class="h-8 w-auto sm:h-8" src="/images/cit_logo2.svg" alt=""/>
+{{--logo                --}}
+                <img class="h-8 w-auto sm:h-8" src="" alt=""/>
             </a>
             <div class="-mr-2 flex items-center md:hidden">
                 <button @click="open_navbar = true" type="button"
