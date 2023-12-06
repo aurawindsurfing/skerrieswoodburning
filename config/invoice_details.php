@@ -22,7 +22,7 @@ return [
     | to perform all the calculations.
     */
 
-   'decimals' => 2,
+    'decimals' => 2,
 
     /*
     |--------------------------------------------------------------------------
@@ -47,9 +47,9 @@ return [
     | the fixed type simply adds a fixed ammount to the total price
     */
 
-   'tax_type' => 'percentage',
+    'tax_type' => 'percentage',
 
-   /*
+    /*
    |--------------------------------------------------------------------------
    | Default Invoice Logo
    |--------------------------------------------------------------------------
@@ -58,9 +58,9 @@ return [
    | You can change it on each invoice individually.
    */
 
-  'logo' => env('APP_URL').'/images/cit_logo.png',
+    'logo' => env('APP_URL').'/images/cit_logo.png',
 
-  /*
+    /*
   |--------------------------------------------------------------------------
   | Default Invoice Logo Height
   |--------------------------------------------------------------------------
@@ -69,9 +69,9 @@ return [
   | You can change it on each invoice individually.
   */
 
- 'logo_width' => 130,
+    'logo_width' => 130,
 
-  /*
+    /*
   |--------------------------------------------------------------------------
   | Default Invoice Buissness Details
   |--------------------------------------------------------------------------
@@ -80,25 +80,25 @@ return [
   | the customer model.
   */
 
-  'business_details' => [
-      'name'        => 'Contruction Industry Training Ltd',
-      'id'          => '8220493A',
-      'phone'       => '01 809 7266',
-      'location'    => 'Unit C3, Dunshaughlin Business Park ',
-      'zip'         => 'A85 YV58',
-      'city'        => 'Dunshaughlin, Co. Meath',
-      'country'     => 'Ireland',
-  ],
+    'business_details' => [
+        'name' => 'Contruction Industry Training Ltd',
+        'id' => '8220493A',
+        'phone' => '01 809 7266',
+        'location' => 'Unit C3, Dunshaughlin Business Park ',
+        'zip' => 'A85 YV58',
+        'city' => 'Dunshaughlin, Co. Meath',
+        'country' => 'Ireland',
+    ],
 
-  'bank_details' => [
-    'name'        => 'Construction Industry Training Ltd',
-    'number'      => '78384868',
-    'sort'        => '90-04-20',
-    'iban'        => 'IE92BOFI90042078384868',
-    'swift'       => 'BOFIIE2D',
-],
+    'bank_details' => [
+        'name' => 'Construction Industry Training Ltd',
+        'number' => '78384868',
+        'sort' => '90-04-20',
+        'iban' => 'IE92BOFI90042078384868',
+        'swift' => 'BOFIIE2D',
+    ],
 
-  /*
+    /*
   |--------------------------------------------------------------------------
   | Default Invoice Footnote
   |--------------------------------------------------------------------------
@@ -107,7 +107,7 @@ return [
   | some copyright message or simple legal terms.
   */
 
-  'footnote' => '
+    'footnote' => '
   ',
 
 ];

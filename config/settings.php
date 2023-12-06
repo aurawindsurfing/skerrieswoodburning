@@ -5,26 +5,26 @@ return [
     'admin_email' => env('ADMIN_EMAIL'),
 
     'cloudinary_logo' => [
-        'format'  => 'png',
-        'width'   => 105,
-        'height'  => 80,
-        'crop'    => 'fit',
+        'format' => 'png',
+        'width' => 105,
+        'height' => 80,
+        'crop' => 'fit',
         'quality' => 'auto',
         //'effect'  => 'grayscale',
-        'effect'  => 'bgremoval',
+        'effect' => 'bgremoval',
         //'opacity' => '80',
-//        'aspect_ratio' => '1.09'
+        //        'aspect_ratio' => '1.09'
     ],
 
     'cloudinary_optimised_jpg' => [
         'format' => 'jpg',
-        'width'  => 1920,
+        'width' => 1920,
         'height' => 1080,
         'quality' => 'auto',
         'dpr' => 'auto',
         'effect' => 'sharpen',
         'responsive' => true,
-//        'x' => -200,
+        //        'x' => -200,
         // 'y' => -500
         // 'width' => 'auto',
         // 'height' => 'auto',
@@ -34,14 +34,14 @@ return [
 
     'cloudinary_course_group' => [
         'format' => 'jpg',
-        'crop'    => 'fill',
+        'crop' => 'fill',
         'quality' => 'auto',
         //'width'  => 256,
         //'height' => 256,
         //'responsive' => true,
         'dpr' => 'auto',
-//        'gravity' => 'auto',
-//        'crop' => 'fit',
+        //        'gravity' => 'auto',
+        //        'crop' => 'fit',
     ],
 
     'cloudinary_png' => [

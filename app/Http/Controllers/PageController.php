@@ -34,8 +34,7 @@ class PageController extends Controller
                     ->where('inhouse', false)
                     ->where('date', '>', today())
                     ->orderBy('date')
-                    ->get()
-                , 7);
+                    ->get(), 7);
         });
 
         return view('welcome', compact('groups_chunks', 'courses', 'logos', 'image'));
@@ -48,12 +47,11 @@ class PageController extends Controller
         $courses = Cache::remember('group_courses'.$group->id, 900, function () use ($course_type_ids) {
             return $this->filterOutSomeFullyBookedCourses(
                 Course::with(['venue', 'course_type'])
-                ->whereIn('course_type_id', $course_type_ids)
-                ->where('date', '>', today())
-                ->where('inhouse', false)
-                ->orderBy('date')
-                ->get()
-                , 10);
+                    ->whereIn('course_type_id', $course_type_ids)
+                    ->where('date', '>', today())
+                    ->where('inhouse', false)
+                    ->orderBy('date')
+                    ->get(), 10);
         });
 
         return view('group', compact('group', 'course_types', 'courses'));
@@ -67,15 +65,14 @@ class PageController extends Controller
                 ->when(isset($type), function ($query) use ($type) {
                     return $query->where('course_type_id', $type->id);
                 })
-                ->when(! isset($type), function ($query) use ($type) {
+                ->when(! isset($type), function ($query) {
                     return $query->whereNotIn('course_type_id', [1]);
                 })
                 ->with(['venue', 'course_type'])
                 ->where('inhouse', false)
                 ->where('date', '>', today())
                 ->orderBy('date')
-                ->get()
-            , 50
+                ->get(), 50
         );
 
         return view('list', compact('courses', 'type'));
@@ -91,13 +88,12 @@ class PageController extends Controller
         $courses = Cache::remember('courses', 900, function () {
             return $this->filterOutSomeFullyBookedCourses(
                 Course::query()
-                ->with(['venue', 'course_type',])
-                ->where('course_type_id', 1)
-                ->where('inhouse', false)
-                ->where('date', '>', today())
-                ->orderBy('date')
-                ->get()
-                , 10
+                    ->with(['venue', 'course_type'])
+                    ->where('course_type_id', 1)
+                    ->where('inhouse', false)
+                    ->where('date', '>', today())
+                    ->orderBy('date')
+                    ->get(), 10
             );
         });
 
@@ -108,13 +104,12 @@ class PageController extends Controller
     {
         $courses = $this->filterOutSomeFullyBookedCourses(
             Course::query()
-            ->where('venue_id', $venue->id)
-            ->with(['venue', 'course_type'])
-            ->where('inhouse', false)
-            ->where('date', '>', today())
-            ->orderBy('date')
-            ->get()
-            , 10
+                ->where('venue_id', $venue->id)
+                ->with(['venue', 'course_type'])
+                ->where('inhouse', false)
+                ->where('date', '>', today())
+                ->orderBy('date')
+                ->get(), 10
         );
 
         $image = Cache::remember('image'.$venue->slug, 3600, function () {
@@ -125,27 +120,25 @@ class PageController extends Controller
     }
 
     /**
-     * @param string $path
-     * @param int $take
-     * @param string $preset
      * @return array
+     *
      * @throws Api\GeneralError
      */
     private function cloudinary_resources(string $path, int $take, string $preset)
     {
         \Cloudinary::config([
             'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
-            'api_key'    => env('CLOUDINARY_API_KEY'),
+            'api_key' => env('CLOUDINARY_API_KEY'),
             'api_secret' => env('CLOUDINARY_API_SECRET'),
-            'secure'     => true,
+            'secure' => true,
         ]);
 
         $c = new Api();
 
         $response = $c->resources(
             [
-                'type'        => 'upload',
-                'prefix'      => 'cit/'.$path,
+                'type' => 'upload',
+                'prefix' => 'cit/'.$path,
                 'max_results' => $take,
             ]
         );

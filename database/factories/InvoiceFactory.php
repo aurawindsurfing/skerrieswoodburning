@@ -1,18 +1,29 @@
 <?php
 
-use Faker\Generator as Faker;
+namespace Database\Factories;
 
-$factory->define(App\Invoice::class, function (Faker $faker) {
-    $booking = App\Booking::all()->random();
-    $company = App\Company::all(['id'])->random();
-    $user = App\User::all(['id'])->random();
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-    return [
-        'prefix' => 'N-',
-        'date' => $booking->date,
-        'company_id' => $company,
-        'total' => $booking->rate,
-        'status' => $faker->randomElement(['paid', 'unpaid']),
-        'user_id' => $user,
-    ];
-});
+class InvoiceFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        $booking = App\Booking::all()->random();
+        $company = App\Company::all(['id'])->random();
+        $user = App\User::all(['id'])->random();
+
+        return [
+            'prefix' => 'N-',
+            'date' => $booking->date,
+            'company_id' => $company,
+            'total' => $booking->rate,
+            'status' => $this->faker->randomElement(['paid', 'unpaid']),
+            'user_id' => $user,
+        ];
+    }
+}

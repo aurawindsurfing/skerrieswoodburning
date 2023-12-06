@@ -1,13 +1,24 @@
 <?php
 
-use Faker\Generator as Faker;
+namespace Database\Factories;
 
-$factory->define(App\CourseDate::class, function (Faker $faker) {
-    return [
-        // 'course_id' => App\Course::all(['id'])->random(),
-        'venue_id' => App\Venue::all(['id'])->random(),
-        'date' => $faker->dateTimeBetween('-3 months', '+3 months'),
-        'time' => $faker->randomElement(['08:00', '08:30', '09:00']),
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-    ];
-});
+class CourseDateFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            // 'course_id' => App\Course::all(['id'])->random(),
+            'venue_id' => App\Venue::all(['id'])->random(),
+            'date' => $this->faker->dateTimeBetween('-3 months', '+3 months'),
+            'time' => $this->faker->randomElement(['08:00', '08:30', '09:00']),
+
+        ];
+    }
+}

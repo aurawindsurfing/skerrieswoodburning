@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -33,20 +35,20 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('KhvtJDdVp6s3xXtnNabUWzYrhIrzDToXrpUsWItZ'),
         ]);
 
-        // factory(App\User::class, 3)->create();
-        // factory(App\Venue::class, 50)->create();
-        // factory(App\Tutor::class, 20)->create();
-        factory(App\CourseType::class, 2)->create();
+        // \App\User::factory()->count(3)->create();
+        // \App\Venue::factory()->count(50)->create();
+        // \App\Tutor::factory()->count(20)->create();
+        \App\CourseType::factory()->count(2)->create();
 
-        // factory(App\Course::class, 20)->create()->each(function ($course) {
+        // \App\Course::factory()->count(20)->create()->each(function ($course) {
         //     if ($course->multiday) {
-        //         $course->course_dates()->saveMany(factory(App\CourseDate::class, rand(1,3))->make());
+        //         $course->course_dates()->saveMany(\App\CourseDate::factory()->count(rand(1,3))->make());
         //     }
         // });
 
-        // factory(App\Contact::class, 100)->create();
-        // factory(App\Booking::class, 100)->create();
-        // factory(App\Invoice::class, 100)->create();
-        // factory(App\Payment::class, 200)->create();
+        // \App\Contact::factory()->count(100)->create();
+        // \App\Booking::factory()->count(100)->create();
+        // \App\Invoice::factory()->count(100)->create();
+        // \App\Payment::factory()->count(200)->create();
     }
 }
