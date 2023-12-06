@@ -39,7 +39,7 @@
                         {{--                            Book your safepass course right now.--}}
                         {{--                        </p>--}}
 {{--                        <form action="#" method="POST" class="mt-3 sm:flex">--}}
-{{--                            <div class="flex flex-col sm:w-3/4 sm:mx-auto lg:mx-0">--}}
+                            <div class="flex flex-col sm:w-3/4 sm:mx-auto lg:mx-0">
                                 {{--                                <div>--}}
                                 {{--                                <input aria-label="Name"--}}
                                 {{--                                       class="appearance-none block w-full px-3 py-3 border border-gray-300 text-base leading-6 rounded-md placeholder-gray-500 shadow-sm focus:outline-none focus:placeholder-gray-400 focus:shadow-outline focus:border-blue-300 transition duration-150 ease-in-out sm:flex-auto"--}}
@@ -68,7 +68,7 @@
 {{--                                    </a>--}}
 {{--                                </div>--}}
 
-{{--                            </div>--}}
+                            </div>
 
 {{--                        </form>--}}
                         {{--                        <p class="mt-3 text-sm leading-5 text-gray-500">--}}
@@ -94,14 +94,7 @@
                     <div class=" mx-auto w-full rounded-lg shadow-lg lg:max-w-2xl ">
                         <button
                             class="block w-full rounded-lg overflow-hidden focus:outline-none focus:shadow-outline">
-                            <img class="w-full" src="" alt="Safe Pass Dublin"/>
-{{--                            <div class="absolute inset-0 w-full h-full flex items-center justify-center">--}}
-{{--                                <svg class="h-20 w-20 text-blue-500" fill="currentColor" viewBox="0 0 84 84">--}}
-{{--                                    <circle opacity="0.9" cx="42" cy="42" r="42" fill="white"/>--}}
-{{--                                    <path--}}
-{{--                                        d="M55.5039 40.3359L37.1094 28.0729C35.7803 27.1869 34 28.1396 34 29.737V54.263C34 55.8604 35.7803 56.8131 37.1094 55.9271L55.5038 43.6641C56.6913 42.8725 56.6913 41.1275 55.5039 40.3359Z"/>--}}
-{{--                                </svg>--}}
-{{--                            </div>--}}
+                            <img class="w-full" src="{{'/images/colorful-ornament.jpg'}}" alt="Safe Pass Dublin"/>
                         </button>
                     </div>
                 </div>

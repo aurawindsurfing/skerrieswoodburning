@@ -15,14 +15,4 @@
             </div>
         </div>
     </div>
-    <div class="hidden md:block text-right">
-                <span class="inline-flex rounded-md shadow-md">
-                  <span class="inline-flex rounded-md shadow-xs">
-                    <a href="{{}}"
-                       class="inline-flex items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-blue-600 bg-white hover:bg-gray-50 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
-                     Contact Us
-                    </a>
-                  </span>
-                </span>
-    </div>
 </nav>
