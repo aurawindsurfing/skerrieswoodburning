@@ -18,7 +18,22 @@ class PageController extends Controller
     public function index()
     {
 
-        return view('welcome');
+        $photos = [
+            [
+                'path' => '/images/christmas-tree.jpg',
+                'title' => 'Christmas Coasters'
+            ],
+            [
+                'path' => '/images/nice-robin.jpg',
+                'title' => 'Colorful Ornaments'
+            ],
+            [
+                'path' => '/images/nice-santa.jpg',
+                'title' => 'Pencil Cases'
+            ],
+        ];
+
+        return view('welcome', compact('photos'));
     }
 
     public function group(CourseTypeGroup $group)
