@@ -15,7 +15,11 @@
 {{--        @include('sections.public-courses-list')--}}
         @include('sections.logos')
     </div>
-
+        <div class="space-y-8 xl:col-span-1">
+            <p class="text-center text-gray-500 text-base leading-6">
+                The best wood burning is by us.
+            </p>
+        </div>
     @include('sections.footer')
     </div>
 @endsection
