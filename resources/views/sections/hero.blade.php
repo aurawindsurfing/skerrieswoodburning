@@ -25,11 +25,11 @@
 {{--                        class="text-sm font-semibold uppercase tracking-wide text-gray-500 sm:text-base lg:text-sm xl:text-base">--}}
 {{--                        Construction Industry Training Ltd--}}
 {{--                    </div>--}}
-                    <div class="mt-1 text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:leading-none sm:text-6xl lg:text-5xl xl:text-5xl">
-                        Skerries Wood Burning
-                        <br class="hidden md:inline"/>
-                        <span class="text-blue-600">Led By 6th</span>
-                    </div>
+{{--                    <div class="mt-1 text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:leading-none sm:text-6xl lg:text-5xl xl:text-5xl">--}}
+{{--                        Skerries Wood Burning--}}
+{{--                        <br class="hidden md:inline"/>--}}
+{{--                        <span class="text-blue-600">Led By 6th</span>--}}
+{{--                    </div>--}}
                     <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
                         Skerries Wood Burning can be found in many places such as Eurospar Skerries, Bradly's Pharmacy
                         and St'Vincents. We sell colored ornament Chrismas Coasters and Pecil Cases.
@@ -95,6 +95,7 @@
                         <button
                             class="block w-full rounded-lg overflow-hidden focus:outline-none focus:shadow-outline">
                             <img class="w-full" src="{{'/images/colorful-ornament.jpg'}}" alt="Safe Pass Dublin"/>
+
                         </button>
                     </div>
                 </div>

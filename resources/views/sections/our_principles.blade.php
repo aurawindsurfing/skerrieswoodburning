@@ -1,13 +1,9 @@
 <div class="py-6 bg-white">
     <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="lg:text-center">
-{{--            <p class="text-base leading-6 text-blue-600 font-semibold tracking-wide uppercase">ABOUT US</p>--}}
-            <h3 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
-                Our Jobs
-            </h3>
-            <p class="mt-4 text-xl leading-7 text-gray-500 lg:mx-auto">
-                The Jobs Of The class insure that all the class take part
-            </p>
+        <div class="text-center mt-1 text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:leading-none sm:text-6xl lg:text-5xl xl:text-5xl">
+            Skerries Wood Burning
+            <br class="hidden md:inline"/>
+            <span class="text-blue-600">Led By 6th</span>
         </div>
 
         <div class="mt-10">

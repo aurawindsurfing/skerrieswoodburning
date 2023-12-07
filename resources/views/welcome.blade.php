@@ -8,8 +8,9 @@
     <div x-data="{ open_navbar: false, show_modal: false }"
         x-init="show_modal = @json(Session::has('overbooked')) || @json(Session::has('success'))"
          class="max-w-screen-xl mx-auto">
-        @include('sections.hero')
+
         @include('sections.our_principles')
+        @include('sections.hero')
 {{--        @include('sections.groups')--}}
 {{--        @include('sections.public-courses-list')--}}
         @include('sections.logos')
