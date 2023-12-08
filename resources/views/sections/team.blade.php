@@ -4,7 +4,7 @@
             <div class="lg:grid lg:grid-cols-12 lg:gap-8">
                 <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-12 lg:text-left">
 
-                    <h2 class="text-3xl text-center font-bold tracking-tight text-gray-900 sm:text-4xl">Our Team</h2>
+                    <h2 class="mb-10 text-3xl text-center font-bold tracking-tight text-gray-900 sm:text-4xl">Our Team</h2>
 
                     <div class="mt-10">
                         <ul class="md:grid md:grid-cols-2 md:col-gap-8 md:row-gap-10">
@@ -20,8 +20,14 @@
                                     <div class="ml-4">
                                         <h5 class="text-lg leading-6 font-medium text-gray-900">Design and Production</h5>
                                         <p class="mt-2 text-base leading-6 text-gray-500">
-                                            - Name 1
-                                            - Name 2
+                                             Finley,
+                                             James,
+                                             Oscar T,
+                                             Oscar S,
+                                             Maggie,
+                                             Ruby,
+                                             Zelda,
+                                             Aoife
                                         </p>
                                     </div>
                                 </div>
@@ -38,8 +44,11 @@
                                     <div class="ml-4">
                                         <h5 class="text-lg leading-6 font-medium text-gray-900">Communications Team</h5>
                                         <p class="mt-2 text-base leading-6 text-gray-500">
-                                            - Name 1
-                                            - Name 2
+                                             Amal,
+                                             Molly C,
+                                             Isobel,
+                                             Kitya,
+                                             Molly K
                                         </p>
                                     </div>
                                 </div>
@@ -56,8 +65,10 @@
                                     <div class="ml-4">
                                         <h5 class="text-lg leading-6 font-medium text-gray-900">Finance Team</h5>
                                         <p class="mt-2 text-base leading-6 text-gray-500">
-                                            - Name 1
-                                            - Name 2
+                                             Dan,
+                                             Patrick,
+                                             Darragh,
+                                             Aga
                                         </p>
                                     </div>
                                 </div>
@@ -74,8 +85,11 @@
                                     <div class="ml-4">
                                         <h5 class="text-lg leading-6 font-medium text-gray-900">Marketing and Technology</h5>
                                         <p class="mt-2 text-base leading-6 text-gray-500">
-                                            - Name 1
-                                            - Name 2
+                                             Cillian,
+                                             Kyle,
+                                             Mati,
+                                             Wesli,
+                                             David
                                         </p>
                                     </div>
                                 </div>
@@ -92,8 +106,10 @@
                                     <div class="ml-4">
                                         <h5 class="text-lg leading-6 font-medium text-gray-900">Sales Team</h5>
                                         <p class="mt-2 text-base leading-6 text-gray-500">
-                                            - Name 1
-                                            - Name 2
+                                             Oran,
+                                             Bailey,
+                                             Harley,
+                                             Noah
                                         </p>
                                     </div>
                                 </div>

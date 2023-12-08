@@ -2,7 +2,7 @@
     <div class="bg-white">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="mx-auto max-w-2xl text-center">
-                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">About Us</h2>
+                <h2 class="mb-10 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">About Us</h2>
 
                 <p class="text-lg leading-8 text-gray-600">
                 <p class="pb-6">
@@ -31,7 +31,7 @@
 
                 <div class="pt-8">
 
-                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Local News</h2>
+                    <h2 class="mb-10 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Local News</h2>
 
                     <div class="relative pb-96 pt-96">
                         <a href="{{'/images/skerries-news.pdf'}}">
@@ -39,7 +39,6 @@
                         </a>
 
                     </div>
-
                 </div>
             </div>
         </div>

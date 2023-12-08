@@ -2,11 +2,11 @@
     <div class="bg-white">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="mx-auto max-w-2xl text-center">
-                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Skerries Wood Burning
-                    <br class="hidden md:inline"/>
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Skerries Stationary
+                    <br/>
                     <span class="text-blue-600">Led By 6th</span>
                 </h2>
-                <p class="mt-2 text-lg leading-8 text-gray-600">Skerries Wood Burning can be found in many places such as Eurospar Skerries, Bradly's Pharmacy and St'Vincents. We sell colored ornament Chrismas Coasters and Pecil Cases.
+                <p class="mt-2 text-lg leading-8 text-gray-600">Skerries Wood Burning can be found in many places such as Eurospar Skerries, Bradly's Pharmacy and St. Vincent's. We sell colored ornaments, Christmas Coasters and Pencil Cases.
                 </p>
             </div>
             <div class="mx-auto  mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
