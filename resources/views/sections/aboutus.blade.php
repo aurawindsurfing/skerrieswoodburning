@@ -33,11 +33,10 @@
 
                     <h2 class="mb-10 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Local News</h2>
 
-                    <div class="relative pb-96 pt-96">
-                        <a href="{{'/images/skerries-news.pdf'}}">
-                            <img src="{{'/images/skerries-news.png'}}" alt="" class="absolute inset-0 h-full mx-auto">
+                    <div class="mb-10">
+                        <a href="{{'/images/skerries-newsPDF.pdf'}}">
+                            <img src="{{'/images/skerries-news.png'}}" alt="" class="inset-0 mx-auto">
                         </a>
-
                     </div>
                 </div>
             </div>
