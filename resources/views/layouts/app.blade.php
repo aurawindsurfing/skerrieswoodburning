@@ -42,9 +42,6 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 
-    @include('sections.partials.google_analitycs')
-    {{-- @include('partials.cookieconsent') --}}
-
 </head>
 <body>
 

@@ -16,7 +16,7 @@
                                         </div>
                                     </div>
                                     <div class="ml-4">
-                                        <h5 class="text-lg leading-6 font-medium text-gray-900">Design And Production</h5>
+                                        <h5 class="text-lg leading-6 font-medium text-gray-900">Design and Production</h5>
                                         <p class="mt-2 text-base leading-6 text-gray-500">
                                             - Name 1
                                             - Name 2
@@ -70,7 +70,7 @@
                                         </div>
                                     </div>
                                     <div class="ml-4">
-                                        <h5 class="text-lg leading-6 font-medium text-gray-900">Marketing And Technology</h5>
+                                        <h5 class="text-lg leading-6 font-medium text-gray-900">Marketing and Technology</h5>
                                         <p class="mt-2 text-base leading-6 text-gray-500">
                                             - Name 1
                                             - Name 2

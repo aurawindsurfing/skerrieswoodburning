@@ -16,17 +16,17 @@
                         <ul class="mt-4 space-y-4">
                             <li>
                                 <a class="text-base text-gray-500 hover:text-gray-900">
-                                    colorful ornaments
+                                    Ornaments
                                 </a>
                             </li>
                             <li>
                                 <a class="text-base text-gray-500 hover:text-gray-900">
-                                    pencil cases
+                                    Pencil Cases
                                 </a>
                             </li>
                             <li>
                                 <a class="text-base text-gray-500 hover:text-gray-900">
-                                    coasters
+                                    Coasters
                                 </a>
                             </li>
 
