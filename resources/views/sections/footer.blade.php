@@ -1,34 +1,28 @@
 
 <footer class="bg-white">
     <div class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
-        <div class="">
-{{--            <div class="space-y-8 xl:col-span-1">--}}
-{{--                <p class="text-gray-500 text-base leading-6">--}}
-{{--                    The best wood burning is by us.--}}
-{{--                </p>--}}
-{{--            </div>--}}
-            <div class="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
-                <div class="md:grid md:grid-cols-2 md:gap-8">
-                    <div>
-                        <h4 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">
-                            Products
-                        </h4>
-                        <ul class="mt-4 space-y-4">
-                            <li>
-                                <a class="text-base text-gray-500 hover:text-gray-900">
-                                    Ornaments
-                                </a>
-                            </li>
-                            <li>
-                                <a class="text-base text-gray-500 hover:text-gray-900">
-                                    Pencil Cases
-                                </a>
-                            </li>
-                            <li>
-                                <a class="text-base text-gray-500 hover:text-gray-900">
-                                    Coasters
-                                </a>
-                            </li>
+        <div class="text-center mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
+            <div class="md:grid md:grid-cols-2 md:gap-8">
+                <div>
+                    <h4 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">
+                        Products
+                    </h4>
+                    <ul class="mt-4 space-y-4">
+                        <li>
+                            <a class="text-base text-gray-500">
+                                Ornaments
+                            </a>
+                        </li>
+                        <li>
+                            <a class="text-base text-gray-500">
+                                Pencil Cases
+                            </a>
+                        </li>
+                        <li>
+                            <a class="text-base text-gray-500">
+                                Coasters
+                            </a>
+                        </li>
 
                         </ul>
                     </div>
@@ -71,8 +65,7 @@
                                 </a>
                             </li>
 
-                        </ul>
-                    </div>
+                    </ul>
                 </div>
             </div>
         </div>
