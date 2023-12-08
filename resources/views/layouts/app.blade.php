@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title') Safe Pass Course Dublin</title>
-    <meta name='description' itemprop='description' content="@yield('description'){{'SOLAS Safe Pass in Dublin! Courses available daily. Trusted safepass dublin provider with years of experience.'}}" />
-    <meta name='keywords' content="safepass dublin, safe pass dublin" />
-    <meta name="robots" content="index, follow" />
-    <meta property="og:description" content="@yield('description'){{'SOLAS Safe Pass in Dublin! Courses available daily. Trusted safepass dublin provider with years of experience.'}}"/>
-    <meta property="og:title" content="@yield('title'){{'Safe Pass Course Dublin'}}"/>
+    <title>Skerries Wood Burning</title>
+    <meta name='description' itemprop='description' content="Skerries Wood Burning" />
+    <meta name='keywords' content="skerries, wood, burning" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta property="og:description" content="Skerries Wood Burning"/>
+    <meta property="og:title" content="Skerries Wood Burning"/>
     <meta property="og:url" content="{{ url()->current() }}"/>
     <meta property="og:type" content="article"/>
 
@@ -23,8 +23,8 @@
           content=" "/>
     <meta property="og:image:size" content="300"/>
 
-    <meta name="twitter:title" content="@yield('title'){{'Safe Pass Course Dublin'}}"/>
-    <meta name="twitter:card" content="@yield('description'){{'SOLAS Safe Pass in Dublin! Courses available daily. Trusted safepass dublin provider with years of experience.'}}"/>
+    <meta name="twitter:title" content="Skerries Wood Burning"/>
+    <meta name="twitter:card" content="Skerries Wood Burning"/>
     {{--    <meta name="twitter:site"content="@MedicusMedical" />--}}
 
     {{--    @foreach(localization()->getSupportedLocales() as $key => $locale)--}}
