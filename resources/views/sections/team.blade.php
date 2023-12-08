@@ -1,8 +1,10 @@
 <div class="relative bg-white overflow-hidden">
     <div class="reltive pt-6 pb-16 md:pb-16 lg:pb-20 xl:pb-24">
-        <div class="mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-20 xl:mt-24">
+        <div class="mx-auto max-w-screen-xl px-4 mt-12">
             <div class="lg:grid lg:grid-cols-12 lg:gap-8">
                 <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-12 lg:text-left">
+
+                    <h2 class="text-3xl text-center font-bold tracking-tight text-gray-900 sm:text-4xl">Our Team</h2>
 
                     <div class="mt-10">
                         <ul class="md:grid md:grid-cols-2 md:col-gap-8 md:row-gap-10">

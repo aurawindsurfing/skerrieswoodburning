@@ -1,16 +1,9 @@
 <div class="py-6 bg-white">
-    <div class="bg-white py-12 sm:py-32">
+    <div class="bg-white">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="mx-auto max-w-2xl text-center">
-                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">About Us
-                </h2>
-                <div class="pt-8">
-                    <div class="relative flex-col pt-80">
-                        <a href="{{'/images/skerries-news.pdf'}}">
-                            <img src="{{'/images/skerries-news.png'}}" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover">
-                        </a>
-                    </div>
-                </div>
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">About Us</h2>
+
                 <p class=" text-lg leading-8 text-gray-600">
                     The wood-burned coaster school project is an engaging and creative exploration that allows students to delve into the ancient art of pyrography, turning simple wooden coasters into personalized works of functional art. Under the guidance of their art teacher, students embark on a journey that combines artistic expression with the skillful use of wood-burning tools.
 
@@ -24,6 +17,19 @@
 
                     Ultimately, the wood-burned coaster school project not only serves as a platform for artistic expression but also introduces students to the intersection of art and craftsmanship. The finished coasters become functional art pieces, ready to be used and cherished, representing the unique creativity and skill of each student.
                 </p>
+
+                <div class="pt-8">
+
+                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Local News</h2>
+
+                    <div class="relative pb-96 pt-96">
+                        <a href="{{'/images/skerries-news.pdf'}}">
+                            <img src="{{'/images/skerries-news.png'}}" alt="" class="absolute inset-0 h-full mx-auto">
+                        </a>
+
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
