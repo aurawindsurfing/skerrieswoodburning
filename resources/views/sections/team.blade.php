@@ -27,7 +27,9 @@
                                              Maggie,
                                              Ruby,
                                              Zelda,
-                                             Aoife
+                                             Aoife,
+                                             Lukas,
+                                             Armani
                                         </p>
                                     </div>
                                 </div>
@@ -47,8 +49,11 @@
                                              Amal,
                                              Molly C,
                                              Isobel,
-                                             Kitya,
-                                             Molly K
+                                             Kitija,
+                                             Molly K,
+                                             Cliodhna,
+                                             Sadhbh,
+                                             Andrea
                                         </p>
                                     </div>
                                 </div>
@@ -106,9 +111,11 @@
                                     <div class="ml-4">
                                         <h5 class="text-lg leading-6 font-medium text-gray-900">Sales Team</h5>
                                         <p class="mt-2 text-base leading-6 text-gray-500">
-                                             Oran,
+                                             Odhran,
                                              Bailey,
                                              Harley,
+                                             Christina,
+                                             Ivan,
                                              Noah
                                         </p>
                                     </div>
